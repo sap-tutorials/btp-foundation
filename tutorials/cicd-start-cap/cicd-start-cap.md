@@ -201,6 +201,8 @@ Configure a basic job for SAP Cloud Application Model projects.
    
     >**Note:** As this tutorial focuses on how to get started with SAP Continuous Integration and Delivery, we've decided to configure only a very basic CI/CD pipeline in it. For how to configure more elaborate ones, see [Supported Pipelines](https://help.sap.com/docs/continuous-integration-and-delivery/sap-continuous-integration-and-delivery/supported-pipelines?language=en-US&version=Cloud).
 
-8. To run your CI/CD pipeline, choose **Run**.
+8. To run your CI/CD pipeline, create and commit a code change in your GitHub project.
 
-As a result, a build of the connected job is triggered and a new build tile appears in the **Builds** section of your job. If you choose it, the **Build Stages** view opens and you can watch the individual stages of your build run through. The pipeline run might take a few minutes.
+    As a result, a build of the connected job is triggered and a new build tile appears in the **Builds** section of your job. If you choose it, the **Build Stages** view opens and you can watch the individual stages of your build run through.
+    
+    >**Note:** The pipeline run might take a few minutes.
