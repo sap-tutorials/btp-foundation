@@ -19,7 +19,7 @@ primary_tag: software-product-function>sap-cloud-application-programming-model
 ## You will learn
   - How to set up SAP Continuous Integration and Delivery
   - How to create and run a basic job for an SAP Cloud Application Programming Model project
-  - How to automate the builds of your CI/CD job trough a webhook in GitHub
+  - How to automate the builds of your CI/CD job through a webhook in GitHub
 
 ### Set up SAP Continuous Integration and Delivery
 
@@ -46,7 +46,7 @@ Enable SAP Continuous Integration and Delivery, add the required permissions, an
 
 7. From the **Role Collections** section, choose **...** **&rarr;** **Assign Role Collection**.
 
-8. From the dropdown list, select **CICD Service Administrator** and **CICD Service Developer**. Confirm your choice with **Assign Role Collection**.
+8. From the dropdown list, select **CICD Service Administrator**. Confirm your choice with **Assign Role Collection**.
 
     ![Assigning the CI/CD Roles](CICD_roles.png)
 
@@ -201,7 +201,7 @@ Configure a basic job for SAP Cloud Application Model projects.
    
     >**Note:** As this tutorial focuses on how to get started with SAP Continuous Integration and Delivery, we've decided to configure only a very basic CI/CD pipeline in it. For how to configure more elaborate ones, see [Supported Pipelines](https://help.sap.com/docs/continuous-integration-and-delivery/sap-continuous-integration-and-delivery/supported-pipelines?language=en-US&version=Cloud).
 
-8. To run your CI/CD pipeline, create and commit a code change in your GitHub project.
+8. Create and commit a code change in your GitHub project to run your CI/CD pipeline.
 
     As a result, a build of the connected job is triggered and a new build tile appears in the **Builds** section of your job. If you choose it, the **Build Stages** view opens and you can watch the individual stages of your build run through.
     
