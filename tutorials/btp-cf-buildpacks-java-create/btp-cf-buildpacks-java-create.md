@@ -38,7 +38,7 @@ This tutorial will guide you through creating and setting up a simple Java appli
 
 First, you need to connect to the SAP BTP, Cloud Foundry environment with your productive subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
 
-In this tutorial, we use `eu20.hana.ondemand.com` as an example.
+In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
 
 1. Open a command-line console.
 
@@ -129,7 +129,8 @@ For this part, you need to configure your `HelloWorld` application, add an extra
       random-route: true
       path: ./target/java-tutorial-0.0.1-SNAPSHOT.jar
       memory: 1024M
-      buildpack: sap_java_buildpack
+      buildpacks: 
+      - sap_java_buildpack
       env:
         TARGET_RUNTIME: tomcat
         JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
@@ -291,7 +292,8 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
       random-route: true
       path: ./target/java-tutorial-0.0.1-SNAPSHOT.jar
       memory: 1024M
-      buildpack: sap_java_buildpack
+      buildpacks: 
+      - sap_java_buildpack
       env:
         TARGET_RUNTIME: tomcat
         JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
@@ -641,7 +643,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 ### Assigning Roles to a User in SAP BTP Cockpit
 
 
-1. Open the SAP BTP cockpit and go to your subaccount.
+1. Open the SAP BTP cockpit and go to your subaccount and space.
 
 2. From the left-side menu, navigate to `Security` > `Role Collections`.
 

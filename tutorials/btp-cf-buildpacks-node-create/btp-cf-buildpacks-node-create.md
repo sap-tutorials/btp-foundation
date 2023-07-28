@@ -2,8 +2,8 @@
 parser: v2
 author_name: Gergana Tsakova
 author_profile: https://github.com/Joysie
-title: Create a Node.js Application with Cloud Foundry Node.js Buildpack 
-description: Create a simple application and enable services for it, by using  the Cloud Foundry Node.js Buildpack and Cloud Foundry Command Line Interface (cf CLI).
+title: Create an Application with Cloud Foundry Node.js Buildpack 
+description: Create a simple Node.js application and enable services for it, by using  the Cloud Foundry Node.js Buildpack and Cloud Foundry Command Line Interface (cf CLI).
 auto_validation: true
 time: 40
 tags: [ tutorial>beginner, software-product>sap-btp--cloud-foundry-environment, software-product-function>sap-btp-cockpit]
@@ -33,7 +33,7 @@ This tutorial will guide you through creating and setting up a simple Node.js ap
 
 First, you need to connect to the SAP BTP, Cloud Foundry environment with your productive subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
 
-In this tutorial, we use `eu20.hana.ondemand.com` as an example.
+In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
 
 1. Open a command-line console.
 
@@ -81,7 +81,8 @@ You're going to create a simple Node.js application.
       random-route: true
       path: myapp
       memory: 128M
-      buildpack: nodejs_buildpack
+      buildpacks:
+      - nodejs_buildpack
     ```
 
     The `manifest.yml` file represents the configuration describing your application and how it will be deployed to Cloud Foundry.
@@ -231,7 +232,8 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
       random-route: true
       path: myapp
       memory: 128M
-      buildpack: nodejs_buildpack
+      buildpacks: 
+      - nodejs_buildpack
       services:
       - nodeuaa
     ```
@@ -512,7 +514,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     });
     ```
 
-    > **IMPORTANT:** Authorization checks are enforced by the `xssec` package in the `@sap` directory. To every request object, using `passport` and `xssec.JWTStrategy`, a security context is attached as an `authInfo` object. The resulting request object is initialized with the incoming JWT token. To check the full list of methods and properties of the security context, see: [Authentication for Node.js Applications] (https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/4902b6e66cbd42648b5d9eaddc6a363d.html?version=Cloud)
+    > **IMPORTANT:** Authorization checks are enforced by the `xssec` package in the `@sap` directory. To every request object using `passport` and `xssec.JWTStrategy`, a security context is attached as an `authInfo` object. The resulting request object is initialized with the incoming JWT token. To check the full list of methods and properties of the security context, see: [Authentication for Node.js Applications] (https://help.sap.com/docs/btp/sap-business-technology-platform/authentication-for-node-js-applications?version=Cloud)
 
       As defined in the `start.js` file, for HTTP GET requests users need the `Display` scope to be authorized. For HTTP POST requests, they need to have the `Update` scope assigned.
 
@@ -597,7 +599,7 @@ To get permissions, you need to create a role collection containing the roles `V
 ### Assigning Roles to a User in SAP BTP Cockpit
 
 
-1. Open the SAP BTP cockpit and go to your subaccount.
+1. Open the SAP BTP cockpit and go to your subaccount and space.
 
 2. From the left-side menu, navigate to `Security` > `Role Collections`.
 

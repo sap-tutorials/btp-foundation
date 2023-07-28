@@ -2,8 +2,8 @@
 parser: v2
 author_name: Gergana Tsakova
 author_profile: https://github.com/Joysie
-title: Create a Python Application with Cloud Foundry Python Buildpack 
-description: Create a simple application and enable services for it, by using  the Cloud Foundry Python Buildpack and Cloud Foundry Command Line Interface (cf CLI).
+title: Create an Application with Cloud Foundry Python Buildpack 
+description: Create a simple Python application and enable services for it, by using  the Cloud Foundry Python Buildpack and Cloud Foundry Command Line Interface (cf CLI).
 auto_validation: true
 time: 40
 tags: [ tutorial>beginner, software-product>sap-btp--cloud-foundry-environment, software-product>sap-hana, software-product-function>sap-btp-cockpit]
@@ -18,8 +18,8 @@ primary_tag: programming-tool>python
 ## Prerequisites
  - You have a trial or productive account for SAP Business Technology Platform (SAP BTP). If you don't have such yet, you can create one so you can [try out services for free] (https://developers.sap.com/tutorials/btp-free-tier-account.html).
  - You have created a subaccount and a space on Cloud Foundry Environment.
- - You have created a service instance for [SAP HANA Cloud] (https://help.sap.com/docs/HANA_CLOUD/9ae9104a46f74a6583ce5182e7fb20cb/f7febb16072b41f7ac90abf5ea1d4b86.html). To learn how to set it up, watch the first half of this video: [SAP HANA Cloud Trial Setup](https://www.youtube.com/watch?v=GSNQpfxPuLU) 
- - [Python] (https://www.python.org/downloads/) is installed locally. To check which Python versions are supported in the current buildpack, see: [Developing Python in the Cloud Foundry Environment](https://help.sap.com/docs/btp/sap-business-technology-platform/developing-python-in-cloud-foundry-environment#buildpack-versioning). In this tutorial, we use Python **3.11.1**.
+ - You have created a service instance for [SAP HANA Cloud] (https://help.sap.com/docs/hana-cloud). To learn how to set it up, watch the following video from **03:15**  to **07:10**: [SAP HANA Cloud Trial Setup](https://www.youtube.com/watch?v=GSNQpfxPuLU). During the first steps, choose the `SAP HANA Database` type.
+ - [Python] (https://www.python.org/downloads/) is installed locally. To check which Python versions are supported in the current buildpack, see: [Developing Python in the Cloud Foundry Environment](https://help.sap.com/docs/btp/sap-business-technology-platform/developing-python-in-cloud-foundry-environment#buildpack-versioning). In this tutorial, we use Python version **3.11.x**.
  - [cf CLI] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/4ef907afb1254e8286882a2bdef0edf4.html) is installed locally.
  - [npm] (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) is installed locally.
  - You have installed an integrated development environment, for example [Visual Studio Code] (https://code.visualstudio.com/).
@@ -39,7 +39,7 @@ This tutorial will guide you through creating and setting up a simple Python app
 
 First, you need to connect to the SAP BTP, Cloud Foundry environment with your enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
 
-In this tutorial, we use `eu20.hana.ondemand.com` as an example.
+In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
 
 1. Open a command-line console.
 
@@ -86,7 +86,8 @@ You're going to create a simple Python application.
       random-route: true
       path: ./
       memory: 128M
-      buildpack: python_buildpack
+      buildpacks: 
+      - python_buildpack
       command: python server.py
     ```
 
@@ -99,13 +100,13 @@ You're going to create a simple Python application.
 4. Specify the Python runtime version that your application will run on. To do that, create a `runtime.txt` file with the following content:
 
     ```TXT
-    python-3.11.1
+    python-3.11.*
     ```
 
 5. This application will be a web server utilizing the Flask web framework. To specify Flask as an application dependency, create a `requirements.txt` file with the following content:
 
     ```TXT
-    Flask==2.0.1
+    Flask==2.3.*
     ```
 
 6. Create a `server.py` file with the following application logic:
@@ -165,7 +166,8 @@ You have created a service instance for SAP HANA Cloud (see **Prerequisites** at
       random-route: true
       path: ./
       memory: 128M
-      buildpack: python_buildpack
+      buildpacks: 
+      - python_buildpack
       command: python server.py
       services:
       - pyhana
@@ -174,9 +176,9 @@ You have created a service instance for SAP HANA Cloud (see **Prerequisites** at
 3. To consume the service inside the application, you need to read the service settings and credentials from the application. To do that, use the `cfenv` Python module. Add two more lines to the `requirements.txt` file so that its content looks like this:
 
     ```TXT
-    Flask==2.0.1
+    Flask==2.3.*
     cfenv==0.5.3
-    hdbcli==2.9.23
+    hdbcli==2.17.*
     ```
 
 
@@ -277,7 +279,8 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
       random-route: true
       path: ./
       memory: 128M
-      buildpack: python_buildpack
+      buildpacks: 
+      - python_buildpack
       command: python server.py
       services:
       - pyhana
@@ -391,7 +394,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 #### RESULT
 
-- A simple application page with title **Python Tutorial** is displayed. When you click the `My Application` link, the current SAP HANA time is displayed, in UTC time zone.
+- A simple application page with title **Python Tutorial** is displayed. When you click the `My Python Application` link, the current SAP HANA time is displayed, in UTC time zone.
   
 - If you directly access the `myapp` URL, it displays the same result - the current SAP HANA time in UTC time zone. 
 
@@ -402,10 +405,10 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 1.	Add the `sap-xssec` security library to the `requirements.txt` file, to place restrictions on the content you serve. The file should look like this:
 
     ```TXT
-    Flask==2.0.1
+    Flask==2.3.*
     cfenv==0.5.3
-    hdbcli==2.9.23
-    sap-xssec==3.0.0
+    hdbcli==2.17.*
+    sap-xssec==4.*
     ```
 
 
@@ -477,4 +480,5 @@ Accessing the `myapp` application results in the following:
 
 - If you try to access it through the `web` application router, the current SAP HANA time is displayed (in UTC time zone) – provided that you have the `openid` scope assigned to your user. Since the OAuth 2.0 client is used, the `openid` scope is assigned to your user by default, the correct authorization header is declared, and thus you are allowed to access the `myapp` application.
 
-  > In order for the new result to take effect immediately, you might need to clear the cache of your browser. Or just open the `web` application URL in a private/incognito browser tab.
+
+   > In order for the new result to take effect immediately, you might need to clear the cache of your browser. Or just open the `web` application URL in a private/incognito browser tab.
