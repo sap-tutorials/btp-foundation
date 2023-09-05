@@ -135,11 +135,10 @@ To use the XSUAA service, a file named `xs-security.json` is necessary. The file
     			]
     		}
     	],
-      "oauth2-configuration": [
+      "oauth2-configuration": 
         {  
           "redirect-uris": ["https://approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/login/callback"]          
           }
-      ]
     }
     ```
     This creates a role collection with a role template and a role with a reading scope, so a user with this role can view the products.
