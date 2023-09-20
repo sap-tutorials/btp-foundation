@@ -15,7 +15,7 @@ primary_tag: software-product-function>sap-cloud-application-programming-model
 ## Prerequisites
 - You use [SAPUI5](https://sapui5.hana.ondemand.com/) in version 1.105.0 or higher.
 - You have installed and configured a local Git client.
-- You have installed [Node.js](https://nodejs.org/en/) in version 16.x or higher.
+- You have installed [Node.js](https://nodejs.org/en/) in version 18.x or higher.
 - You have installed [Visual Studio Code](https://code.visualstudio.com/).
 - You have installed the `cds` development kit using the command `npm install -g @sap/cds-dk`. If you encounter any problems when installing the `cds` development kit, have a look at [this troubleshooting section](https://cap.cloud.sap/docs/advanced/troubleshooting#npm-installation).
 - Your Google Chrome version is up to date. See [Update Google Chrome](https://support.google.com/chrome/answer/95414?co=GENIE.Platform%3DDesktop&hl=en).
