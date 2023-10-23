@@ -30,7 +30,7 @@ keywords: btp, btp cli, btpcli, command line, command line interface, command li
 
 ### What is the btp CLI?
 
-The btp CLI is **an alternative to the cockpit** for users who prefer working on the command line. It consists of a client and a server. The client is installed on your computer and it interacts with SAP BTP through a server. You connect to this CLI server (https://cpcli.cf.eu10.hana.ondemand.com) when you log on to your global account through the btp CLI.
+The btp CLI is **an alternative to the cockpit** for users who prefer working on the command line. It consists of a client and a server. The client is installed on your computer and it interacts with SAP BTP through a server. You connect to this CLI server ([https://cli.btp.cloud.sap/)](https://cli.btp.cloud.sap/) when you log on to your global account through the btp CLI.
 
 The base call to enter on the command line is `btp`.
 
@@ -114,7 +114,7 @@ You can call up help in the client on different levels, from an introductory hel
 
 Now let's log in: 
 
-The **CLI server URL** (https://cpcli.cf.eu10.hana.ondemand.com) is proposed at login - just accept it with ENTER. This server routes client requests to the platform services. Note that there is just this one central CLI server, independent of the regions in which your subaccounts reside. 
+The **CLI server URL** (https://cli.btp.cloud.sap/) is proposed at login - just accept it with ENTER. This server routes client requests to the platform services. 
 
 You have two options for login:
 
