@@ -68,7 +68,7 @@ You're most likely here because you did not get all the service plans available 
 
 3. In the dropdown menus, choose **Show:** > **Subaccounts** and **Subaccounts:** > **trial** and then choose **Go**.
 
-    <!-- border -->![Entity Assignment Choosing Trial](EntityAssignment-ChooseTrial.png)
+    <!-- border -->![Entity Assignment Choosing Trial](EntityAssignment-ChosseTrial.png)
 
       This loads a table with all the existing entitlements and quota assigned to that subaccount.
 
