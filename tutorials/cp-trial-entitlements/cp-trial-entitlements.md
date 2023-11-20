@@ -11,7 +11,7 @@ author_profile: https://github.com/Madeline-Schaefer
 <!-- description --> Configure entitlements and quotas in your SAP BTP trial using the cockpit.
 
 ## Prerequisites
-- You must have registered for a trial account on SAP Business Technology Platform: [Get a Free Account on SAP BTP Trial](hcp-create-trial-account).
+- You have registered for a trial account on SAP Business Technology Platform: [Get a Free Account on SAP BTP Trial](hcp-create-trial-account).
 
 ## You will learn
   - How to add missing entitlements to your trial subaccount
