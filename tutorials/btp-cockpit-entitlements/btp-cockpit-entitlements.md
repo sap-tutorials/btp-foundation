@@ -17,7 +17,7 @@ primary_tag: software-product>sap-business-technology-platform
     - **SAP BTP consumption based enterprise account:** You have a subaccount for which you want to manage entitlements. If you need help setting up your subaccount, have a look at [Managing Subaccounts Using the Cockpit](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/55d0b6d8b96846b8ae93b85194df0944.html).
 
 ## You will learn
-- How to add entitlements to your subaccount
+- How to add entitlements to a subaccount
 
 ## Intro
 You can do this tutorial with trial accounts or enterprise accounts with a global account using cloud management tools feature set B.
