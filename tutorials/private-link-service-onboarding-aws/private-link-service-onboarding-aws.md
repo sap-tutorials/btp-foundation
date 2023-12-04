@@ -17,7 +17,7 @@ primary_tag: software-product-function>sap-private-link-service
 - You have enabled features for your subaccount. See [Create Subaccount](https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/05280a123d3044ae97457a25b3013918.html?q=create%20subaccount) or [Change Subaccount Details](https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/567d4a84bfdc428f8f3640e07261f73a.html?q=subaccount%20details).
 
 ## You will learn
-  - How to start with SAP Private Link service on Amazon Web Services
+  - How to start with SAP Private Link service on Amazon Web Services 
   - How to enable SAP Private Link service in BTP cockpit
 
 ## Intro
