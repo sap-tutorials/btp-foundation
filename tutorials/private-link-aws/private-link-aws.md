@@ -22,7 +22,7 @@ primary_tag: software-product-function>sap-btp-cockpit
   - How to bind the service instance to your application using Cloud Foundry CLI
 
 ## Intro
-SAP Private Link Service establishes a private connection between applications running on SAP BTP and selected services in your own IaaS provider accounts. By reusing the private link functionality of our partner IaaS providers, you can access your services through private network connections to avoid data transfer via the public internet.
+SAP Private Link Service establishes a private connection between applications running on SAP BTP and selected services in your own IaaS provider accounts. By reusing the private link functionality of our partner IaaS providers, you can access your services through private network connections to avoid data transfer via the public internet. 
 
 <!-- border -->![Overview of  Link service functionality](private-endpoint.png)
 
