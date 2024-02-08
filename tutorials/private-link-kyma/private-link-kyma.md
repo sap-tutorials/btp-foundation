@@ -9,7 +9,7 @@ primary_tag: software-product>sap-business-technology-platform
 ---
 
 # Set Up SAP Private Link Service
-<!-- description --> Get onboarded to use SAP Private Link service in SAP BTP.
+<!-- description --> Get onboarded to use SAP Private Link service in SAP BTP. 
 
 ## Prerequisites
 - You have a global account and subaccount on SAP Business Technology Platform. See [Getting Started with SAP Business Technology Platform](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/144e1733d0d64d58a7176e817fa6aeb3.html).

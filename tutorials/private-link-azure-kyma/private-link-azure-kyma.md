@@ -9,7 +9,7 @@ primary_tag: software-product-function>sap-private-link-service
 ---
 
 # Connect SAP Private Link Service to Microsoft Azure Private Link Service (Kyma)
-<!-- description --> Connect SAP Private Link service to Microsoft Azure Private Link Service and bind the service instance on a Kyma cluster.
+<!-- description --> Connect SAP Private Link service to Microsoft Azure Private Link Service and bind the service instance on a Kyma cluster. 
 
 ## Prerequisites
 - You have a global account and subaccount on SAP Business Technology Platform with SAP Private Link service entitlement: [Set Up SAP Private Link service ](private-link-onboarding).
