@@ -89,7 +89,7 @@ spec:
   servicePlanName: standard
   parameters:
     serviceName: "com.amazonaws.vpce.us-east-1.<service-id>"
-    requestMessage: Please Approve
+    requestMessage: Please Approve 
 EOF
 ```
 
