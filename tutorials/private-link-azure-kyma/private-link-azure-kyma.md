@@ -28,7 +28,7 @@ When creating the Azure Private Link service, make sure you allowlist the SAP BT
 
 ---
 
-### Check offerings of Private Link service
+### Check offerings of Private Link service 
 
 
 After you've logged in as described in [Enable SAP BTP, Kyma Runtime Using the Command Line](https://developers.sap.com/tutorials/btp-cli-setup-kyma-cluster.html), you can check all available entitlements for your subaccount. Open a command prompt and enter the following command:

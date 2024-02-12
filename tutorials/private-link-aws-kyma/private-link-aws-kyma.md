@@ -28,7 +28,7 @@ When creating the Endpoint Service, make sure you allowlist the SAP BTP CF AWS A
 
 ---
 
-### Check offerings of Private Link service
+### Check offerings of Private Link service 
 
 
 After you’ve logged in as described in [Enable SAP BTP, Kyma Runtime Using the Command Line, Step 1,](https://developers.sap.com/tutorials/btp-cli-setup-kyma-cluster.html), you can check all available entitlements for your subaccount. Open a command prompt and enter the following command:
