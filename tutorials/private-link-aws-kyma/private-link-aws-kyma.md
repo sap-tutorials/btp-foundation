@@ -28,7 +28,7 @@ When creating the Endpoint Service, make sure you allowlist the SAP BTP CF AWS A
 
 ---
 
-### Check offerings of Private Link service 
+### Check offerings of Private Link service
 
 
 After you’ve logged in as described in [Enable SAP BTP, Kyma Runtime Using the Command Line, Step 1,](https://developers.sap.com/tutorials/btp-cli-setup-kyma-cluster.html), you can check all available entitlements for your subaccount. Open a command prompt and enter the following command:
@@ -52,7 +52,7 @@ privatelink           standard                  8
 Make sure you can find `privatelink` under the service name column in the output.
 
 
-### Get Resource-ID for Azure Private Link Service
+### Get service name for AWS Endpoint Service
 
 
 To create and enable a private link, you need to define the connection to the service first. To do so, you need the service name of the endpoint service that you created as part of the prerequisites:
@@ -97,7 +97,7 @@ If the creation of the service instance was accepted, you receive a success mess
 
 > **Tip**: You can edit `requestMessage: ...` to contain any text that provides more information to the approver.
 
-> **Tip**: Depending on the chosen service type, you might need additional parameters. Please check the [list of supported services](https://help.sap.com/docs/private-link/private-link1/consume-azure-services-in-sap-btp) and what are the required parameters in your case.
+> **Tip**: Depending on the chosen service type, you might need additional parameters. Please check the [list of supported services](https://help.sap.com/docs/private-link/private-link1/consume-amazon-web-services-in-sap-btp?version=CLOUD) and what are the required parameters in your case.
 
 
 ### Check status of private link 
