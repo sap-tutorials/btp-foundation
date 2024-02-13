@@ -66,7 +66,7 @@ To create and enable a private link, you need to define the connection to the se
 <!-- border -->![Service Name](Fervice-name-from-details.png)
 
 
-### Create private link service
+### Create private link service 
 
 
 Currently, you do not have any service instances enabled. Therefore, you need to create one. To create a new private link, you need the following information:
