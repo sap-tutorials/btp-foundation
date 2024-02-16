@@ -5,7 +5,7 @@ time: 15
 tags: [ tutorial>beginner, topic>Cloud, software-product>sap-business-technology-platform, tutorial>license]
 primary_tag: software-product>sap-hana-service-for-sap-btp
 author_name: Madeline Schaefer
-author_profile: https://github.com/sapsy
+author_profile: https://github.com/Madeline-Schaefer
 ---
 
 # Create an SAP HANA Tenant Database and an SAP HANA XS Classic Application
