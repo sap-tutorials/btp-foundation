@@ -4,8 +4,8 @@ author_name: Madeline Schaefer
 author_ profile: https://github.com/Madeline-Schaefer
 auto_validation: true
 time: 10
-tags: [tutorial>beginner, software-product-function>sap-private-link-service, products>sap-business-technology-platform, tutorial>license, software-product-function>sap-btp-cockpit, software-product>sap-integration-suite]
-primary_tag: software-product>sap-business-technology-platform
+tags: [tutorial>beginner, software-product-function>sap-private-link-service, sap-conversational-ai>sap-business-technology-platform, tutorial>license, software-product-function>sap-btp-cockpit, sap-conversational-ai>sap-integration-suite]
+primary_tag: sap-conversational-ai>sap-business-technology-platform
 ---
 
 # Set Up SAP Private Link Service
