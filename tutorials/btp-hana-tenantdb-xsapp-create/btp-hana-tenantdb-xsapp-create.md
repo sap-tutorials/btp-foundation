@@ -2,8 +2,8 @@
 parser: v2
 auto_validation: true
 time: 15
-tags: [ tutorial>beginner, topic>Cloud, software-product>sap-business-technology-platform, tutorial>license]
-primary_tag: software-product>sap-hana-service-for-sap-btp
+tags: [ tutorial>beginner, topic>Cloud, sap-conversational-ai>sap-business-technology-platform, tutorial>license]
+primary_tag: sap-conversational-ai>sap-hana
 author_name: Madeline Schaefer
 author_profile: https://github.com/Madeline-Schaefer
 ---
