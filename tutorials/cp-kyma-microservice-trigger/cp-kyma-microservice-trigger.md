@@ -17,7 +17,7 @@ author_ profile: https://github.com/jcawley5
  - [Kyma Eventing backend configured](https://help.sap.com/docs/btp/sap-business-technology-platform/choose-backend-for-kyma-eventing)
  - [Deploy a Go MSSQL API Endpoint in SAP BTP, Kyma Runtime](cp-kyma-api-mssql-golang) tutorial completed
  - [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-mssql.html) tutorial completed
- - [Deploy the Commerce Mock Application in SAP BTP, Kyma runtime](cp-kyma-mocks) tutorial completed
+ - [Deploy the Commerce Mock Application in SAP BTP, Kyma Runtime](cp-kyma-mocks) tutorial completed
 
 ## You will learn
   - How to trigger a microservice with an event
