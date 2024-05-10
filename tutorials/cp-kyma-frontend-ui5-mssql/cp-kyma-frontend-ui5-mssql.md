@@ -8,25 +8,25 @@ author_name: Jamie Cawley
 author_ profile: https://github.com/jcawley5
 ---
 
-# Deploy the SAPUI5 Frontend in the Kyma Runtime
-<!-- description --> Develop and deploy the SAPUI5 frontend app in Kyma runtime.
+# Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime
+<!-- description --> Develop and deploy the SAPUI5 frontend app in SAP BTP, Kyma runtime.
 
 ## Prerequisites
   - [Docker](https://www.docker.com/) installed with a valid public account
-  - [kubectl configured to kubeconfig downloaded from Kyma runtime](cp-kyma-download-cli)
+  - [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
   - [Git](https://git-scm.com/downloads)
   - [Node.js](https://nodejs.org/en/download/)
   - [UI5 Tooling](https://sap.github.io/ui5-tooling/)
-  - [Deploy a Go MSSQL API Endpoint in the Kyma Runtime](cp-kyma-api-mssql-golang) tutorial completed
+  - [Deploy a Go MSSQL API Endpoint in SAP BTP, Kyma Runtime](cp-kyma-api-mssql-golang) tutorial completed
 
 ## You will learn
   - How to configure and build SAPUI5 Docker image
-  - How to deploy the SAPUI5 Docker image to Kyma runtime
+  - How to deploy the SAPUI5 Docker image to SAP BTP, Kyma runtime
 
 ## Intro
-This tutorial expects that the [Deploy a Go MSSQL API Endpoint in the Kyma Runtime](cp-kyma-api-mssql-golang) tutorial has been completed and relies on the database running within Kyma runtime.
+This tutorial expects that the [Deploy a Go MSSQL API Endpoint in SAP BTP, Kyma Runtime](cp-kyma-api-mssql-golang) tutorial has been completed and relies on the database running within SAP BTP, Kyma runtime.
 
-Deploying the SAPUI5 Docker image to Kyma runtime includes:
+Deploying the SAPUI5 Docker image to SAP BTP, Kyma runtime includes:
 
 - A Kubernetes Deployment of the frontend image with the ConfigMap mounted to a volume
 - A Kubernetes ConfigMap containing the URL to the backend API
@@ -55,7 +55,7 @@ Deploying the SAPUI5 Docker image to Kyma runtime includes:
 
     The `docker` directory contains the Dockerfile used to generate the Docker image. The image is built in two stages to create a small image. In the first stage, a `NodeJS` image is used, which copies the related content of the project into the image and builds the application. The built application is then copied into an `nginx` image with the default setup exposing the application on port 80.
 
-    Within the `k8s` directory, you can find the Kubernetes/Kyma resources you will apply to your Kyma runtime.
+    Within the `k8s` directory, you can find the Kubernetes/Kyma resources you will apply to your SAP BTP, Kyma runtime.
 
 ### Run the application locally
 
@@ -65,7 +65,7 @@ Deploying the SAPUI5 Docker image to Kyma runtime includes:
     npm install
     ```
 
-2. Within the project, open the `webapp/config.json` file and, by replacing `<cluster domain>`, adjust `API_URL` to match the Kyma runtime cluster domain. This should be the value of the API Rule created in step 6 of the [Deploy a Go MSSQL API Endpoint in the Kyma Runtime](cp-kyma-api-mssql-golang) tutorial.
+2. Within the project, open the `webapp/config.json` file and, by replacing `<cluster domain>`, adjust `API_URL` to match the SAP BTP, Kyma runtime cluster domain. This should be the value of the API Rule created in step 6 of the [Deploy a Go MSSQL API Endpoint in SAP BTP, Kyma Runtime](cp-kyma-api-mssql-golang) tutorial.
 
     ```Text/Javascript
     {
@@ -96,12 +96,12 @@ Run the following commands from the `frontend-ui5-mssql` directory using your CL
     docker push <your-docker-id>/fe-ui5-mssql
     ```
 
-### Apply resources to Kyma runtime
+### Apply resources to SAP BTP, Kyma runtime
 
 You can find the resource definitions in the `k8s` folder. If you performed any changes in the configuration, these files may also need to be updated. The folder contains the following files that are relevant to this tutorial:
 
 - `apirule.yaml`: defines the API endpoint which exposes the application to the Internet. This endpoint does not define any authentication access strategy and should be disabled when not in use.  
-- `configmap.yaml`: defines `API_URL`, which represents the endpoint used for the orders API. It must be adjusted to reflect the domain of Kyma runtime.
+- `configmap.yaml`: defines `API_URL`, which represents the endpoint used for the orders API. It must be adjusted to reflect the domain of SAP BTP, Kyma runtime.
 - `deployment.yaml`: defines the Deployment definition for the SAPUI5 application as well as a service used for communication. This definition references `configmap.yaml` by name. It is used to overwrite `webapp/config.json` of the application.
 
 1. Start by creating the `dev` namespace and enabling `Istio`:
@@ -113,9 +113,9 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
     > Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace will require adjustments to the provided samples.
 
-    > Adding the `istio-injection=enabled` label to the namespace enables `Istio`. `Istio` is the service mesh implementation used by Kyma runtime.
+    > Adding the `istio-injection=enabled` label to the namespace enables `Istio`. `Istio` is the service mesh implementation used by SAP BTP, Kyma runtime.
 
-2. Within the project, open the `k8s/configmap.yaml` file and, by replacing `<cluster domain>`, adjust `API_URL` to match the Kyma runtime cluster domain:
+2. Within the project, open the `k8s/configmap.yaml` file and, by replacing `<cluster domain>`, adjust `API_URL` to match the SAP BTP, Kyma runtime cluster domain:
 
     ```
     kind: ConfigMap

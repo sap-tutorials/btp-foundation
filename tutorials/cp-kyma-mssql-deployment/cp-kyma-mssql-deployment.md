@@ -8,17 +8,17 @@ author_name: Jamie Cawley
 author_ profile: https://github.com/jcawley5
 ---
 
-# Deploy MSSQL in Kyma runtime
-<!-- description --> Configure and deploy an MSSQL database within Kyma runtime and use it for a test or development scenario.
+# Deploy MSSQL in SAP BTP, Kyma Runtime
+<!-- description --> Configure and deploy an MSSQL database within SAP BTP, Kyma runtime and use it for a test or development scenario.
 
 ## Prerequisites
  - [Docker](https://www.docker.com/) installed with a valid public account
- - [`kubectl` configured to kubeconfig downloaded from Kyma runtime](cp-kyma-download-cli)
+ - [`kubectl` configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
  - [Git](https://git-scm.com/downloads) installed
 
 ## You will learn
   - How to configure and build a MSSQL database Docker image
-  - How to deploy the MSSQL database Docker image to Kyma runtime, which includes:
+  - How to deploy the MSSQL database Docker image to SAP BTP, Kyma runtime, which includes:
     - A Kubernetes Secret to store the database user/password
     - A Kubernetes PersistentVolumeClaim (PVC) for the storage of the database data
     - A Kubernetes Service used to expose the database to other Kubernetes resources
@@ -48,7 +48,7 @@ In this tutorial, you will configure a database named `DemoDB` which contains on
 
     Within the `docker` folder you can find the Dockerfile, which is a text-based set of instructions that is used to create a container image. Notice how the last command references the `entrypoint.sh` script defined within the `app` directory which is used to call the commands to configure the sample database.
 
-    Within the `k8s` folder you can find the resource definitions that will be used to deploy the sample to Kyma runtime. This includes `deployment.yaml` which specifies the microservice definition of the MSSQL database and also a service definition which exposes the microservice to other resources within the cluster. The `pvc.yaml` file specifies PVC which is used to request a storage location for the data of the database. The `secret.yaml` file contains the database user and password.
+    Within the `k8s` folder you can find the resource definitions that will be used to deploy the sample to SAP BTP, Kyma runtime. This includes `deployment.yaml` which specifies the microservice definition of the MSSQL database and also a service definition which exposes the microservice to other resources within the cluster. The `pvc.yaml` file specifies PVC which is used to request a storage location for the data of the database. The `secret.yaml` file contains the database user and password.
 
 ### Build the Docker image
 
@@ -144,7 +144,7 @@ You can also use the following additional commands:
     docker images
     ```
 
-### Apply resources to Kyma runtime
+### Apply resources to SAP BTP, Kyma runtime
 
 You can find the resource definitions in the `k8s` folder. If you performed any changes in the database configuration, these files may also need to be updated. The folder contains the following files:
 
@@ -162,7 +162,7 @@ Run the following commands from the `database-mssql` directory using your CLI.
     ```
     > Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace requires adjustments to the provided samples.
 
-    > Adding the `istio-injection=enabled` label to the namespace enables `Istio`. `Istio` is the service mesh implementation used by Kyma runtime.
+    > Adding the `istio-injection=enabled` label to the namespace enables `Istio`. `Istio` is the service mesh implementation used by SAP BTP, Kyma runtime.
 
 2. Apply the PVC:
 
@@ -197,7 +197,7 @@ Run the following commands from the `database-mssql` directory using your CLI.
 
 ### Locally access the MSSQL Deployment
 
-Kubernetes provides a port-forward functionality that allows you to connect to resources running in Kyma runtime locally. This can be useful for development and debugging tasks. Make sure to adjust the name of the Pod in the following commands to match your own.
+Kubernetes provides a port-forward functionality that allows you to connect to resources running in SAP BTP, Kyma runtime locally. This can be useful for development and debugging tasks. Make sure to adjust the name of the Pod in the following commands to match your own.
 
 1.  Confirm the port on which the Pod is listening:
 
@@ -224,13 +224,13 @@ Kubernetes provides a port-forward functionality that allows you to connect to r
     Forwarding from [::1]:1433 -> 1433
     ```
 
-3. At this point, a tool such as `sqlcmd` or a development project running on your computer can access the database running in Kyma runtime using `localhost:1433`.
+3. At this point, a tool such as `sqlcmd` or a development project running on your computer can access the database running in SAP BTP, Kyma runtime using `localhost:1433`.
 
 4. To end the process, use `CTRL+C`.
 
 ### Directly access the MSSQL Deployment
 
-Similarly to how the Docker image can be accessed locally, you can perform the same on the Deployment running in Kyma runtime. Make sure to adjust the name of the Pod in the following commands to match your own.
+Similarly to how the Docker image can be accessed locally, you can perform the same on the Deployment running in SAP BTP, Kyma runtime. Make sure to adjust the name of the Pod in the following commands to match your own.
 
 1. By default, a Pod includes the denoted Deployments defined in the `yaml` definition as well as the `istio-proxy`. For the `mssql` Deployment, this means there will be two containers in the Pod.  
 

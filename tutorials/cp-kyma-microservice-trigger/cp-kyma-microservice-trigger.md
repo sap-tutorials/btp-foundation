@@ -9,21 +9,21 @@ author_ profile: https://github.com/jcawley5
 ---
 
 # Trigger a Microservice with an Event
-<!-- description --> Trigger a microservice to run when an event is published into Kyma runtime.
+<!-- description --> Trigger a microservice to run when an event is published into SAP BTP, Kyma runtime.
 
 ## Prerequisites
- - [`kubectl` configured to kubeconfig downloaded from the Kyma runtime](cp-kyma-download-cli)
+ - [`kubectl` configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
  - [Eventing and NATS modules enabled](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module)
  - [Kyma Eventing backend configured](https://help.sap.com/docs/btp/sap-business-technology-platform/choose-backend-for-kyma-eventing)
- - [Deploy a Go MSSQL API Endpoint in the Kyma Runtime](cp-kyma-api-mssql-golang) tutorial completed
- - [Deploy the SAPUI5 Frontend in the Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-mssql.html) tutorial completed
- - [Deploy the Commerce Mock Application in the Kyma Runtime](cp-kyma-mocks) tutorial completed
+ - [Deploy a Go MSSQL API Endpoint in SAP BTP, Kyma Runtime](cp-kyma-api-mssql-golang) tutorial completed
+ - [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-mssql.html) tutorial completed
+ - [Deploy the Commerce Mock Application in SAP BTP, Kyma Runtime](cp-kyma-mocks) tutorial completed
 
 ## You will learn
   - How to trigger a microservice with an event
 
 ## Intro
-This tutorial relies on the Commerce mock application to publish events into the Kyma runtime. After binding the commerce mock application to the `dev` namespace, we will create a service instance of the SAP Commerce Cloud - Events. The service instance will allow for any microservice or lambda function within the `dev` namespace to subscribe to these events by defining an event subscription. The subscription pairs an event source, the commerce mock application, and the event type, **order.created**, to a subscriber which in this case will be the Go MSSQL API microservice.
+This tutorial relies on the Commerce mock application to publish events into SAP BTP, Kyma runtime. After binding the commerce mock application to the `dev` namespace, we will create a service instance of the SAP Commerce Cloud - Events. The service instance will allow for any microservice or lambda function within the `dev` namespace to subscribe to these events by defining an event subscription. The subscription pairs an event source, the commerce mock application, and the event type, **order.created**, to a subscriber which in this case will be the Go MSSQL API microservice.
 
 ---
 

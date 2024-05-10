@@ -8,8 +8,8 @@ author_name: Jamie Cawley
 author_ profile: https://github.com/jcawley5
 ---
 
-# Deploy Commerce Mock Application in Kyma Runtime
-<!-- description --> Deploy and connect the Commerce mock application to Kyma runtime.
+# Deploy Commerce Mock Application in SAP BTP, Kyma Runtime
+<!-- description --> Deploy and connect the Commerce mock application to SAP BTP, Kyma runtime.
 
 ## Prerequisites
   - [Git](https://git-scm.com/downloads) installed
@@ -17,7 +17,7 @@ author_ profile: https://github.com/jcawley5
 
 ## You will learn
   - How to deploy the Kyma mock application and expose its API to the Internet using an APIRule
-  - How to pair the mock application with Kyma runtime to register the APIs and events from the application
+  - How to pair the mock application with SAP BTP, Kyma runtime to register the APIs and events from the application
 
 ## Intro
 The Kyma mock application contains lightweight substitutes for SAP applications to ease the development and testing of extension and integration scenarios based on [`Varkes`](https://github.com/kyma-incubator/varkes). Together with SAP BTP, Kyma runtime, it allows for efficient implementation of application extensions without the need to access the standard SAP applications during development.
@@ -35,7 +35,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
     git clone https://github.com/SAP-samples/xf-application-mocks
     ```
 
-### Apply resources to Kyma runtime
+### Apply resources to SAP BTP, Kyma runtime
 
 1. Open Kyma dashboard using the **Console URL** link in SAP BTP cockpit.
 
@@ -71,7 +71,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 ### Create a System
 
-In this step, you will create a System in SAP BTP cockpit that will be used to pair the mock application with Kyma runtime. You will perfrom this step at the **Global** account level of your SAP BTP account.
+In this step, you will create a System in SAP BTP cockpit that will be used to pair the mock application with SAP BTP, Kyma runtime. You will perfrom this step at the **Global** account level of your SAP BTP account.
 
 1. Open your global SAP BTP account and choose the **System Landscape** menu option.
 
@@ -89,7 +89,7 @@ In this step, you will create a Formation. A Formation is used to connect one or
 
 1. Within your global SAP BTP account, choose the **System Landscape** menu option. Choose the tab **Formations** and choose the **Create Formation** option.
 
-2. Provide the name `mock-formation`, choose `Side-by-Side Extensibility with Kyma` for the **Formation Type**, and your **Subaccount** where Kyma runtime is enabled. Choose **Next Step**.
+2. Provide the name `mock-formation`, choose `Side-by-Side Extensibility with Kyma` for the **Formation Type**, and your **Subaccount** where SAP BTP, Kyma runtime is enabled. Choose **Next Step**.
 
 3. Select `commerce-mock` system and choose **Next Step**.
    
@@ -97,7 +97,7 @@ In this step, you will create a Formation. A Formation is used to connect one or
 
 ### Pair an application
 
-The pairing process will establish trust between the Commerce mock application and, in this case, the SAP Kyma runtime. Once the pairing is complete, the registration of APIs and business events can be performed. This process allows developers to utilize the APIs and business events with the authentication aspects handled automatically.
+The pairing process will establish trust between the Commerce mock application and, in this case, SAP BTP, Kyma runtime. Once the pairing is complete, the registration of APIs and business events can be performed. This process allows developers to utilize the APIs and business events with the authentication aspects handled automatically.
 
 1. Navigate back to the mock application browser window and choose **Connect**. 
 2. Paste the copied value in the token text area and then choose **Connect**. If the token has expired, you may receive an error. Simply return to [Step 4](#create-a-system) and generate a new token.
