@@ -8,22 +8,22 @@ author_name: Jamie Cawley
 author_ profile: https://github.com/jcawley5
 ---
 
-# Deploy a Go MSSQL API Endpoint in Kyma Runtime
-<!-- description --> Develop and deploy an MSSQL API endpoint written in Go to Kyma runtime.
+# Deploy a Go MSSQL API Endpoint in SAP BTP, Kyma Runtime
+<!-- description --> Develop and deploy an MSSQL API endpoint written in Go to SAP BTP, Kyma runtime.
 
 ## Prerequisites
   - [Docker](https://www.docker.com/)
   - [Go ](https://golang.org/doc/install)
   - [Git](https://git-scm.com/downloads)
-  - [kubectl configured to kubeconfig downloaded from Kyma runtime](cp-kyma-download-cli)
-  - [Deploy MSSQL in Kyma Runtime](cp-kyma-mssql-deployment) tutorial completed
+  - [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
+  - [Deploy MSSQL in SAP BTP, Kyma Runtime](cp-kyma-mssql-deployment) tutorial completed
 
 ## You will learn
   - How to configure and build a Go Docker image
-  - How to deploy the Go Docker image to Kyma runtime
+  - How to deploy the Go Docker image to SAP BTP, Kyma runtime
 
 ## Intro
-This tutorial expects that the tutorial [Deploy MSSQL in Kyma Runtime](cp-kyma-mssql-deployment) has been completed and relies on the database running either locally or within Kyma runtime. If you run the database in Kyma runtime, make sure to use the `port-forward` feature presented in the tutorial to expose the database to your local environment.
+This tutorial expects that the tutorial [Deploy MSSQL in SAP BTP, Kyma Runtime](cp-kyma-mssql-deployment) has been completed and relies on the database running either locally or within SAP BTP, Kyma runtime. If you run the database in SAP BTP, Kyma runtime, make sure to use the `port-forward` feature presented in the tutorial to expose the database to your local environment.
 
 Deploying the image includes:
 
@@ -64,7 +64,7 @@ Deploying the image includes:
 
     The `internal` directory contains the rest of the Go application, broken down into three packages: `api`, `config`, and `db`. You can explore their contents to understand the structure and functionality.
 
-    Within the `k8s` directory you can find the Kubernetes/Kyma resources you will apply to your Kyma runtime.
+    Within the `k8s` directory you can find the Kubernetes/Kyma resources you will apply to your SAP BTP, Kyma runtime.
 
     Within the root, you can find `go.mod` and `go.sum` files that are used to manage the dependencies the application uses.
 
@@ -74,7 +74,7 @@ Deploying the image includes:
 
 Run the following commands from the `api-mssql-go` directory using your CLI.
 
-1. Set the following environment variables required for the database connection. Make sure to adjust them for your environment. Review the tutorial [Deploy MSSQL in Kyma Runtime](cp-kyma-mssql-deployment) for the different configurations to run the database.
+1. Set the following environment variables required for the database connection. Make sure to adjust them for your environment. Review the tutorial [Deploy MSSQL in SAP BTP, Kyma Runtime](cp-kyma-mssql-deployment) for the different configurations to run the database.
 
     ```Shell/Bash
     export MYAPP_username=sa
@@ -107,7 +107,7 @@ Run the following commands from the `api-mssql-go` directory using your CLI.
 
 Run the following commands from the `api-mssql-go` directory using your CLI.
 
-1. Set the following environment variables required for the database connection. Make sure to adjust them for your environment. Review the tutorial [Deploying MSSQL in Kyma Runtime](cp-kyma-mssql-deployment) for the different configurations to run the database.
+1. Set the following environment variables required for the database connection. Make sure to adjust them for your environment. Review the tutorial [Deploy MSSQL in SAP BTP, Kyma Runtime](cp-kyma-mssql-deployment) for the different configurations to run the database.
 
     ```PowerShell
     $ENV:MYAPP_username='sa'
@@ -183,7 +183,7 @@ Make sure to replace the value of `<your-docker-id>` with your Docker account ID
     -d <your-docker-id>/api-mssql-go:latest
     ```
 
-    The command is expecting that the database is available at `localhost:1433` on the host machine. This is denoted by the `host.docker.internal` value. Review the tutorial [Deploy MSSQL in Kyma Runtime](cp-kyma-mssql-deployment) for the different configurations to run/stop the database.
+    The command is expecting that the database is available at `localhost:1433` on the host machine. This is denoted by the `host.docker.internal` value. Review the tutorial [Deploy MSSQL in SAP BTP, Kyma Runtime](cp-kyma-mssql-deployment) for the different configurations to run/stop the database.
 
 2. The application is available at <http://localhost:8000/orders>. You can use a tool such as curl to test the different HTTP methods, for example:
 
@@ -228,7 +228,7 @@ Make sure to replace the value of `<your-docker-id>` with your Docker account ID
     -d <your-docker-id>/api-mssql-go:latest  
     ```
 
-    The command is expecting that the database is available at `localhost:1433` on the host machine. This is denoted by the `host.docker.internal` value. Review the tutorial [Deploying MSSQL in Kyma Runtime](cp-kyma-mssql-deployment) for the different configurations to run/stop the database.
+    The command is expecting that the database is available at `localhost:1433` on the host machine. This is denoted by the `host.docker.internal` value. Review the tutorial [Deploy MSSQL in SAP BTP, Kyma Runtime](cp-kyma-mssql-deployment) for the different configurations to run/stop the database.
 
 2. The application is available at <http://localhost:8000/orders>. You can use a tool such as curl to test the different HTTP methods, for example:
 
@@ -264,7 +264,7 @@ You can also check the following additional commands:
     docker rm api-mssql-go
     ```
 
-### Apply resources to Kyma runtime
+### Apply resources to SAP BTP, Kyma runtime
 
 You can find the resource definitions in the `k8s` folder. If you performed any changes in the configuration, these files may also need to be updated. The folder contains the following files that are relevant to this tutorial:
 
@@ -280,7 +280,7 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
     ```
     > Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace will require adjustments to the provided samples.
 
-    > Adding the label `istio-injection=enabled` to the namespace enables Istio. Istio is the service mesh implementation used by Kyma runtime.
+    > Adding the label `istio-injection=enabled` to the namespace enables Istio. Istio is the service mesh implementation used by SAP BTP, Kyma runtime.
 
 2. Within the `deployment.yaml`, adjust the value of `spec.template.spec.containers.image`, commented with **#change it to your image**, to use your Docker image. Apply the Deployment which will cause an error which we will further explore:
 

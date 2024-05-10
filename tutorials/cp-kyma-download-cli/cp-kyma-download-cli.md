@@ -9,18 +9,18 @@ primary_tag: software-product>sap-btp--kyma-runtime
 ---
 
 # Install the Kubernetes Command Line Tool
-<!-- description --> Download and install kubectl - the Kubernetes command line tool that allows access to the SAP BTP, Kyma runtime.
+<!-- description --> Download and install kubectl - the Kubernetes command line tool that allows access to SAP BTP, Kyma runtime.
 
 ## Prerequisites
  - **Tutorials:** [Enable SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-getting-started.html)
 
 ## You will learn  
   - How to download kubectl - the Kubernetes command line tool
-  - How to install the plugin kubectl oidc-login and use it to connect to a Kyma runtime instance
+  - How to install the plugin kubectl oidc-login and use it to connect to a SAP BTP, Kyma runtime instance
   - How to use a few basic kubectl commands
 
 ## Intro
-Kyma runtime provides a managed Kubernetes cluster in which you can install the Kyma modules. To manage resources and configurations from the command line, you can use the kubectl tool. This tutorial provides the steps necessary to configure the tool to access Kyma runtime. In subsequent tutorials, you will learn various commands provided by kubectl.
+SAP BTP, Kyma runtime provides a managed Kubernetes cluster in which you can install the Kyma modules. To manage resources and configurations from the command line, you can use the kubectl tool. This tutorial provides the steps necessary to configure the tool to access SAP BTP, Kyma runtime. In subsequent tutorials, you will learn various commands provided by kubectl.
 
 ---
 
@@ -34,7 +34,7 @@ Kyma runtime provides a managed Kubernetes cluster in which you can install the 
 
 ### Download and install kubectl oidc-login
 
-The use of the kubectl command line tool requires an authenticated user to perform any tasks on Kyma runtime. Kyma runtime is configured to use OpenID Connect (OIDC) authentication and requires the installation of the plugin kubectl oidc-login to perform the authentication.    
+The use of the kubectl command line tool requires an authenticated user to perform any tasks on SAP BTP, Kyma runtime. SAP BTP, Kyma runtime is configured to use OpenID Connect (OIDC) authentication and requires the installation of the plugin kubectl oidc-login to perform the authentication.    
 
 1. To install [kubectl oidc-login](https://github.com/int128/kubelogin), follow the instructions detailed in the project repository. Use the relevant commands for macOS, Linux, or Windows users.
 
@@ -62,13 +62,13 @@ The use of the kubectl command line tool requires an authenticated user to perfo
     Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.2",GitCommit:"8b5a19147530eaac9476b0ab82980b4088bbc1b2", GitTreeState:"clean",BuildDate:"2021-09-15T21:31:32Z", GoVersion:"go1.16.8", Compiler:"gc", Platform:"darwin/amd64"}
     ```
 
-### Download the Kyma runtime kubeconfig
+### Download the SAP BTP, Kyma runtime kubeconfig
 
 The kubectl tool relies on a configuration file called kubeconfig to configure access to the cluster. Follow the instructions to learn how to obtain it from both SAP BTP cockpit and Kyma dashboard.
 
 To obtain kubeconfig from SAP BTP cockpit:
 
-1. Within your SAP BTP account, navigate to the sub-account with Kyma runtime enabled.
+1. Within your SAP BTP account, navigate to the sub-account with SAP BTP, Kyma runtime enabled.
 
 2. In the **Overview** section, scroll down to the **Kyma Environment** details.
 
@@ -78,11 +78,11 @@ To obtain kubeconfig from SAP BTP cockpit:
 
 To obtain kubeconfig from Kyma dashboard:   
 
-1. Navigate to Kyma dashboard of your Kyma runtime.
+1. Navigate to Kyma dashboard of your SAP BTP, Kyma runtime.
 
-2. Log into Kyma runtime.
+2. Log into SAP BTP, Kyma runtime.
 
-3. At the top of the Kyma runtime window you will find a dropdown which displays the name of the currently connected runtime. Select the dropdown and choose **Clusters Overview**.
+3. At the top of the SAP BTP, Kyma runtime window you will find a dropdown which displays the name of the currently connected runtime. Select the dropdown and choose **Clusters Overview**.
 
 4. Choose the download icon to download the file.
 
@@ -109,7 +109,7 @@ To obtain kubeconfig from Kyma dashboard:
     |-------|----|-------|--------|---------|
     |*      | `shoot--kyma-stage--c-#######`|`shoot--kyma-stage--c-#######`|`shoot--kyma-stage--c-#######`| |
 
-3. You are now set up to use Kyma runtime on SAP BTP.
+3. You are now set up to use SAP BTP, Kyma runtime.
 
 [OPTION END]
 
@@ -138,7 +138,7 @@ To obtain kubeconfig from Kyma dashboard:
     |-------|----|-------|--------|---------|
     |*      | `shoot--kyma-stage--c-#######`|`shoot--kyma-stage--c-#######`|`shoot--kyma-stage--c-#######`| |
 
-3. You are now set up to use Kyma runtime on SAP BTP.
+3. You are now set up to use SAP BTP, Kyma runtime.
 
 [OPTION END]
 

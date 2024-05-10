@@ -8,15 +8,15 @@ author_name: Jamie Cawley
 author_ profile: https://github.com/jcawley5
 ---
 
-# Use Redis in Kyma Runtime to Store and Retrieve Data
+# Use Redis in SAP BTP, Kyma Runtime to Store and Retrieve Data
 
-<!-- description --> Deploy Redis and configure two Serverless Functions to cache and retrieve data from the Redis instance within Kyma runtime.
+<!-- description --> Deploy Redis and configure two Serverless Functions to cache and retrieve data from the Redis instance within SAP BTP, Kyma runtime.
 
 ## Prerequisites
 
 - [Kyma provisioned](https://developers.sap.com/tutorials/cp-kyma-getting-started.html)
 - [Serverless, Eventing, and NATS modules enabled](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module)
-- [Deploy Commerce Mock Application in Kyma Runtime](cp-kyma-mocks) tutorial completed
+- [Deploy Commerce Mock Application in SAP BTP, Kyma Runtime](cp-kyma-mocks) tutorial completed
 
 ## You will learn
 
@@ -43,7 +43,7 @@ This sample provides a Redis deployment and two Serverless Functions that intera
 
 ### Deploy Redis
 
-In this step, you will deploy the Redis resources, obtained in [Step 1](#clone-the-git-repository), into Kyma runtime. These resources include:
+In this step, you will deploy the Redis resources, obtained in [Step 1](#clone-the-git-repository), into SAP BTP, Kyma runtime. These resources include:
 
 - `redis.yaml`: The deployment defining the Redis cache configuration.
 - `redis-service.yaml`: The Kubernetes Service which exposes the Redis instance to the two Serverless Functions.
@@ -61,7 +61,7 @@ In this step, you will deploy the Redis resources, obtained in [Step 1](#clone-t
 
 ### Deploy Functions
 
-In this step, you will deploy two Functions into Kyma runtime that were obtained in [Step 1](#clone-the-git-repository). These resources include:
+In this step, you will deploy two Functions into SAP BTP, Kyma runtime that were obtained in [Step 1](#clone-the-git-repository). These resources include:
 
 - `cache-order-function.yaml`: This Function subscribes to an event published by the commerce mock application. Once triggered, it calls back to the commerce mock application to obtain the `totalPriceWithTax` and then cache the information into Redis.
 - `get-order-function.yaml`: This Function is exposed as an API allowing retrieval of data stored within the Redis cache.
