@@ -172,10 +172,10 @@ To learn more about the Kyma environment and its functionality, see:
 
 - [SAP BTP, Kyma runtime](https://discovery-center.cloud.sap/serviceCatalog/kyma-runtime)
 - [SAP Help Portal - Kyma Environment](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/Cloud/en-US/468c2f3c3ca24c2c8497ef9f83154c44.html)
-- [kyma-project](https://kyma-project.io/docs/kyma/latest)
+- [kyma-project](https://kyma-project.io/#/)
 - [Kyma - YouTube](https://www.youtube.com/channel/UC8Q8bBtYe9gQN-dQ-_L8JvQ)
 - [Cloud Native for Beginners - YouTube](https://youtube.com/playlist?list=PL6RpkC85SLQCwaJ54TAAHMvSl5wpVPrai)
-- [Mission: Develop a Full-Stack Application in the Kyma Runtime](mission.cp-kyma-full-stack)
+- [Mission: Develop a Full-Stack Application in SAP BTP, Kyma Runtime](mission.cp-kyma-full-stack)
 
 
 
