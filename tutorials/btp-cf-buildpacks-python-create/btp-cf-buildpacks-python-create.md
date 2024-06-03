@@ -5,7 +5,7 @@ author_profile: https://github.com/Joysie
 title: Create an Application with Cloud Foundry Python Buildpack 
 description: Create a simple Python application and enable services for it, by using  the Cloud Foundry Python Buildpack and Cloud Foundry Command Line Interface (cf CLI).
 auto_validation: true
-time: 40
+time: 45
 tags: [ tutorial>beginner, software-product>sap-btp--cloud-foundry-environment, software-product>sap-hana, software-product-function>sap-btp-cockpit]
 primary_tag: programming-tool>python
 ---
@@ -13,42 +13,42 @@ primary_tag: programming-tool>python
 ## You will learn
   - How to create a simple "Hello World" application in Python
   - How to consume an SAP BTP service from it
-  - How to run authentication and authorization checks via the XSUAA service
+  - How to run authentication and authorization checks via the Authorization and Trust Management (XSUAA) service
 
 ## Prerequisites
  - You have a trial or productive account for SAP Business Technology Platform (SAP BTP). If you don't have such yet, you can create one so you can [try out services for free] (https://developers.sap.com/tutorials/btp-free-tier-account.html).
- - You have created a subaccount and a space on Cloud Foundry Environment.
+ - You have created a subaccount and a space on the SAP BTP, Cloud Foundry environment.
  - You have created a service instance for [SAP HANA Cloud] (https://help.sap.com/docs/hana-cloud). To learn how to set it up, watch the following video from **03:15**  to **07:10**: [SAP HANA Cloud Trial Setup](https://www.youtube.com/watch?v=GSNQpfxPuLU). During the first steps, choose the `SAP HANA Database` type.
  - [Python] (https://www.python.org/downloads/) is installed locally. To check which Python versions are supported in the current buildpack, see: [Developing Python in the Cloud Foundry Environment](https://help.sap.com/docs/btp/sap-business-technology-platform/developing-python-in-cloud-foundry-environment#buildpack-versioning). In this tutorial, we use Python version **3.11.x**.
  - [cf CLI] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/4ef907afb1254e8286882a2bdef0edf4.html) is installed locally.
  - [npm] (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) is installed locally.
  - You have installed an integrated development environment, for example [Visual Studio Code] (https://code.visualstudio.com/).
- - You have installed the `virtualenv` tool. It creates a folder, which contains all the necessary executables to use the packages that your Python project would need. To install it locally, execute the following command in the Python installation path:   
+ - You have installed the `virtualenv` tool. It creates a folder, which contains all the necessary executables to use the packages that your Python project would need. To install it locally, run the following command in the Python installation path:   
 &nbsp;
  `<Python_installation_path>\Python311\Scripts>pip install virtualenv`
 
 
 
 ## Intro
-This tutorial will guide you through creating and setting up a simple Python application by using cf CLI. You will start by building and deploying a web application that returns simple data – a **Hello World!** message. This simple app will consume an SAP BTP service, and then will be invoked through a web microservice (application router). Finally, you will set authentication and authorization checks to properly access your web application.
+This tutorial will guide you through creating and setting up a simple Python application by using cf CLI. You will start by building and deploying a web application that returns simple data – a **Hello World!** message. This simple app will consume the SAP HANA Cloud service, and then will be invoked through a web microservice (application router). Finally, you will set authentication and authorization checks to properly access your web application.
 
 ---
 
 ### Log on to SAP BTP
 
 
-First, you need to connect to the SAP BTP, Cloud Foundry environment with your enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
+First, you need to connect to the SAP BTP, Cloud Foundry environment with your trial or enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
 
 In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
 
 1. Open a command-line console.
 
-2. Set the Cloud Foundry API endpoint for your subaccount. Execute (using your actual region URL):
+2. Set the Cloud Foundry API endpoint for your subaccount. Run the following command (using your actual region URL):
 
     ```Bash/Shell
     cf api https://api.cf.eu20.hana.ondemand.com
     ```
-3. Log in to SAP BTP, Cloud Foundry environment:
+3. Log on to the SAP BTP, Cloud Foundry environment:
 
     ```Bash/Shell
     cf login
@@ -100,7 +100,7 @@ You're going to create a simple Python application.
 4. Specify the Python runtime version that your application will run on. To do that, create a `runtime.txt` file with the following content:
 
     ```TXT
-    python-3.11.*
+    python-3.11.x
     ```
 
 5. This application will be a web server utilizing the Flask web framework. To specify Flask as an application dependency, create a `requirements.txt` file with the following content:
@@ -125,13 +125,13 @@ You're going to create a simple Python application.
 
     This is a simple server, which will return a **Hello World!** message when requested.
 
-7.	Deploy the application on Cloud Foundry. To do that, in the `python-tutorial` directory, execute:
+7.	Deploy the application on Cloud Foundry. To do that, in the `python-tutorial` directory, run:
 
     ```Bash/Shell
     cf push
     ```
 
-    > Make sure you always execute `cf push` in the directory where the `manifest.yml` file is located! In this case, that's `python-tutorial`.
+    > Make sure you always run `cf push` in the directory where the `manifest.yml` file is located! In this case, that's `python-tutorial`.
 
 8.  When the staging and deployment steps are completed, the `myapp` application should be successfully started and its details displayed in the command console.
 
@@ -151,7 +151,7 @@ Your Python application is successfully deployed and running on the SAP BTP, Clo
 
 You have created a service instance for SAP HANA Cloud (see **Prerequisites** at the beginning). Now you're going to make a connection to your SAP HANA database from SAP HANA Schemas & HDI Containers - a service that runs on the SAP BTP, Cloud Foundry environment - and consume this service in your application.
 
-1.	Create a `hana` service instance named `pyhana` with service plan `hdi-shared`. Execute:
+1.	Create a `hana` service instance named `pyhana` with service plan `hdi-shared`. Run:
 
     ```Bash/Shell
     cf create-service hana hdi-shared pyhana
@@ -173,7 +173,7 @@ You have created a service instance for SAP HANA Cloud (see **Prerequisites** at
       - pyhana
     ```
 
-3. To consume the service inside the application, you need to read the service settings and credentials from the application. To do that, use the `cfenv` Python module. Add two more lines to the `requirements.txt` file so that its content looks like this:
+3. To consume the service inside the application, you need to read the service settings and credentials from the application. To do that, you need to use the `cfenv` Python module. Add two more lines to the `requirements.txt` file so that its content looks like this:
 
     ```TXT
     Flask==2.3.*
@@ -182,7 +182,7 @@ You have created a service instance for SAP HANA Cloud (see **Prerequisites** at
     ```
 
 
-4.	Modify the `server.py` file to include additional lines of code - for reading the service information from the environment, and for executing a query with the `hdbcli` driver. After being requested, the application will now return a SAP HANA-related result. Replace the current content with the following:
+4.	Modify the `server.py` file to include additional lines of code - for reading the service information from the environment, and for executing a query with the `hdbcli` driver. After being requested, the application will now return an SAP HANA Cloud related result. Replace the current content with the following:
 
     ```Python
     import os
@@ -221,7 +221,7 @@ You have created a service instance for SAP HANA Cloud (see **Prerequisites** at
         app.run(host='0.0.0.0', port=port)
     ```
 
-5.	In the `python-tutorial` directory, execute:
+5.	In the `python-tutorial` directory, run:
 
     ```Bash/Shell
     cf push
@@ -232,13 +232,13 @@ You have created a service instance for SAP HANA Cloud (see **Prerequisites** at
 
 #### RESULT
 
-The current SAP HANA time is displayed, in UTC time zone.
+The current time is displayed, in the UTC time zone.
 
 
 ### Run an Authentication Check
 
 
-Authentication in the SAP BTP, Cloud Foundry environment is provided by the Authorization and Trust Management (XSUAA) service. In this example, OAuth 2.0 is used as the authentication mechanism. The simplest way to add authentication is to use the Node.js `@sap/approuter` package. To do that, a separate Node.js micro-service will be created, acting as an entry point for the application.
+Authentication in the SAP BTP, Cloud Foundry environment is provided by the Authorization and Trust Management (XSUAA) service. In this example, OAuth 2.0 is used as the authentication mechanism. The simplest way to add authentication is to use the Node.js `@sap/approuter` package. To do that, a separate Node.js microservice will be created, acting as an entry point for the application.
 
 1.	In the `python-tutorial` folder, create an `xs-security.json` file for your application with the following content:
 
@@ -249,7 +249,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
     }
     ```
 
-    > **IMPORTANT**: For trial accounts, enter the following additional `oauth2-configuration` code in your `xs-security.json` file:
+    > **IMPORTANT**: For trial accounts, you need to enter an additional `oauth2-configuration` code in the `xs-security.json` file so that its content would look like this:
     
     
     ```JSON
@@ -264,13 +264,13 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
     }
     ``` 
 
-2.	Create an `xsuaa` service instance named `pyuaa` with plan `application`, by executing the following command:
+2.	Create an `xsuaa` service instance named `pyuaa` with plan `application`. To do that, run:
 
     ```Bash
     cf create-service xsuaa application pyuaa -c xs-security.json
     ```
 
-3.	Add the `pyuaa` service in `manifest.yml` so the file looks like this:
+3.	Add the `pyuaa` service in the `manifest.yml` file so that its content looks like this:
 
     ```YAML
     ---
@@ -294,9 +294,9 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
     > **IMPORTANT**: Make sure you don't have another application with the name `web` in your space! If you do, use a different name and adjust the rest of the tutorial according to it.
 
 
-5.	Inside the `web` folder, create a subfolder `resources`. This folder will provide the business application's static resources.
+5.	In the `web` folder, create a subfolder `resources`. This folder will provide the business application's static resources.
 
-6.	Inside the `resources` folder, create an `index.html` file with the following content:
+6.	In the `resources` folder, create an `index.html` file with the following content:
 
     ```HTML
     <html>
@@ -312,7 +312,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     This will be the `myapp` application start page.
 
-7.	In the `web` directory, execute:
+7.	In the `web` directory, run:
 
     ```Bash/Shell
     npm init
@@ -320,7 +320,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     Press **Enter** on every step. This process will walk you through creating a `package.json` file in the `web` folder. 
 
-8.	Now you need to create a directory `web/node_modules/@sap` and install an `approuter` package in it. To do that, in the `web` directory execute:
+8.	Now you need to create a directory `web/node_modules/@sap` and install an `approuter` package in it. To do that, in the `web` directory run:
 
     ```Bash/Shell
     npm install @sap/approuter --save
@@ -330,7 +330,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     ```JSON
     "scripts": {
-          "start": "node node_modules/@sap/approuter/approuter.js"
+        "start": "node node_modules/@sap/approuter/approuter.js"
     },
     ```
 
@@ -372,7 +372,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     With this configuration, the incoming request is forwarded to the `myapp` application, configured as a destination. By default, every route requires OAuth authentication, so the requests to this path will require an authenticated user.
 
-12.	Go to the `python-tutorial` directory and execute:
+12.	Go to the `python-tutorial` directory and run:
 
     ```Bash/Shell
     cf push
@@ -384,23 +384,24 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
     >At this point of the tutorial, the URL of the `web` application will be requested instead of the `myapp` URL. It will then forward the requests to the `myapp` application.
 
 
-13.	When the staging and deployment steps are completed, the `web` application should be successfully started and its details displayed in the command console.
+13.	When the staging and deployment steps are completed, the `web` application should be successfully started, and its details displayed in the command console.
 
-14.	Open a new browser tab or window, and enter the generated URL of the `web` application.
+14.	Open a new browser tab or window and enter the generated URL of the `web` application.
 
     For example:   `https://web-unexpected-cheetah.cfapps.eu20.hana.ondemand.com`
 
 15.	Enter the credentials for your SAP BTP user.
 
+
 #### RESULT
 
-- A simple application page with title **Python Tutorial** is displayed. When you click the `My Python Application` link, the current SAP HANA time is displayed, in UTC time zone.
+- A simple application page with title **Python Tutorial** is displayed. When you click the `My Python Application` link, the current time is displayed, in the UTC time zone.
   
-- If you directly access the `myapp` URL, it displays the same result - the current SAP HANA time in UTC time zone. 
+- If you directly access the `myapp` URL, it displays the same result - the current time in the UTC time zone. 
 
 
 ### Run an Authorization Check
-Authorization in the SAP BTP, Cloud Foundry environment is also provided by the XSUAA service. In the previous example, the `@sap/approuter` package was added to provide a central entry point for the business application and to enable authentication. Now to extend the example, authorization will be added.
+Authorization in the SAP BTP, Cloud Foundry environment is also provided by the Authorization and Trust Management (XSUAA) service. In the previous example, the `@sap/approuter` package was added to provide a central entry point for the business application and to enable authentication. Now, to extend the example, authorization will be added.
 
 1.	Add the `sap-xssec` security library to the `requirements.txt` file, to place restrictions on the content you serve. The file should look like this:
 
@@ -412,7 +413,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     ```
 
 
-2.	Modify the `server.py` file to use the SAP `xssec` library. Replace the current content with the following:
+2.	Modify the `server.py` file to use the SAP `xssec` library. Replace the current content with the following code. (For `port`, you can use 3000, 8000, or 8080).
 
     ```Python
     import os
@@ -461,7 +462,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
       app.run(host='0.0.0.0', port=port)
     ```
 
-3.	Go to the `python-tutorial` folder and execute:
+3.	Go to the `python-tutorial` folder and run:
 
     ```Bash/Shell
     cf push
@@ -472,13 +473,14 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 4.	Try to access `myapp` again (in a browser) in both ways – directly, and through the `web` application router.
 
 
+
 #### RESULT
 
-Accessing the `myapp` application results in the following:
+ - If you try to access it directly, a `403 Forbidden` response is displayed due to lack of permissions (lack of authorization header). This is a correct and expected behavior.
 
-- If you try to access it directly, a `403 Forbidden` response is displayed due to lack of permissions (lack of authorization header). This is a correct and expected behavior.
-
-- If you try to access it through the `web` application router, the current SAP HANA time is displayed (in UTC time zone) – provided that you have the `openid` scope assigned to your user. Since the OAuth 2.0 client is used, the `openid` scope is assigned to your user by default, the correct authorization header is declared, and thus you are allowed to access the `myapp` application.
+ - If you try to access it through the `web` application router, the current time is displayed (in the UTC time zone) – provided that you have the `openid` scope assigned to your user. Since the OAuth 2.0 client is used, the `openid` scope is assigned to your user by default, the correct authorization header is declared, and thus you are allowed to access the `myapp` application.
 
 
-   > In order for the new result to take effect immediately, you might need to clear the cache of your browser. Or just open the `web` application URL in a private/incognito browser tab.
+   > For the new result to take effect immediately, you might need to clear the cache of your browser. Or just open the `web` application URL in a private/incognito browser tab.
+
+    
