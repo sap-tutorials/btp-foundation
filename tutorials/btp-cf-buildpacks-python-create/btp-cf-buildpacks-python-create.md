@@ -481,6 +481,6 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
  - If you try to access it through the `web` application router, the current time is displayed (in the UTC time zone) – provided that you have the `openid` scope assigned to your user. Since the OAuth 2.0 client is used, the `openid` scope is assigned to your user by default, the correct authorization header is declared, and thus you are allowed to access the `myapp` application.
 
 
-   > For the new result to take effect immediately, you might need to clear the cache of your browser. Or just open the `web` application URL in a private/incognito browser tab.
+> **Tip**: For the new result to take effect immediately, you might need to clear the cache of your browser. Or just open the `web` application URL in a private/incognito browser tab.
 
     
