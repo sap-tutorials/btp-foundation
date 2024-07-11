@@ -1,7 +1,7 @@
 ---
 parser: v2
-author_name: Anja Nicole Kretz
-author_profile: https://github.com/AnjaNicoleKretz
+author_name: Madeline Schaefer
+author_profile: https://github.com/Madeline-Schaefer
 auto_validation: true
 time: 15
 tags: [ tutorial>beginner, topic>cloud, software-product-function>sap-btp-cockpit, tutorial>free-tier]
@@ -53,24 +53,19 @@ Entitlements and quota are managed at the global account and directory levels, d
 
 ### Assign entitlements
 
-1. In your global account, navigate to **Entitlements** > **Entity Assignments**.
-2. In the **Select Entities** selection, choose the directory or subaccount that you want to assign entitlements to.
-3. Select **Go**.
+1. In your subaccount, navigate to **Entitlements**. You'll see a table for the directory/ subaccount with all entitlements it already has.
 
-    You'll see a table for the directory/ subaccount with all entitlements it already has.
-4. Select **Configure Entitlements** > **Add Service Plans**.
+   <!-- border -->![Configure Subaccount Entitlements](tutorial-instance-5-add-service-plans.png)
 
-    A popover appears with all entitlements available for your directory/subaccount.
+2. Select **Configure Entitlements** > **Add Service Plans**. A popover appears with all entitlements available for your directory/subaccount.
 
-    <!-- border -->![Configure Subaccount Entitlements](subaccounts.gif)
-
-5. Select the service and then the plan you want to entitle.
+ 3. Select the service and then the plan you want to entitle.
 
     > If you are in a global account using the consumption-based commercial model, you can select the service plan called **Free** here to test out the service without any costs.
 
-6. Select the amount of quota you need.
-7. Select **Add Service Plans** to exit the popover.
-8. Select **Save**.
+3. Select the amount of quota you need.
+4. Select **Add Service Plans** to exit the popover.
+5. Select **Save**.
 
   **Congrats! You have now successfully configured entitlements.**
 

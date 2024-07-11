@@ -1,9 +1,12 @@
 ---
 parser: v2
 auto_validation: true
+author_name: Anna Wenger
+author_profile: https://github.com/annawenger20
+created_by: Anna Wenger
 time: 15
 tags: [ tutorial>beginner, topic>cloud, software-product-function>sap-btp-command-line-interface]
-primary_tag: products>sap-business-technology-platform
+primary_tag: software-product>sap-business-technology-platform
 keywords: btp, btp cli, btpcli, command line, command line interface, command line tool, sap btp command line interface
 ---
 
@@ -27,7 +30,7 @@ keywords: btp, btp cli, btpcli, command line, command line interface, command li
 
 ### What is the btp CLI?
 
-The btp CLI is **an alternative to the cockpit** for users who prefer working on the command line. It consists of a client and a server. The client is installed on your computer and it interacts with SAP BTP through a server. You connect to this CLI server (https://cpcli.cf.eu10.hana.ondemand.com) when you log on to your global account through the btp CLI.
+The btp CLI is **an alternative to the cockpit** for users who prefer working on the command line. It consists of a client and a server. The client is installed on your computer and it interacts with SAP BTP through a server. You connect to this CLI server (https://cli.btp.cloud.sap/) when you log on to your global account through the btp CLI.
 
 The base call to enter on the command line is `btp`.
 
@@ -111,7 +114,7 @@ You can call up help in the client on different levels, from an introductory hel
 
 Now let's log in: 
 
-The **CLI server URL** (https://cpcli.cf.eu10.hana.ondemand.com) is proposed at login - just accept it with ENTER. This server routes client requests to the platform services. Note that there is just this one central CLI server, independent of the regions in which your subaccounts reside. 
+The **CLI server URL** (https://cli.btp.cloud.sap/) is proposed at login - just accept it with ENTER. This server routes client requests to the platform services. 
 
 You have two options for login:
 
@@ -164,16 +167,22 @@ btp assign security/role-collection "Global Account Administrator" --to-user exa
 
 ### Understand the context you've targeted 
 
-Your first login takes you into a global account. Now, all commands are executed on global account level, unless you specify a different context. Remember you can manage the global account and its directories and subaccounts with the btp CLI. So if you want to change the context in which commands are executed to a directory or a subaccount, you can do so using the target command. There are two different ways of using this command: 
+Your first login takes you into a global account. Now, all commands are executed on global account level, unless you specify a different context. Remember you can manage the global account and its directories and subaccounts with the btp CLI. So if you want to change the context in which commands are executed to a directory or a subaccount, you can do so using the `btp target` command. There are three different ways of using this command: 
 
-For an easy, interactive selection of the new target, use: 
+To select a target from the children and parent of the current target, and to navigate up and down the account hierarchy, use: 
 
 ```Bash
 btp target
 ```
-This will display the children and let you navigate up and down the account hierarchy. 
 
-For directly setting a new target, use:
+To select a target from the entire account hierarchy of all of your global accounts and their directories and subaccounts, use:
+
+```Bash
+btp target --hierarchy
+```
+Tip: If you like the `--hierarchy` parameter, you can make it your default with `btp set config --target.hierarchy true`. See [Change Configuration Settings](https://help.sap.com/docs/btp/sap-business-technology-platform/change-configuration-settings). 
+
+To set a target by specifying it as a parameter, use:
 
 ```Bash
 btp target [--subaccount <ID> | --directory <ID> | --global-account <SUBDOMAN>] 
@@ -224,8 +233,10 @@ To learn more:
 
 - See the documentation on SAP Help Portal: [Account Administration Using the SAP BTP Command Line Interface](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/7c6df2db6332419ea7a862191525377c.html).
 - Check out this tutorial: [Automate Account Operations with the Command Line Interface (CLI)](cp-cli-automate-operations).
-- And watch the videos in this [series of live streams on YouTube about the btp CLI](https://help.sap.com/products/link-disclaimer?site=https%3A%2F%2Fwww.youtube.com%2Fplaylist%3Flist%3DPL6RpkC85SLQDXx827kdjKc6HRvdMRZ8P5).
+- Watch the videos in this [series of live streams on YouTube about the btp CLI](https://help.sap.com/products/link-disclaimer?site=https%3A%2F%2Fwww.youtube.com%2Fplaylist%3Flist%3DPL6RpkC85SLQDXx827kdjKc6HRvdMRZ8P5).
 
 
+---------------------
+You're invited to share your feedback with the development team: Run the `btp feedback` command to open a short survey, or, if you have more time and more feedback to share, fill out this [long UX survey about the btp CLI](https://sapinsights.eu.qualtrics.com/jfe/form/SV_57M3WwXoca0sito?Product_filter=btp%20CLI%25source=SAP_Community). Thanks a lot in advance!  
 
 ---

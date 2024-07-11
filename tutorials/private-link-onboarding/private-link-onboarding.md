@@ -4,8 +4,8 @@ author_name: Madeline Schaefer
 author_ profile: https://github.com/Madeline-Schaefer
 auto_validation: true
 time: 10
-tags: [tutorial>beginner, software-product-function>sap-private-link-service, products>sap-business-technology-platform, tutorial>license, software-product-function>sap-btp-cockpit, software-product>sap-integration-suite]
-primary_tag: software-product>sap-business-technology-platform
+tags: [tutorial>beginner, software-product-function>sap-private-link-service, sap-conversational-ai>sap-business-technology-platform, tutorial>license, software-product-function>sap-btp-cockpit, sap-conversational-ai>sap-integration-suite]
+primary_tag: sap-conversational-ai>sap-business-technology-platform
 ---
 
 # Set Up SAP Private Link Service
@@ -14,7 +14,7 @@ primary_tag: software-product>sap-business-technology-platform
 ## Prerequisites
 - You have a global account and subaccount on SAP Business Technology Platform. See [Getting Started with SAP Business Technology Platform](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/144e1733d0d64d58a7176e817fa6aeb3.html).
 
-## You will learn
+## You will learn 
   - How to start with SAP Private Link service
   - How to enable SAP Private Link service in BTP cockpit
 
@@ -25,9 +25,11 @@ SAP Private Link service establishes a private connection between applications r
 
 ---
 
-### Set entitlements
+### Set entitlements 
 
 To be able to use the functionalities of SAP Private Link service, you first need to set the entitlements in your subaccount. For more information, see [Configure Entitlements and Quotas for Subaccounts](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/5ba357b4fa1e4de4b9fcc4ae771609da.html).
+
+If you have a Feature Set B account, you can use directories to group subaccounts. In order to assign a service to a subaccount that is part of a directory that handles entitlements, you have to assign it to the directory first. For more information, see [Cloud Management Tools - Feature Set Overview](https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-management-tools-feature-set-overview).
 
 1. Navigate to your **global account** of SAP BTP cockpit and select **Account Explorer**.
 
