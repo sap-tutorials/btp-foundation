@@ -2,10 +2,10 @@
 parser: v2
 author_name: Gergana Tsakova
 author_profile: https://github.com/Joysie
-title: Create an Application with SAP Java Buildpack 
-description: Create a simple Spring Boot application and enable services for it, by using SAP Java Buildpack and Cloud Foundry Command Line Interface (cf CLI).
+title: Create an Application with SAP Java Buildpack 2
+description: Create a simple Spring Boot application and enable services for it, by using SAP Java Buildpack 2 and Cloud Foundry Command Line Interface (cf CLI).
 auto_validation: true
-time: 40
+time: 45
 tags: [ tutorial>beginner, software-product>sap-btp--cloud-foundry-environment, software-product-function>sap-btp-cockpit]
 primary_tag: programming-tool>java
 ---
@@ -14,18 +14,17 @@ primary_tag: programming-tool>java
 ## You will learn
   - How to create a Spring Boot Java project
   - How to create and deploy a simple "Hello World" application
-  - How to run authentication and authorization checks via the XSUAA service
+  - How to run authentication and authorization checks via the Authorization and Trust Management (XSUAA) service
  
 
 ## Prerequisites
- - You have a trial or productive account for SAP Business Technology Platform (SAP BTP). If you don't have such yet, you can create one so you can [try out services for free] (https://developers.sap.com/tutorials/btp-free-tier-account.html)
- - You have created a subaccount and a space on Cloud Foundry Environment
- - [cf CLI] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/4ef907afb1254e8286882a2bdef0edf4.html) is installed locally
- - You have downloaded [`JDK for SapMachine 11`] (https://sap.github.io/SapMachine/) and [installed] (https://github.com/SAP/SapMachine/wiki/Installation) it locally, configuring your `PATH` and `JAVA_HOME` environment variables
- - You have [Apache Maven] (https://maven.apache.org/download.cgi) downloaded. To do that, go to **Files** and choose the `Binary zip archive` link. For this tutorial, we use version `3.8.5`
- - [Install Maven] (https://maven.apache.org/install.html) - similar to JDK, configure your `PATH` and `MAVEN_HOME` variables
- - You have downloaded and installed [Eclipse IDE for Enterprise Java and Web Developers] (https://www.eclipse.org/downloads/packages/)
-
+ - You have a trial or productive account for SAP Business Technology Platform (SAP BTP). If you don't have such yet, you can create one so you can [try out services for free] (https://developers.sap.com/tutorials/btp-free-tier-account.html).
+ - You have created a subaccount and a space on Cloud Foundry Environment.
+ - [cf CLI] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/4ef907afb1254e8286882a2bdef0edf4.html) is installed locally.
+ - You have downloaded [`JDK for SapMachine 17`] (https://sap.github.io/SapMachine/) and [installed] (https://github.com/SAP/SapMachine/wiki/Installation) it locally, configuring your `PATH` and `JAVA_HOME` environment variables.
+ - You have [Apache Maven] (https://maven.apache.org/download.cgi) downloaded. To do that, go to **Files** and choose the `Binary zip archive` link. For this tutorial, we use version `3.9.8`.
+ - [Install Maven] (https://maven.apache.org/install.html) - similar to JDK, configure your `PATH` and `MAVEN_HOME` variables.
+ - You have installed an integrated development environment. In this tutorial, we use [Visual Studio Code] (https://code.visualstudio.com/) but you can use a different one (Eclipse IDE or IntelliJ IDEA).
 
 
 ## Intro
@@ -33,21 +32,22 @@ This tutorial will guide you through creating and setting up a simple Java appli
 
 ---
 
+
 ### Log on to SAP BTP
 
 
-First, you need to connect to the SAP BTP, Cloud Foundry environment with your productive subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
+First, you need to connect to the SAP BTP, Cloud Foundry environment with your trial or enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
 
 In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
 
 1. Open a command-line console.
 
-2. Set the Cloud Foundry API endpoint for your subaccount. Execute (using your actual region URL):
+2. Set the Cloud Foundry API endpoint for your subaccount. Run the following command  (using your **actual** region URL):
 
     ```Bash/Shell
     cf api https://api.cf.eu20.hana.ondemand.com
     ```
-3. Log in to SAP BTP, Cloud Foundry environment:
+3. Log on to the SAP BTP, Cloud Foundry environment:
 
     ```Bash/Shell
     cf login
@@ -74,7 +74,7 @@ Before creating an application, you need a Java project. For this tutorial, you 
 
 1. Open: `https://start.spring.io`
 
-2. From the configuration screen, choose `Maven Project`, language `Java`, and Spring Boot version `2.7.0 `.
+2. From the configuration screen, choose `Maven Project`, language `Java`, and Spring Boot version `3.3.1 `.
 
 3. From `Project Metadata` section, you need to do the following settings:
 
@@ -90,7 +90,7 @@ Before creating an application, you need a Java project. For this tutorial, you 
 
     - **Packaging**: `Jar`
 
-    - **Java**: `8`
+    - **Java**: `17`
 
 4. Choose `Add Dependencies` and then select `Spring Web`.
 
@@ -112,7 +112,7 @@ You have successfully created a basic Java project.
 
 For this part, you need to configure your `HelloWorld` application, add an extra class, and a `manifest.yml`  file.
 
-1. Open `java-tutorial` directory in a console client, and execute:
+1. Open `java-tutorial` directory in a console client, and run:
 
     ```Bash/Shell
     mvn install
@@ -120,7 +120,7 @@ For this part, you need to configure your `HelloWorld` application, add an extra
 
     This command builds your Java project (as a Maven one).
 
-2. Go back to the `java-tutorial` folder and create a file `manifest.yml` with the following content (using your ACTUALL path!):
+2. From your Visual Studio Code, open the `java-tutorial` folder and create a file `manifest.yml` with the following content (using your **actual** path):
 
     ```YAML
     ---
@@ -130,29 +130,21 @@ For this part, you need to configure your `HelloWorld` application, add an extra
       path: ./target/java-tutorial-0.0.1-SNAPSHOT.jar
       memory: 1024M
       buildpacks: 
-      - sap_java_buildpack
+      - sap_java_buildpack_jakarta
       env:
         TARGET_RUNTIME: tomcat
         JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
     ```
 
-3. Now open your Eclipse IDE, in the `Java` perspective.
+3. Navigate to `src\main\java\com.example.javatutorial` and open the `HelloWorldApplication.java` file.
 
-4. Choose `File` > `Open Projects from File System`, and browse to your `java-tutorial` folder.
-
-5. Select `Add project to working sets` and choose `Finish`.
-
-    Your `java-tutorial` project is populated in the `Project Explorer`.
-
-6. Navigate to `src\main\java\com.example.javatutorial` and double-click on `HelloWorldApplication.java`.
-
-7. In the `public static void main` class, add the following line: 	`System.out.println("Hello World!");`
+4. In the `public static void main` class, add the following line: 	`System.out.println("Hello World!");`
 
     Your final Java code should look like this:
 
     ```Java
 
-    package com.example.javatutorial;
+    package com.example.java_tutorial;
 
     import org.springframework.boot.SpringApplication;
     import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -168,17 +160,17 @@ For this part, you need to configure your `HelloWorld` application, add an extra
     }
     ```
 
-8. Navigate to `src/main/java` and go to the `com.example.javatutorial` package.
+5. Navigate to `src/main/java` and go to the `com.example.java_tutorial` package.
 
-9. From its context menu, choose `New` > `Class`.
+6. From its context menu, choose `Java File` > `Class`.
 
-10. Enter `MainController` as the name of the Java class and choose `Finish`. The new class appears in the project navigation.
+7.  Enter `MainController` and press the `ENTER` key. The new class appears in the project navigation.
 
-11. Open the `MainController.java` file and replace its default content with the following code:
+8.  Replace its default content with the following code:
 
     ```Java
 
-    package com.example.javatutorial;
+    package com.example.java_tutorial;
 
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
@@ -206,33 +198,30 @@ Your Java project is complete and your application is ready to be deployed.
 
 
 
-
 ### Deploy your Java application
 
-You are in the Eclipse IDE.
 
+1. Test your project locally first. To do that, in the Visual Studio Code, right-click on `HelloworldApplication.java` and choose `Run Java`.
 
-1. Test your project locally. To do that, right-click on `HelloworldApplication.java` and choose `Run As` > `Java Application`.
-
-    The final result displayed in the `Console` tab should be: **Hello World!**  
+    The final result displayed in the `Terminal` tab should be: **Hello World!**  
 
     > Same result will be displayed in a browser if you enter: `localhost:8080`
 
-2. Now go to the `java-tutorial` directory and build your project again, by executing:
+2. Now go to the `java-tutorial` directory from the command console, and build your project again by running:
 
     ```Bash/Shell
     mvn clean install
     ```
 
-3. Then execute:
+3. Then run:
 
     ```Bash/Shell
-    cf push
+    cf push helloworld
     ```
 
     This command deploys your Java application.
 
-    > Make sure you always execute `cf push` in the folder where the `manifest.yml` file is located! In this case, that's `java-tutorial`.
+    > Make sure you always run `cf push` in the folder where the `manifest.yml` file is located! In this case, that's `java-tutorial`.
 
 4. When the staging and deployment steps are completed, the `helloworld` application should be successfully started and its details displayed in the command console.
 
@@ -254,16 +243,6 @@ Your Java application is successfully deployed and running on the SAP BTP, Cloud
 Authentication in the SAP BTP, Cloud Foundry environment is provided by the Authorization and Trust Management (XSUAA) service. In this example, OAuth 2.0 is used as the authentication mechanism. The simplest way to add authentication is to use the Node.js `@sap/approuter` package. To do that, a separate Node.js micro-service will be created, acting as an entry point for the application.
 
 1. In the `java-tutorial` folder, create an `xs-security.json` file for your application with the following content:
-
-    ```JSON
-    {
-      "xsappname" : "helloworld",
-      "tenant-mode" : "dedicated"
-    }
-    ```
-
-    > **IMPORTANT**: For trial accounts, enter the following additional `oauth2-configuration` code in your `xs-security.json` file:
-    
     
     ```JSON
     {
@@ -277,7 +256,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
     }
     ```
 
-2. Create an `xsuaa` service instance named `javauaa` with plan `application`. To do that, execute the following command in the `java-tutorial` directory:
+2. Create an `xsuaa` service instance named `javauaa` with plan `application`. To do that, run:
 
     ```Bash/Shell
     cf create-service xsuaa application javauaa -c xs-security.json
@@ -293,7 +272,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
       path: ./target/java-tutorial-0.0.1-SNAPSHOT.jar
       memory: 1024M
       buildpacks: 
-      - sap_java_buildpack
+      - sap_java_buildpack_jakarta
       env:
         TARGET_RUNTIME: tomcat
         JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
@@ -303,13 +282,13 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     The `javauaa` service instance will be bound to the `helloworld` application during deployment.
 
-4. Now you have to create a microservice (the application router). Go to the `java-tutorial` folder and create a subfolder `web`.
+4. Now you have to create a microservice (the application router). To do that, in the `java-tutorial` folder create a subfolder `web`.
 
     > **IMPORTANT**: Make sure you don't have another application with the name `web` in your space! If you do, use a different name and adjust the rest of the tutorial according to it.
 
-5. Inside the `web` folder, create a subfolder `resources`. This folder will provide the business application's static resources.
+5. In the `web` folder, create a subfolder `resources`. This folder will provide the business application's static resources.
 
-6. Inside the `resources` folder, create an `index.html` file with the following content:
+6. In the `resources` folder, create an `index.html` file with the following content:
 
     ```HTML
     <html>
@@ -325,7 +304,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     This will be the start page of the `helloworld` application.
 
-7. In the `web` directory, execute:
+7. In the `web` directory, run:
 
     ```Bash/Shell
     npm init
@@ -333,7 +312,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     Press **Enter** on every step. This process will walk you through creating a `package.json` file in the `web` folder. 
 
-8. Now you need to create a directory `web/node_modules/@sap` and install an `approuter` package in it. To do that, in the `web` directory execute:
+8. Now you need to create a directory `web/node_modules/@sap` and install an `approuter` package in it. To do that, in the `web` directory run:
 
     ```Bash/Shell
     npm install @sap/approuter --save
@@ -412,7 +391,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
         <dependency>
             <groupId>com.sap.cloud.security.xsuaa</groupId>
             <artifactId>xsuaa-spring-boot-starter</artifactId>
-            <version>2.12.2</version>
+            <version>3.5.0</version>
         </dependency>
 
         <!-- dependencies for test -->
@@ -425,13 +404,13 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
     ```
 
 
-13. Now go to the `java-tutorial` directory and execute:
+13. Now go to the `java-tutorial` directory and run:
 
     ```Bash/Shell
     mvn clean install
     ```
 
-14. Then execute:
+14. Then run:
 
     ```Bash/Shell
     cf push
@@ -450,7 +429,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     For example:   `https://web-thankfully-fox.cfapps.eu20.hana.ondemand.com`
 
-17. Enter the credentials for your SAP BTP user.
+17. Enter the credentials for your SAP BTP user and choose the default identity provider.
 
 
 #### RESULT
@@ -466,18 +445,18 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 ### Run an Authorization Check
 
 
-Authorization in the SAP BTP, Cloud Foundry environment is also provided by the XSUAA service. In the previous example, the `@sap/approuter` package was added to provide a central entry point for the business application and to enable authentication. Now to extend the example, authorization will be added.
+Authorization in the SAP BTP, Cloud Foundry environment is also provided by the Authorization and Trust Management (XSUAA) service. In the previous example, the `@sap/approuter` package was added to provide a central entry point for the business application and to enable authentication. Now to extend the example, authorization will be added.
 
-1. Navigate to `src/main/java` and go to the `com.example.javatutorial` package.
+1. Navigate to `src/main/java` and go to the `com.example.java_tutorial` package.
 
-2. From its context menu, choose `New` > `Class`.
+2. From its context menu, choose `Java File` > `Class`.
 
-3. Enter `WebSecurityConfig.java` as the name of the Java class and choose `Finish`. The new class appears in the project navigation.
+3. Enter `WebSecurityConfig.java` and press the `ENTER` key. The new class appears in the project navigation.
 
-4. Open the `WebSecurityConfig.java` file and replace its content with the following code:
+4. Replace its default content with the following code:
 
     ```Java
-    package com.example.javatutorial;
+    package com.example.java_tutorial;
 
     import com.sap.cloud.security.xsuaa.XsuaaServiceConfiguration;
     import com.sap.cloud.security.xsuaa.token.TokenAuthenticationConverter;
@@ -511,7 +490,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
                 // demand specific scopes depending on intended request
                 .authorizeRequests()
 
-                .antMatchers("/**").authenticated()
+                .requestMatchers("/**").authenticated()
                 .anyRequest().denyAll() // deny anything not configured above
             .and()
                 .oauth2ResourceServer().jwt()
@@ -534,10 +513,12 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     }
     ```
 
-5. In the same way, create another Java class, named `NotAuthorizedException.java`, and replace its content with:
+     > Ignore the yellow warnings (due to recently deprecated methods)!
+
+5. In the same way, create another Java class, named `NotAuthorizedException.java`, and replace its default content with:
 
     ```Java
-    package com.example.javatutorial;
+    package com.example.java_tutorial;
 
     import org.springframework.http.HttpStatus;
     import org.springframework.web.bind.annotation.ResponseStatus;
@@ -554,7 +535,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 6. Open the `MainController.java` file and replace its content with the following:
 
     ```Java
-    package com.example.javatutorial;
+    package com.example.java_tutorial;
 
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
@@ -585,42 +566,46 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
     ```JSON
     {
-        "xsappname": "helloworld",
-        "tenant-mode": "dedicated",
-        "scopes": [
-          {
-            "name": "$XSAPPNAME.Display",
-            "description": "Display content"
-          }
-        ],
-        "role-templates": [
-          {
-            "name": "Viewer",
-            "description": "View content",
-            "scope-references": [
-              "$XSAPPNAME.Display"
-            ]
-          }
+    "xsappname" : "helloworld",
+    "tenant-mode" : "dedicated",
+    "scopes": [
+        {
+          "name": "$XSAPPNAME.Display",
+          "description": "Display content"
+        }
+      ],
+      "role-templates": [
+        {
+          "name": "Viewer",
+          "description": "View content",
+          "scope-references": [
+            "$XSAPPNAME.Display"
+          ]
+        }
+      ],
+    "oauth2-configuration": {
+      "redirect-uris": [
+          "https://*.cfapps.eu20.hana.ondemand.com/**"
         ]
       }
+   }
+
     ```
 
-    > For trial accounts, adjust the code with the `oauth2-configuration` part. 
 
-
-8. Update the XSUAA service. To do that, in the `java-tutorial` directory execute:
+8. Update the XSUAA service. To do that, in the `java-tutorial` directory run:
 
     ```Bash/Shell
     cf update-service javauaa -c xs-security.json
     ```
 
-9. Then build your project, by executing:
+9. Then build your project again, by running:
 
     ```Bash/Shell
     mvn clean install
     ```
 
-10. And finally, execute:
+10. And finally, run:
 
     ```Bash/Shell
     cf push helloworld
@@ -643,7 +628,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 ### Assigning Roles to a User in SAP BTP Cockpit
 
 
-1. Open the SAP BTP cockpit and go to your subaccount and space.
+1. Open the SAP BTP cockpit and go to your subaccount.
 
 2. From the left-side menu, navigate to `Security` > `Role Collections`.
 
@@ -659,26 +644,26 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 8. Save your changes.
 
-    > Your role collection is now assigned to your user and contains the role you need to view the content of your application.
+    > Your role collection is assigned to your user and contains the role you need to view the content of your application.
 
-    > Now you need to apply these changes to the `helloworld` application by building and redeploying it again.
+    > Now you need to apply these changes to the `web` application by building and redeploying it again.
 
-9. Go back to the command line, and in the `java-tutorial` directory, execute:
+9. Go back to the command line, and in the `java-tutorial` directory, run:
 
     ```Bash/Shell
     mvn clean install
     ```
 
-10. And finally, execute:
+10. And finally, run:
 
     ```Bash/Shell
-    cf push helloworld
+    cf push web
     ```
 
 #### RESULT
 
 When you try to access again the `helloworld` application through the app router, it will successfully display the **Hello World!** message.
 
-> In order for the new result to take effect immediately, you might need to clear the cache of your browser. Or just open the `web` application URL in a private/incognito browser tab.
+> **Tip**: For the new result to take effect immediately, you might need to clear the cache of your browser. Or just open the `web` application URL in a private/incognito browser tab.
 
 ---
