@@ -566,26 +566,26 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
     ```JSON
     {
-    "xsappname" : "helloworld",
-    "tenant-mode" : "dedicated",
-    "scopes": [
-        {
-          "name": "$XSAPPNAME.Display",
-          "description": "Display content"
-        }
-      ],
-      "role-templates": [
-        {
-          "name": "Viewer",
-          "description": "View content",
-          "scope-references": [
-            "$XSAPPNAME.Display"
-          ]
-        }
-      ],
-    "oauth2-configuration": {
-      "redirect-uris": [
-          "https://*.cfapps.eu20.hana.ondemand.com/**"
+        "xsappname" : "helloworld",
+        "tenant-mode" : "dedicated",
+        "scopes": [
+            {
+            "name": "$XSAPPNAME.Display",
+            "description": "Display content"
+            }
+        ],
+        "role-templates": [
+            {
+            "name": "Viewer",
+            "description": "View content",
+            "scope-references": [
+                "$XSAPPNAME.Display"
+            ]
+            }
+        ],
+        "oauth2-configuration": {
+            "redirect-uris": [
+                "https://*.cfapps.eu20.hana.ondemand.com/**"
         ]
       }
    }
@@ -646,7 +646,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
     > Your role collection is assigned to your user and contains the role you need to view the content of your application.
 
-    > Now you need to apply these changes to the `web` application by building and redeploying it again.
+    Now you need to apply these changes to the `web` application by building and redeploying it again.
 
 9. Go back to the command line, and in the `java-tutorial` directory, run:
 

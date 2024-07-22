@@ -198,16 +198,6 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
     ```JSON
     {
       "xsappname" : "myapp",
-      "tenant-mode" : "dedicated"
-    }
-    ```
-
-    > **IMPORTANT**: For trial accounts, you need to enter the following additional `oauth2-configuration` code so that the file looks like this:
-    
-    
-    ```JSON
-    {
-      "xsappname" : "myapp",
       "tenant-mode" : "dedicated",
       "oauth2-configuration": {
         "redirect-uris": [
@@ -215,7 +205,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
           ]
         }
     }
-    ``` 
+    ```
 
 2.	Create an `xsuaa` service instance named `nodeuaa` with plan `application`. To do that, in the `node-tutorial` directory run:
 
@@ -431,12 +421,16 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
               "$XSAPPNAME.Update"
             ]
           }
+        ],
+        "oauth2-configuration": {
+            "redirect-uris": [
+                "https://*.cfapps.eu20.hana.ondemand.com/**"
         ]
       }
+    }
     ```
 
-    > For trial accounts, adjust the code with the `oauth2-configuration` part. 
-
+    
     Two roles (`Viewer` and `Manager`) are introduced. These roles represent sets of OAuth 2.0 scopes or actions. The scopes are used later in the microservice's code for authorization checks.
 
 

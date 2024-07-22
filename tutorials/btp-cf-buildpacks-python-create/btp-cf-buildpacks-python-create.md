@@ -240,17 +240,7 @@ The current time is displayed, in the UTC time zone.
 
 Authentication in the SAP BTP, Cloud Foundry environment is provided by the Authorization and Trust Management (XSUAA) service. In this example, OAuth 2.0 is used as the authentication mechanism. The simplest way to add authentication is to use the Node.js `@sap/approuter` package. To do that, a separate Node.js microservice will be created, acting as an entry point for the application.
 
-1.	In the `python-tutorial` folder, create an `xs-security.json` file for your application with the following content:
-
-    ```JSON
-    {
-      "xsappname" : "myapp",
-      "tenant-mode" : "dedicated"
-    }
-    ```
-
-    > **IMPORTANT**: For trial accounts, you need to enter an additional `oauth2-configuration` code in the `xs-security.json` file so that its content would look like this:
-    
+1.	In the `python-tutorial` folder, create an `xs-security.json` file for your application with the following content: 
     
     ```JSON
     {
