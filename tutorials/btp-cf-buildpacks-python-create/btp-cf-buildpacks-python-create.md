@@ -18,9 +18,11 @@ primary_tag: programming-tool>python
 ## Prerequisites
  - You have a trial or productive account for SAP Business Technology Platform (SAP BTP). If you don't have such yet, you can create one so you can [try out services for free] (https://developers.sap.com/tutorials/btp-free-tier-account.html).
  - You have created a subaccount and a space on the SAP BTP, Cloud Foundry environment.
- - You have created a service instance for [SAP HANA Cloud] (https://help.sap.com/docs/hana-cloud). To learn how to set it up, watch the following video from **03:15**  to **07:10**: [SAP HANA Cloud Trial Setup](https://www.youtube.com/watch?v=GSNQpfxPuLU). During the first steps, choose the `SAP HANA Database` type.
+ - You have created an SAP HANA Cloud service instance of type **SAP HANA Database**. To learn how, watch one of the following videos, depending on your account type:
+    *  Trial account: [SAP HANA Cloud Trial Setup](https://www.youtube.com/watch?v=GSNQpfxPuLU&t=190s) - from **3:10**  to **7:10**. 
+    *  Productive account: [Help Thomas Get Started with SAP HANA Cloud](https://www.youtube.com/watch?v=ztDOYsNB204&t=280s) - from **4:40**  to **11:00**. 
  - [Python] (https://www.python.org/downloads/) is installed locally. To check which Python versions are supported in the current buildpack, see: [Developing Python in the Cloud Foundry Environment](https://help.sap.com/docs/btp/sap-business-technology-platform/developing-python-in-cloud-foundry-environment#buildpack-versioning). In this tutorial, we use Python version **3.11.x**.
- - [cf CLI] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/4ef907afb1254e8286882a2bdef0edf4.html) is installed locally.
+ - [cf CLI] (https://help.sap.com/docs/btp/sap-business-technology-platform/download-and-install-cloud-foundry-command-line-interface) is installed locally.
  - [npm] (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) is installed locally.
  - You have installed an integrated development environment, for example [Visual Studio Code] (https://code.visualstudio.com/).
  - You have installed the `virtualenv` tool. It creates a folder, which contains all the necessary executables to use the packages that your Python project would need. To install it locally, run the following command in the Python installation path:   
