@@ -4,8 +4,6 @@ time: 10
 auto_validation: true
 tags: [ tutorial>beginner, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp\\, kyma-runtime
-author_name: Kevin Riedelsheimer
-author_ profile: https://github.com/KevinRiedelsheimer
 ---
 
 # Enable SAP BTP, Kyma Runtime

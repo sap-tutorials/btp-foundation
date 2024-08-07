@@ -4,8 +4,6 @@ time: 20
 auto_validation: true
 tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp--kyma-runtime
-author_name: Jamie Cawley
-author_ profile: https://github.com/jcawley5
 ---
 
 # Trigger a Microservice with an Event

@@ -3,8 +3,6 @@ parser: v2
 time: 15
 auto_validation: true
 tags: [ tutorial>beginner, topic>cloud, software-product>sap-business-technology-platform]
-author_name: Jamie Cawley
-author_ profile: https://github.com/jcawley5
 primary_tag: software-product>sap-btp--kyma-runtime
 ---
 
