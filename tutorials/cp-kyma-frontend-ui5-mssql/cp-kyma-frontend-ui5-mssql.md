@@ -4,8 +4,6 @@ auto_validation: true
 time: 40
 tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp--kyma-runtime
-author_name: Jamie Cawley
-author_ profile: https://github.com/jcawley5
 ---
 
 # Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime
