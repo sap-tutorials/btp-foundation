@@ -113,7 +113,7 @@ In the SAP Connectivity service, add a system mapping and a resource.
 
 8. As **Principal Type**, select **None**, and choose **Next**.
 
-9. For **Host In Request Header**, select **Use Virtual Host**, and choose **Next**.
+9. For **Host In Request Header**, select **Use Internal Host**, and choose **Next**.
 
 10. Optionally, enter a description and choose **Next**.
 
@@ -152,7 +152,7 @@ In SAP Continuous Integration and Delivery, configure credentials for your cloud
    
     * **Name:** Freely choose a unique name for your repository. We recommend using a name that refers to the actual repository in your source code management system.
     * **Clone URL:** Enter a composition of the virtual host you've created in step 3.6 and the path of the resource you've created in step 3.13, for example `http://my-git:1080/user/repository`. Please make sure that you use the virtual host instead of the real host name and port of your on-premise system.
-    * **Credentials:** As your repository isn't private, leave this field empty.
+    * **Credentials:** If your repository isn't private, leave this field empty.
     * **Cloud Connector:** From the drop-down list, choose your Cloud Connector credential.
 
 
