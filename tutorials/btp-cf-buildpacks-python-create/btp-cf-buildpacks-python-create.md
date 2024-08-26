@@ -255,7 +255,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
         }
     }
     ``` 
-    > Instead of `eu20`, use the technical key of your actual region. 
+    > **NOTE:**  Instead of  `eu20`, use the technical key of your actual region. 
 
 2.	Create an `xsuaa` service instance named `pyuaa` with plan `application`. To do that, run:
 
@@ -388,9 +388,10 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 > ### TIP:  
 > If you experience an authentication issue, go back to your  `xs-security.json` file and double-check if all the data is correct. If you need to fix something, proceed as follows:
-  > 1. Do the corrections in the file and save your changes.
-  > 2. Update your `pyuaa` service, by running:   `cf update-service pyuaa -c xs-security.json`
-  > 3. Deploy your applications again, by running:  `cf push` 
+> 
+>   1. Do the corrections in the file and save your changes.
+>   2. Update your `pyuaa` service, by running:   `cf update-service pyuaa -c xs-security.json`
+>   3. Deploy your applications again, by running:  `cf push` 
 
 
 
