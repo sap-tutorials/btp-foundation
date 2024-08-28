@@ -14,7 +14,7 @@ author_profile: https://github.com/MichaelPShea
 
 ## Prerequisites
  - [Secure a Basic Node.js App with the SAP Authorization and Trust Management Service (XSUAA)](cp-cf-security-xsuaa-create)
- - You must have a second subaccount within the **same** trial account that you can use to subscribe to the application.
+ - You must have a second subaccount within the **same** region and **same** trial account that you can use to subscribe to the application.
 
 ## You will learn
   - How to add multitenancy to a secure Node.js application
@@ -84,7 +84,15 @@ To enable multitenancy, you need to change the parameter `tenant-mode` in the `x
   	],
     ```
 
-5. Save the file.
+5. The `redirect-uris` parameter needs to have an asterisk right after the protocol and before `approuter-product-list`. This enables the application to redirect to the subscribed application instances in the other subaccounts.
+
+  ```JSON
+  "oauth2-configuration":     
+  {        
+    "redirect-uris": ["https://*approuter-product-list-ms17.cfapps.eu20-001.hana.ondemand.com/login/callback"]                
+  }
+
+6. Save the file.
 
 
 
@@ -300,7 +308,7 @@ cf push
 
 Make your application reachable for consumer subaccounts by adding a new route in the Cloud Foundry CLI. The route is composed of the subdomain of the **subscribing** subaccount (see screenshot) and the `TENANT_HOST_PATTERN` of the application router that we defined in the `manifest.yml`. You have to create a new route for every subaccount (tenant) that subscribes to the application.
 
-<!-- border -->![subaccount subdomain](subdomain.png)
+<!-- border -->![subaccount subdomain](new-subdomain.png)
 
 1. Log in to the Cloud Foundry account where the application is deployed with the Cloud Foundry CLI.
 
@@ -363,7 +371,16 @@ The application will now show you the products. If it's not working also conside
 
 
 
----
+
+### Troubleshooting
+
+#### 1. A login screen for SAP HANA XS Advanced is displayed.
+<!-- border -->![SAP HANA XS Advanced login screen](login-screen-SAP-HANA-XS-Advanced.png)
+To resolve this error, please make sure that your consumer application is in the same region as the provider application.
+
+#### 2. Error message: 404 Not Found: Requested route ('subscription-account-eu20-k68b4uri-approuter-product-list-ms17.cfapps.eu20-001.hana.ondemand.com') does not exist.
+To resolve this error, check that you have mapped the routes correctly by verifying the subdomain in the subaccount overview.
+
 
 ### Resources
 - [Developing Multitenant Applications in the Cloud Foundry Environment](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/5e8a2b74e4f2442b8257c850ed912f48.html)
