@@ -86,11 +86,12 @@ To enable multitenancy, you need to change the parameter `tenant-mode` in the `x
 
 5. The `redirect-uris` parameter needs to have an asterisk right after the protocol and before `approuter-product-list`. This enables the application to redirect to the subscribed application instances in the other subaccounts.
 
-  ```JSON
-  "oauth2-configuration":     
-  {        
-    "redirect-uris": ["https://*approuter-product-list-ms17.cfapps.eu20-001.hana.ondemand.com/login/callback"]                
-  }
+    ```JSON
+    "oauth2-configuration":     
+    {        
+      "redirect-uris": ["https://*approuter-product-list-ms17.cfapps.eu20-001.hana.ondemand.com/login/callback"]                
+    }
+    ```
 
 6. Save the file.
 
@@ -98,14 +99,17 @@ To enable multitenancy, you need to change the parameter `tenant-mode` in the `x
 
 ### Update the manifest
 
-In this step you need to complete the following tasks:
+In this step, you need to complete the following tasks:
 
 - Add a new routing pattern
 - Add the service binding for the SaaS Provisioning service
 
 You can either do these steps one by one or copy the complete `manifest.yml` at the end. Remember to adapt the routes, URLs, and the `TENANT_HOST_PATTERN` according to your own example.
 
+
+
 ### Add a new routing pattern
+
 Add a parameter called `TENANT_HOST_PATTERN` to the **approuter** application. The parameter specifies a generic route for all tenants to call the application over the approuter.
 
 1. Go to the `product-list` folder.
@@ -127,7 +131,9 @@ Add a parameter called `TENANT_HOST_PATTERN` to the **approuter** application. T
     >**RESTRICTION:** The value of the parameter `TENANT_HOST_PATTERN` has to be lowercase.
 
 
+
 ### Add the service binding for the SaaS Provisioning service
+
 Adding the service binding of the SaaS Provisioning service in the `manifest.yml` will automatically bind the service instance to the `product-list` application when deploying it.
 
 Add the service binding for the SaaS Provisioning service to the **product-list** application.
@@ -138,8 +144,7 @@ services:
   - saas-registry-tutorial
 ```
 
-
-At the end your `manifest.yml` file should look like this:
+At the end, your `manifest.yml` file should look like this:
 
 ```YAML
 applications:
@@ -178,8 +183,6 @@ applications:
       ]
     TENANT_HOST_PATTERN: "^(.*)-approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com"
 ```
-
-
 
 
 
@@ -228,7 +231,6 @@ To enable other subaccounts to subscribe to your application, you need to implem
 
 
 
-
 ### Create a SaaS configuration file
 
 To make your multitenant application endpoints available for subscription to consumer subaccounts, you must register the application in the Cloud Foundry environment via the SaaS Provisioning service.
@@ -252,7 +254,6 @@ To register your application, you need a configuration file called `config.json`
       "category" : "Custom SaaS Applications"
     }
     ```
-
 
 
 
@@ -317,14 +318,7 @@ Make your application reachable for consumer subaccounts by adding a new route i
 cf map-route approuter cfapps.eu10.hana.ondemand.com --hostname consumer-tenant-ap25-approuter-product-list-ap25
 ```
 
-
-
-
-
-
-### Access the application with the consumer subaccount
-
-To access the application you need to subscribe to it. Follow these steps to subscribe to the SaaS application with the consumer subaccount and call the application URL.
+To access the application, you need to subscribe to it. Follow these steps to subscribe to the SaaS application with the consumer subaccount and call the application URL.
 
 1. Open the [SAP BTP Trial](https://account.hanatrial.ondemand.com/cockpit/#/home/trialhome).
 
@@ -342,33 +336,29 @@ You'll now see the application with the message `no data` because you have to as
 
 
 
-
 ### Assign the role collection
-
 
 Assign your user the role collection `ProductListViewer` that contains the necessary role to view the products in the product list.
 
-3. Open the SAP BTP cockpit.
+1. Open the SAP BTP cockpit.
 
-4. Navigate to your consumer subaccount.
+2. Navigate to your consumer subaccount.
 
-5. Choose the **Security** tab and choose **Trust Configuration**.
+3. Choose the **Security** tab and choose **Trust Configuration**.
 
-6. Choose **Default identity provider**.
+4. Choose **Default identity provider**.
 
-7. Enter your e-mail address and choose **Show Assignments**.
+5. Enter your e-mail address and choose **Show Assignments**.
 
-8. Choose **Assign Role Collection**.
+6. Choose **Assign Role Collection**.
 
-9. Choose the `ProductListViewer` role collection.
+7. Choose the `ProductListViewer` role collection.
 
-10. Clear your cache and reload the application URL.
+8. Clear your cache and reload the application URL.
 
     `https://consumer-tenant-ap25-approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/products`
 
-
 The application will now show you the products. If it's not working also consider to check with another browser or in private mode.
-
 
 
 
@@ -382,8 +372,8 @@ To resolve this error, please make sure that your consumer application is in the
 To resolve this error, check that you have mapped the routes correctly by verifying the subdomain in the subaccount overview.
 
 
+
 ### Resources
+
 - [Developing Multitenant Applications in the Cloud Foundry Environment](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/5e8a2b74e4f2442b8257c850ed912f48.html)
 - [Authorization and Trust Management in the Cloud Foundry Environment](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/6373bb7a96114d619bfdfdc6f505d1b9.html)
-
----
