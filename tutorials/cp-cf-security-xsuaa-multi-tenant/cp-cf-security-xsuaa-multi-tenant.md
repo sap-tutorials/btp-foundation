@@ -89,7 +89,7 @@ To enable multitenancy, you need to change the parameter `tenant-mode` in the `x
     ```JSON
     "oauth2-configuration":     
     {        
-      "redirect-uris": ["https://*approuter-product-list-ms17.cfapps.eu20-001.hana.ondemand.com/login/callback"]                
+      "redirect-uris": ["https://*approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/login/callback"]                
     }
     ```
 
@@ -368,7 +368,7 @@ The application will now show you the products. If it's not working also conside
 <!-- border -->![SAP HANA XS Advanced login screen](login-screen-SAP-HANA-XS-Advanced.png)
 To resolve this error, please make sure that your consumer application is in the same region as the provider application.
 
-#### 2. Error message: 404 Not Found: Requested route ('subscription-account-eu20-k68b4uri-approuter-product-list-ms17.cfapps.eu20-001.hana.ondemand.com') does not exist.
+#### 2. Error message: 404 Not Found: Requested route ('consumer-tenant-ap25-approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com') does not exist.
 To resolve this error, check that you have mapped the routes correctly by verifying the subdomain in the subaccount overview.
 
 
