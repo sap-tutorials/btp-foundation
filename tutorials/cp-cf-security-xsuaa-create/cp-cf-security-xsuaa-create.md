@@ -409,21 +409,19 @@ Your application has two routes that are defined in the `manifest.yml`. The dire
 
 Assign your user the role collection that contains the necessary role to view the products in the product list.
 
-3. Open the SAP BTP cockpit.
+1. Open the SAP BTP cockpit.
 
-4. Navigate to your subaccount.
+2. Navigate to your subaccount.
 
-5. Choose the **Security** tab and choose **Trust Configuration**.
+3. Choose the **Security** tab and choose **Role Collections**.
 
-6. Choose **Default identity provider**.
+4. Choose the `ProductListViewer` role collection.
 
-7. Enter your e-mail address and choose **Show Assignments**.
+5. Edit the list of users in the configuration to include your ID (e-mail address), identity provider, and e-mail address.
 
-8. Choose **Assign Role Collection**.
+6. Save the `ProductListViewer` configuration.
 
-9. Choose the `ProductListViewer` role collection.
-
-10. Call the URL of the approuter again (you might have to delete your cookies/cache before).
+7. Call the URL of the approuter again (you might have to delete your cookies/cache before).
 
     `https://approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/products`
 
