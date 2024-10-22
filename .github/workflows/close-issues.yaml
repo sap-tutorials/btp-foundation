@@ -1,0 +1,81 @@
+name: Close Issues with Specific Words
+
+on:
+  workflow_dispatch:
+
+jobs:
+  close_issues:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository content
+        uses: actions/checkout@v2
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Close issues with specified words
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        run: |
+          set -e
+
+          API_URL="https://api.github.com"
+          PAGE=1
+          PER_PAGE=30
+          CLOSED_ISSUES_COUNT=0
+
+          echo "Fetching open issues..."
+
+          while :; do
+          ISSUES=$(curl -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" -s "$API_URL/repos/${{ github.repository }}/issues?state=open&page=$PAGE&per_page=$PER_PAGE")
+
+          # Debug: Print the raw response
+          echo "Raw response: $ISSUES"
+
+          # Check if the response is valid JSON
+          if ! echo "$ISSUES" | jq empty; then
+          echo "Invalid JSON response"
+          break
+          fi
+
+          # Check if there are no more issues to process
+          ISSUE_COUNT=$(echo "$ISSUES" | jq '. | length')
+          if [ "$ISSUE_COUNT" -eq 0 ]; then
+          echo "No more issues to process."
+          break
+          fi
+
+          for ISSUE in $(echo "$ISSUES" | jq -r '.[] | @base64'); do
+          _jq() {
+          echo "${ISSUE}" | base64 --decode | jq -r "${1}"
+          }
+
+          TITLE=$(_jq '.title')
+          echo "Processing issue with title: $TITLE"
+
+          if [[ "$TITLE" == *"Tutorial"* ]] && [[ "$TITLE" == *"Page"* ]] && [[ "$TITLE" == *"Issue"* ]]; then
+          ISSUE_NUMBER=$(_jq '.number')
+          echo "Closing issue #$ISSUE_NUMBER with title: $TITLE"
+
+          curl -X PATCH -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          -d '{"state": "closed"}' \
+          "$API_URL/repos/${{ github.repository }}/issues/$ISSUE_NUMBER"
+
+          echo "Issue #$ISSUE_NUMBER closed."
+          CLOSED_ISSUES_COUNT=$((CLOSED_ISSUES_COUNT + 1))
+          fi
+          done
+
+          # If the number of issues fetched is less than PER_PAGE, break the loop
+          if [ "$ISSUE_COUNT" -lt "$PER_PAGE" ]; then
+          echo "Processed all available issues."
+          break
+          fi
+
+          PAGE=$((PAGE + 1))
+          done
+
+          echo "Workflow completed."
+          echo "Total number of issues closed: $CLOSED_ISSUES_COUNT"
