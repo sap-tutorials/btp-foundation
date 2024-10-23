@@ -21,6 +21,7 @@ primary_tag: programming-tool>java
  - You have a trial or productive account for SAP Business Technology Platform (SAP BTP). If you don't have such yet, you can create one so you can [try out services for free] (https://developers.sap.com/tutorials/btp-free-tier-account.html).
  - You have created a subaccount and a space on Cloud Foundry Environment.
  - [cf CLI] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/4ef907afb1254e8286882a2bdef0edf4.html) is installed locally.
+ - [npm] (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) is installed locally.
  - You have downloaded [`JDK for SapMachine 17`] (https://sap.github.io/SapMachine/) and [installed] (https://github.com/SAP/SapMachine/wiki/Installation) it locally, configuring your `PATH` and `JAVA_HOME` environment variables.
  - You have [Apache Maven] (https://maven.apache.org/download.cgi) downloaded. To do that, go to **Files** and choose the `Binary zip archive` link. For this tutorial, we use version `3.9.8`.
  - [Install Maven] (https://maven.apache.org/install.html) - similar to JDK, configure your `PATH` and `MAVEN_HOME` variables.
@@ -74,7 +75,7 @@ Before creating an application, you need a Java project. For this tutorial, you 
 
 1. Open: `https://start.spring.io`
 
-2. From the configuration screen, choose `Maven Project`, language `Java`, and Spring Boot version `3.3.1 `.
+2. From the configuration screen, choose `Maven Project`, language `Java`, and Spring Boot version `3.3.4 `.
 
 3. From `Project Metadata` section, you need to do the following settings:
 
@@ -120,7 +121,7 @@ For this part, you need to configure your `HelloWorld` application, add an extra
 
     This command builds your Java project (as a Maven one).
 
-2. From your Visual Studio Code, open the `java-tutorial` folder and create a file `manifest.yml` with the following content (using your **actual** path):
+2. From your Visual Studio Code, open the `java-tutorial` folder and create a file `manifest.yml` with the following content:
 
     ```YAML
     ---
@@ -162,7 +163,7 @@ For this part, you need to configure your `HelloWorld` application, add an extra
 
 5. Navigate to `src/main/java` and go to the `com.example.java_tutorial` package.
 
-6. From its context menu, choose `Java File` > `Class`.
+6. From its context menu, choose `New Java File` > `Class`.
 
 7.  Enter `MainController` and press the `ENTER` key. The new class appears in the project navigation.
 
@@ -434,7 +435,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 #### RESULT
 
-- A simple page with title `Java Tutorial` is displayed. When you click the `My Application` link, the output of your `helloworld` application is displayed.
+- A simple page with title `Java Tutorial` is displayed. When you click the `My Java Application` link, the output of your `helloworld` application is displayed.
 
 - Check that the `helloworld` application is not directly accessible without authentication. To do that, refresh its previously loaded URL in a web browser – you should get a response `401 Unauthorized`.
 
@@ -449,7 +450,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 1. Navigate to `src/main/java` and go to the `com.example.java_tutorial` package.
 
-2. From its context menu, choose `Java File` > `Class`.
+2. From its context menu, choose `New Java File` > `Class`.
 
 3. Enter `WebSecurityConfig.java` and press the `ENTER` key. The new class appears in the project navigation.
 
@@ -479,6 +480,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     	@Autowired
     	XsuaaServiceConfiguration xsuaaServiceConfiguration;
 
+        @SuppressWarnings({ "removal", "deprecation" })
     	@Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -515,7 +517,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
      > Ignore the yellow warnings (due to recently deprecated methods)!
 
-5. In the same way, create another Java class, named `NotAuthorizedException.java`, and replace its default content with:
+5. In the same way, create another Java class, named `NotAuthorizedException.java`, and replace its default content with the following code:
 
     ```Java
     package com.example.java_tutorial;
