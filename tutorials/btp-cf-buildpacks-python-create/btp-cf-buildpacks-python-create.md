@@ -39,9 +39,9 @@ This tutorial will guide you through creating and setting up a simple Python app
 ### Log on to SAP BTP
 
 
-First, you need to connect to the SAP BTP, Cloud Foundry environment with your trial or enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
+First, you need to connect to the SAP BTP, Cloud Foundry environment with your trial or enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/docs/btp/sap-business-technology-platform/regions-and-api-endpoints-available-for-cloud-foundry-environment)
 
-In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
+In this tutorial, we use `eu20` as an **example**.
 
 1. Open a command-line console.
 
@@ -56,7 +56,7 @@ In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
     cf login
     ```
 
-4. When prompted, enter your user credentials – the email and password you have used to register your trial or productive SAP BTP account.
+4. When prompted, enter your user credentials. These are the email and password you have used to register your trial or productive SAP BTP account.
  
     > **IMPORTANT**: If the authentication fails, even though you've entered correct credentials, try [logging in via single sign-on] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/e1009b4aa486462a8951c4d499ce6d4c.html?version=Cloud).
 
@@ -339,7 +339,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
           [
             {
               "name":"myapp",
-              "url":"https://myapp-grouchy-rabbit.cfapps.eu20.hana.ondemand.com",
+              "url":"https://myapp-grouchy-rabbit.cfapps.eu20.hana.ondemand.com/",
               "forwardAuthToken": true
             }
           ]
@@ -347,7 +347,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
       - pyuaa
     ```
 
-    > For the `url` value, enter **your** generated URL for the `myapp` application. 
+    > **NOTE**: For the `url` value, enter your **actual** generated URL for the `myapp` application. 
 
 11.	In the `web` folder, create an `xs-app.json` file with the following content:
 
