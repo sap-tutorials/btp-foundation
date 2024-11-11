@@ -31,9 +31,9 @@ This tutorial will guide you through creating and setting up a simple Node.js ap
 ### Log on to SAP BTP
 
 
-First, you need to connect to the SAP BTP, Cloud Foundry environment with your trial or enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
+First, you need to connect to the SAP BTP, Cloud Foundry environment with your trial or enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/docs/btp/sap-business-technology-platform/regions-and-api-endpoints-available-for-cloud-foundry-environment)
 
-In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
+In this tutorial, we use `eu20` as an **example**.
 
 1. Open a command-line console.
 
@@ -48,7 +48,7 @@ In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
     cf login
     ```
 
-4. When prompted, enter your user credentials – the email and password you have used to register your trial or productive SAP BTP account.
+4. When prompted, enter your user credentials. These are the email and password you have used to register your trial or productive SAP BTP account.
  
     > **IMPORTANT**: If the authentication fails, even though you've entered correct credentials, try [logging in via single sign-on] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/e1009b4aa486462a8951c4d499ce6d4c.html?version=Cloud).
 
@@ -173,7 +173,7 @@ You're going to create a simple Node.js application.
     cf push
     ```
 
-    > Make sure you always run `cf push` in the directory where the `manifest.yml` file is located! In this case, that's `node-tutorial`.
+    > **NOTE**: Make sure you always run `cf push` in the directory where the `manifest.yml` file is located! In this case, that's `node-tutorial`.
 
 10. When the staging and deployment steps are completed, the `myapp` application should be successfully started and its details displayed in the command console.
 
@@ -206,6 +206,8 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
         }
     }
     ```
+
+   > **NOTE:** Replace `eu20` with the technical key of your **actual** SAP BTP region. 
 
 2.	Create an `xsuaa` service instance named `nodeuaa` with plan `application`. To do that, in the `node-tutorial` directory run:
 
@@ -287,7 +289,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
           [
             {
               "name":"myapp",
-              "url":"https://myapp-purple-tiger.cfapps.eu20.hana.ondemand.com",
+              "url":"https://myapp-purple-tiger.cfapps.eu20.hana.ondemand.com/",
               "forwardAuthToken": true
             }
           ]
@@ -295,7 +297,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
       - nodeuaa
     ```
      
-    > For the `url` value, enter **your** generated URL for the `myapp` application. 
+    > **NOTE**: For the `url` value, enter your **actual** generated URL for the `myapp` application. 
 
 11.	In the `web` folder, create an `xs-app.json` file with the following content:
 

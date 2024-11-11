@@ -37,9 +37,9 @@ This tutorial will guide you through creating and setting up a simple Java appli
 ### Log on to SAP BTP
 
 
-First, you need to connect to the SAP BTP, Cloud Foundry environment with your trial or enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/f344a57233d34199b2123b9620d0bb41.html?version=Cloud)
+First, you need to connect to the SAP BTP, Cloud Foundry environment with your trial or enterprise (productive) subaccount. Your Cloud Foundry URL depends on the region where the API endpoint belongs to. To find out which one is yours, see:  [Regions and API Endpoints Available for the CF Environment] (https://help.sap.com/docs/btp/sap-business-technology-platform/regions-and-api-endpoints-available-for-cloud-foundry-environment)
 
-In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
+In this tutorial, we use `eu20` as an **example**.
 
 1. Open a command-line console.
 
@@ -54,7 +54,7 @@ In this tutorial, we use `eu20.hana.ondemand.com` as an **example**.
     cf login
     ```
 
-4. When prompted, enter your user credentials – the email and password you have used to register your productive SAP BTP account.
+4. When prompted, enter your user credentials. These are the email and password you have used to register your trial or productive SAP BTP account.
 
     > **IMPORTANT**: If the authentication fails, even though you've entered correct credentials, try [logging in via single sign-on] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/e1009b4aa486462a8951c4d499ce6d4c.html?version=Cloud).
 
@@ -75,7 +75,7 @@ Before creating an application, you need a Java project. For this tutorial, you 
 
 1. Open: `https://start.spring.io`
 
-2. From the configuration screen, choose `Maven Project`, language `Java`, and Spring Boot version `3.3.4 `.
+2. From the configuration screen, choose `Maven Project`, language `Java`, and Spring Boot version `3.3.5 `.
 
 3. From `Project Metadata` section, you need to do the following settings:
 
@@ -91,7 +91,7 @@ Before creating an application, you need a Java project. For this tutorial, you 
 
     - **Packaging**: `Jar`
 
-    - **Java**: `17`
+    - **Java**: `21`
 
 4. Choose `Add Dependencies` and then select `Spring Web`.
 
@@ -135,7 +135,12 @@ For this part, you need to configure your `HelloWorld` application, add an extra
       env:
         TARGET_RUNTIME: tomcat
         JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
+        JBP_CONFIG_SAP_MACHINE_JDK : "{ version: 21.+ }"
     ```
+
+    The `manifest.yml` file represents the configuration describing your application and how it will be deployed to Cloud Foundry.
+
+    > **IMPORTANT**: Make sure you don't have another application with the name `helloworld` in your space! If you do, use a different name and adjust the whole tutorial according to it.
 
 3. Navigate to `src\main\java\com.example.javatutorial` and open the `HelloWorldApplication.java` file.
 
@@ -217,7 +222,7 @@ Your Java project is complete and your application is ready to be deployed.
 3. Then run:
 
     ```Bash/Shell
-    cf push helloworld
+    cf push
     ```
 
     This command deploys your Java application.
@@ -256,6 +261,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
         }
     }
     ```
+    > **NOTE:** Replace `eu20` with the technical key of your **actual** SAP BTP region. 
 
 2. Create an `xsuaa` service instance named `javauaa` with plan `application`. To do that, run:
 
@@ -277,6 +283,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
       env:
         TARGET_RUNTIME: tomcat
         JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
+        JBP_CONFIG_SAP_MACHINE_JDK : "{ version: 21.+ }"
       services:
       - javauaa
     ```
@@ -348,7 +355,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
       - javauaa
     ```
 
-    > For the `url` value, enter **your** generated URL for the `myapp` application
+    > **NOTE**: For the `url` value, enter your **actual** generated URL for the `helloworld` application. 
 
 11. In the `web` folder, create an `xs-app.json` file with the following content:
 
@@ -514,8 +521,6 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
     }
     ```
-
-     > Ignore the yellow warnings (due to recently deprecated methods)!
 
 5. In the same way, create another Java class, named `NotAuthorizedException.java`, and replace its default content with the following code:
 
