@@ -22,7 +22,7 @@ primary_tag: programming-tool>java
  - You have created a subaccount and a space on Cloud Foundry Environment.
  - [cf CLI] (https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/4ef907afb1254e8286882a2bdef0edf4.html) is installed locally.
  - [npm] (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) is installed locally.
- - You have downloaded [`JDK for SapMachine 17`] (https://sap.github.io/SapMachine/) and [installed] (https://github.com/SAP/SapMachine/wiki/Installation) it locally, configuring your `PATH` and `JAVA_HOME` environment variables.
+ - You have downloaded [`JDK for SapMachine 21`] (https://sap.github.io/SapMachine/) and [installed] (https://github.com/SAP/SapMachine/wiki/Installation) it locally, configuring your `PATH` and `JAVA_HOME` environment variables.
  - You have [Apache Maven] (https://maven.apache.org/download.cgi) downloaded. To do that, go to **Files** and choose the `Binary zip archive` link. For this tutorial, we use version `3.9.8`.
  - [Install Maven] (https://maven.apache.org/install.html) - similar to JDK, configure your `PATH` and `MAVEN_HOME` variables.
  - You have installed an integrated development environment. In this tutorial, we use [Visual Studio Code] (https://code.visualstudio.com/) but you can use a different one (Eclipse IDE or IntelliJ IDEA).
