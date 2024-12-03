@@ -437,6 +437,9 @@ Assign your user the role collection that contains the necessary role to view th
 #### Error message: the hostname of your application is already taken
 To resolve this error, please edit the `manifest.yml` file and change the `route` parameter of the product list application or the `route` parameter of the approuter (depending on which hostname is already taken). If you change the parameter of the product list application, make sure to change the `url` parameter under destinations as well.
 
+#### 500 internal error when calling `https://approuter-<my-app-host>.cfapps.<global-account>.hana.ondemand.com/products´
+To resolve this error, please check that you have added the bindings for the XSUAA service to the approuter.
+See Step 6: Substep 6 for more details.
 
 ### Resources
 - [Info on the xs-app.json](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/c103fb414988447ead2023f768096dcc.html)
