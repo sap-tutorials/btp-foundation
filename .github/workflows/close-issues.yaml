@@ -55,7 +55,7 @@ jobs:
           TITLE=$(_jq '.title')
           echo "Processing issue with title: $TITLE"
 
-          if [[ "$TITLE" == *"QA"* ]] && [[ "$TITLE" == *"GREEN"* ]]; then
+          if [[ "$TITLE" == *"Tutorial"* ]] && [[ "$TITLE" == *"Page"* ]] && [[ "$TITLE" == *"cp-cf-security-xsuaa-create.md"* ]] && [[ "$TITLE" == *"Issue"* ]] && [[ "$TITLE" == *"PROD"* ]]; then
           ISSUE_NUMBER=$(_jq '.number')
           echo "Closing issue #$ISSUE_NUMBER with title: $TITLE"
 
