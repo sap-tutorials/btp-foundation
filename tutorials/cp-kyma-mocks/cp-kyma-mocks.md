@@ -11,7 +11,6 @@ primary_tag: software-product>sap-btp--kyma-runtime
 
 ## Prerequisites
   - [Git](https://git-scm.com/downloads) installed
-  - [Application Connector module added](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module)
 
 ## You will learn
   - How to deploy the Kyma mock application and expose its API to the Internet using an APIRule
@@ -33,39 +32,49 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
     git clone https://github.com/SAP-samples/xf-application-mocks
     ```
 
-### Apply resources to SAP BTP, Kyma runtime
+### Add the Application Connector module in SAP BTP, Kyma runtime
 
 1. Open Kyma dashboard using the **Console URL** link in SAP BTP cockpit.
 
-2. Go to **Namespaces** and choose **Create**.
+2. Choose **Modify Modules**, and select **Add**.
 
-3. Provide the name `dev`, toogle the **Enable Sidecar Injection** button, and choose **Create**.
+3. In the **Add Modules** section, check `application-connector`, and select **Add**.
+
+    > You can find more info in [Add and Delete a Kyma Module](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module).
+
+### Apply resources to SAP BTP, Kyma runtime
+
+1. In your Kyma dashboard, go to **Namespaces** and choose **Create**.
+
+2. Provide the name `dev`, toogle the **Enable Sidecar Injection** button, and choose **Create**.
 
     > Namespaces separate objects inside a Kubernetes cluster. The concept is similar to folders in a file system. Each Kubernetes cluster has a `default` namespace to begin with. Choosing a different value for the namespace will require adjustments to the provided samples.
 
     > Toggling the **Enable Sidecar Injection** button allows the Istio service mesh to inject the Envoy sidecar proxy into Pods located in this namespace.
 
-4. Open the `dev` Namespace, if it is not already open, and choose **Upload YAML**. 
+3. Open the `dev` Namespace, if it is not already open, and choose **Upload YAML**. 
 
-5. Either copy the contents of the file `/xf-application-mocks/commerce-mock/deployment/k8s.yaml` into the window or use the upload option. Notice that this file contains the resource definitions for the Deployment as well as the Service and the Persistent Volume Claim.
+4. Either copy the contents of the file `/xf-application-mocks/commerce-mock/deployment/k8s.yaml` into the window or use the upload option. Notice that this file contains the resource definitions for the Deployment as well as the Service and the Persistent Volume Claim.
 
-6. Go to **Discovery and Network > API Rules** and choose **Create**.
+5. Go to **Discovery and Network > API Rules** and choose **Create**.
 
-7. Enter the following values:
+6. Enter the following values:
 
     * **Name:** `commerce-mock`
     * **Service Name:** `commerce-mock`
     * **Host:** `commerce`
 
-8. Mark the **GET** and **POST** methods, and choose **Create** to create the APIRule.
+7. Mark the **GET** and **POST** methods, and choose **Create** to create the APIRule.
 
     > Even APIRules can be created by describing them within YAML files. You can find the YAML definition of the `APIRule` at `/xf-application-mocks/commerce-mock/deployment/kyma.yaml`.
 
 ### Open Commerce mock application
 
-1. Go to **Discovery and Network > API Rules**, and open the mock application in the browser by choosing the **Host** value `https://commerce.*******.kyma.ondemand.com`. If you receive the error `upstream connect...`, the application may have not finished starting. Wait for a minute or two and try again.
+1. Go to **Discovery and Network > API Rules**, and open the `commerce-mock` application. 
 
-2. Leave the mock application open in the browser, you will use it later.
+2. Paste the value from the **Hosts** section into your browser. The value should be similar to `https://commerce.*******.kyma.ondemand.com`. If you receive the error `upstream connect...`, the application may have not finished starting. Wait for a minute or two and try again.
+
+3. Leave the mock application open in the browser, you will use it later.
 
 ### Create a System
 
