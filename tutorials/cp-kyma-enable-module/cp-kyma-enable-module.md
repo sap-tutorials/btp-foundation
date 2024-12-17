@@ -62,6 +62,6 @@ Congratulations, you are in Kyma dashboard!
 
     ![Functions are now available](workloads_functions.png)
 
-    Congratulations! You added the Serverless module to your Kyma environment. Now you can create serverless Functions in Kyma.
+Congratulations! You added the Serverless module to your Kyma environment. Now you can create serverless Functions in Kyma.
 
 
