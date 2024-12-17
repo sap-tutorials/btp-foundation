@@ -50,7 +50,7 @@ Congratulations, you are in Kyma dashboard!
 
 2. Choose **Add** to open the **Add Modules** view. Select **serverless** and choose **Add**.
 
-   ![Browsing modules](add_module.png)
+    ![Browsing modules](add_module.png)
 
     > **NOTE:** In this tutorial you use the Serverless module from the default release channel, namely the regular channel. You can also choose the fast channel. For more information, see [Kyma Release Channels](https://help.sap.com/docs/btp/sap-business-technology-platform/kyma-s-modular-approach?locale=en-US).
 
