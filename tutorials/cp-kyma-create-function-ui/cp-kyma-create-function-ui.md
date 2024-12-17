@@ -70,12 +70,12 @@ Now you should be in your Kyma dashboard.
 
 6. Fill in the form in the **Create API Rule** view using the following details and choose **Create**
 
-   - **Name**: for example, `hello-rule`
-   - **Service Name**: the `hello-world` Function
-   - **Port**: `80`
-   - Leave the pre-defined details in the **Gateway** section
-   - **Host**, for example, `hello-host`
-   - Leave the pre-defined details in the **Rules** section
+    - **Name**: for example, `hello-rule`
+    - **Service Name**: the `hello-world` Function
+    - **Port**: `80`
+    - Leave the pre-defined details in the **Gateway** section
+    - **Host**, for example, `hello-host`
+    - Leave the pre-defined details in the **Rules** section
 
     ![kyma api rule](hello_rule.png)
 
