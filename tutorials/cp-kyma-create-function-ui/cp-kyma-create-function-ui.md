@@ -142,14 +142,14 @@ You cannot access and test your new `orders-service` yet from outside of the clu
 
 2. Fill in the form in the **Create API Rule** view using the following details and choose **Create**
 
-   - **Name**: `orders-apirule`
-   - **HTTP Request Timeout**: `30` (or any up to `3900`)
-   - **Service Name**: `orders-service`
-   - **Port**: `80`
-   - Leave the pre-defined details in the **Gateway** section
-   - **Host**: choose your host from the dropdown menu and replace the wildcard (*) with a name, for example, `orders-host`
-   - Leave the pre-defined details in the **Rules** section
-   - **Methods**: choose `GET` and `POST`
+    - **Name**: `orders-apirule`
+    - **HTTP Request Timeout**: `30` (or any up to `3900`)
+    - **Service Name**: `orders-service`
+    - **Port**: `80`
+    - Leave the pre-defined details in the **Gateway** section
+    - **Host**: choose your host from the dropdown menu and replace the wildcard (*) with a name, for example, `orders-host`
+    - Leave the pre-defined details in the **Rules** section
+    - **Methods**: choose `GET` and `POST`
 
 3. The `orders-apirule` is created. Wait for the **Status** to be `OK`.
 
