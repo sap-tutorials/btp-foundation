@@ -104,9 +104,9 @@ This tutorial shows how to deploy a microservice using the Docker image.
 
 3. Fill in the form in the **Create Deployments** view using the following details and then choose **Create**.
 
-   - **Name**: `orders-deployment`
-   - **Docker Image**: `eu.gcr.io/kyma-project/develop/orders-service:68a58069`
-   - Optionally, provide the following parameters to save resources:
+    - **Name**: `orders-deployment`
+    - **Docker Image**: `eu.gcr.io/kyma-project/develop/orders-service:68a58069`
+    - Optionally, provide the following parameters to save resources:
 
     | Profile | Value | Profile | Value |
     | :--- | ---: | :--- | ---: |
