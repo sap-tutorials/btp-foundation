@@ -58,7 +58,7 @@ Now you should be in your Kyma dashboard.
     - **Runtime**: `node.js 20`
     - **Function Profile**: `XS`
 
-   ![kyma function](function_edit.png)
+    ![kyma function](function_edit.png)
   
 4. Creating a Function takes a few seconds. Select the newly created **hello-world** Function and switch to the **Configuration** tab. As it does not have any `APIRules` yet, you need to create one to define the rules of accessing the Function using APIs.
 
