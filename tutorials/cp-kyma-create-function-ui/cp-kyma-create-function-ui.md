@@ -52,11 +52,11 @@ Now you should be in your Kyma dashboard.
 
 3. Fill in the form in the **Create Function** view using the following details and choose **Create**.
 
-   - **Template**: `default`
-   - **Name**: for example, `hello-world`
-   - **Language**: `JavaScript`
-   - **Runtime**: `node.js 20`
-   - **Function Profile**: `XS`
+    - **Template**: `default`
+    - **Name**: for example, `hello-world`
+    - **Language**: `JavaScript`
+    - **Runtime**: `node.js 20`
+    - **Function Profile**: `XS`
 
    ![kyma function](function_edit.png)
   
