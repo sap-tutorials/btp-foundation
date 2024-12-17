@@ -93,8 +93,8 @@ You already know how to deploy and expose a Function. You can do the same with a
 
 To deploy a microservice, you will use the **orders-service** from Kyma examples. It is available:
 
-   - in [GitHub](https://github.com/kyma-project/examples/blob/main/orders-service/README.md), or
-   - as a Docker image on Google Container Registry `eu.gcr.io/kyma-project/develop/orders-service:68a58069`.
+    - in [GitHub](https://github.com/kyma-project/examples/blob/main/orders-service/README.md), or
+    - as a Docker image on Google Container Registry `eu.gcr.io/kyma-project/develop/orders-service:68a58069`.
 
 This tutorial shows how to deploy a microservice using the Docker image.
 
