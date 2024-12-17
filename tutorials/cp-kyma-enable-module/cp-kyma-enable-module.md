@@ -43,9 +43,9 @@ Congratulations, you are in Kyma dashboard!
 
     ![Your Kyma Dasboard, Cluster Details](kyma_modules.png)
 
-    > **Note:** When you enable Kyma, it is provisioned with the default modules added:
-    > - The **Istio** module is a service mesh with Kyma-specific configuration.
-    > - The **API Gateway** module provides functionalities that allow you to expose and secure APIs.
+    > **Note:** When you enable Kyma, it is provisioned with the default modules added:<br>
+    > - The **Istio** module is a service mesh with Kyma-specific configuration.<br>
+    > - The **API Gateway** module provides functionalities that allow you to expose and secure APIs.<br>
     > - Within the **SAP BTP Operator** module, BTP Manager installs the SAP BTP service operator that allows you to consume SAP BTP services from your Kubernetes cluster using Kubernetes-native tools.
 
 2. Choose **Add** to open the **Add Modules** view. Select **serverless** and choose **Add**.
