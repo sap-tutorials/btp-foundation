@@ -2,7 +2,7 @@
 parser: v2
 auto_validation: true
 time: 30
-primary_tag: software-product>sap-btp\\, kyma-runtime
+primary_tag: software-product>sap-btp\, kyma-runtime
 tags: [ tutorial>beginner, software-product>sap-business-technology-platform]
 author_name: Gaurav Abbi, Oliver Stiefbold, Malgorzata Swieca, Jacek Konopelski
 keywords: kyma
