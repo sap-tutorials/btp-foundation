@@ -50,37 +50,37 @@ To prevent a direct call to your application without authentication, it is neces
 
 3. To use additional libraries, add the following lines of code below the line `// secure the direct call to the application`
 
-   ```JavaScript
-   const passport = require('passport');
-   const { JWTStrategy } = require('@sap/xssec');
-   const xsenv = require('@sap/xsenv');
+    ```JavaScript
+    const passport = require('passport');
+    const { JWTStrategy } = require('@sap/xssec');
+    const xsenv = require('@sap/xsenv');
 
-   // XSUAA Middleware
-   passport.use(new JWTStrategy(xsenv.getServices({uaa:{tag:'xsuaa'}}).uaa));
+    // XSUAA Middleware
+    passport.use(new JWTStrategy(xsenv.getServices({uaa:{tag:'xsuaa'}}).uaa));
 
-   app.use(passport.initialize());
-   app.use(passport.authenticate('JWT', { session: false }));
-   ```
+    app.use(passport.initialize());
+    app.use(passport.authenticate('JWT', { session: false }));
+    ```
 
-   This code prevents direct calls to the product list application without a valid JWT.
+    This code prevents direct calls to the product list application without a valid JWT.
 
 4. To secure the product list with authorization checks, replace the line `app.get('/products', getProducts);` in the `index.js` file with the following code:
 
-   ```JavaScript
-   app.get('/products', checkReadScope, getProducts);
+    ```JavaScript
+    app.get('/products', checkReadScope, getProducts);
 
-   // Scope check
-   function checkReadScope(req, res, next) {
-   	if (req.authInfo.checkLocalScope('read')) {
-   		return next();
-   	} else {
-       	console.log('Missing the expected scope');
-       	res.status(403).end('Forbidden');
-   	}
-   }
-   ```
+    // Scope check
+    function checkReadScope(req, res, next) {
+      if (req.authInfo.checkLocalScope('read')) {
+        return next();
+      } else {
+          console.log('Missing the expected scope');
+          res.status(403).end('Forbidden');
+      }
+    }
+    ```
 
-   The `checkReadScope` function ensures that only a user with the correct authorizations can look at the products.
+    The `checkReadScope` function ensures that only a user with the correct authorizations can look at the products.
 
 5. Save the file.
 
@@ -92,14 +92,14 @@ Since there are now more modules used beside the express module, you have to add
 
 5. Add the following dependencies:
 
-   ```JSON
-   "dependencies": {
-     "express": "^4.17.1",
-     "@sap/xsenv": "^3.1.0",
-     "@sap/xssec": "^3.0.10",
-     "passport": "^0.4.1"
-   }
-   ```
+    ```JSON
+    "dependencies": {
+      "express": "^4.17.1",
+      "@sap/xsenv": "^3.1.0",
+      "@sap/xssec": "^3.0.10",
+      "passport": "^0.4.1"
+    }
+    ```
 
 6. Save the file.
 
@@ -113,44 +113,44 @@ To use the XSUAA service, a file named `xs-security.json` is necessary. The file
 
 8. Add the following content:
 
-   ```JSON
-   {
-   	"xsappname": "product-list",
-   	"tenant-mode": "dedicated",
-   	"scopes": [
-   		{
-   			"name": "$XSAPPNAME.read",
-   			"description": "With this scope, USER can read products."
-   		}
-   	],
+    ```JSON
+    {
+      "xsappname": "product-list",
+      "tenant-mode": "dedicated",
+      "scopes": [
+        {
+          "name": "$XSAPPNAME.read",
+          "description": "With this scope, USER can read products."
+        }
+      ],
 
-   	"role-templates": [
-   		{
-   			"name": "Viewer",
-   			"description": "Role to get the list of products",
-   			"scope-references": [
-   				"$XSAPPNAME.read"
-   			]
-   		}
-   	],
-   	"role-collections": [
-   		{
-   			"name": "ProductListViewer",
-   			"description": "Product List Viewer",
-   			"role-template-references": [
-   				"$XSAPPNAME.Viewer"
-   			]
-   		}
-   	],
-     "oauth2-configuration":
-       {
-         "redirect-uris": ["https://approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/login/callback"]
-         }
-   }
-   ```
+      "role-templates": [
+        {
+          "name": "Viewer",
+          "description": "Role to get the list of products",
+          "scope-references": [
+            "$XSAPPNAME.read"
+          ]
+        }
+      ],
+      "role-collections": [
+        {
+          "name": "ProductListViewer",
+          "description": "Product List Viewer",
+          "role-template-references": [
+            "$XSAPPNAME.Viewer"
+          ]
+        }
+      ],
+      "oauth2-configuration":
+        {
+          "redirect-uris": ["https://approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/login/callback"]
+          }
+    }
+    ```
 
-   This creates a role collection with a role template and a role with a reading scope, so a user with this role can view the products.
-   It also adds the redirect URI parameter, which calls the URL of the application router that you will create in the next step. For more information, see [Listing Allowed Redirect URIs](https://help.sap.com/docs/btp/sap-business-technology-platform/security-considerations-for-sap-authorization-and-trust-management-service#loio88b7d9d4c6ff4498b48dbc0b7be8a294).
+    This creates a role collection with a role template and a role with a reading scope, so a user with this role can view the products.
+    It also adds the redirect URI parameter, which calls the URL of the application router that you will create in the next step. For more information, see [Listing Allowed Redirect URIs](https://help.sap.com/docs/btp/sap-business-technology-platform/security-considerations-for-sap-authorization-and-trust-management-service#loio88b7d9d4c6ff4498b48dbc0b7be8a294).
 
 9. Save the file
 
@@ -246,69 +246,69 @@ In the manifest file you have to define a hostname for your application and add 
 
 3. Give your application a specific host name with the parameter `route`. **The route has to be unique in the whole Cloud Foundry landscape**, so make sure to add a random part to the route, for example your initials and your day of birth, like `product-list-ap25` and `approuter-product-list-ap25`. You also need the route to configure a destination later.
 
-   ```YAML
-   applications:
-   # Product List Application
-   - name: product-list
-     instances: 1
-     memory: 128M
-     routes:
-       - route: product-list-ap25.cfapps.eu10.hana.ondemand.com
-     path: myapp
-     buildpacks:
-       - nodejs_buildpack
-     timeout: 180
-   ```
+    ```YAML
+    applications:
+    # Product List Application
+    - name: product-list
+      instances: 1
+      memory: 128M
+      routes:
+        - route: product-list-ap25.cfapps.eu10.hana.ondemand.com
+      path: myapp
+      buildpacks:
+        - nodejs_buildpack
+      timeout: 180
+    ```
 
 4. Add the binding for the XSUAA service to your application, in the same file.
 
-   ```YAML
-     ...
-     services:
-       - xsuaa-service-tutorial
-   ```
+    ```YAML
+      ...
+      services:
+        - xsuaa-service-tutorial
+    ```
 
 5. Add the configuration data for the approuter:
 
-   ```YAML
-   applications:
-   ...
+    ```YAML
+    applications:
+    ...
 
-   # Application Router
-   - name: approuter
-     routes:
-       - route: approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com
-     path: approuter
-     buildpacks:
-       - nodejs_buildpack
-     memory: 128M
-   ```
+    # Application Router
+    - name: approuter
+      routes:
+        - route: approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com
+      path: approuter
+      buildpacks:
+        - nodejs_buildpack
+      memory: 128M
+    ```
 
 6. Add the bindings for the XSUAA service to the approuter.
 
-   ```YAML
-   ...
-     services:
-       - xsuaa-service-tutorial
-   ```
+    ```YAML
+    ...
+      services:
+        - xsuaa-service-tutorial
+    ```
 
 7. Add a destination to the approuter.
 
-   ```YAML
-   # Application Router
-   ...
-     env:
-       destinations: >
-         [
-           {"name":"products-destination",
-            "url":"https://product-list-ap25.cfapps.eu10.hana.ondemand.com",
-            "forwardAuthToken": true}
-         ]
-   ```
+    ```YAML
+    # Application Router
+    ...
+      env:
+        destinations: >
+          [
+            {"name":"products-destination",
+              "url":"https://product-list-ap25.cfapps.eu10.hana.ondemand.com",
+              "forwardAuthToken": true}
+          ]
+    ```
 
-   The `name` parameter is the same as previously defined in the file `xs-app.json`. the `url` parameter is the result of the host name of your application and the region of your Cloud Foundry landscape (`https://<hostname>.cfapps.<region>.hana.ondemand.com`). The `forwardAuthToken` parameter set to true ensures that the approuter forwards the JWT token to the destination.
+    The `name` parameter is the same as previously defined in the file `xs-app.json`. the `url` parameter is the result of the host name of your application and the region of your Cloud Foundry landscape (`https://<hostname>.cfapps.<region>.hana.ondemand.com`). The `forwardAuthToken` parameter set to true ensures that the approuter forwards the JWT token to the destination.
 
-   Ensure that the landscape mentioned in the route is the same as in the previous steps.
+    Ensure that the landscape mentioned in the route is the same as in the previous steps.
 
 8. Save the file.
 
@@ -356,9 +356,9 @@ Because your are calling the product list over the approuter with `/products` yo
 
 2. Replace line 24 in the `index.html` file with the following code.
 
-```JavaScript
-var productsUrl = "/products/products"; //  contains path mapping which is specified in xs-app.json
-```
+    ```JavaScript
+    var productsUrl = "/products/products"; //  contains path mapping which is specified in xs-app.json
+    ```
 
 3. Save the file.
 
@@ -372,9 +372,9 @@ Before you can deploy your application, you need to create the service instance 
 
 3. Create the XSUAA service instance with the `xs-security.json` security descriptor file.
 
-```Bash
-cf create-service xsuaa application xsuaa-service-tutorial -c security/xs-security.json
-```
+    ```Bash
+    cf create-service xsuaa application xsuaa-service-tutorial -c security/xs-security.json
+    ```
 
 4. Deploy the application.
 
@@ -388,17 +388,17 @@ Your application has two routes that are defined in the `manifest.yml`. The dire
 
 3. First make sure that your application can't be reached on its direct URL:
 
-   `https://product-list-ap25.cfapps.eu10.hana.ondemand.com`
+    `https://product-list-ap25.cfapps.eu10.hana.ondemand.com`
 
-   If everything is working correctly, this will result in an error message reading `unauthorized`.
+    If everything is working correctly, this will result in an error message reading `unauthorized`.
 
 1. Navigate to your application with the secure route of your application router:
 
-   `https://approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/products`
+    `https://approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/products`
 
 1. Enter the e-mail and password of your trial account.
 
-   You should see the `no data` message. This is because you don't have the role assigned yet to view the products. You will do this in the next step.
+    You should see the `no data` message. This is because you don't have the role assigned yet to view the products. You will do this in the next step.
 
 ### Assign the role collection
 
@@ -418,9 +418,9 @@ Assign your user the role collection that contains the necessary role to view th
 
 7. Call the URL of the approuter again (you might have to delete your cookies/cache before).
 
-   `https://approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/products`
+    `https://approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/products`
 
-   The application will now show you the products.
+    The application will now show you the products.
 
 ### Troubleshooting
 
