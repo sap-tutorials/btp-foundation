@@ -63,7 +63,20 @@ Deploying the SAPUI5 Docker image to SAP BTP, Kyma runtime includes:
     npm install
     ```
 
-2. Within the project, open the `webapp/config.json` file and, by replacing `<cluster domain>`, adjust `API_URL` to match the SAP BTP, Kyma runtime cluster domain. This should be the value of the API Rule created in step 6 of the [Deploy a Go MSSQL API Endpoint in SAP BTP, Kyma Runtime](cp-kyma-api-mssql-golang) tutorial.
+2. Run the following command to get the SAP BTP, Kyma runtime cluster domain:
+
+    ```bash
+    kubectl get gateway -n kyma-system kyma-gateway \
+            -o jsonpath='{.spec.servers[0].hosts[0]}'
+    ```
+
+    Result should look like this:
+
+    ```bash
+    *.<xyz123>.kyma.ondemand.com
+    ```
+
+3. Within the project, open the `webapp/config.json` file and adjust `API_URL` to match the cluster domain.
 
     ```Text/Javascript
     {
@@ -71,7 +84,7 @@ Deploying the SAPUI5 Docker image to SAP BTP, Kyma runtime includes:
     }
     ```
 
-3. To start the application, run the following command, which should automatically load the application in your browser.
+4. To start the application, run the following command, which should automatically load the application in your browser.
 
     ```Shell/Bash
     npm run-script start
@@ -113,7 +126,7 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
     > Adding the `istio-injection=enabled` label to the namespace enables `Istio`. `Istio` is the service mesh implementation used by SAP BTP, Kyma runtime.
 
-2. Within the project, open the `k8s/configmap.yaml` file and, by replacing `<cluster domain>`, adjust `API_URL` to match the SAP BTP, Kyma runtime cluster domain:
+2. Within the project, open the `k8s/configmap.yaml` file and adjust `API_URL` to match the cluster domain:
 
     ```
     kind: ConfigMap
