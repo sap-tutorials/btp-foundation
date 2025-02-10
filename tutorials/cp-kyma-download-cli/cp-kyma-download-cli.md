@@ -76,13 +76,11 @@ To obtain kubeconfig from SAP BTP cockpit:
 
 To obtain kubeconfig from Kyma dashboard:   
 
-1. Navigate to Kyma dashboard of your SAP BTP, Kyma runtime.
+1. Click on **Link to dashboard** under the **Kyma Environment** section.
 
-2. Log into SAP BTP, Kyma runtime.
+2. Select the dropdown at the top of the Kyma dashboard window, and choose **Clusters Overview**.
 
-3. At the top of the SAP BTP, Kyma runtime window you will find a dropdown which displays the name of the currently connected runtime. Select the dropdown and choose **Clusters Overview**.
-
-4. Choose the download icon to download the file.
+3. Choose the download icon to download the file.
 
 ### Set the KUBECONFIG environment variable
 
