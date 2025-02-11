@@ -98,7 +98,7 @@ In this step, you will create a Formation. A Formation is used to connect one or
 
 2. Provide the name `mock-formation`, choose `Side-by-Side Extensibility with Kyma` for the **Formation Type**, and your **Subaccount** where SAP BTP, Kyma runtime is enabled. Choose **Next Step**.
 
-3. Select `commerce-mock` system and choose **Next Step**.
+3. Select the `commerce-mock` system and choose **Next Step**.
    
 4. Choose **Create**.
 
@@ -113,11 +113,13 @@ The pairing process will establish trust between the Commerce mock application a
 
 ### Verify setup
 
-1. Navigate back to the Kyma home workspace by choosing **Back to Cluster Details**.
+1. In your Kyma dashboard, go to **Cluster Details**.
 
-2. In the Kyma home workspace, choose **Integration > Applications**.
+2. Choose **Integration > Applications**.
 
 3. Choose the **mp-commerce-mock** application by clicking on the name value shown in the list.
+
+    > If you don't see the **mp-commerce-mock** application, restart your Kyma dashboard.
 
 You should now see a list of the APIs and events the mock application is exposing.
 
