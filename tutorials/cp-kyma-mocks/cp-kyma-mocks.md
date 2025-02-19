@@ -11,7 +11,6 @@ primary_tag: software-product>sap-btp--kyma-runtime
 
 ## Prerequisites
   - [Git](https://git-scm.com/downloads) installed
-  - [Application Connector module added](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module)
 
 ## You will learn
   - How to deploy the Kyma mock application and expose its API to the Internet using an APIRule
@@ -24,48 +23,58 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 ### Clone the Git repository
 
-1. Go to the [xf-application-mocks](https://github.com/SAP-samples/xf-application-mocks) repository. 
+1. Go to the [kyma-runtime-extension-samples](https://github.com/SAP-samples/kyma-runtime-extension-samples) repository. 
    Within the repo you can find each of the mock applications and their Deployment files within the respective folder. The process outlined in this tutorial is the same for each, but focuses on configuring the commerce mock.
 
 2. Use the green **Code** button to choose one of the options to download the code locally, or simply run the following command using your CLI at your desired folder location:
 
     ```Shell/Bash
-    git clone https://github.com/SAP-samples/xf-application-mocks
+    git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
     ```
 
-### Apply resources to SAP BTP, Kyma runtime
+### Add the Application Connector module in SAP BTP, Kyma runtime
 
 1. Open Kyma dashboard using the **Console URL** link in SAP BTP cockpit.
 
-2. Go to **Namespaces** and choose **Create**.
+2. Choose **Modify Modules**, and select **Add**.
 
-3. Provide the name `dev`, toogle the **Enable Sidecar Injection** button, and choose **Create**.
+3. In the **Add Modules** section, check `application-connector`, and select **Add**.
+
+    > You can find more info in [Add and Delete a Kyma Module](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module).
+
+### Apply resources to SAP BTP, Kyma runtime
+
+1. In your Kyma dashboard, go to **Namespaces** and choose **Create**.
+
+2. Provide the name `dev`, toogle the **Enable Sidecar Injection** button, and choose **Create**.
 
     > Namespaces separate objects inside a Kubernetes cluster. The concept is similar to folders in a file system. Each Kubernetes cluster has a `default` namespace to begin with. Choosing a different value for the namespace will require adjustments to the provided samples.
 
     > Toggling the **Enable Sidecar Injection** button allows the Istio service mesh to inject the Envoy sidecar proxy into Pods located in this namespace.
 
-4. Open the `dev` Namespace, if it is not already open, and choose **Upload YAML**. 
+3. Open the `dev` Namespace, if it is not already open, and choose **Upload YAML**. 
 
-5. Either copy the contents of the file `/xf-application-mocks/commerce-mock/deployment/k8s.yaml` into the window or use the upload option. Notice that this file contains the resource definitions for the Deployment as well as the Service and the Persistent Volume Claim.
+4. Either copy the contents of the file `kyma-runtime-extension-samples/commerce-mock/deployment/k8s.yaml` into the window or use the upload option. Notice that this file contains the resource definitions for the Deployment as well as the Service and the Persistent Volume Claim.
 
-6. Go to **Discovery and Network > API Rules** and choose **Create**.
+5. Go to **Discovery and Network > API Rules** and choose **Create**.
 
-7. Enter the following values:
+6. Enter the following values:
 
     * **Name:** `commerce-mock`
     * **Service Name:** `commerce-mock`
     * **Host:** `commerce`
 
-8. Mark the **GET** and **POST** methods, and choose **Create** to create the APIRule.
+7. Mark the **GET** and **POST** methods, and choose **Create** to create the APIRule.
 
-    > Even APIRules can be created by describing them within YAML files. You can find the YAML definition of the `APIRule` at `/xf-application-mocks/commerce-mock/deployment/kyma.yaml`.
+    > Even APIRules can be created by describing them within YAML files. You can find the YAML definition of the `APIRule` at `/kyma-runtime-extension-samples/commerce-mock/deployment/kyma.yaml`.
 
 ### Open Commerce mock application
 
-1. Go to **Discovery and Network > API Rules**, and open the mock application in the browser by choosing the **Host** value `https://commerce.*******.kyma.ondemand.com`. If you receive the error `upstream connect...`, the application may have not finished starting. Wait for a minute or two and try again.
+1. Go to **Discovery and Network > API Rules**, and open the `commerce-mock` application. 
 
-2. Leave the mock application open in the browser, you will use it later.
+2. Paste the value from the **Hosts** section into your browser. The value should be similar to `https://commerce.*******.kyma.ondemand.com`. If you receive the error `upstream connect...`, the application may have not finished starting. Wait for a minute or two and try again.
+
+3. Leave the mock application open in the browser, you will use it later.
 
 ### Create a System
 
@@ -89,7 +98,7 @@ In this step, you will create a Formation. A Formation is used to connect one or
 
 2. Provide the name `mock-formation`, choose `Side-by-Side Extensibility with Kyma` for the **Formation Type**, and your **Subaccount** where SAP BTP, Kyma runtime is enabled. Choose **Next Step**.
 
-3. Select `commerce-mock` system and choose **Next Step**.
+3. Select the `commerce-mock` system and choose **Next Step**.
    
 4. Choose **Create**.
 
@@ -104,11 +113,13 @@ The pairing process will establish trust between the Commerce mock application a
 
 ### Verify setup
 
-1. Navigate back to the Kyma home workspace by choosing **Back to Cluster Details**.
+1. In your Kyma dashboard, go to **Cluster Details**.
 
-2. In the Kyma home workspace, choose **Integration > Applications**.
+2. Choose **Integration > Applications**.
 
 3. Choose the **mp-commerce-mock** application by clicking on the name value shown in the list.
+
+    > If you don't see the **mp-commerce-mock** application, restart your Kyma dashboard.
 
 You should now see a list of the APIs and events the mock application is exposing.
 

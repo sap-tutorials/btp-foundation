@@ -13,7 +13,6 @@ primary_tag: software-product>sap-btp--kyma-runtime
 ## Prerequisites
 
 - [Kyma provisioned](https://developers.sap.com/tutorials/cp-kyma-getting-started.html)
-- [Serverless, Eventing, and NATS modules enabled](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module)
 - [Deploy Commerce Mock Application in SAP BTP, Kyma Runtime](cp-kyma-mocks) tutorial completed
 
 ## You will learn
@@ -38,6 +37,26 @@ This sample provides a Redis deployment and two Serverless Functions that intera
     ```Shell/Bash
     git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
     ```
+
+### Add the Serverless, Eventing and NATS modules in SAP BTP, Kyma runtime
+
+1. Open Kyma dashboard using the **Console URL** link in SAP BTP cockpit.
+
+2. Choose **Modify Modules**, and select **Add**.
+
+3. In the **Add Modules** section, check `eventing`, `nats`, and `serverless`, and select **Add**.
+
+> You can find more info in [Add and Delete a Kyma Module](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module).
+
+### Choose a backend for Kyma Eventing
+
+When you add the Eventing module, you must configure a backened for it. Follow these steps:
+
+1. In your **Modules** section, go to **eventing**, and choose **Edit**.
+
+2. In **Backend Type**, choose **NATS** from the dropdown, and select **Save**.
+
+> You can find more info in [Choose a Backend for Kyma Eventing](https://help.sap.com/docs/btp/sap-business-technology-platform/choose-backend-for-kyma-eventing?locale=en-US&version=Cloud).
 
 ### Deploy Redis
 
@@ -66,7 +85,7 @@ In this step, you will deploy two Functions into SAP BTP, Kyma runtime that were
 
 1. In the `dev` namespace, choose **Upload YAML**, and upload or copy the contents of the `redis-function/k8s/cache-order-function.yaml` file.
    
-2. When you choose **Upload** you might be asked to change the Node.js version to the supported one. Change the Node.js version by adjusting the value of `spec.runtime`, and click **Upload**.
+2. Change the Node.js version to `nodejs20` by adjusting the value of `spec.runtime`, and click **Upload**.
 
 3. Repeat the steps to create the `get-order` Function using the file `redis-function/k8s/get-order-function.yaml`.
 
@@ -112,9 +131,9 @@ In this step, the URL copied in the previous step will be assigned to an environ
 
 3. Choose **Edit**, scroll down to **Environment Variables** and find the **Environment Variable** with the **Variable Name** `CENTRAL_GATEWAY_URL`.
 
-4. Paste the value copied in the previous step into the **Value** field. Make sure that the value begins with `**http://central-application...**` and choose **Save**.
+4. Paste the value copied in the previous step into the **Value** field. Make sure that the value begins with `http://central-application...` and choose **Save**.
 
-5. Choosing **Save** will cause the Function to be rebuilt and deployed. The **Status** field will indicate that the Function is **Building** and will change to **Running** once this process completes.
+5. Choosing **Save** will cause the Function to be rebuilt and deployed. The **Status** field will indicate that the Function is **Deploying** and will change to **Running** once this process completes.
 
 ### Test event consumption
 
@@ -122,7 +141,7 @@ With the configuration steps completed, you can now test the scenario to validat
 
 1. Open the mock application in the browser by choosing **Discovery and Network > API Rules** from the menu.
 
-2. Choose the **Host** entry for the **commerce-mock** APIRule to open it in the browser. This URL should be similar to:
+2. Paste the **Hosts** entry for the **commerce-mock** APIRule to your browser and press Enter. This URL should be similar to:
    `https://commerce.*******.kyma.ondemand.com`
 
 3. Choose the **Remote APIs** tab.
@@ -163,15 +182,15 @@ In this step, we use the `get-order` Function to perform a read request of the d
 
 1. Choose **Discovery and Network > API Rules** from the menu.
 
-2. Choose the **Host** entry for the `get-order` APIRule to open the application in the browser. When opened for the first time, you will receive the message:
+2. Paste the **Hosts** entry for the `get-order` APIRule to your browser and press Enter. When opened for the first time, you will receive the message:
 
     `{"error":"No orderCode received!"}`
 
-3. Append the value `?orderCode=12331231` to the URL where the value is the same as used when sending the event, for example
+3. Append the value `?orderCode={YOUR_ORDER_CODE}` to the URL where the value is the same as used when sending the event, for example:
 
     `https://get-order.*********.kyma.ondemand.com/?orderCode=1231231`
 
-4. This should output the value saved when the event was submitted.
+This should output the value saved when the event was submitted.
 
     `{"orderCode":"1231231","Date":"Tue Nov 17 2020 19:28:42 GMT+0000 (Coordinated Universal Time)","Value":"100"}`
 

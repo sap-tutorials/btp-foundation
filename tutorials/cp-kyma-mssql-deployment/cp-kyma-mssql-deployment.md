@@ -222,9 +222,9 @@ Kubernetes provides a port-forward functionality that allows you to connect to r
     Forwarding from [::1]:1433 -> 1433
     ```
 
-3. At this point, a tool such as `sqlcmd` or a development project running on your computer can access the database running in SAP BTP, Kyma runtime using `localhost:1433`.
+    At this point, a tool such as `sqlcmd` or a development project running on your computer can access the database running in SAP BTP, Kyma runtime using `localhost:1433`.
 
-4. To end the process, use `CTRL+C`.
+3. To end the process, use `CTRL+C`.
 
 ### Directly access the MSSQL Deployment
 
