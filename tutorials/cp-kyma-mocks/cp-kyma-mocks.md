@@ -23,13 +23,13 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 ### Clone the Git repository
 
-1. Go to the [xf-application-mocks](https://github.com/SAP-samples/xf-application-mocks) repository. 
+1. Go to the [kyma-runtime-extension-samples](https://github.com/SAP-samples/kyma-runtime-extension-samples) repository. 
    Within the repo you can find each of the mock applications and their Deployment files within the respective folder. The process outlined in this tutorial is the same for each, but focuses on configuring the commerce mock.
 
 2. Use the green **Code** button to choose one of the options to download the code locally, or simply run the following command using your CLI at your desired folder location:
 
     ```Shell/Bash
-    git clone https://github.com/SAP-samples/xf-application-mocks
+    git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
     ```
 
 ### Add the Application Connector module in SAP BTP, Kyma runtime
@@ -54,7 +54,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 3. Open the `dev` Namespace, if it is not already open, and choose **Upload YAML**. 
 
-4. Either copy the contents of the file `/xf-application-mocks/commerce-mock/deployment/k8s.yaml` into the window or use the upload option. Notice that this file contains the resource definitions for the Deployment as well as the Service and the Persistent Volume Claim.
+4. Either copy the contents of the file `kyma-runtime-extension-samples/commerce-mock/deployment/k8s.yaml` into the window or use the upload option. Notice that this file contains the resource definitions for the Deployment as well as the Service and the Persistent Volume Claim.
 
 5. Go to **Discovery and Network > API Rules** and choose **Create**.
 
@@ -66,7 +66,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 7. Mark the **GET** and **POST** methods, and choose **Create** to create the APIRule.
 
-    > Even APIRules can be created by describing them within YAML files. You can find the YAML definition of the `APIRule` at `/xf-application-mocks/commerce-mock/deployment/kyma.yaml`.
+    > Even APIRules can be created by describing them within YAML files. You can find the YAML definition of the `APIRule` at `/kyma-runtime-extension-samples/commerce-mock/deployment/kyma.yaml`.
 
 ### Open Commerce mock application
 
