@@ -72,7 +72,7 @@ To obtain kubeconfig from SAP BTP cockpit:
 
 3. Choose the link next to **KubeconfigURL** to download the kubeconfig file.
 
-    ![kubeconfig](kubeconfig-btp.png)
+    ![BTP kubeconfig](kubeconfig-btp.png)
 
 To obtain kubeconfig from Kyma dashboard:   
 
@@ -80,7 +80,11 @@ To obtain kubeconfig from Kyma dashboard:
 
 2. Select the dropdown at the top of the Kyma dashboard window, and choose **Clusters Overview**.
 
+    ![Clusters Overview](clusters-overview.png)
+
 3. Choose the download icon to download the file.
+
+    ![Dashboard kubeconfig](dashboard-kubeconfig.png)
 
 ### Set the KUBECONFIG environment variable
 
