@@ -10,7 +10,7 @@ author_profile: https://github.com/MichaelPShea
 
 # Secure a Basic Node.js App with the Authorization and Trust Management Service (XSUAA)
 
-<!-- description --> Secure a basic single-tenant Node.js application with the Authorization and Trust Management Service (XSUAA).
+<!-- description --> Secure a basic single-tenant Node.js application with the Authorization and Trust Management Service (XSUAA). 
 
 ## Prerequisites
 
