@@ -16,12 +16,8 @@ primary_tag: programming-tool>python
   - How to run authentication and authorization checks via the Authorization and Trust Management (XSUAA) service
 
 ## Prerequisites
- - You have a trial or productive account for SAP Business Technology Platform (SAP BTP). If you don't have such yet, you can create one so you can [try out services for free] (https://developers.sap.com/tutorials/btp-free-tier-account.html).
- - You have created a subaccount and a space on the SAP BTP, Cloud Foundry environment.
- - You have created an SAP HANA Cloud service instance of type **SAP HANA Database**. To learn how, watch one of the following videos, depending on your account type:
-    *  Trial account: [SAP HANA Cloud Trial Setup](https://www.youtube.com/watch?v=GSNQpfxPuLU&t=190s) - from **3:10**  to **7:10**. 
-    *  Productive account: [Help Thomas Get Started with SAP HANA Cloud](https://www.youtube.com/watch?v=ztDOYsNB204&t=280s) - from **4:40**  to **11:00**. 
- - [Python] (https://www.python.org/downloads/) is installed locally. To check which Python versions are supported in the current buildpack, see: [Developing Python in the Cloud Foundry Environment](https://help.sap.com/docs/btp/sap-business-technology-platform/developing-python-in-cloud-foundry-environment#buildpack-versioning). In this tutorial, we use Python version **3.11.x**.
+ - You have a [trial](https://help.sap.com/docs/btp/sap-business-technology-platform/trial-accounts-and-free-tier) or an [enterprise](https://help.sap.com/docs/btp/sap-business-technology-platform/enterprise-accounts) (productive) account for SAP Business Technology Platform (SAP BTP). 
+ - [Python] (https://www.python.org/downloads/) is installed locally. To check which Python versions are supported in the current buildpack, see: [Developing Python in the Cloud Foundry Environment](https://help.sap.com/docs/btp/sap-business-technology-platform/developing-python-in-cloud-foundry-environment#buildpack-versioning). In this tutorial, we use Python version **3.13.x**.
  - [cf CLI] (https://help.sap.com/docs/btp/sap-business-technology-platform/download-and-install-cloud-foundry-command-line-interface) is installed locally.
  - [npm] (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) is installed locally.
  - You have installed an integrated development environment, for example [Visual Studio Code] (https://code.visualstudio.com/).
@@ -35,6 +31,58 @@ primary_tag: programming-tool>python
 This tutorial will guide you through creating and setting up a simple Python application by using cf CLI. You will start by building and deploying a web application that returns simple data – a **Hello World!** message. This simple app will consume the SAP HANA Cloud service, and then will be invoked through a web microservice (application router). Finally, you will set authentication and authorization checks to properly access your web application.
 
 ---
+
+### Create an SAP HANA Cloud instance
+
+You need to fulfill this prerequisite step first in order to create an SAP HANA Cloud service instance later.
+
+1. Open the SAP BTP cockpit.
+
+2. Navigate to your global account. If you're using a trial SAP BTP account, just go the main screen.
+
+3. From the left-side menu, choose `Boosters`. 
+
+4. Find the **Set Up SAP HANA Cloud Administration Tools** tile and choose `Start`. 
+   
+    > Your SAP HANA Cloud database is created for you.
+
+5. Now go to your subaccount. If you're using a trial SAP BTP account, choose `trial`.
+
+6. From the left-side menu, choose `Services` -> `Instances and Subscriptions`. 
+   
+    > The top table shows that you're subscribed for the `SAP HANA Cloud` application with plan `tools`.
+
+7. Choose `Go to Application`. 
+   
+    > The `SAP HANA Cloud Central` portal is opened. 
+
+8. Now you need to create an SAP HANA Cloud instance. Choose `Create Instance`.
+
+9. Choose `SAP HANA Cloud, SAP HANA Database` and then `Next Step`.
+
+10. Enter an instance name and a password for your `DBADMIN` user. Choose `Next Step`.
+
+11. For the next two screens of the wizard, keep choosing `Next Step` without making any changes.
+
+12. On the `SAP HANA Database Advanced Settings` wizard page:
+    
+    * Select `Allow all IP addresses`. 
+    
+    * In the `Instance Mapping` section, choose `Add Mapping`.
+    
+    * For `Environment Instance ID`, enter your org ID. You can find it on your subaccount (or `trial`) page in the cockpit.
+
+    * Choose `Next Step`. 
+
+14. Skip `Data Lake` and choose `Review and Create`.
+
+14. If everything looks fine to you, choose `Create Instance`.
+
+    Your new SAP HANA Cloud instance is in status `Starting`. Wait until it changes to `Running`.
+
+
+> **Next Steps**  You can move on with the rest of the tutorial. From now on, you will only need a command-line console and IDE. 
+
 
 ### Log on to SAP BTP
 
@@ -75,11 +123,11 @@ Details about your personal SAP BTP subaccount are displayed (API endpoint, user
 
 You're going to create a simple Python application.
 
-1. In your local file system, create a new directory (folder). For example: `python-tutorial`
+1. In your local file system, create a new folder. For example: `python-tutorial`
 
 2. From your Visual Studio Code, open the `python-tutorial` folder.
 
-3. In this folder, create a file `manifest.yml` with the following content:
+3. Create a file `manifest.yml` with the following content:
 
     ```YAML
     ---
@@ -102,7 +150,7 @@ You're going to create a simple Python application.
 4. Specify the Python runtime version that your application will run on. To do that, create a `runtime.txt` file with the following content:
 
     ```TXT
-    python-3.11.x
+    python-3.13.x
     ```
 
 5. This application will be a web server utilizing the Flask web framework. To specify Flask as an application dependency, create a `requirements.txt` file with the following content:
@@ -137,7 +185,7 @@ You're going to create a simple Python application.
 
 8.  When the staging and deployment steps are completed, the `myapp` application should be successfully started and its details displayed in the command console.
 
-9.	Open a browser window and enter the generated URL of the `myapp` application (see `routes`).
+9.	Open a browser window and enter the generated URL of the application (see `routes`).
 
     For example:  `https://myapp-grouchy-rabbit.cfapps.eu20.hana.ondemand.com`
 
@@ -145,13 +193,12 @@ You're going to create a simple Python application.
 
 Your Python application is successfully deployed and running on the SAP BTP, Cloud Foundry environment. A **Hello World!** message is displayed in the browser.
 
-
-
+ 
 
 ### Consume SAP BTP services
 
 
-You have created a service instance for SAP HANA Cloud (see **Prerequisites** at the beginning). Now you're going to make a connection to your SAP HANA database from SAP HANA Schemas & HDI Containers - a service that runs on the SAP BTP, Cloud Foundry environment - and consume this service in your application.
+You have created a service instance for SAP HANA Cloud (see **STEP 1**). Now you're going to make a connection to your SAP HANA database from SAP HANA Schemas & HDI Containers - a service that runs on the SAP BTP, Cloud Foundry environment - and consume this service in your application.
 
 1.	Create a `hana` service instance named `pyhana` with service plan `hdi-shared`. Run:
 
@@ -282,7 +329,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
     The `pyuaa` service instance will be bound to the `myapp` application during deployment.
 
-4.	To create a microservice (the application router), go to the `python-tutorial` folder and create a subfolder named  `web`.
+4.	Now you need to create a microservice (the application router). To do that, go to the `python-tutorial` folder and create a subfolder named  `web`.
 
     > **IMPORTANT**: Make sure you don't have another application with the name `web` in your space! If you do, use a different name and adjust the rest of the tutorial according to it.
 
