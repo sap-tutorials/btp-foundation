@@ -266,7 +266,8 @@ You can also check the following additional commands:
 
 You can find the resource definitions in the `k8s` folder. If you performed any changes in the configuration, these files may also need to be updated. The folder contains the following files that are relevant to this tutorial:
 
-- `apirule.yaml`: defines the API endpoint which exposes the application to the Internet. This endpoint does not define any authentication access strategy and should be disabled when not in use.  
+- `apirule.yaml`: defines the API endpoint which exposes the application to the Internet. This endpoint does not define any authentication access strategy and should be disabled when not in use. 
+- `authorizationpolicy.yaml`: allows internal traffic to the service api-mssql-go in the dev namespace.
 - `configmap.yaml`: defines the name of the database, host, and port. The host value assumes that the service for the database is named `mssql` and is defined in the `dev` namespace. Make sure to adjust this if you made any changes.
 - `deployment.yaml`: defines the deployment definition for the Go API, as well as a service used for communication. This definition references both `secret.yaml`, which was defined in the previous tutorial and also included in this directory, and `configmap.yaml` by name.  
 
@@ -331,11 +332,30 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
     api-mssql-go-c694bc847-tkthc   2/2     Running   0          23m
     ```
 
-6. Apply the APIRule:
+6. Open `apirule.yaml`. In `allowOrigins`, modify the `regex` value, to match your domain, and add the `exact: http://localhost:8080` key-value pair. For example:
+
+    ```yaml
+      ... 
+        allowOrigins:
+          - regex: ".*xyz123456.kyma.ondemand.com"
+          - exact: http://localhost:8080
+      ...
+    ```
+
+    > `exact: http://localhost:8080` is only required if you want to locally test the frontend of your application as part of the [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-mssql.html) tutorial.
+
+7. Apply the APIRule:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/apirule.yaml
     ```
+
+8. Apply the AuthorizationPolicy:
+
+    ```Shell/Bash
+    kubectl -n dev apply -f ./k8s/authorizationpolicy.yaml
+    ```
+
 
 ### Open the API endpoint
 

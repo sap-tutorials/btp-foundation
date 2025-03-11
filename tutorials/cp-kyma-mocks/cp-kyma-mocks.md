@@ -63,6 +63,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
     * **Name:** `commerce-mock`
     * **Service Name:** `commerce-mock`
     * **Host:** `commerce`
+    * **Access Strategy:** `No Auth`
 
 7. Mark the **GET** and **POST** methods, and choose **Create** to create the APIRule.
 

@@ -91,6 +91,14 @@ Deploying the SAPUI5 Docker image to SAP BTP, Kyma runtime includes:
     ```
     > Pressing `control-c` will stop the running application.
 
+5. After you tested the application locally, go to the `api-mssql-go/k8s` directory, and open `apirule.yaml`.
+   
+6. Remove the `exact: http://localhost:8080` line, and apply the APIRule.
+
+    ```Shell/Bash
+    kubectl -n dev apply -f ./k8s/apirule.yaml
+    ```
+
 ### Build Docker image
 
 Run the following commands from the `frontend-ui5-mssql` directory using your CLI. Make sure to replace the value of `<your-docker-id>` with your Docker account ID.
