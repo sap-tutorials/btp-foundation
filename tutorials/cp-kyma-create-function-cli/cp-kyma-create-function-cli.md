@@ -21,94 +21,79 @@ keywords: kyma
 ## Prerequisites
 
 - You have created and set up your "SAP BTP, Kyma Environment" either manually or by Quick Account Setup.
-- You have added the Serverless module to your Kyma environment.
+- You have [added the Serverless module to your Kyma environment](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module?locale=en-US).
 - You have completed the [Install the Kubernetes Command Line Tool](https://developers.sap.com/tutorials/cp-kyma-download-cli.html) tutorial.
 
 ### Install Kyma CLI
 
 [OPTION BEGIN [macOS]]
 1. To install Kyma CLI, run the following command:
-```Shell/Bash
-brew install kyma-cli
-```
+
+    ```bash
+    brew install kyma-cli
+    ```
 2. Check if the installation is successful:
-```Shell/Bash
-kyma version --client
-```
+
+    ```bash
+    kyma version
+    ```
 You should see a version number.
 [OPTION END]
 
 [OPTION BEGIN [Windows]]
-You can install Kyma CLI using chocolatey.
 
-1. To install Kyma CLI, run the following command:
-```Shell/Bash
-choco install kyma-cli
-```
-2. Check if the installation is successful:
-```Shell/Bash
-kyma version --client
-```
-You should see something like:
-`Client Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.3", GitCommit:"1e11e4a2108024935ecfcb2912226cedeafd99df", GitTreeState:"clean", BuildDate:"2020-10-14T12:50:19Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"windows/amd64"}`
+1. To install Kyma CLI, go to the [Kyma CLI GitHub release page](https://github.com/kyma-project/cli/releases/tag/3.0.0) and download the relevant Windows binary files.
+
 [OPTION END]
 
 ### Create a Function
 
 1. In your terminal, go to your working folder, and run:
 
-    ```
-    kyma init function --name hello-function
+    ```bash
+    kyma alpha function init
     ```
 
     You should see the following message:
-    `Project generated in {WORKING_FOLDER_PATH}`
+    `Functions files of runtime nodejs22 initialized to dir {WORKING_FOLDER_PATH}`
 
-    You have now created 3 files in your working folder:
+    You have now created 2 files in your working folder:
 
-    - config.yaml
     - handler.js
     - package.json
 
     You can check the content of the files with your editor (e.g. Visual Studio Code).
 
-1. To apply your Function to your Kyma runtime, run:
+2. To apply your Function to your Kyma runtime, run:
 
     ```bash
-    kyma apply function
+    kyma alpha function create hello-function
     ```
    
     You should see the following message: 
 
     ```bash
-    Configuration loaded
-    Function - hello-function created
+    resource default/hello-function applied
     ```
   
-2. To verify the Function deployment, run:
+3. To verify the Function deployment, run:
 
     ```bash
-    kubectl get functions hello-function
+    kyma alpha function get hello-function
     ```
    
     You should get the following result:
 
     ```bash
-    NAME             CONFIGURED   BUILT   RUNNING   RUNTIME    VERSION   AGE
-    hello-function   True         True    True      nodejs20   1         4m9s
+    NAME             CONFIGURED   BUILT   RUNNING   RUNTIME    GENERATION
+    hello-function   True         True    True      nodejs22   1
     ```
    
 ### Expose the Function   
 
-1. Run the following command to get the domain name of your Kyma cluster:
-
-    ```bash
-    kubectl get gateway -n kyma-system kyma-gateway \
-            -o jsonpath='{.spec.servers[0].hosts[0]}'
-    ```
-
-
-2. In your working folder, create a new YAML file (e.g. `myapirule.yaml`), and add the following API rule definition:
+1. In your working folder, create a new YAML file named `myapirule.yaml`. You can do this using a text editor or by running `touch myapirule.yaml` in your terminal.
+   
+2. Open the file in your editor and add the following APIRule definition:
 
     ```yaml
     apiVersion: gateway.kyma-project.io/v2alpha1
@@ -118,7 +103,7 @@ You should see something like:
       namespace: default
     spec:
       hosts:
-        - hello-host.{CLUSTER_DOMAIN}
+        - hello-host
       service:
         name: hello-function
         port: 80
@@ -129,9 +114,7 @@ You should see something like:
           noAuth: true
     ```
 
-3. Replace `{CLUSTER_DOMAIN}` with your cluster domain obtained in Step 1. For example: `hello-host.123456789.kyma.ondemand.com`.
-
-4. Deploy your API Rule. 
+3. Deploy your API Rule. 
    
     ```bash
     kubectl apply -f "{PATH_TO_YOUR_CONFIG_FILE}"
@@ -145,7 +128,33 @@ You should see something like:
    
 ### Verify the Function exposure
 
-1. Run the following curl command, replacing `{CLUSTER_DOMAIN}` with your domain: 
+1. Run the following command to get the domain name of your Kyma cluster:
+
+    ```bash
+    kubectl get gateway -n kyma-system kyma-gateway \
+            -o jsonpath='{.spec.servers[0].hosts[0]}'
+    ```
+
+    You should see output similar to this:
+    
+    ```bash
+    *.12345678.kyma.ondemand.com
+    ```
+
+2. Export the result without the leading `*.` as an environment variable:
+
+    ```bash
+    export CLUSTER_DOMAIN={DOMAIN_NAME}
+    ```
+
+    For example:
+
+    ```bash
+    export CLUSTER_DOMAIN=12345678.kyma.ondemand.com
+    ```
+
+
+3. Run the following curl command, replacing `{CLUSTER_DOMAIN}` with your domain: 
 
     ```bash
     curl https://hello-host.$CLUSTER_DOMAIN
@@ -157,4 +166,4 @@ You should see something like:
     curl https://hello-host.12345678.kyma.ondemand.com/
     ```
 
-If the deployment was successful, you should see the `Hello Serverless` message.
+If the deployment was successful, you should see the `Hello World!` message.
