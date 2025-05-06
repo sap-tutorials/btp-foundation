@@ -47,7 +47,7 @@ keywords: kyma
   
 4. Creating a Function takes a few seconds. Select the newly created **hello-world** Function. Scroll down, and notice that it does not have any APIRules yet, you need to create one to define the rules of accessing the Function using APIs.
 
-5. Go to **Discovery and Network > API Rules v2alpha1** and choose **Create**.
+5. Go to **Discovery and Network > API Rules** and choose **Create**.
 
 6. Fill in the form in the **Create API Rule** view using the following details and choose **Create**
 

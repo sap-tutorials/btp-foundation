@@ -96,7 +96,7 @@ You should see a version number.
 2. Open the file in your editor and add the following APIRule definition:
 
     ```yaml
-    apiVersion: gateway.kyma-project.io/v2alpha1
+    apiVersion: gateway.kyma-project.io/v2
     kind: APIRule
     metadata:
       name: hello-rule
