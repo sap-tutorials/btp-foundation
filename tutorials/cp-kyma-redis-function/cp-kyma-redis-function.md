@@ -74,8 +74,6 @@ In this step, you will deploy the Redis resources, obtained in [Step 1](#clone-t
 
 4. Switch to the **YAML** tab, and copy the contents of the `redis-function/k8s/redis-secret.yaml` file over-writing the preexisting content found within the pane, and then choose **Create**.
 
-5. After completing the deployment of the resources, go to **Cluster Details** and see the **Pods Overview** and **Deployments Overview** section. If there are no **Failing Pods** or **Failing Deployments**, then everything is ready.
-
 ### Deploy Functions
 
 In this step, you will deploy two Functions into SAP BTP, Kyma runtime that were obtained in [Step 1](#clone-the-git-repository). These resources include:
@@ -92,7 +90,8 @@ In this step, you will deploy two Functions into SAP BTP, Kyma runtime that were
 ### Expose a Function
 
 1. To expose the `get-order` Function as an API, choose the menu option **Discovery and Network > API Rules**, and click **Create**.
-2. Provide the value `get-order` for the **Name**, **Service Name** and **Host**, and choose **Create**.
+2. Provide the value `get-order` for **Name**, **Service Name** and **Host**.
+3. Select `No Auth` for **Access Strategy**, and choose **Create**.
 
 ### Add event subscription to the Function
 
@@ -154,7 +153,7 @@ With the configuration steps completed, you can now test the scenario to validat
 
 6. Modify the `orderCode` value as desired and choose **Send Event**. Make sure to remember the `orderCode` value, it will be used in a later step.
 
-    ![Test the Scenario](./assets/test-scenario-2.png)
+    <!-- border -->![Test the Scenario](./assets/test-scenario-2.png)
 
 ### Review output in the Function logs
 
@@ -166,15 +165,15 @@ In this step, we will view the logs outputted by the Function to verify that the
 
 3. Scroll to the bottom of the pane to find the option **Replicas of the Function** and choose the value found in the table.
 
-4. Under **Containers**, choose **View Logs** for the container **function**.
+    <!-- border -->![Replicas of the Function](./assets/function-replicas.png)
 
-    ![Function Logs Location](./assets/function-log-location.png)
+4. Under **Containers**, choose **View Logs** for the **function** container.
 
-5. If necessary, search for the `orderCode` value.
+    <!-- border -->![Function Logs Location](./assets/function-log-location.png)
 
-6. The output should be similar to:
+5. The output should be similar to:
 
-    ![Function Log](./assets/function-log-event.png)
+    <!-- border -->![Function Log](./assets/function-log-event.png)
 
 ### Get output from the Function APIRule
 
