@@ -152,7 +152,7 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
 Run the following commands from the `database-mssql` directory using your CLI.
 
-1. Start by creating the `dev` namespace and enabling `Istio`:
+1. Create the `dev` namespace and enable `Istio`:
 
     ```Shell/Bash
     kubectl create namespace dev

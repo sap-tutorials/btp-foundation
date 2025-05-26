@@ -271,23 +271,13 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 - `configmap.yaml`: defines the name of the database, host, and port. The host value assumes that the service for the database is named `mssql` and is defined in the `dev` namespace. Make sure to adjust this if you made any changes.
 - `deployment.yaml`: defines the deployment definition for the Go API, as well as a service used for communication. This definition references both `secret.yaml`, which was defined in the previous tutorial and also included in this directory, and `configmap.yaml` by name.  
 
-1. Start by creating the `dev` namespace and enabling `Istio`:
-
-    ```Shell/Bash
-    kubectl create namespace dev
-    kubectl label namespaces dev istio-injection=enabled
-    ```
-    > Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace will require adjustments to the provided samples.
-
-    > Adding the label `istio-injection=enabled` to the namespace enables Istio. Istio is the service mesh implementation used by SAP BTP, Kyma runtime.
-
-2. Within the `deployment.yaml`, adjust the value of `spec.template.spec.containers.image`, commented with **#change it to your image**, to use your Docker image. Apply the Deployment which will cause an error which we will further explore:
+1. Within the `deployment.yaml`, adjust the value of `spec.template.spec.containers.image`, commented with **#change it to your image**, to use your Docker image. Apply the Deployment which will cause an error which we will further explore:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/deployment.yaml
     ```
 
-3. Check the status of the Pod by running:
+2. Check the status of the Pod by running:
 
     ```Shell/Bash
     kubectl -n dev get po
@@ -313,13 +303,13 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
     Within the Events of the Pods, you should find the message `Error: configmap "api-mssql-go" not found`.
 
-4. Apply the ConfigMap:
+3. Apply the ConfigMap:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/configmap.yaml
     ```
 
-5. Verify the status of the Pod by running:
+4. Verify the status of the Pod by running:
 
     ```Shell/Bash
     kubectl -n dev get po
@@ -332,7 +322,7 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
     api-mssql-go-c694bc847-tkthc   2/2     Running   0          23m
     ```
 
-6. Open `apirule.yaml`. In `allowOrigins`, modify the `regex` value, to match your domain, and add the `exact: http://localhost:8080` key-value pair. For example:
+5. In `apirule.yaml`. modify `allowOrigins.regex`, to match your domain, and add the `exact: http://localhost:8080` key-value pair. For example:
 
     ```yaml
       ... 
@@ -344,13 +334,13 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
     > `exact: http://localhost:8080` is only required if you want to locally test the frontend of your application as part of the [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-mssql.html) tutorial.
 
-7. Apply the APIRule:
+6. Apply the APIRule:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/apirule.yaml
     ```
 
-8. Apply the AuthorizationPolicy:
+7. Apply the AuthorizationPolicy:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/authorizationpolicy.yaml
