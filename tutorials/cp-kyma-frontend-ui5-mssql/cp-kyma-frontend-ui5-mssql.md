@@ -123,18 +123,7 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 - `configmap.yaml`: defines `API_URL`, which represents the endpoint used for the orders API. It must be adjusted to reflect the domain of SAP BTP, Kyma runtime.
 - `deployment.yaml`: defines the Deployment definition for the SAPUI5 application as well as a service used for communication. This definition references `configmap.yaml` by name. It is used to overwrite `webapp/config.json` of the application.
 
-1. Start by creating the `dev` namespace and enabling `Istio`:
-
-    ```Shell/Bash
-    kubectl create namespace dev
-    kubectl label namespaces dev istio-injection=enabled
-    ```
-
-    > Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace will require adjustments to the provided samples.
-
-    > Adding the `istio-injection=enabled` label to the namespace enables `Istio`. `Istio` is the service mesh implementation used by SAP BTP, Kyma runtime.
-
-2. Within the project, open the `k8s/configmap.yaml` file and adjust `API_URL` to match the cluster domain:
+1. Within the project, open the `k8s/configmap.yaml` file and adjust `API_URL` to match the cluster domain:
 
     ```
     kind: ConfigMap
@@ -150,19 +139,19 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
         }
     ```
 
-3. Apply the ConfigMap:
+2. Apply the ConfigMap:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/configmap.yaml
     ```
 
-4. In `deployment.yaml`, adjust the value of `spec.template.spec.containers.image` to use your Docker image. Apply the Deployment:
+3. In `deployment.yaml`, adjust the value of `spec.template.spec.containers.image` to use your Docker image. Apply the Deployment:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/deployment.yaml
     ```
 
-5. Apply the APIRule:
+4. Apply the APIRule:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/apirule.yaml
