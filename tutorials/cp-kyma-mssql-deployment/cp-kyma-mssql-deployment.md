@@ -17,7 +17,7 @@ primary_tag: software-product>sap-btp--kyma-runtime
 ## You will learn
   - How to configure and build a MSSQL database Docker image
   - How to deploy the MSSQL database Docker image to SAP BTP, Kyma runtime, which includes:
-    - A Kubernetes Secret to store the database user/password
+    - A Kubernetes Secret to store the database user and password
     - A Kubernetes PersistentVolumeClaim (PVC) for the storage of the database data
     - A Kubernetes Service used to expose the database to other Kubernetes resources
 
