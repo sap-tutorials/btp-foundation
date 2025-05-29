@@ -6,7 +6,7 @@ tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-techno
 primary_tag: software-product>sap-btp--kyma-runtime
 ---
 
-# Send Requests Using Istio Egress Gateway in SAP BTP, Kyma Runtime
+# Send Requests Using Istio egress Gateway in SAP BTP, Kyma Runtime
 <!-- description --> Configure and use the Istio egress Gateway to allow outbound traffic from your Kyma runtime cluster to specific external destinations.
 
 ## Prerequisites
@@ -271,7 +271,7 @@ To test your configutation, send an HTTPS request to the `kyma-project.io` websi
     {"requested_server_name":"kyma-project.io","upstream_cluster":"outbound|443||kyma-project.io",[...]}
     ```
 
-### Enhance Security by Implementing NetworkPolicies
+### Enhance security by implementing NetworkPolicies
 
 By default, Istio cannot securely enforce that egress traffic is routed through the Istio egress Gateway. It only enables the flow through sidecar proxies.
 

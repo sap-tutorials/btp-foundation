@@ -393,7 +393,7 @@ Use the same kubeconfig file you’ve already exported.
     {"authority":"{YOUR_DOMAIN}":"outbound|443||{YOUR_DOMAIN}",[...]}
     ```
 
-### Enhance Security by Implementing NetworkPolicies
+### Enhance security by implementing NetworkPolicies
 
 By default, Istio cannot securely enforce that egress traffic is routed through the Istio egress Gateway. It only enables the flow through sidecar proxies.
 
