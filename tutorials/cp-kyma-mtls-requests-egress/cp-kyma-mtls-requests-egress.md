@@ -6,7 +6,7 @@ tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-techno
 primary_tag: software-product>sap-btp--kyma-runtime
 ---
 
-# Send mTLS Requests Using Istio egress Gateway in SAP BTP, Kyma Runtime
+# Send mTLS Requests Using Istio Egress Gateway in SAP BTP, Kyma Runtime
 <!-- description --> Learn how to configure and use the Istio egress Gateway to allow mTLS-secured outbound traffic between clusters.
 
 ## Prerequisites
@@ -62,7 +62,7 @@ To follow this tutorial, you must prepare two clusters. You will use one of them
     openssl x509 -req -sha256 -days 365 -CA egress.crt -CAkey egress.key -set_serial 1 -in "$CLIENT".csr -out "$CLIENT".crt
     ```
 
-### Prepare a cluster with an egress Gateway
+### Prepare a cluster with a workload
 
 Use the same kubeconfig file you’ve already exported.
 
@@ -143,7 +143,7 @@ Use the same kubeconfig file you’ve already exported.
     You get the `200` response code from the workload containing headers. One of them should be `"X-Forwarded-Client-Cert": ["xxx"]`.
 
 
-### Expose the workload
+### Prepare a cluster with an egress Gateway
 
 1. Export the `kubeconfig` file of another cluster:
 
@@ -371,7 +371,7 @@ Use the same kubeconfig file you’ve already exported.
     EOF
     ```
 
-### Send HTTP Requests
+### Send HTTP requests
 
 1. Send an HTTP request to the Kyma project website:
 
