@@ -103,6 +103,8 @@ Deploying the SAPUI5 Docker image to SAP BTP, Kyma runtime includes:
 
 Run the following commands from the `frontend-ui5-mssql` directory using your CLI. Make sure to replace the value of `<your-docker-id>` with your Docker account ID.
 
+> If you're using any device with a non-x86 processor (e.g. MacBook M1/M2) you need to instruct Docker to use x86 images by setting the **DOCKER_DEFAULT_PLATFORM** environment variable using the command `export DOCKER_DEFAULT_PLATFORM=linux/amd64`. Check [Environment variables](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables) for more information.
+
 1. To build the Docker image, run this command:
 
     ```Shell/Bash

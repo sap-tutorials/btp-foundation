@@ -52,6 +52,8 @@ In this tutorial, you will configure a database named `DemoDB` which contains on
 
 A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings. In this step, you will build the `mssql` image according to the Dockerfile definition contained in the `docker` folder. Make sure to run the following commands from the `database-mssql` directory using your CLI, and also replace the value of `<your-docker-id>` with your Docker account ID.
 
+> If you're using any device with a non-x86 processor (e.g. MacBook M1/M2) you need to instruct Docker to use x86 images by setting the **DOCKER_DEFAULT_PLATFORM** environment variable using the command `export DOCKER_DEFAULT_PLATFORM=linux/amd64`. Check [Environment variables](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables) for more information.
+
 1. To build the Docker image, run this command:
 
     ```Shell/Bash
