@@ -121,11 +121,11 @@ You have to add the **package.json** file and its relevant dependencies.
 
     ![Add ams](add-ams.png)
 
-Note that it is good practice to test the policies and integration before deploying the application.
+    Note that it is good practice to test the policies and integration before deploying the application.
 
-You can directly assign policies to CAP mock users in the **cds** environment. See [policies test](https://github.com/SAP-samples/ams-samples-node/blob/main/ams-cap-nodejs-bookshop/.cdsrc.json#L7-L12) for more information.
+    You can directly assign policies to CAP mock users in the **cds** environment. See [policies test](https://github.com/SAP-samples/ams-samples-node/blob/main/ams-cap-nodejs-bookshop/.cdsrc.json#L7-L12) for more information.
 
-Then, write a standard unit test against the CAP service to verify that the role assignment by the policy works as expected. See [admin test](https://github.com/SAP-samples/ams-samples-node/blob/main/ams-cap-nodejs-bookshop/test/admin-service.test.js#L24-L60) for more information. 
+    Then, write a standard unit test against the CAP service to verify that the role assignment by the policy works as expected. See [admin test](https://github.com/SAP-samples/ams-samples-node/blob/main/ams-cap-nodejs-bookshop/test/admin-service.test.js#L24-L60) for more information. 
     
 2. Enter `npm i` to install the dependencies defined in the **package.json** file. This adds the **node_modules** folder.
 
