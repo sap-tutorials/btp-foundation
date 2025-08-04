@@ -39,9 +39,9 @@ keywords: kyma
    
     If you create a Function in a namespace with Istio sidecar injection enabled, an Istio sidecar proxy is automatically injected to the Function's Pod during its creation. This makes the Function part of the Istio service mesh. To expose a workload using an APIRule custom resource, it is required to include the workload in the Istio service mesh.
 
-2. Go to **Workloads > Functions** and choose **Create**.
+3. Go to **Workloads > Functions** and choose **Create**.
 
-3. Fill in the form in the **Create Function** view using the following details and choose **Create**.
+4. Fill in the form in the **Create Function** view using the following details and choose **Create**.
 
     - **Template**: `Default`
     - **Name**: `hello-world`
@@ -49,11 +49,11 @@ keywords: kyma
     - **Runtime**: `node.js 20`
     - **Function Profile**: `XS`
   
-4. Creating a Function takes a few seconds. Select the newly created **hello-world** Function. Scroll down, and notice that it does not have any APIRules yet, you need to create one to define the rules of accessing the Function using APIs.
+5. Creating a Function takes a few seconds. Select the newly created **hello-world** Function. Scroll down, and notice that it does not have any APIRules yet, you need to create one to define the rules of accessing the Function using APIs.
 
-5. Go to **Discovery and Network > API Rules** and choose **Create**.
+6. Go to **Discovery and Network > API Rules** and choose **Create**.
 
-6. Fill in the form in the **Create API Rule** view using the following details and choose **Create**.
+7. Fill in the form in the **Create API Rule** view using the following details and choose **Create**.
 
     - **Name**: for example, `hello-rule`
     - **Service Name**: `hello-world`
@@ -62,7 +62,7 @@ keywords: kyma
     - **Host**: for example, `hello-host`
     - **Access Strategy**: `No Auth`
 
-7. The `hello-rule` APIRule is created. Scroll down to **Virtual Service**, copy the URL under **Hosts**, and paste it in your browser.
+8. The `hello-rule` APIRule is created. Scroll down to **Virtual Service**, copy the URL under **Hosts**, and paste it in your browser.
 
     A browser window opens showing the following result:
 
