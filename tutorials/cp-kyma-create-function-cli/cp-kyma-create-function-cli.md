@@ -48,41 +48,49 @@ You should see a version number.
 
 ### Create a Function
 
-1. In your terminal, go to your working folder, and run:
+1. Enable the Istio sidecar proxy injection in the **default** namespace:
+
+    ```bash
+    kubectl label namespace $NAMESPACE istio-injection=enabled --overwrite
+    ```
+
+    If you create a Function in a namespace with enabled Istio sidecar injection, an Istio sidecar proxy is automatically injected to the Function's Pod during its creation. This makes the Function part of the Istio service mesh. To expose a workload using an APIRule custom resource, it is required to include the workload in the Istio service mesh.
+
+2. In your terminal, go to your working folder, and run:
 
     ```bash
     kyma alpha function init
     ```
 
-    You should see the following message:
+    If successful, you get the following message:
     `Functions files of runtime nodejs22 initialized to dir {WORKING_FOLDER_PATH}`
 
-    You have now created 2 files in your working folder:
+    You have created 2 files in your working folder:
 
     - handler.js
     - package.json
 
     You can check the content of the files with your editor (e.g. Visual Studio Code).
 
-2. To apply your Function to your Kyma runtime, run:
+3. To apply your Function to your Kyma runtime, run:
 
     ```bash
     kyma alpha function create hello-function
     ```
    
-    You should see the following message: 
+    If successful, you get the following message: 
 
     ```bash
     resource default/hello-function applied
     ```
   
-3. To verify the Function deployment, run:
+4. To verify the Function deployment, run:
 
     ```bash
     kyma alpha function get hello-function
     ```
    
-    You should get the following result:
+    If successful, you get the following result:
 
     ```bash
     NAME             CONFIGURED   BUILT   RUNNING   RUNTIME    GENERATION
@@ -114,7 +122,7 @@ You should see a version number.
           noAuth: true
     ```
 
-3. Deploy your API Rule. 
+3. Deploy your APIRule. 
    
     ```bash
     kubectl apply -f "{PATH_TO_YOUR_CONFIG_FILE}"
@@ -135,7 +143,7 @@ You should see a version number.
             -o jsonpath='{.spec.servers[0].hosts[0]}'
     ```
 
-    You should see output similar to this:
+    You see output similar to this:
     
     ```bash
     *.12345678.kyma.ondemand.com
@@ -154,16 +162,10 @@ You should see a version number.
     ```
 
 
-3. Run the following curl command, replacing `{CLUSTER_DOMAIN}` with your domain: 
+3. Run the following curl command: 
 
     ```bash
     curl https://hello-host.$CLUSTER_DOMAIN
     ```
 
-    For example:
-
-    ```bash 
-    curl https://hello-host.12345678.kyma.ondemand.com/
-    ```
-
-If the deployment was successful, you should see the `Hello World!` message.
+If the deployment was successful, you see the `Hello World!` message.
