@@ -8,9 +8,8 @@ author_profile: https://github.com/nikolasimeonov77
 time: 50
 ---
 
-# Receive Alerts in Your On-Premise System Using Java Web Tomcat 8
+# Receive Alerts in Your On-Premise System Using Java Web Tomcat 9
 <!-- description --> Configure a connection with an on-premise system to receive alert notifications locally. For example, extend your on-premise application in the corporate network to show alerts for critical or warning metrics of an SAP BTP application in the Neo environment or to take self-healing actions. Furthermore, use the Alerting Channels REST API to configure the channel for receiving such alert notifications.
-
 
 <!-- loio152a1abd1a1f4618baaa6e43f55e37df -->
 
@@ -19,7 +18,7 @@ time: 50
   For more information, See [Getting Started with a Customer Account in the Neo Environment](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/1b335bad21724350b0afca66b2db2ce6.html).
 - You have active resources (applications) to receive alerts for.
 - You have installed Maven. See [Welcome to Apache Maven](http://maven.apache.org/).
-- You have installed SAP BTP SDK for the Neo environment (Java Web Tomcat 8) and set up the Console Client. See [Setting Up the Development Environment](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/e815ca4cbb5710148376c549fd74c0db.html).
+- You have installed SAP BTP SDK for the Neo environment (Java Web Tomcat 9) and set up the Console Client. See [Setting Up the Development Environment](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/e815ca4cbb5710148376c549fd74c0db.html).
 - You have Installed SAP JVM. See [(Optional) Install SAP JVM](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/76137f42711e1014839a8273b0e91070.html).
 - You have configured the environment variables as you specify the **JAVA HOME** variable to the **`jre`** folder of the installed SAP JVM and the **Path** variable to the **bin** folder of the installed Apache Maven.
 - You have downloaded and initially configured the Cloud Connector.
@@ -29,7 +28,7 @@ time: 50
 - How to connect with an on-premise system so that your alerts will be processed locally
 
 ## Intro
-This tutorial describes the configuration with a Java Web Tomcat 8 runtime. However, you can change these settings to match with your runtime environment.
+This tutorial describes the configuration with a Java Web Tomcat 9 runtime. However, you can change these settings to match with your runtime environment.
 
 To learn more about the whole scenario, read [Receiving Alerts in the Corporate On-Premise System](https://blogs.sap.com/2021/02/05/receiving-alerts-in-the-corporate-on-premise-system-2/).
 
@@ -54,20 +53,17 @@ Run the command `mvn clean install` to compile, test, and package the `cloud-sam
 
 You can now find your packaged `webhooks.cloud.to.onpremise-1.0.0-SNAPSHOT.war` file in the **target** folder.
 
-In the text area below, enter the command you used to compile, test, and package the `cloud-sample-webhooks-main` project.
-
-
 
 ### Deploy the WAR file on the cloud
 
 
-Deploy the file on Java Web Tomcat 8 runtime and then start the application. For more information, see [Deploying Applications](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/e5dfbc6cbb5710149279f67fb43d4e5d.html#loioe5dfbc6cbb5710149279f67fb43d4e5d__deploying).
+Deploy the file on Java Web Tomcat 9 runtime and then start the application. For more information, see [Deploying Applications](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/e5dfbc6cbb5710149279f67fb43d4e5d.html#loioe5dfbc6cbb5710149279f67fb43d4e5d__deploying).
 
 
 ### Register an OAuth client
 
 
-The webhooks application is protected with OAuth. For more information, see [Register an OAuth Client](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/7e658b3e4cea4a79b035d0f1d2798c1f.html#loio61d8095aa39547c7b30d9aeda771497f).
+The webhooks application is protected with OAuth. For more information, see [Register an OAuth Client](https://help.sap.com/docs/BTP/ea72206b834e4ace9cd834feed6c0e09/61d8095aa39547c7b30d9aeda771497f.html?locale=en-US&state=PRODUCTION&version=Cloud).
 
 > You also need to select the **Client Credentials** authorization grant.
 
@@ -115,7 +111,7 @@ Use the following code in the body of the Alerting Channels REST call:
 
 Furthermore, use the access token as a bearer token in the Authorization for the REST API call.
 
-For more information, see [Alerting Channels REST API](https://api.sap.com/api/HCP_Alerting).
+For more information, see [Alerting Channels REST API](https://api.sap.com/api/HCP_Alerting_v2).
 
 
 ### Provide the token as a system property
@@ -127,14 +123,11 @@ Select the application in the SAP BTP cockpit, choose the **Update** button, and
 
 Finally, restart the application for your change to take effect.
 
-In the text area below, enter the text you inserted in the **JVM Arguments** field.
-
-
 
 ### Deploy the WAR file locally
 
 
-Use Java Web Tomcat 8 server and deploy the WAR file locally. See [Deploy Locally with the Console Client](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/937c833b72bb101490cf767db0e91070.html).
+Use Java Web Tomcat 9 server and deploy the WAR file locally. See [Deploy Locally with the Console Client](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/937c833b72bb101490cf767db0e91070.html).
 
 
 ### Configure the Cloud Connector
@@ -149,8 +142,6 @@ Use Java Web Tomcat 8 server and deploy the WAR file locally. See [Deploy Locall
     Go to the **Cloud to On-Premise** view and add the resource `/webhooks.cloud.to.onpremise-1.0.0-SNAPSHOT/backend`.
 
     ![Resource mapping](Add_Resource.PNG)
-
-In the text area below, enter the text you inserted in the **URL Path** field.
 
 
 
@@ -178,9 +169,6 @@ In the text area below, enter the text you inserted in the **URL Path** field.
     > The virtual host and port are configured in the cloud connector under **Cloud To On-Premise** > **Access Control** > **Mapping Virtual to Internal System**.
 
 5. Check that the connection to the on-premise destination is successful.
-
-In the text area below, enter the name you used for the destination.
-
 
 
 ### Test that you receive alerts
