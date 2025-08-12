@@ -8,15 +8,14 @@ author_name: Gaurav Abbi, Oliver Stiefbold, Malgorzata Swieca, Jacek Konopelski
 keywords: kyma
 ---
 
-# Create Kyma Function and a Microservice Using Kyma CLI
+# Create Kyma Function Using Kyma CLI
 
-<!-- description -->In this tutorial, you will use Kyma CLI to create a Kyma Function and a microservice. 
+<!-- description -->In this tutorial, you will use Kyma CLI to create a Kyma Function. 
 
 ## You will learn
 
   - How to install and use Kyma CLI
   - How to create a Kyma Function
-  - How to create a Kyma microservice
 
 ## Prerequisites
 
