@@ -188,10 +188,10 @@ If the deployment was successful, you see the `Hello World!` message.
     *.12345678.kyma.ondemand.com
     ```
 
-2. Export the result without the leading `*.` as an environment variable:
+2. Replace the placeholder and export the result as an environment variable without the leading `*.`:
 
     ```Powershell
-    $Env:CLUSTER_DOMAIN="c-5fccac8.stage.kyma.ondemand.com"
+    $Env:CLUSTER_DOMAIN="{YOUR_CLUSTER_DOMAIN}"
     ```
     
     For example:
