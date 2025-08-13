@@ -55,11 +55,11 @@ keywords: kyma
 
 7. Fill in the form in the **Create API Rule** view using the following details and choose **Create**.
 
-    - **Name**: for example, `hello-rule`
+    - **Name**: for example, `hello-world`
     - **Service Name**: `hello-world`
     - **Port**: `80`
     - Leave the pre-defined details in the **Gateway** section
-    - **Host**: for example, `hello-host`
+    - **Host**: for example, `hello-world`
     - **Access Strategy**: `No Auth`
 
 8. The `hello-rule` APIRule is created. Scroll down to **Virtual Service**, copy the URL under **Hosts**, and paste it in your browser.
@@ -141,18 +141,23 @@ You cannot access and test your new `orders-service` yet from outside of the clu
 
 ### Create sample content for your Service
 
+[OPTION BEGIN [macOS]]
+
 1. In the terminal call your service using curl. Replace `${APP_URL}` with your `orders-host` URL, for example, `https://orders-host.b1234567.kyma.ondemand.com/`.
 
     ```bash
     curl -X GET ${APP_URL}/orders -k
     ```
 
+    For example:
+    ```bash
+    curl -X GET https://orders-host.b1234567.kyma.ondemand/orders -k
+    ```
     The result should be still **`[]`**.
 
+
 2. Place an order using curl replacing the `${APP_URL}` with your `orders-host` URL:
-
-    > If you use Windows, use a Linux-like bash, for example, Git Bash to be able to copy and paste the sample code.
-
+    
     ```bash
     curl -X POST ${APP_URL}/orders -k \
       -H "Content-Type: application/json" -d \
@@ -170,3 +175,35 @@ You cannot access and test your new `orders-service` yet from outside of the clu
     For a complete guide on how to run the `orders-service`, see [the example repository in GitHub](https://github.com/SAP-samples/kyma-runtime-extension-samples/tree/main/orders-service)
 
 Congratulations, you created and exposed your first microservice!
+
+[OPTION END]
+
+[OPTION BEGIN [Windows]]
+
+1. In the terminal call your service using curl. Replace `${APP_URL}` with your `orders-host` URL, for example, `https://orders-host.b1234567.kyma.ondemand.com/`.
+
+    ```Powershell
+    Invoke-RestMethod -Uri "${APP_URL}/orders" -Method GET
+    ```
+    For example:
+    
+    ```Powershell
+    Invoke-RestMethod -Uri "orders-host.b1234567.kyma.ondemand/orders" -Method GET
+    ```
+    The order list is empty so you get nothing in response.
+
+2. Place an order using curl replacing the `${APP_URL}` with your `orders-host` URL:
+    
+    ```Powershell
+    Invoke-RestMethod -Uri "${APP_URL}/orders" -Method POST -Headers @{ "Content-Type" = "application/json" } -Body '{"consignmentCode": "76272727","orderCode": "76272725","consignmentStatus": "PICKUP_COMPLETE"}'
+    ```
+
+3. Call your `orders-service` in your browser again. The `orders-service` returns the order:
+
+    `[{"orderCode":"76272725","consignmentCode":"76272727","consignmentStatus":"PICKUP_COMPLETE"}]`
+
+    For a complete guide on how to run the `orders-service`, see [the example repository in GitHub](https://github.com/SAP-samples/kyma-runtime-extension-samples/tree/main/orders-service)
+
+Congratulations, you created and exposed your first microservice!
+
+[OPTION END]

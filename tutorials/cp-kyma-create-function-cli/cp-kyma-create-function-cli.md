@@ -49,15 +49,15 @@ You should see a version number.
 
 1. Enable the Istio sidecar proxy injection in the **default** namespace:
 
-    ```bash
-    kubectl label namespace $NAMESPACE istio-injection=enabled --overwrite
+    ```bash/Powershell
+    kubectl label namespace default istio-injection=enabled --overwrite
     ```
 
     If you create a Function in a namespace with enabled Istio sidecar injection, an Istio sidecar proxy is automatically injected to the Function's Pod during its creation. This makes the Function part of the Istio service mesh. To expose a workload using an APIRule custom resource, it is required to include the workload in the Istio service mesh.
 
 2. In your terminal, go to your working folder, and run:
 
-    ```bash
+    ```bash/Powershell
     kyma alpha function init
     ```
 
@@ -73,25 +73,25 @@ You should see a version number.
 
 3. To apply your Function to your Kyma runtime, run:
 
-    ```bash
+    ```bash/Powershell
     kyma alpha function create hello-function
     ```
    
     If successful, you get the following message: 
 
-    ```bash
+    ```bash/Powershell
     resource default/hello-function applied
     ```
   
 4. To verify the Function deployment, run:
 
-    ```bash
+    ```bash/Powershell
     kyma alpha function get hello-function
     ```
    
     If successful, you get the following result:
 
-    ```bash
+    ```bash/Powershell
     NAME             CONFIGURED   BUILT   RUNNING   RUNTIME    GENERATION
     hello-function   True         True    True      nodejs22   1
     ```
@@ -123,23 +123,24 @@ You should see a version number.
 
 3. Deploy your APIRule. 
    
-    ```bash
+    ```bash/Powershell
     kubectl apply -f "{PATH_TO_YOUR_CONFIG_FILE}"
     ```
 
     For example:   
 
-    ```bash
+    ```bash/Powershell
     kubectl apply -f "C:\tools\myapirule.yaml"
     ```
    
 ### Verify the Function exposure
 
+[OPTION BEGIN [macOS]]
+
 1. Run the following command to get the domain name of your Kyma cluster:
 
     ```bash
-    kubectl get gateway -n kyma-system kyma-gateway \
-            -o jsonpath='{.spec.servers[0].hosts[0]}'
+    kubectl get gateway -n kyma-system kyma-gateway -o jsonpath='{.spec.servers[0].hosts[0]}'
     ```
 
     You see output similar to this:
@@ -150,10 +151,11 @@ You should see a version number.
 
 2. Export the result without the leading `*.` as an environment variable:
 
+
     ```bash
     export CLUSTER_DOMAIN={DOMAIN_NAME}
     ```
-
+    
     For example:
 
     ```bash
@@ -167,4 +169,44 @@ You should see a version number.
     curl https://hello-host.$CLUSTER_DOMAIN
     ```
 
+
 If the deployment was successful, you see the `Hello World!` message.
+
+[OPTION END]
+
+[OPTION BEGIN [Windows]]
+
+1. Run the following command to get the domain name of your Kyma cluster:
+
+    ```Powershell
+    kubectl get gateway -n kyma-system kyma-gateway -o jsonpath='{.spec.servers[0].hosts[0]}'
+    ```
+
+    You see output similar to this:
+    
+    ```Powershell
+    *.12345678.kyma.ondemand.com
+    ```
+
+2. Export the result without the leading `*.` as an environment variable:
+
+    ```Powershell
+    $Env:CLUSTER_DOMAIN="c-5fccac8.stage.kyma.ondemand.com"
+    ```
+    
+    For example:
+
+    ```Powershell
+    $Env:CLUSTER_DOMAIN="12345678.kyma.ondemand.com"
+    ```
+
+
+3. Run the following curl command: 
+
+    ```Powershell
+    Invoke-RestMethod -Uri "hello-host.$Env:CLUSTER_DOMAIN" -Method GET
+    ```
+
+If the deployment was successful, you see the `Hello World!` message.
+
+[OPTION END]
