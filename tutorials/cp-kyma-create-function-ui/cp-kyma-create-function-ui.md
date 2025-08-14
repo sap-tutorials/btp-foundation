@@ -55,11 +55,11 @@ keywords: kyma
 
 7. Fill in the form in the **Create API Rule** view using the following details and choose **Create**.
 
-    - **Name**: for example, `hello-world`
+    - **Name**: `hello-world`
     - **Service Name**: `hello-world`
     - **Port**: `80`
     - Leave the pre-defined details in the **Gateway** section
-    - **Host**: for example, `hello-world`
+    - **Host**: `hello-world`
     - **Access Strategy**: `No Auth`
 
 8. The `hello-rule` APIRule is created. Scroll down to **Virtual Service**, copy the URL under **Hosts**, and paste it in your browser.
@@ -109,7 +109,7 @@ Once you have the Deployment ready, you can create a Kubernetes Service to allow
         - **Name**: `orders-port`
         - **Protocol**: `TCP`
         - **Port**: `80`
-        - **Target Port**: `8080` (or other)
+        - **Target Port**: `8080` (or other available)
         - **Application Protocol**: `http`
 
 You created a new Service, called **orders-service**.
