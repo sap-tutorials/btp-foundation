@@ -8,15 +8,14 @@ author_name: Gaurav Abbi, Oliver Stiefbold, Malgorzata Swieca, Jacek Konopelski
 keywords: kyma
 ---
 
-# Create Kyma Function and a Microservice Using Kyma CLI
+# Create Kyma Function Using Kyma CLI
 
-<!-- description -->In this tutorial, you will use Kyma CLI to create a Kyma Function and a microservice. 
+<!-- description -->In this tutorial, you will use Kyma CLI to create a Kyma Function. 
 
 ## You will learn
 
   - How to install and use Kyma CLI
   - How to create a Kyma Function
-  - How to create a Kyma microservice
 
 ## Prerequisites
 
@@ -48,43 +47,51 @@ You should see a version number.
 
 ### Create a Function
 
-1. In your terminal, go to your working folder, and run:
+1. Enable the Istio sidecar proxy injection in the **default** namespace:
 
-    ```bash
+    ```bash/Powershell
+    kubectl label namespace default istio-injection=enabled --overwrite
+    ```
+
+    If you create a Function in a namespace with enabled Istio sidecar injection, an Istio sidecar proxy is automatically injected to the Function's Pod during its creation. This makes the Function part of the Istio service mesh. To expose a workload using an APIRule custom resource, it is required to include the workload in the Istio service mesh.
+
+2. In your terminal, go to your working folder, and run:
+
+    ```bash/Powershell
     kyma alpha function init
     ```
 
-    You should see the following message:
+    If successful, you get the following message:
     `Functions files of runtime nodejs22 initialized to dir {WORKING_FOLDER_PATH}`
 
-    You have now created 2 files in your working folder:
+    You have created 2 files in your working folder:
 
     - handler.js
     - package.json
 
     You can check the content of the files with your editor (e.g. Visual Studio Code).
 
-2. To apply your Function to your Kyma runtime, run:
+3. To apply your Function to your Kyma runtime, run:
 
-    ```bash
+    ```bash/Powershell
     kyma alpha function create hello-function
     ```
    
-    You should see the following message: 
+    If successful, you get the following message: 
 
-    ```bash
+    ```bash/Powershell
     resource default/hello-function applied
     ```
   
-3. To verify the Function deployment, run:
+4. To verify the Function deployment, run:
 
-    ```bash
+    ```bash/Powershell
     kyma alpha function get hello-function
     ```
    
-    You should get the following result:
+    If successful, you get the following result:
 
-    ```bash
+    ```bash/Powershell
     NAME             CONFIGURED   BUILT   RUNNING   RUNTIME    GENERATION
     hello-function   True         True    True      nodejs22   1
     ```
@@ -114,28 +121,29 @@ You should see a version number.
           noAuth: true
     ```
 
-3. Deploy your API Rule. 
+3. Deploy your APIRule. 
    
-    ```bash
+    ```bash/Powershell
     kubectl apply -f "{PATH_TO_YOUR_CONFIG_FILE}"
     ```
 
     For example:   
 
-    ```bash
+    ```bash/Powershell
     kubectl apply -f "C:\tools\myapirule.yaml"
     ```
    
 ### Verify the Function exposure
 
+[OPTION BEGIN [macOS]]
+
 1. Run the following command to get the domain name of your Kyma cluster:
 
     ```bash
-    kubectl get gateway -n kyma-system kyma-gateway \
-            -o jsonpath='{.spec.servers[0].hosts[0]}'
+    kubectl get gateway -n kyma-system kyma-gateway -o jsonpath='{.spec.servers[0].hosts[0]}'
     ```
 
-    You should see output similar to this:
+    You see output similar to this:
     
     ```bash
     *.12345678.kyma.ondemand.com
@@ -143,10 +151,11 @@ You should see a version number.
 
 2. Export the result without the leading `*.` as an environment variable:
 
+
     ```bash
     export CLUSTER_DOMAIN={DOMAIN_NAME}
     ```
-
+    
     For example:
 
     ```bash
@@ -154,16 +163,50 @@ You should see a version number.
     ```
 
 
-3. Run the following curl command, replacing `{CLUSTER_DOMAIN}` with your domain: 
+3. Run the following curl command: 
 
     ```bash
     curl https://hello-host.$CLUSTER_DOMAIN
     ```
 
-    For example:
 
-    ```bash 
-    curl https://hello-host.12345678.kyma.ondemand.com/
+If the deployment was successful, you see the `Hello World!` message.
+
+[OPTION END]
+
+[OPTION BEGIN [Windows]]
+
+1. Run the following command to get the domain name of your Kyma cluster:
+
+    ```Powershell
+    kubectl get gateway -n kyma-system kyma-gateway -o jsonpath='{.spec.servers[0].hosts[0]}'
     ```
 
-If the deployment was successful, you should see the `Hello World!` message.
+    You see output similar to this:
+    
+    ```Powershell
+    *.12345678.kyma.ondemand.com
+    ```
+
+2. Replace the placeholder and export the result as an environment variable without the leading `*.`:
+
+    ```Powershell
+    $Env:CLUSTER_DOMAIN="{YOUR_CLUSTER_DOMAIN}"
+    ```
+    
+    For example:
+
+    ```Powershell
+    $Env:CLUSTER_DOMAIN="12345678.kyma.ondemand.com"
+    ```
+
+
+3. Run the following curl command: 
+
+    ```Powershell
+    Invoke-RestMethod -Uri "hello-host.$Env:CLUSTER_DOMAIN" -Method GET
+    ```
+
+If the deployment was successful, you see the `Hello World!` message.
+
+[OPTION END]

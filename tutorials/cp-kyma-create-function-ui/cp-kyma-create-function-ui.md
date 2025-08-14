@@ -35,9 +35,13 @@ keywords: kyma
 
 1. In your Kyma dashboard, go to **Namespaces** and choose the **default** namespace.
 
-2. Go to **Workloads > Functions** and choose **Create**.
+2. To enable istio sidecar injection for the **default** namespace, choose **edit** and switch the sidecar injection toggle.
+   
+    If you create a Function in a namespace with Istio sidecar injection enabled, an Istio sidecar proxy is automatically injected to the Function's Pod during its creation. This makes the Function part of the Istio service mesh. To expose a workload using an APIRule custom resource, it is required to include the workload in the Istio service mesh.
 
-3. Fill in the form in the **Create Function** view using the following details and choose **Create**.
+3. Go to **Workloads > Functions** and choose **Create**.
+
+4. Fill in the form in the **Create Function** view using the following details and choose **Create**.
 
     - **Template**: `Default`
     - **Name**: `hello-world`
@@ -45,26 +49,26 @@ keywords: kyma
     - **Runtime**: `node.js 20`
     - **Function Profile**: `XS`
   
-4. Creating a Function takes a few seconds. Select the newly created **hello-world** Function. Scroll down, and notice that it does not have any APIRules yet, you need to create one to define the rules of accessing the Function using APIs.
+5. Creating a Function takes a few seconds. Select the newly created **hello-world** Function. Scroll down, and notice that it does not have any APIRules yet, you need to create one to define the rules of accessing the Function using APIs.
 
-5. Go to **Discovery and Network > API Rules** and choose **Create**.
+6. Go to **Discovery and Network > API Rules** and choose **Create**.
 
-6. Fill in the form in the **Create API Rule** view using the following details and choose **Create**
+7. Fill in the form in the **Create API Rule** view using the following details and choose **Create**.
 
-    - **Name**: for example, `hello-rule`
-    - **Service Name**: the `hello-world` Function
+    - **Name**: `hello-world`
+    - **Service Name**: `hello-world`
     - **Port**: `80`
     - Leave the pre-defined details in the **Gateway** section
-    - **Host**: for example, `hello-host`
+    - **Host**: `hello-world`
     - **Access Strategy**: `No Auth`
 
-7. The "hello-rule" APIRule is created. Scroll down to **Virtual Service**, copy the URL under **Hosts**, and paste it in your browser.
+8. The `hello-rule` APIRule is created. Scroll down to **Virtual Service**, copy the URL under **Hosts**, and paste it in your browser.
 
     A browser window opens showing the following result:
 
      **`Hello World from the Kyma Function hello-world running on nodejs20!`**
 
-### Deploy a microservice on Kyma
+### Deploy a microservice in Kyma
 
 You already know how to deploy and expose a Function. You can do the same with a container microservice.
 
@@ -79,6 +83,7 @@ This tutorial shows how to deploy a microservice using the Docker image.
 3. Fill in the form in the **Create Deployments** view using the following details and then choose **Create**.
 
     - **Name**: `orders-deployment`
+    - Switch the toggle to enable Istio sidecar proxy injection for the Deployment.
     - **Docker Image**: `ghcr.io/sap-samples/kyma-runtime-extension-samples/orders-service:1.0.0`
     - Optionally, provide the following parameters to save resources:
 
@@ -98,31 +103,30 @@ Once you have the Deployment ready, you can create a Kubernetes Service to allow
 2. Fill in the form in the **Create Service** view using the following details and then choose **Create**.
 
     - **Name**: `orders-service`
-    - **app**: `orders-deployment`
+    - Add the following selector:
+        - **app**: `orders-deployment`
     - Add a port using the following parameters:
         - **Name**: `orders-port`
         - **Protocol**: `TCP`
         - **Port**: `80`
-        - **Target Port**: `8080` (or other)
+        - **Target Port**: `8080` (or other available)
         - **Application Protocol**: `http`
 
-You created a new service, called **orders-service**.
+You created a new Service, called **orders-service**.
 
 ### Expose the microservice
 
-You cannot access and test your new `orders-service` yet from outside of the cluster. To expose the microservice, first, you must create an **API Rule** for it, just like you did to expose your Function.
+You cannot access and test your new `orders-service` yet from outside of the cluster. To expose the microservice, first, you must create an **APIRule**, just like you did to expose your Function.
 
-1. Go to **Discovery and Network > API Rules v2alpha1** and choose **Create**.
+1. Go to **Discovery and Network > API Rules** and choose **Create**.
 
-2. Fill in the form in the **Create API Rule** view using the following details and choose **Create**
+2. Fill in the form in the **Create API Rule** view using the following details and choose **Create**.
 
     - **Name**: `orders-apirule`
-    - **Timeout**: `30` (or any up to `3900`)
     - **Service Name**: `orders-service`
     - **Port**: `80`
     - Leave the pre-defined details in the **Gateway** section
     - **Host**: `orders-host`
-    - Leave the pre-defined details in the **Rules** section
     - **Methods**: choose `GET` and `POST`
     - **Access Strategy**: `No Auth`
 
@@ -137,18 +141,23 @@ You cannot access and test your new `orders-service` yet from outside of the clu
 
 ### Create sample content for your Service
 
+[OPTION BEGIN [macOS]]
+
 1. In the terminal call your service using curl. Replace `${APP_URL}` with your `orders-host` URL, for example, `https://orders-host.b1234567.kyma.ondemand.com/`.
 
     ```bash
     curl -X GET ${APP_URL}/orders -k
     ```
 
+    For example:
+    ```bash
+    curl -X GET https://orders-host.b1234567.kyma.ondemand/orders -k
+    ```
     The result should be still **`[]`**.
 
+
 2. Place an order using curl replacing the `${APP_URL}` with your `orders-host` URL:
-
-    > Windows users should use a Linux-like bash, for example, Git Bash to be able to copy and paste the sample code.
-
+    
     ```bash
     curl -X POST ${APP_URL}/orders -k \
       -H "Content-Type: application/json" -d \
@@ -159,10 +168,42 @@ You cannot access and test your new `orders-service` yet from outside of the clu
       }'
     ```
 
-3. Call your `orders-service` in your browser again. The `orders-service` will return the order:
+3. Call your `orders-service` in your browser again. The `orders-service` returns the order:
 
     `[{"orderCode":"76272725","consignmentCode":"76272727","consignmentStatus":"PICKUP_COMPLETE"}]`
 
     For a complete guide on how to run the `orders-service`, see [the example repository in GitHub](https://github.com/SAP-samples/kyma-runtime-extension-samples/tree/main/orders-service)
 
 Congratulations, you created and exposed your first microservice!
+
+[OPTION END]
+
+[OPTION BEGIN [Windows]]
+
+1. In the terminal call your service using curl. Replace `${APP_URL}` with your `orders-host` URL, for example, `https://orders-host.b1234567.kyma.ondemand.com/`.
+
+    ```Powershell
+    Invoke-RestMethod -Uri "${APP_URL}/orders" -Method GET
+    ```
+    For example:
+    
+    ```Powershell
+    Invoke-RestMethod -Uri "orders-host.b1234567.kyma.ondemand/orders" -Method GET
+    ```
+    The order list is empty so you get nothing in response.
+
+2. Place an order using curl replacing the `${APP_URL}` with your `orders-host` URL:
+    
+    ```Powershell
+    Invoke-RestMethod -Uri "${APP_URL}/orders" -Method POST -Headers @{ "Content-Type" = "application/json" } -Body '{"consignmentCode": "76272727","orderCode": "76272725","consignmentStatus": "PICKUP_COMPLETE"}'
+    ```
+
+3. Call your `orders-service` in your browser again. The `orders-service` returns the order:
+
+    `[{"orderCode":"76272725","consignmentCode":"76272727","consignmentStatus":"PICKUP_COMPLETE"}]`
+
+    For a complete guide on how to run the `orders-service`, see [the example repository in GitHub](https://github.com/SAP-samples/kyma-runtime-extension-samples/tree/main/orders-service)
+
+Congratulations, you created and exposed your first microservice!
+
+[OPTION END]
