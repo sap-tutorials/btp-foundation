@@ -1,7 +1,7 @@
 ---
 parser: v2
 auto_validation: true
-time: 25
+time: 50
 tags: [ tutorial>intermediate, programming-tool>node-js, software-product>sap-business-technology-platform ]
 primary_tag: topic>security
 author_name: Michael Shea
