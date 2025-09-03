@@ -324,25 +324,40 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
     api-mssql-go-c694bc847-tkthc   2/2     Running   0          23m
     ```
 
-5. In `apirule.yaml`. modify `allowOrigins.regex`, to match your domain, and add the `exact: http://localhost:8080` key-value pair. For example:
+5. Run the following command to get the domain name of your Kyma cluster:
+
+    ```bash
+    kubectl get gateway -n kyma-system kyma-gateway \
+            -o jsonpath='{.spec.servers[0].hosts[0]}'
+    ```
+
+    The result looks like this:
+
+    ```bash
+    *.<xyz123>.kyma.ondemand.com
+    ```
+
+6. Copy the result without the leading `*.`.
+
+7. In `apirule.yaml`, modify `allowOrigins.regex`, to match your domain, and add the `exact: http://localhost:8080` key-value pair. For example:
 
     ```yaml
       ... 
         allowOrigins:
-          - regex: ".*xyz123456.kyma.ondemand.com"
+          - regex: ".*xyz123.kyma.ondemand.com"
           - exact: http://localhost:8080
       ...
     ```
 
     > `exact: http://localhost:8080` is only required if you want to locally test the frontend of your application as part of the [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-mssql.html) tutorial.
 
-6. Apply the APIRule:
+8. Apply the APIRule:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/apirule.yaml
     ```
 
-7. Apply the AuthorizationPolicy:
+9. Apply the AuthorizationPolicy:
 
     ```Shell/Bash
     kubectl -n dev apply -f ./k8s/authorizationpolicy.yaml
