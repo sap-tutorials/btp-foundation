@@ -24,7 +24,7 @@ keywords: kyma
 - You have [enabled Kyma in your subaccount](https://developers.sap.com/tutorials/cp-kyma-getting-started.html).
 - You have added the [Serverless module to your Kyma cluster](https://developers.sap.com/tutorials/cp-kyma-enable-module.html).
 
-### Create a "Hello-World" Kyma Function in Kyma Dashboard
+### Create a "hello-world" Kyma Function in Kyma Dashboard
 
 1. In your Kyma dashboard, go to **Namespaces** and choose the **default** namespace.
    
@@ -55,7 +55,9 @@ keywords: kyma
     - **Host**: `hello-world`
     - **Access Strategy**: `No Auth`
 
-8.  The `hello-rule` APIRule is created. Scroll down to **Virtual Service**, copy the URL under **Hosts**, and paste it in your browser.
+8.  The `hello-world` APIRule is created. Scroll down to **Virtual Service**, copy the URL under **Hosts**, and paste it in your browser.
+
+    ![APIRule Virtual Service](apirule.png)
 
     A browser window opens showing the following result:
 
