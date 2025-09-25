@@ -37,13 +37,13 @@ Congratulations, you are in Kyma dashboard!
 
 ![Your Kyma Dasboard, Cluster Details](kyma_dashboard.png)
 
-### Enable the Serverless module
+### Add the Serverless module
 
 1. In Kyma dashboard choose **Modify Modules**. This view lists your Kyma module.
 
     ![Your Kyma Dasboard, Cluster Details](kyma_modules.png)
 
-    > **Note:** When you enable Kyma, it is provisioned with the default modules added:<br>
+    > **NOTE:** When you enable Kyma, it is provisioned with the default modules added:<br>
     > - The **Istio** module is a service mesh with Kyma-specific configuration.<br>
     > - The **API Gateway** module provides functionalities that allow you to expose and secure APIs.<br>
     > - Within the **SAP BTP Operator** module, BTP Manager installs the SAP BTP service operator that allows you to consume SAP BTP services from your Kubernetes cluster using Kubernetes-native tools.
@@ -61,6 +61,8 @@ Congratulations, you are in Kyma dashboard!
 4. Within the namespace, you may see new menu entries added by the module you just added, in this case go to **Workloads > Functions**, the newly created option that comes with the Serverless module.
 
     ![Functions are now available](workloads_functions.png)
+
+    > **NOTE:** If your module is in the `Ready` state and you still don't see **Workloads > Functions**, refresh your browser.
 
 Congratulations! You added the Serverless module to your Kyma environment. Now you can create serverless Functions in Kyma.
 
