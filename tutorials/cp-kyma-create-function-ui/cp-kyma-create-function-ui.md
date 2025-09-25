@@ -24,7 +24,7 @@ keywords: kyma
 - You have [enabled Kyma in your subaccount](https://developers.sap.com/tutorials/cp-kyma-getting-started.html).
 - You have added the [Serverless module to your Kyma cluster](https://developers.sap.com/tutorials/cp-kyma-enable-module.html).
 
-### Create a "Hello-World" Kyma Function in Kyma Dashboard
+### Create a "hello-world" Kyma Function in Kyma Dashboard
 
 1. In your Kyma dashboard, go to **Namespaces** and choose the **default** namespace.
    
