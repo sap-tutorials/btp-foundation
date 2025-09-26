@@ -58,7 +58,7 @@ You should see a version number.
 2. In your terminal, go to your working folder, and run:
 
     ```bash/Powershell
-    kyma alpha function init
+    kyma function init
     ```
 
     If successful, you get the following message:
@@ -74,7 +74,7 @@ You should see a version number.
 3. To apply your Function to your Kyma runtime, run:
 
     ```bash/Powershell
-    kyma alpha function create hello-function
+    kyma function create hello-function
     ```
    
     If successful, you get the following message: 
@@ -86,7 +86,7 @@ You should see a version number.
 4. To verify the Function deployment, run:
 
     ```bash/Powershell
-    kyma alpha function get hello-function
+    kyma function get hello-function
     ```
    
     If successful, you get the following result:
