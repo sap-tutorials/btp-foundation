@@ -40,7 +40,7 @@ This sample provides a Redis deployment and two Serverless Functions that intera
 
 ### Add the Serverless, Eventing and NATS modules in SAP BTP, Kyma runtime
 
-1. Open Kyma dashboard using the **Console URL** link in SAP BTP cockpit.
+1. Open Kyma dashboard using the **Dashboard URL** link in SAP BTP cockpit.
 
 2. Choose **Modify Modules**, and select **Add**.
 

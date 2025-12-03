@@ -49,7 +49,7 @@ To enable SAP BTP, Kyma runtime on your cluster you must make sure that your sub
 ### Open Kyma dashboard
 
 
-To open Kyma dashboard, click on **Link to dashboard** under the **Kyma Environment** section of the subaccount's Overview page.
+To open Kyma dashboard, select **Dashboard URL** under the **Kyma Environment** section of the subaccount's Overview page.
 
 <!-- border -->![Kyma Free Tier](select_KubeconfigURL.png)
 
