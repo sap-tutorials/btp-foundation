@@ -76,7 +76,7 @@ To obtain kubeconfig from SAP BTP cockpit:
 
 To obtain kubeconfig from Kyma dashboard:   
 
-1. Click on **Link to dashboard** under the **Kyma Environment** section.
+1. Select **Dashboard URL** under the **Kyma Environment** section.
 
 2. Select the dropdown at the top of the Kyma dashboard window, and choose **Clusters Overview**.
 

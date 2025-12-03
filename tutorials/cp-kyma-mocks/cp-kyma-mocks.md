@@ -34,7 +34,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 ### Add the Application Connector module in SAP BTP, Kyma runtime
 
-1. Open Kyma dashboard using the **Console URL** link in SAP BTP cockpit.
+1. Open Kyma dashboard using the **Dashboard URL** link in SAP BTP cockpit.
 
 2. Choose **Modify Modules**, and select **Add**.
 
