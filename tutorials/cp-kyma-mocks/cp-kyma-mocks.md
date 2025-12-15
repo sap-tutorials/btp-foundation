@@ -34,7 +34,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 ### Add the Application Connector module in SAP BTP, Kyma runtime
 
-1. Open Kyma dashboard using the **Console URL** link in SAP BTP cockpit.
+1. Open Kyma dashboard using the **Dashboard URL** link in SAP BTP cockpit.
 
 2. Choose **Modify Modules**, and select **Add**.
 
@@ -111,6 +111,7 @@ The pairing process will establish trust between the Commerce mock application a
 2. Paste the copied value in the token text area and then choose **Connect**. If the token has expired, you may receive an error. Simply return to [Step 4](#create-a-system) and generate a new token.
 
 3. Choose **Register All** to register the APIs and events from the mock application.
+4. Select the info icon and make sure that all APIs and events are successfully registered.
 
 ### Verify setup
 
@@ -120,7 +121,7 @@ The pairing process will establish trust between the Commerce mock application a
 
 3. Choose the **mp-commerce-mock** application by clicking on the name value shown in the list.
 
-    > If you don't see the **mp-commerce-mock** application, restart your Kyma dashboard.
+    > You may need to wait a few minutes to see the **mp-commerce-mock** application. If it still doesn't show, restart your Kyma dashboard by closing the respective browser tab and relaunching the dashboard from your SAP BTP subaccount.
 
 You should now see a list of the APIs and events the mock application is exposing.
 
