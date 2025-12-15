@@ -25,7 +25,7 @@ author_profile: https://github.com/danachkov
 
 ### What are environment variables?
 
-In the context of applications on SAP BTP, environment variables are key-value pairs that store configuration settings. They help you manage and customize app behavior without altering the code.
+In the context of applications on SAP BTP, environment variables are key-value pairs that store configuration settings. They help you manage and customize app behavior without altering the code. 
 
 You can use them to define settings like database connections, API keys, or feature flags. By using environment variables, you ensure that your app remains flexible and adaptable to different environments, such as development, testing, and production.
 
