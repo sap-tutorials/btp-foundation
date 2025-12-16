@@ -10,7 +10,7 @@ author_name: Dragomir Anachkov
 author_profile: https://github.com/danachkov
 ---
 
-
+ 
 ## You will learn
 
 - What an application is
