@@ -4,7 +4,7 @@ description: Learn how to create and manage routes for your applications in the 
 parser: v2
 auto_validation: true
 time: 9
-tags: [tutorial>intermediate, software-product>sap-business-technology-platform, software-product-function>sap-btp-cockpit]
+tags: [tutorial>intermediate, software-product>sap-business-technology-platform, software-product-function>sap-btp-cockpit, software-product>sap-btp--cloud-foundry-environment]
 primary_tag: software-product-function>sap-btp-cockpit
 author_name: Dragomir Anachkov
 author_profile: https://github.com/danachkov

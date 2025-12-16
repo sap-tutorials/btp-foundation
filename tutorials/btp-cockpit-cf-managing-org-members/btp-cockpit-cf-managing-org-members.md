@@ -4,7 +4,7 @@ description: Learn how to manage org members in the SAP BTP cockpit. You will as
 parser: v2
 auto_validation: true
 time: 11
-tags: [tutorial>beginner, software-product>sap-business-technology-platform, software-product-function>sap-btp-cockpit]
+tags: [tutorial>beginner, software-product>sap-business-technology-platform, software-product-function>sap-btp-cockpit, software-product>sap-btp--cloud-foundry-environment]
 primary_tag: software-product-function>sap-btp-cockpit
 author_name: Dragomir Anachkov
 author_profile: https://github.com/danachkov
