@@ -1,9 +1,8 @@
 ---
 parser: v2
 auto_validation: true
-author_name: Anna Wenger
-author_profile: https://github.com/annawenger20
-created_by: Anna Wenger
+author_name: Christian Lechner
+author_profile: https://github.com/lechnerc77
 time: 15
 tags: [ tutorial>beginner, topic>cloud, software-product-function>sap-btp-command-line-interface]
 primary_tag: software-product>sap-business-technology-platform
@@ -30,7 +29,7 @@ keywords: btp, btp cli, btpcli, command line, command line interface, command li
 
 ### What is the btp CLI?
 
-The btp CLI is **an alternative to the cockpit** for users who prefer working on the command line. It consists of a client and a server. The client is installed on your computer and it interacts with SAP BTP through a server. You connect to this CLI server (https://cli.btp.cloud.sap/) when you log on to your global account through the btp CLI.
+The btp CLI is **an alternative to the cockpit** for users who prefer working on the command line. It consists of a client and a server. The client is installed on your computer and it interacts with SAP BTP through a server. You connect to this CLI server ([https://cli.btp.cloud.sap/](https://cli.btp.cloud.sap/)) when you log on to your global account through the btp CLI.
 
 The base call to enter on the command line is `btp`.
 
@@ -41,8 +40,8 @@ Here are some of the tasks you can use the btp CLI for:
 - Managing users and their authorizations in global accounts and subaccounts
 - Subscribing to applications
 - Consuming services that are decoupled from the existing environments (referred to as "Other" environment in the Discovery Center), see [Consuming Services in Other Environments Using SAP Service Manager](https://help.sap.com/docs/SERVICEMANAGEMENT/09cc82baadc542a688176dce601398de/0714ac254e83492281d95e25548b388c.html)
-- Managing Destinations
-- Managing security settings and trust configuration on global account and subaccount level
+
+
 
 
 ### For which global accounts can I use the btp CLI?
@@ -67,63 +66,31 @@ Kyma: The same goes for Kyma: You use the btp CLI for all tasks on global accoun
 
 ### Download and install the btp CLI client
 
-Depending on your operating systems you have the following options to download and install the client:
+1. Go to the <a href="https://tools.hana.ondemand.com/#cloud-btpcli">SAP Development Tools</a> page to download the latest version of the btp CLI client for your operating system.
+2. Extract the client executable from the tar.gz archive as follows:
+    - Linux: Use the terminal to extract the tar.gz archive with `tar -vxzf <tar.gz name>`
+    - macOS: Open the tar.gz file with a double click.
+    - Windows: Use PowerShell to extract the tar.gz archive with `tar -vxzf <tar.gz name>`. Alternatively, use an external tool to extract the executable file to your system.
+3. Copy the client executable from the unpacked folder to a directory of your choice. We recommend the following:
+    - Linux: `/usr/local/bin`
+    - macOS: `/usr/local/bin`
+    - Windows: `C:/Users/<your-user>`
+4. Ensure that the directory with the btp executable is in your PATH.
+    - macOS and Linux: Start the terminal and try executing `btp`. The above-mentioned location should be part of your PATH by default.
+    - Windows: We recommend to add the location of the btp.exe to your path. In Windows search, enter "System Properties" and, under **Advanced**, open **Environment Variables**. Under **User variables**, open **Path** and add the file location of the btp.exe (C:\Users\<your-user>). Now you can run the btp CLI by entering `btp`into Command Prompt or PowerShell.
+5. Open a terminal and enter `btp`.
 
-[OPTION BEGIN [On Windows]]
-
-You can use `winget` to install the btp CLI client on Windows. To do so, open PowerShell and enter:
-
-```Shell
-winget install SAP.btp --source winget
-```
-
-As an alternative you can also use our install script. To do so, open PowerShell and enter:
-
-```Shell
-Invoke-RestMethod https://cli.btp.cloud.sap/btpcli-install.ps1 | Invoke-Expression
-```
-
-[OPTION END]
-
-
-[OPTION BEGIN [On Mac]]
-
-You can use `brew` to install the btp CLI client on macOS. To do so, open a Terminal and enter:
-
-```Shell
-brew install --cask btp
-```
-
-As an alternative you can also use our install script. To do so, open a Terminal and enter:
-
-```Shell
-curl https://cli.btp.cloud.sap/btpcli-install.sh | zsh
-```
-
-You can of course also use bash instead of zsh, just replace `| zsh` with `| bash`.
-
-[OPTION END]
-
-
-[OPTION BEGIN [On Linux]]
-
-You can use our install script to install the btp CLI client on Linux. To do so, open a Terminal and enter:
-
-```Shell
-curl https://cli.btp.cloud.sap/btpcli-install.sh | bash
-```
-
-[OPTION END]
-
-To validate the installation, key in the command `btp`. The output should look similar to this screenshot:
+The output should look similar to this screenshot:
 
 ![CLI info screen](sapcp.png)
+
+
 
 ### Display help
 
 Now type in the following to get syntax instructions and examples help calls:
 
-```Shell
+```Bash
 btp help
 ```
 
@@ -144,27 +111,27 @@ You can call up help in the client on different levels, from an introductory hel
 
 ### Log in to your global account
 
-Now let's log in:
+Now let's log in: 
 
-The **CLI server URL** (https://cli.btp.cloud.sap/) is proposed at login - just accept it with ENTER. This server routes client requests to the platform services.
+The **CLI server URL** (https://cli.btp.cloud.sap/) is proposed at login - just accept it with ENTER. This server routes client requests to the platform services. 
 
 You have two options for login:
 
 We recommend to login with single sign-on through a browser. To do this, use:
 
-```Shell
+```Bash
 btp login --sso
 ```
 
 For login on the command-line, use:
 
-```Shell
+```Bash
 btp login
 ```
 
-If you have enabled Two-Factor-Authentication, you need to append the token to your password.
+If you have enabled Two-Factor-Authentication, you need to append the token to your password. 
 
-Once you're authenticated, you will automatically be logged in to your global account. If you have access to more than one global account, the CLI will display a list of global accounts  from which you can select one.
+Once you're authenticated, you will automatically be logged in to your global account. If you have access to more than one global account, the CLI will display a list of global accounts  from which you can select one. 
 
 When you're logged in, it should look similar to this:
 
@@ -178,7 +145,7 @@ Each command starts with the base call `btp`. The syntax of the command itself i
 
 Additionally, **options** and **parameters** can be added to a command. As you've seen in the overview of all commands, there are the following options that you can add at the beginning of each command. For example, to use the verbose mode.
 
-```Shell
+```Bash
 btp --verbose list accounts/subaccount
 ```
 
@@ -190,34 +157,34 @@ btp --verbose list accounts/subaccount
 
 For example:
 
-```Shell
+```Bash
 btp assign security/role-collection "Global Account Administrator" --to-user example@mail.com --of-idp my-idp
 ```
 
 "Global Account Administrator" is the positional parameter, and the other two parameters have keys (`--to-user` and `--of-idp`).
 
 
-### Understand the context you've targeted
+### Understand the context you've targeted 
 
-Your first login takes you into a global account. Now, all commands are executed on global account level, unless you specify a different context. Remember you can manage the global account and its directories and subaccounts with the btp CLI. So if you want to change the context in which commands are executed to a directory or a subaccount, you can do so using the `btp target` command. There are three different ways of using this command:
+Your first login takes you into a global account. Now, all commands are executed on global account level, unless you specify a different context. Remember you can manage the global account and its directories and subaccounts with the btp CLI. So if you want to change the context in which commands are executed to a directory or a subaccount, you can do so using the `btp target` command. There are three different ways of using this command: 
 
-To select a target from the children and parent of the current target, and to navigate up and down the account hierarchy, use:
+To select a target from the children and parent of the current target, and to navigate up and down the account hierarchy, use: 
 
-```Shell
+```Bash
 btp target
 ```
 
 To select a target from the entire account hierarchy of all of your global accounts and their directories and subaccounts, use:
 
-```Shell
+```Bash
 btp target --hierarchy
 ```
-Tip: If you like the `--hierarchy` parameter, you can make it your default with `btp set config --target.hierarchy true`. See [Change Configuration Settings](https://help.sap.com/docs/btp/sap-business-technology-platform/change-configuration-settings).
+Tip: If you like the `--hierarchy` parameter, you can make it your default with `btp set config --target.hierarchy true`. See [Change Configuration Settings](https://help.sap.com/docs/btp/sap-business-technology-platform/change-configuration-settings). 
 
 To set a target by specifying it as a parameter, use:
 
-```Shell
-btp target [--subaccount <ID> | --directory <ID> | --global-account <SUBDOMAN>]
+```Bash
+btp target [--subaccount <ID> | --directory <ID> | --global-account <SUBDOMAN>] 
 ```
 
 The targeting mechanism works according to the hierarchy of entities in the global account:
@@ -235,27 +202,18 @@ The targeting mechanism works according to the hierarchy of entities in the glob
 
 ### Enable command autocompletion
 
+
 We recommend to enable command autocompletion so you won't have to remember or keep looking up individual commands. Command autocompletion saves you keystrokes when entering command actions, group-object combinations, and their parameters. Autocompletion is supported for  Bash, PowerShell, and Zsh.
 
-You enable the autocomplete feature by running the following command and specifying your shell:
-
-```Shell
+```Bash
 btp enable autocomplete <SHELL>
 ```
-
-Valid values for `<SHELL>` are `bash`, `powershell`, or `zsh`.
-
-Make sure to reload your shell after enabling autocompletion, so the changes take effect. You can then start using autocompletion right away in your current session.
 Enter a partial command action, group-object combination, or parameter, and then press the Tab key. The command line either automatically completes your command or, when there's more than one option available, it displays a list of suggested command actions/options/parameters. When a suggestion list is displayed, use the Tab or arrow keys to move through the list and press Enter to make a selection.
 
 When you enable command autocompletion, a script containing all the autocomplete commands is downloaded and installed in your file system. Additionally, the RC file of your shell is modified so the script is called at startup.
 
-The autocompletion option remains enabled in future sessions in your current client, until you disable it. To disable command autocompletion and uninstall the autocomplete script, run:
+The autocompletion option remains enabled in future sessions in your current client, until you disable it. To disable command autocompletion and uninstall the autocomplete script, run `disable autocomplete <shell>`.
 
-```Shell
-btp disable autocomplete <SHELL>
-```
-Replace `<SHELL>` with the shell for which you want to disable autocompletion, i.e. `bash`, `powershell`, or `zsh`.
 
 
 ### Try it out and get more information
@@ -278,6 +236,6 @@ To learn more:
 
 
 ---------------------
-You're invited to share your feedback with the development team: Run the `btp feedback` command to open a survey. Thanks a lot in advance!
+You're invited to share your feedback with the development team: Run the `btp feedback` command to open a short survey, or, if you have more time and more feedback to share, fill out this [long UX survey about the btp CLI](https://sapinsights.eu.qualtrics.com/jfe/form/SV_57M3WwXoca0sito?Product_filter=btp%20CLI%25source=SAP_Community). Thanks a lot in advance!  
 
 ---
