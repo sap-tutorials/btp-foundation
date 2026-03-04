@@ -1,6 +1,7 @@
 ---
 parser: v2
-author_name: Anna Wenger
+author_name: Christian Lechner
+author_profile: https://github.com/lechnerc77
 time: 30
 tags: [tutorial>beginner, topic>cloud, software-product>sap-business-technology-platform, software-product-function>sap-btp-command-line-interface]
 primary_tag: software-product>sap-business-technology-platform
