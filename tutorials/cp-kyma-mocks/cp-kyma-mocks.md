@@ -54,7 +54,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
     > Toggling the **Enable Sidecar Injection** button allows the Istio service mesh to inject the Envoy sidecar proxy into Pods located in this namespace.
 
-3. Depending on your scenario, open the `postgres-dev` or `dev` namespace, if it is not already open, and choose **Upload YAML**. 
+3. Open the or `dev` namespace, if it is not already open, and choose **Upload YAML**. 
 
 4. Either copy the contents of the file `kyma-runtime-extension-samples/commerce-mock/deployment/k8s.yaml` into the window or use the upload option. Notice that this file contains the resource definitions for the Deployment as well as the Service and the Persistent Volume Claim.
 
