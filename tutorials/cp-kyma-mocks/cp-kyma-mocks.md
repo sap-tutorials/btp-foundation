@@ -44,6 +44,8 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 ### Apply resources to SAP BTP, Kyma runtime
 
+> If you're working on the **Develop a Full-Stack Application in SAP BTP, Kyma Runtime** mission, you can use namespace created before (`dev`) and go directly to point 3.
+
 1. In your Kyma dashboard, go to **Namespaces** and choose **Create**.
 
 2. Provide the name `dev`, toogle the **Enable Sidecar Injection** button, and choose **Create**.
@@ -52,7 +54,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
     > Toggling the **Enable Sidecar Injection** button allows the Istio service mesh to inject the Envoy sidecar proxy into Pods located in this namespace.
 
-3. Open the `dev` Namespace, if it is not already open, and choose **Upload YAML**. 
+3. Depending on your scenario, open the `postgres-dev` or `dev` namespace, if it is not already open, and choose **Upload YAML**. 
 
 4. Either copy the contents of the file `kyma-runtime-extension-samples/commerce-mock/deployment/k8s.yaml` into the window or use the upload option. Notice that this file contains the resource definitions for the Deployment as well as the Service and the Persistent Volume Claim.
 
@@ -63,6 +65,7 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
     * **Name:** `commerce-mock`
     * **Service Name:** `commerce-mock`
     * **Host:** `commerce`
+    * **Port:** `10000`
     * **Access Strategy:** `No Auth`
 
 7. Mark the **GET** and **POST** methods, and choose **Create** to create the APIRule.
@@ -115,7 +118,7 @@ The pairing process will establish trust between the Commerce mock application a
 
 ### Verify setup
 
-1. In your Kyma dashboard, go to **Cluster Details**.
+1. In your Kyma dashboard, go to **Cluster Overview**.
 
 2. Choose **Integration > Applications**.
 
