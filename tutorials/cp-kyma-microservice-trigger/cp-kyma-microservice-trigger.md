@@ -13,15 +13,15 @@ primary_tag: software-product>sap-btp--kyma-runtime
  - [`kubectl` configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
  - [Eventing and NATS modules enabled](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module)
  - [Kyma Eventing backend configured](https://help.sap.com/docs/btp/sap-business-technology-platform/choose-backend-for-kyma-eventing)
- - [Deploy a Go MSSQL API Endpoint in SAP BTP, Kyma Runtime](cp-kyma-api-mssql-golang) tutorial completed
- - [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-mssql.html) tutorial completed
+ - [Deploy a Go PostgreSQL API Endpoint in SAP BTP, Kyma Runtime](cp-kyma-api-postgres-golang) tutorial completed
+ - [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-postgres.html) tutorial completed
  - [Deploy the Commerce Mock Application in SAP BTP, Kyma Runtime](cp-kyma-mocks) tutorial completed
 
 ## You will learn
   - How to trigger a microservice with an event
 
 ## Intro
-This tutorial relies on the Commerce mock application to publish events into SAP BTP, Kyma runtime. After binding the commerce mock application to the `dev` namespace, we will create a service instance of the SAP Commerce Cloud - Events. The service instance will allow for any microservice or lambda function within the `dev` namespace to subscribe to these events by defining an event subscription. The subscription pairs an event source, the commerce mock application, and the event type, **order.created**, to a subscriber which in this case will be the Go MSSQL API microservice.
+This tutorial relies on the Commerce mock application to publish events into SAP BTP, Kyma runtime. After binding the commerce mock application to the `dev` namespace, we will create a service instance of the SAP Commerce Cloud - Events. The service instance will allow for any microservice or lambda function within the `dev` namespace to subscribe to these events by defining an event subscription. The subscription pairs an event source, the commerce mock application, and the event type, **order.created**, to a subscriber which in this case will be the Go PostgreSQL API microservice.
 
 ---
 
@@ -37,7 +37,7 @@ This tutorial relies on the Commerce mock application to publish events into SAP
 
 ### Explore the sample
 
-1. Open the `api-mssql-go` directory in your local editor.
+1. Open the `api-postgresql-go` directory in your local editor.
 
 2. Explore the content of the sample.
 
@@ -48,11 +48,11 @@ This tutorial relies on the Commerce mock application to publish events into SAP
 | Property                                | Description                                                   | Value                                                         |
 |-----------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|
 | **spec.filter.filters.eventType.value**     | The event source and version to subscribe to                  | `sap.kyma.custom.mp-commerce-mock.order.created.v1`             |
-| **spec.sink**                               | The URI endpoint of the service that receives the event       | `http://api-mssql-go.dev.svc.cluster.local:80/orderCodeEvent` |
+| **spec.sink**                               | The URI endpoint of the service that receives the event       | `http://api-postgresql-go.dev.svc.cluster.local:80/orderCodeEvent` |
 
 ### Apply an event subscription
 
-In this step, you will define an event subscription used to create an event subscriber. This allows you to specify that your `api-mssql-go` API application, by referencing its service, should receive the payload of the **order.created** event.
+In this step, you will define an event subscription used to create an event subscriber. This allows you to specify that your `api-postgresql-go` API application, by referencing its service, should receive the payload of the **order.created** event.
 
 1. Apply the subscription by running the following command in the CLI:
 
@@ -63,7 +63,7 @@ In this step, you will define an event subscription used to create an event subs
 2. Verify that the subscription was created successfully by running this command:
 
     ```Shell/Bash
-    kubectl get subscription api-mssql-go-event-sub -n dev -o yaml
+    kubectl get subscription api-postgresql-go-event-sub -n dev -o yaml
     ```
 
     After the event subscription definition, find a status object indicating the status of the related resources:
@@ -102,8 +102,8 @@ With the configuration steps completed, you can now test the scenario to validat
 
 7. In Kyma dashboard, choose **Discovery and Network > API Rules** from the menu.
 
-8. Choose the **Host** entry for the **fe-ui5-mssql** APIRule to open the application in the browser. This should be similar to:
-`https://fe-ui5-mssql.*******.kyma.ondemand.com`
+8. Choose the **Host** entry for the **fe-ui5-postgresql** APIRule to open the application in the browser. This should be similar to:
+`https://fe-ui5-postgresql.*******.kyma.ondemand.com`
 
 9. You should now see the data received by the event as shown below:
 
