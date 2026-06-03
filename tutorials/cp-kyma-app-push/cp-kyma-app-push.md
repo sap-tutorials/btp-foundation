@@ -113,6 +113,7 @@ In this tutorial, you will deploy a Spring Boot REST API for managing movies, ba
     ```
 
     What happens under the hood:
+
     - Source code is built into a container image using [Cloud Native Buildpacks](https://buildpacks.io/) (Paketo). No Dockerfile is required — Buildpacks detect `pom.xml` and automatically build a Java application with the correct JDK.
     - The image is pushed to the in-cluster Docker Registry.
     - A Deployment, Service, and APIRule are created.
