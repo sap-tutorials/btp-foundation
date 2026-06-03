@@ -16,8 +16,8 @@ For this tutorial, we use a Spring Boot application that exposes a REST API for 
  - [Kyma CLI](https://help.sap.com/docs/btp/sap-business-technology-platform/kyma-cli?locale=en-US#install-kyma-cli) installed
  - [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
  - [Git](https://git-scm.com/downloads) installed
- - [Add the Istio, API Gateway, and BTP Operator Kyma modules](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module?locale=en-US#adding-a-kyma-module), if not added by default
-   - The Docker Registry community module (added)(https://kyma-project.io/external-content/community-modules/docs/user/README.html#quick-install)
+ - [Add the Istio, API Gateway, and SAP BTP Operator Kyma modules](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module?locale=en-US#adding-a-kyma-module), if not added by default
+- Add the [Docker Registry community module](https://kyma-project.io/external-content/community-modules/docs/user/README.html#quick-install)
 
 ## You will learn
   - How to go from source code to a running, externally accessible application on Kyma runtime in a single command
@@ -65,7 +65,7 @@ In this tutorial, you will deploy a Spring Boot REST API for managing movies, ba
     kubectl create namespace dev
     ```
 
-    > Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace requires adjustments to the provided samples.
+    > **NOTE:** Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace requires adjustments to the provided samples.
 
 2. Create the Object Store ServiceInstance and ServiceBinding:
 
@@ -122,7 +122,7 @@ In this tutorial, you will deploy a Spring Boot REST API for managing movies, ba
 
 ### Verify the deployment
 
-1. Once kyma app push completes, it prints the app URL:
+1. Once `kyma app push` completes, it prints the app URL:
 
     ```Shell/Bash
     The movies-rest app is available under the
