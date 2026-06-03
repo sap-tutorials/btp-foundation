@@ -7,7 +7,7 @@ primary_tag: software-product>sap-btp--kyma-runtime
 ---
 
 # Fast Prototyping in SAP BTP, Kyma Runtime Using App Push
-<!-- description --> Deploy a containerized application to SAP BTP, Kyma runtime in a single CLI command using `kyma app push`, with no Dockerfile or external container registry needed.
+<!-- description --> Deploy a containerized application to SAP BTP, Kyma runtime in a single CLI command using kyma app push, with no Dockerfile or external container registry needed.
 
 For this tutorial, we use a Spring Boot application that exposes a REST API for managing movies, storing data in BTP Object Store.
 
