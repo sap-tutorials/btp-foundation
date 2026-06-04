@@ -1,6 +1,6 @@
 ---
 parser: v2
-author_name: Gergana Tsakova
+author_name: Gergana Coffman
 author_profile: https://github.com/Joysie
 title: Create an Application with SAP Java Buildpack 2
 description: Create a simple Spring Boot application and enable services for it, by using SAP Java Buildpack 2 and Cloud Foundry Command Line Interface (cf CLI).
@@ -75,7 +75,7 @@ Before creating an application, you need a Java project. For this tutorial, you 
 
 1. Open: `https://start.spring.io`
 
-2. From the configuration screen, choose `Maven Project`, language `Java`, and Spring Boot version `3.3.5 `.
+2. From the configuration screen, choose `Maven Project`, language `Java`, and Spring Boot version `3.5.x `.
 
 3. From `Project Metadata` section, you need to do the following settings:
 
@@ -83,13 +83,11 @@ Before creating an application, you need a Java project. For this tutorial, you 
 
     - **Artifact**: `java-tutorial`
 
-    - **Name**: `HelloWorld`
-
-    - **Description**: `A simple HelloWorld Java project`
-
     - **Package name**: `com.example.java-tutorial`
 
     - **Packaging**: `Jar`
+
+    - **Configuration**: `YAML`
 
     - **Java**: `21`
 
@@ -140,9 +138,9 @@ For this part, you need to configure your `HelloWorld` application, add an extra
 
     The `manifest.yml` file represents the configuration describing your application and how it will be deployed to Cloud Foundry.
 
-    > **IMPORTANT**: Make sure you don't have another application with the name `helloworld` in your space! If you do, use a different name and adjust the whole tutorial according to it.
+    > **IMPORTANT**: Make sure you don't have another application with the name `helloworld` in your space. If you do, use a different name and adjust the whole tutorial according to it.
 
-3. Navigate to `src\main\java\com.example.javatutorial` and open the `HelloWorldApplication.java` file.
+3. Navigate to `src\main\java\com\example\java_tutorial` and open the `JavaTutorialApplication.java` file.
 
 4. In the `public static void main` class, add the following line: 	`System.out.println("Hello World!");`
 
@@ -156,23 +154,21 @@ For this part, you need to configure your `HelloWorld` application, add an extra
     import org.springframework.boot.autoconfigure.SpringBootApplication;
 
     @SpringBootApplication
-    public class HelloWorldApplication {
+    public class JavaTutorialApplication {
 
     	public static void main(String[] args) {
-    		SpringApplication.run(HelloWorldApplication.class, args);
+    		SpringApplication.run(JavaTutorialApplication.class, args);
     		System.out.println("Hello World!");
     	}
 
     }
     ```
 
-5. Navigate to `src/main/java` and go to the `com.example.java_tutorial` package.
+5. Navigate to `...\java_tutorial` and from its context menu, choose `New Java File` > `Class`.
 
-6. From its context menu, choose `New Java File` > `Class`.
+6.  Enter `MainController` and press the `ENTER` key. The new class appears in the project navigation.
 
-7.  Enter `MainController` and press the `ENTER` key. The new class appears in the project navigation.
-
-8.  Replace its default content with the following code:
+7.  Replace its default content with the following code:
 
     ```Java
 
@@ -207,7 +203,7 @@ Your Java project is complete and your application is ready to be deployed.
 ### Deploy your Java application
 
 
-1. Test your project locally first. To do that, in the Visual Studio Code, right-click on `HelloworldApplication.java` and choose `Run Java`.
+1. Test your project locally first. To do that, in the Visual Studio Code, right-click on `JavaTutorialApplication.java` and choose `Run Java`.
 
     The final result displayed in the `Terminal` tab should be: **Hello World!**  
 
@@ -227,7 +223,7 @@ Your Java project is complete and your application is ready to be deployed.
 
     This command deploys your Java application.
 
-    > Make sure you always run `cf push` in the folder where the `manifest.yml` file is located! In this case, that's `java-tutorial`.
+    > Make sure you always run `cf push` in the folder where the `manifest.yml` file is located. In this case, that's `java-tutorial`.
 
 4. When the staging and deployment steps are completed, the `helloworld` application should be successfully started and its details displayed in the command console.
 
@@ -444,7 +440,7 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 - A simple page with title `Java Tutorial` is displayed. When you click the `My Java Application` link, the output of your `helloworld` application is displayed.
 
-- Check that the `helloworld` application is not directly accessible without authentication. To do that, refresh its previously loaded URL in a web browser – you should get a response `401 Unauthorized`.
+- Check that the `helloworld` application is still directly accessible. To do that, refresh its previously loaded URL in a web browser.
 
 
 
@@ -455,13 +451,11 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 Authorization in the SAP BTP, Cloud Foundry environment is also provided by the Authorization and Trust Management (XSUAA) service. In the previous example, the `@sap/approuter` package was added to provide a central entry point for the business application and to enable authentication. Now to extend the example, authorization will be added.
 
-1. Navigate to `src/main/java` and go to the `com.example.java_tutorial` package.
+1. Navigate to `...\java_tutorial` and and from its context menu, choose `New Java File` > `Class`.
 
-2. From its context menu, choose `New Java File` > `Class`.
+2. Enter `WebSecurityConfig.java` and press the `ENTER` key. The new class appears in the project navigation.
 
-3. Enter `WebSecurityConfig.java` and press the `ENTER` key. The new class appears in the project navigation.
-
-4. Replace its default content with the following code:
+3. Replace its default content with the following code:
 
     ```Java
     package com.example.java_tutorial;
@@ -487,7 +481,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     	@Autowired
     	XsuaaServiceConfiguration xsuaaServiceConfiguration;
 
-        @SuppressWarnings({ "removal", "deprecation" })
+        @SuppressWarnings({ "removal" })
     	@Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -522,7 +516,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     }
     ```
 
-5. In the same way, create another Java class, named `NotAuthorizedException.java`, and replace its default content with the following code:
+4. In the same way, create another Java class, named `NotAuthorizedException.java`, and replace its default content with the following code:
 
     ```Java
     package com.example.java_tutorial;
@@ -539,7 +533,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     }
     ```
 
-6. Open the `MainController.java` file and replace its content with the following:
+5. Open the `MainController.java` file and replace its content with the following:
 
     ```Java
     package com.example.java_tutorial;
@@ -569,7 +563,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     }
     ```
 
-7. To introduce an application role, open the `xs-security.json` in the `java-tutorial` folder, and add the necessary scope `Display` and role template `Viewer`, as follows:
+6. To introduce an application role, open the `xs-security.json` in the `java-tutorial` folder, and add the necessary scope `Display` and role template `Viewer`, as follows:
 
     ```JSON
     {
@@ -600,19 +594,19 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
     ```
 
 
-8. Update the XSUAA service. To do that, in the `java-tutorial` directory run:
+7. Update the XSUAA service. To do that, in the `java-tutorial` directory run:
 
     ```Bash/Shell
     cf update-service javauaa -c xs-security.json
     ```
 
-9. Then build your project again, by running:
+8. Build your project again, by running:
 
     ```Bash/Shell
     mvn clean install
     ```
 
-10. And finally, run:
+9. Finally, run:
 
     ```Bash/Shell
     cf push helloworld
@@ -620,12 +614,12 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
     This command will redeploy only the `helloworld` application. No changes have been made in `web` so no need to redeploy it.
 
-11. Try to access `helloworld` again (in a browser) in both ways – directly, and through the `web` application router.
+10. Try to access `helloworld` again (in a browser) in both ways – directly, and through the `web` application router.
 
 
 #### RESULT
 
-- If you try to access it directly, a `401 Unauthorized` response is still displayed due to lack of authorization token (expected behavior).
+- If you try to access it directly, a `401 Unauthorized` response is displayed due to lack of authorization token (expected behavior).
 
 - If you try to access it through the app router, it results in a `403 Forbidden` response due to missing permissions. To get these permissions, you need to create a role collection containing the role `Viewer` and assign this role to your user. You can do this only from the SAP BTP cockpit.
 
@@ -645,7 +639,7 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 5. In the `Roles` tab, click the `Role Name` field.
 
-6. Type **Viewer**. From the displayed results, select the `Viewer` role that corresponds to your application, and choose `Add`.
+6. Type **Viewer**. From the displayed results, select the `Viewer` role that corresponds to your `helloworld!xxx` application. Choose `Add`.
 
 7. Now go to the `Users` tab, and in the `ID` field, enter your e-mail. Then enter the same e-mail in the `E-Mail` field.
 
@@ -653,9 +647,8 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
     > Your role collection is assigned to your user and contains the role you need to view the content of your application.
 
-    Now you need to apply these changes to the `web` application by building and redeploying it again.
 
-9. Go back to the command line, and in the `java-tutorial` directory, run:
+9. Now you need to apply these changes to the `web` application by building and redeploying it again. To do that, go back to the command line, and in the `java-tutorial` directory, run:
 
     ```Bash/Shell
     mvn clean install

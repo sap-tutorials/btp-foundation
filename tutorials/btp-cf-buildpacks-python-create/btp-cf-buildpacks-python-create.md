@@ -1,6 +1,6 @@
 ---
 parser: v2
-author_name: Gergana Tsakova
+author_name: Gergana Coffman
 author_profile: https://github.com/Joysie
 title: Create an Application with Cloud Foundry Python Buildpack 
 description: Create a simple Python application and enable services for it, by using  the Cloud Foundry Python Buildpack and Cloud Foundry Command Line Interface (cf CLI).
@@ -81,7 +81,7 @@ You need to fulfill this prerequisite step first in order to create an SAP HANA 
     Your new SAP HANA Cloud instance is in status `Starting`. Wait until it changes to `Running`.
 
 
-> **Next Steps**  You can move on with the rest of the tutorial. From now on, you will only need a command-line console and IDE. 
+> **Next Steps!**  You can move on with the rest of the tutorial. From now on, you will only need a command-line console and IDE. 
 
 
 ### Log on to SAP BTP

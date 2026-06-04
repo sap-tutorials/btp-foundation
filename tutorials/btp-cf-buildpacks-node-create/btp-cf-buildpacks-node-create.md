@@ -1,6 +1,6 @@
 ---
 parser: v2
-author_name: Gergana Tsakova
+author_name: Gergana Coffman
 author_profile: https://github.com/Joysie
 title: Create an Application with Cloud Foundry Node.js Buildpack 
 description: Create a simple Node.js application and enable services for it, by using  the Cloud Foundry Node.js buildpack and Cloud Foundry Command Line Interface (cf CLI).
