@@ -124,7 +124,7 @@ curl -o kubeconfig.yaml https://kyma-env-broker.cp.kyma.cloud.sap/kubeconfig/<EN
 
 
 
-### Provide kubeconfig.yaml to Kyma
+### Make kubeconfig.yaml Accessible to kubectl
 
 For your convenience, expose the `kubeconfig` as an environment variable or add the location of kubeconfig.yaml to your path in the system variables. The environment variable is session-based, whereas the path is saved permanently.
 
