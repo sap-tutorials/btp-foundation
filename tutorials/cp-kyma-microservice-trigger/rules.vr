@@ -1,0 +1,25 @@
+[VALIDATE_3]
+###Rule
+exact-match
+
+###Question
+What status indicates that all of the related resources of the subscription are ready?
+
+###Match
+True
+
+[VALIDATE_3]
+
+[VALIDATE_4]
+###Rule
+single-choice
+
+###Question
+What property of a subscription definition is used to specify the application which publishes the events?
+
+###Match
+[ ] The property spec.filter.subscriber.name
+[x] The property spec.filter.filters.eventType.value
+[ ] spec.sink
+
+[VALIDATE_4]

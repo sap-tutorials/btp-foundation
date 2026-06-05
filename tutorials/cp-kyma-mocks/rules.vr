@@ -1,0 +1,27 @@
+[VALIDATE_5]
+###Rule
+single-choice
+
+###Question
+What is the function of a Formation?
+
+###Match
+[ ] To configure a runtime.
+[ ] To pair an application to the SAP Cloud Platform.
+[x] To connect one or more systems to a runtime.
+
+[VALIDATE_5]
+
+[VALIDATE_6]
+###Rule
+multiple-choice
+
+###Question
+What is the purpose of pairing an application? (Multiple answers are correct)
+
+###Match
+[x] To establish a trust between a system and the SAP Kyma runtime.
+[x] To register APIs and events to a runtime.
+[x] To simplify the connectivity between the SAP Kyma runtime and external systems.
+
+[VALIDATE_6]

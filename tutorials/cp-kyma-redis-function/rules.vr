@@ -1,0 +1,25 @@
+[VALIDATE_7]
+###Rule
+exact-match
+
+###Question
+What is the status of the function after it successfully builds?
+
+###Match
+Running
+
+[VALIDATE_7]
+
+[VALIDATE_10]
+###Rule
+single-choice
+
+###Question
+What process exposes the Events and APIs of a connected system to a namespace?
+
+###Match
+[x] The binding of the application to the namespace
+[ ] The creating of the service instance
+[ ] The creation of a formation
+
+[VALIDATE_10]

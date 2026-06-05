@@ -1,0 +1,25 @@
+[VALIDATE_3]
+###Rule
+exact-match
+
+###Question
+Enter the code to get the kubectl command line tool version.
+
+###Match
+kubectl version --client
+
+[VALIDATE_3]
+
+[VALIDATE_5]
+###Rule
+single-choice
+
+###Question
+What is the kubeconfig file used for?
+
+###Match
+[ ] To administrate the SAP BTP from the command line
+[x] To configure access to SAP BTP, Kyma runtime from the command line tool
+[ ] To administrate SAP BTP, Cloud Foundry runtime
+
+[VALIDATE_5]
