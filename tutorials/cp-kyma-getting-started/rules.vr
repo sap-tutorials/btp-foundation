@@ -1,0 +1,11 @@
+[VALIDATE_2]
+###Rule
+exact-match-precise
+
+###Question
+Which kind of cluster is Kyma?
+
+###Match
+Kubernetes
+
+[VALIDATE_2]
