@@ -1,0 +1,40 @@
+[VALIDATE_1]
+###Rule
+multiple-choice
+
+###Question
+To develop your CAP application, which development configuration should you choose in SAP Business Application Studio?
+
+###Match
+[ ] Full-Stack Java
+[ ] Full-Stack ABAP
+[x] Full-Stack Node.JS
+
+[VALIDATE_1]
+
+[VALIDATE_4]
+###Rule
+multiple-choice
+
+###Question
+True or False? The **npm i** command adds the **package.json** file.
+
+###Match
+[ ] True
+[x] False
+
+[VALIDATE_4]
+
+[VALIDATE_5]
+###Rule
+multiple-choice
+
+###Question
+Which file do you need to update to add the Fiori preview?
+
+###Match
+[ ] node_modules
+[x] package.json
+[ ] ams
+
+[VALIDATE_5]
