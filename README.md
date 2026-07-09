@@ -21,5 +21,5 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 ## Licensing
 
-© 2023-2025 SAP SE or an SAP affiliate company and btp-foundation contributors. Please see our [`LICENSE.txt`](LICENSE.txt) file for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available via the REUSE tool (link to https://api.reuse.software/info/github.com/SAP/btp-foundation)
+The tutorials in this repository are provided under the Terms & Conditions set out in the [`LICENSE.txt`](LICENSE.txt) file.
 
