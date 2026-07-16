@@ -213,20 +213,20 @@ To enable other subaccounts to subscribe to your application, you need to implem
 4. To be able to read the body of those calls, add the body parser module at line 9 of the `index.js` file.
 
     ```JavaScript
-    const bodyParser = require('body-parser')
-    app.use(bodyParser.json())
+     const bodyParser = require('body-parser')
+     app.use(bodyParser.json())
     ```
 
 5. Add the body parser module as a dependency to the `product list/myapp/package.json` file.
 
     ```JSON
-    "dependencies": {
-      "express": "^4.17.1",
-      "@sap/xsenv": "^3.1.0",
-      "@sap/xssec": "^3.0.10",
-      "passport": "^0.4.1",
-      "body-parser": "^1.19.0"   
-    }
+     "dependencies": {
+       "express": "^4.17.1",
+       "@sap/xsenv": "^3.1.0",
+       "@sap/xssec": "^3.0.10",
+       "passport": "^0.4.1",
+       "body-parser": "^1.19.0"   
+      }
     ```
 
 
