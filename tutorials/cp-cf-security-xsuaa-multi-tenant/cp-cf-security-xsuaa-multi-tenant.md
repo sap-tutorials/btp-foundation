@@ -210,14 +210,14 @@ To enable other subaccounts to subscribe to your application, you need to implem
       });
     ```
 
-  4. To be able to read the body of those calls, add the body parser module at line 9 of the `index.js` file.
+4. To be able to read the body of those calls, add the body parser module at line 9 of the `index.js` file.
 
     ```JavaScript
     const bodyParser = require('body-parser')
     app.use(bodyParser.json())
     ```
 
-  5. Add the body parser module as a dependency to the `product list/myapp/package.json` file.
+5. Add the body parser module as a dependency to the `product list/myapp/package.json` file.
 
     ```JSON
     "dependencies": {
