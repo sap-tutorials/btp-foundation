@@ -66,25 +66,96 @@ Kyma: The same goes for Kyma: You use the btp CLI for all tasks on global accoun
 
 ### Download and install the btp CLI client
 
-1. Go to the <a href="https://tools.hana.ondemand.com/#cloud-btpcli">SAP Development Tools</a> page to download the latest version of the btp CLI client for your operating system.
-2. Extract the client executable from the tar.gz archive as follows:
-    - Linux: Use the terminal to extract the tar.gz archive with `tar -vxzf <tar.gz name>`
-    - macOS: Open the tar.gz file with a double click.
-    - Windows: Use PowerShell to extract the tar.gz archive with `tar -vxzf <tar.gz name>`. Alternatively, use an external tool to extract the executable file to your system.
-3. Copy the client executable from the unpacked folder to a directory of your choice. We recommend the following:
-    - Linux: `/usr/local/bin`
-    - macOS: `/usr/local/bin`
-    - Windows: `C:/Users/<your-user>`
-4. Ensure that the directory with the btp executable is in your PATH.
-    - macOS and Linux: Start the terminal and try executing `btp`. The above-mentioned location should be part of your PATH by default.
-    - Windows: We recommend to add the location of the btp.exe to your path. In Windows search, enter "System Properties" and, under **Advanced**, open **Environment Variables**. Under **User variables**, open **Path** and add the file location of the btp.exe (C:\Users\<your-user>). Now you can run the btp CLI by entering `btp`into Command Prompt or PowerShell.
-5. Open a terminal and enter `btp`.
+Depending on your OS you have different option to install the btp CLI client. The following section describe the different options for Windows, macOS, and Linux.
+
+[OPTION BEGIN [On Windows]]
+
+**Option 1: Installation Script (Windows PowerShell)**
+
+When you run the installation script in Windows PowerShell, you will be guided through the installation process:
+
+```Shell
+Invoke-RestMethod 'https://cli.btp.cloud.sap/btpcli-install.ps1' | Invoke-Expression
+```
+
+**Option 2: Windows Package Manager**
+
+You can use Windows Package Manager ([WinGet](https://github.com/microsoft/winget-pkgs/tree/master/manifests/s/SAP/btp)) to download the latest version of the btp CLI. WinGet downloads the client from [SAP Development Tools](https://tools.hana.ondemand.com/#cloud). In your terminal, run:
+
+```Shell
+winget install SAP.btp --source winget
+```
+
+**Option 3: Manually install the latest Microsoft Windows (amd64) version**
+
+- Download the latest [Microsoft Windows client](https://tools.hana.ondemand.com/additional/btp-cli-windows-amd64-latest.tar.gz) from SAP Development Tools.
+- Extract the client from `tar.gz` archive. Use PowerShell or an external program, such as WinRar, to extract the tar.gz file.
+- Once you've unpacked the executable file, enter `cmd` or `powershell` in the address bar of the folder. This opens the command prompt or PowerShell in this folder. Or proceed with the next step to enable calling btp from any location on your system.
+- Copy the client executable from the unpacked folder to a directory of your choice. We recommend the following, because it ensures that you can call `btp` system-wide, i.e., that it is in your PATH: `C:/Users/<your-user>`. In the Windows search, enter `Environment Variable` and open the *System Properties*. On the *Advanced* tab, open *Environment Variables*. Under *User Variables*, open the *Path* entry and add the file location of the `btp.exe` (`C:\Users<your-user>`).
+- *Optional*: If you have a proxy server configured in your environment, you need to specify its address and port as environment variable `HTTPS_PROXY` or `https_proxy` to access SAP BTP. For example, `HTTPS_PROXY=https://my-https-proxy:1234`. The specified proxy server is then used for HTTPS requests, unless overridden by the `NO_PROXY` or `no_proxy`, environment variables, which define a comma-separated list of hosts to be excluded from proxying.
+
+[OPTION END]
+
+[OPTION BEGIN [On MacOS]]
+
+**Option 1: Installation Script**
+
+When you run the installation script in your Apple macOS terminal, you will be guided through the installation process:
+
+```Shell
+curl https://cli.btp.cloud.sap/btpcli-install.sh | zsh
+```
+
+**Option 2: Homebrew Package Manager**
+
+You can use [Homebrew](https://formulae.brew.sh/cask/btp#default) open source package management software to download the latest version of the btp CLI. Homebrew downloads the client from [SAP Development Tools](https://tools.hana.ondemand.com/#cloud). In your terminal, run:
+
+```Shell
+brew install --cask btp
+```
+
+**Option 3: Manually install the latest Apple macOS (amd64 and arm64) version**
+
+- Download the latest Apple macOS client ([amd64](https://tools.hana.ondemand.com/additional/btp-cli-darwin-amd64-latest.tar.gz) or [arm64](https://tools.hana.ondemand.com/additional/btp-cli-darwin-arm64-latest.tar.gz)) from SAP Development Tools.
+- Extract the client from `tar.gz` archive. Open the `tar.gz` file by double-clicking it.
+- Copy the client executable from the unpacked folder to a directory of your choice. We recommend the following, because it ensures that you can call btp system-wide, i.e., that it is in your PATH: `/usr/local/bin`
+- *Optional*: If you have a proxy server configured in your environment, you need to specify its address and port as environment variable `HTTPS_PROXY` or `https_proxy` to access SAP BTP. For example, `HTTPS_PROXY=https://my-https-proxy:1234`. The specified proxy server is then used for HTTPS requests, unless overridden by the `NO_PROXY` or `no_proxy`, environment variables, which define a comma-separated list of hosts to be excluded from proxying.
+
+[OPTION END]
+
+[OPTION BEGIN [On Linux]]
+
+**Option 1: Installation Script**
+
+When you run the installation script in your Linux terminal, you will be guided through the installation process:
+
+```
+curl https://cli.btp.cloud.sap/btpcli-install.sh | bash
+```
+
+**Option 2: Homebrew Package Manager**
+
+You can use [Homebrew](https://formulae.brew.sh/cask/btp#default) open source package management software to download the latest version of the btp CLI. Homebrew downloads the client from [SAP Development Tools](https://tools.hana.ondemand.com/#cloud). In your terminal, run:
+
+```Shell
+brew install --cask btp
+```
+
+**Option 3: Manually install the latest Linux (amd64 and arm64) version**
+
+- Download the latest Linux client ([amd64](https://tools.hana.ondemand.com/additional/btp-cli-linux-amd64-latest.tar.gz) or [arm64](https://tools.hana.ondemand.com/additional/btp-cli-linux-arm64-latest.tar.gz)) from SAP Development Tools.
+- Extract the client from `tar.gz` archive. Use the terminal to open the tar.gz file with `tar -xzf btp-cli-linux-amd64-latest.tar.gz`
+- Copy the client executable from the unpacked folder to a directory of your choice. We recommend the following, because it ensures that you can call btp system-wide, i.e., that it is in your PATH: `/usr/local/bin`
+- *Optional*: If you have a proxy server configured in your environment, you need to specify its address and port as environment variable `HTTPS_PROXY` or `https_proxy` to access SAP BTP. For example, `HTTPS_PROXY=https://my-https-proxy:1234`. The specified proxy server is then used for HTTPS requests, unless overridden by the `NO_PROXY` or `no_proxy`, environment variables, which define a comma-separated list of hosts to be excluded from proxying.
+
+[OPTION END]
+
+
+To validate the installation, open a terminal and enter `btp`.
 
 The output should look similar to this screenshot:
 
 ![CLI info screen](sapcp.png)
-
-
 
 ### Display help
 
@@ -111,9 +182,9 @@ You can call up help in the client on different levels, from an introductory hel
 
 ### Log in to your global account
 
-Now let's log in: 
+Now let's log in:
 
-The **CLI server URL** (https://cli.btp.cloud.sap/) is proposed at login - just accept it with ENTER. This server routes client requests to the platform services. 
+The **CLI server URL** (https://cli.btp.cloud.sap/) is proposed at login - just accept it with ENTER. This server routes client requests to the platform services.
 
 You have two options for login:
 
@@ -129,9 +200,9 @@ For login on the command-line, use:
 btp login
 ```
 
-If you have enabled Two-Factor-Authentication, you need to append the token to your password. 
+If you have enabled Two-Factor-Authentication, you need to append the token to your password.
 
-Once you're authenticated, you will automatically be logged in to your global account. If you have access to more than one global account, the CLI will display a list of global accounts  from which you can select one. 
+Once you're authenticated, you will automatically be logged in to your global account. If you have access to more than one global account, the CLI will display a list of global accounts  from which you can select one.
 
 When you're logged in, it should look similar to this:
 
@@ -164,11 +235,11 @@ btp assign security/role-collection "Global Account Administrator" --to-user exa
 "Global Account Administrator" is the positional parameter, and the other two parameters have keys (`--to-user` and `--of-idp`).
 
 
-### Understand the context you've targeted 
+### Understand the context you've targeted
 
-Your first login takes you into a global account. Now, all commands are executed on global account level, unless you specify a different context. Remember you can manage the global account and its directories and subaccounts with the btp CLI. So if you want to change the context in which commands are executed to a directory or a subaccount, you can do so using the `btp target` command. There are three different ways of using this command: 
+Your first login takes you into a global account. Now, all commands are executed on global account level, unless you specify a different context. Remember you can manage the global account and its directories and subaccounts with the btp CLI. So if you want to change the context in which commands are executed to a directory or a subaccount, you can do so using the `btp target` command. There are three different ways of using this command:
 
-To select a target from the children and parent of the current target, and to navigate up and down the account hierarchy, use: 
+To select a target from the children and parent of the current target, and to navigate up and down the account hierarchy, use:
 
 ```Bash
 btp target
@@ -179,12 +250,12 @@ To select a target from the entire account hierarchy of all of your global accou
 ```Bash
 btp target --hierarchy
 ```
-Tip: If you like the `--hierarchy` parameter, you can make it your default with `btp set config --target.hierarchy true`. See [Change Configuration Settings](https://help.sap.com/docs/btp/sap-business-technology-platform/change-configuration-settings). 
+Tip: If you like the `--hierarchy` parameter, you can make it your default with `btp set config --target.hierarchy true`. See [Change Configuration Settings](https://help.sap.com/docs/btp/sap-business-technology-platform/change-configuration-settings).
 
 To set a target by specifying it as a parameter, use:
 
 ```Bash
-btp target [--subaccount <ID> | --directory <ID> | --global-account <SUBDOMAN>] 
+btp target [--subaccount <ID> | --directory <ID> | --global-account <SUBDOMAN>]
 ```
 
 The targeting mechanism works according to the hierarchy of entities in the global account:
@@ -236,6 +307,6 @@ To learn more:
 
 
 ---------------------
-You're invited to share your feedback with the development team: Run the `btp feedback` command to open a short survey, or, if you have more time and more feedback to share, fill out this [long UX survey about the btp CLI](https://sapinsights.eu.qualtrics.com/jfe/form/SV_57M3WwXoca0sito?Product_filter=btp%20CLI%25source=SAP_Community). Thanks a lot in advance!  
+You're invited to share your feedback with the development team: Run the `btp feedback` command to open a short survey, or, if you have more time and more feedback to share, fill out this [long UX survey about the btp CLI](https://sapinsights.eu.qualtrics.com/jfe/form/SV_57M3WwXoca0sito?Product_filter=btp%20CLI%25source=SAP_Community). Thanks a lot in advance!
 
 ---
