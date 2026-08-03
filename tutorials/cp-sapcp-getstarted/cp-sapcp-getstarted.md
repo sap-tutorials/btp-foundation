@@ -66,7 +66,7 @@ Kyma: The same goes for Kyma: You use the btp CLI for all tasks on global accoun
 
 ### Download and install the btp CLI client
 
-Depending on your OS you have different option to install the btp CLI client. The following section describe the different options for Windows, macOS, and Linux.
+Depending on your OS you have different option to install the btp CLI client. The following sections describe the different options for Windows, macOS, and Linux.
 
 [OPTION BEGIN [On Windows]]
 
