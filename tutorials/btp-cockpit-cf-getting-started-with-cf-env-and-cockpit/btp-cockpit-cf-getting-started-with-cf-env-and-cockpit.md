@@ -26,6 +26,14 @@ author_profile: https://github.com/danachkov
 - In the subaccount, you've **enabled Cloud Foundry** and **created an organization (org)**. For more information, see [Create Orgs | SAP Help Portal](https://help.sap.com/docs/btp/sap-business-technology-platform/create-orgs).
 - Each tutorial requires you to have **specific Cloud Foundry roles**. For more information, refer to the **Prerequisites** section of each tutorial.
 
+### The learning journey at a glance
+
+This learning journey provides tips and best practices for working with spaces, deploying applications, and using these applications once they are deployed in the Cloud Foundry environment of SAP Business Technology Platform (BTP). We hope that these learning materials will make it easier for you to adapt to the complexity of the platform.
+
+Here's a sneak peek at what you'll learn in the next tutorials:
+
+<iframe id="kaltura_player_931244435" src="https://sapvideo.cfapps.eu10-004.hana.ondemand.com/?entry_id=1_a2pff7w0" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" style="width:768px;height:432px;border:0;"></iframe>
+
 ### What is SAP BTP cockpit?
 
 The **SAP BTP cockpit** is a web-based administration interface for managing SAP Business Technology Platform (SAP BTP) account and all the resources in it. It provides a central entry point where you can:
