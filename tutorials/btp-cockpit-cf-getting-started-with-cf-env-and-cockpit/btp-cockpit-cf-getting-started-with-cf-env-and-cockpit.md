@@ -8,6 +8,9 @@ tags: [tutorial>beginner, software-product>sap-business-technology-platform, sof
 primary_tag: software-product-function>sap-btp-cockpit
 author_name: Dragomir Anachkov
 author_profile: https://github.com/danachkov
+video:
+  url: https://sapvideo.cfapps.eu10-004.hana.ondemand.com/?entry_id=1_a2pff7w0
+  title: Deploying a sample Java application in SAP BTP cockpit
 ---
 
 
@@ -25,6 +28,12 @@ author_profile: https://github.com/danachkov
 - You have a global account and you've **created a subaccount** in it. If you're not sure how to set up your subaccount, go to [Create a Subaccount | SAP Help Portal](https://help.sap.com/docs/btp/sap-business-technology-platform/create-subaccount).
 - In the subaccount, you've **enabled Cloud Foundry** and **created an organization (org)**. For more information, see [Create Orgs | SAP Help Portal](https://help.sap.com/docs/btp/sap-business-technology-platform/create-orgs).
 - Each tutorial requires you to have **specific Cloud Foundry roles**. For more information, refer to the **Prerequisites** section of each tutorial.
+
+### The learning journey at a glance
+
+This learning journey provides tips and best practices for working with spaces, deploying applications, and using these applications once they are deployed in the Cloud Foundry environment of SAP Business Technology Platform (BTP). We hope that these learning materials will make it easier for you to adapt to the complexity of the platform.
+
+The video above provides a preview of the key concepts covered in the next tutorials.
 
 ### What is SAP BTP cockpit?
 

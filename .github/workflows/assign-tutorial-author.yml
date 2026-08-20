@@ -1,0 +1,85 @@
+name: Assign Tutorial Author to Issue
+
+# Triggers when a new issue is opened.
+# Extracts the tutorial slug directly from the developers.sap.com URL in the issue body,
+# so this workflow has no dependency on the label-issues.yml workflow.
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  assign-author:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history needed for git log fallback
+
+      - name: Resolve tutorial author and assign to issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -e
+
+          # Extract slug from the developers.sap.com tutorial URL in the issue body
+          # e.g. "https://developers.sap.com/tutorials/deploy-to-kyma.html" -> "deploy-to-kyma"
+          SLUG=$(echo "$ISSUE_BODY" | grep -oP '(?<=developers\.sap\.com/tutorials/)[^./]+' | head -1)
+
+          if [ -z "$SLUG" ]; then
+            echo "No developers.sap.com tutorial URL found in issue body — skipping assignment."
+            exit 0
+          fi
+
+          echo "Tutorial slug: $SLUG"
+
+          TUTORIAL_FILE="tutorials/${SLUG}/${SLUG}.md"
+
+          if [ ! -f "$TUTORIAL_FILE" ]; then
+            echo "Tutorial file not found: $TUTORIAL_FILE — skipping assignment."
+            exit 0
+          fi
+
+          # Parse author_profile from YAML frontmatter
+          AUTHOR_PROFILE=$(grep -m1 "^author_profile:" "$TUTORIAL_FILE" | sed 's/author_profile:[[:space:]]*//' | tr -d '[:space:]')
+
+          # Extract GitHub username from URL (last path segment)
+          GITHUB_USERNAME=$(echo "$AUTHOR_PROFILE" | sed 's|https://github.com/||' | tr -d '/')
+
+          if [ -z "$GITHUB_USERNAME" ]; then
+            echo "No author_profile found — falling back to last git committer for tutorials/${SLUG}/"
+
+            GITHUB_USERNAME=$(git log -1 --pretty="%an" -- "tutorials/${SLUG}/")
+
+            if [ -z "$GITHUB_USERNAME" ]; then
+              echo "No git history found for tutorials/${SLUG}/ — skipping assignment."
+              exit 0
+            fi
+
+            echo "Last committer: $GITHUB_USERNAME"
+          fi
+
+          echo "Assigning @${GITHUB_USERNAME} to issue #${ISSUE_NUMBER}"
+
+          # Assign the resolved user to the issue via GitHub REST API
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${REPO}/issues/${ISSUE_NUMBER}/assignees" \
+            -d "{\"assignees\": [\"${GITHUB_USERNAME}\"]}")
+
+          if [ "$HTTP_STATUS" -eq 201 ]; then
+            echo "Successfully assigned @${GITHUB_USERNAME} to issue #${ISSUE_NUMBER}."
+          else
+            echo "Assignment API returned HTTP ${HTTP_STATUS} — the user may not be a repo collaborator."
+          fi

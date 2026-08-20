@@ -184,6 +184,10 @@ Once a service is bound to an application, you can choose the **View Dashboard**
 
 <!-- border; size:540px --> ![View Service Dashboard](./view-service-dashboard-1.png)
 
+In the case of the Application Autoscaler service, the **View Dashboard** button opens the Application Autoscaler dashboard.
+
+<!-- border; size:540px --> ![Application Autoscaler Dashboard](./application-autoscaler-dashboard.png)
+
 **Note**: Not all services have a dashboard.
 
 To view the credentials of the service binding, select it from the list. The credentials appear on the right-hand side of the screen, below the **Service Binding Details**.
