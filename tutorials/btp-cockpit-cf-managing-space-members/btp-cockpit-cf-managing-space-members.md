@@ -47,25 +47,25 @@ In this tutorial, there is a software developer named John Doe. He has the task 
 
 1. Go to **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces and Enter a Space](./go-to-spaces-1.png)
+    ![Go to Spaces and Enter a Space](./go-to-spaces-1.png)
 
 2. Go to the space where you want to make John a **Space Developer**.
 
     **Note**: If you don't have any space roles assigned, you have read-only access to the space. For example, you can't deploy applications without the **Space Developer** role, which is why you don't see the **Deploy Application** button:
 
-    <!-- border; size:540px --> ![Deploy Application Button Is Missing](./deploy-app-button-missing.png)
+    ![Deploy Application Button Is Missing](./deploy-app-button-missing.png)
 
 3. Go to **Space Members** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Space Members](./go-to-space-members-1.png)
+    ![Go to Space Members](./go-to-space-members-1.png)
 
 4. Choose **Add Members**.
 
-    <!-- border; size:540px --> ![Choose Add Members](./add-space-members-1.png) 
+    ![Choose Add Members](./add-space-members-1.png) 
 
 5. Enter John's e-mail adddress.
 
-    <!-- border; size:540px --> ![Adding a Space Member](./add-space-members-dialog-default-idp-1.png)
+    ![Adding a Space Member](./add-space-members-dialog-default-idp-1.png)
 
     **Note**: You can add multiple space members at the same time by listing their e-mail addresses with a comma.
 
@@ -75,7 +75,7 @@ In this tutorial, there is a software developer named John Doe. He has the task 
 
 John now has the **Space Developer** role.
 
-<!-- border; size:540px --> ![Space Member Added](./space-member-added-1.png)
+![Space Member Added](./space-member-added-1.png)
 
 **Note**: When you have the **Org Manager** role and you add new space members in an org they aren't part of yet, they automatically receive the **Org User** role. This is in addition to the space roles you've assigned.
 
@@ -85,13 +85,13 @@ You can change the space roles of users to reflect a shift in their responsibili
 
 1. Choose the **Edit** button in the **Actions** column.
 
-    <!-- border; size:540px --> ![Edit a Space Member](./edit-space-member-1.png) 
+    ![Edit a Space Member](./edit-space-member-1.png) 
 
 2. Update the space roles.
 
     In this case, let's assume John's expertise makes him the right person to manage this space and give him the **Space Manager** role.
 
-    <!-- border; size:540px --> ![Editing the Roles of a Space Member](./edit-space-member-dialog-1.png)
+    ![Editing the Roles of a Space Member](./edit-space-member-dialog-1.png)
 
 3. Choose **Save**.
 
@@ -103,11 +103,11 @@ You can remove access to the space of a user who is no longer part of your devel
 
 1. Choose the **Delete** button in the **Actions** column.
 
-    <!-- border; size:540px --> ![Delete a Space Member](./delete-space-member-1.png)
+    ![Delete a Space Member](./delete-space-member-1.png)
 
 2. Choose **Delete** to confirm the action.
 
-    <!-- border; size:540px --> ![Deleting a Space Member](./delete-space-member-dialog-1.png)
+    ![Deleting a Space Member](./delete-space-member-dialog-1.png)
 
 **Note**: This action removes the member from the current space while retaining their org roles and space roles in other spaces.
 
@@ -117,7 +117,7 @@ You can learn what a custom identity provider is in our previous tutorial **Mana
 
 If you've established trust with a custom identity provider, the **Add Space Members** dialog gives you the additional option to select an identity provider from a dropdown menu:
 
-<!-- border; size:540px --> ![Custom Identity Provider (Origin)](./add-space-members-dialog-origin-custom-idp-1.png)
+![Custom Identity Provider (Origin)](./add-space-members-dialog-origin-custom-idp-1.png)
 
 For more information, see [Establish Trust and Federation of Custom Identity Providers for Platform Users | SAP Help Portal](https://help.sap.com/docs/authorization-and-trust-management-service/authorization-and-trust-management/establish-trust-and-federation-of-custom-identity-providers-for-platform-users-feature-set-b).
 

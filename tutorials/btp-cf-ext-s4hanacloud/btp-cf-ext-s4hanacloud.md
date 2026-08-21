@@ -167,9 +167,9 @@ You need to configure the entitlements for the subaccount where the **business p
 
 1. Clone the GitHub repository:
 
-    ```Git
-    git clone https://github.com/SAP/business-partner-sample-app-s4hana-cloud
-    ```
+   ```Git
+   git clone https://github.com/SAP/business-partner-sample-app-s4hana-cloud
+   ```
 
 2. In the root of the project, locate the **s4-hana-cloud.json** file, and replace the values of the following parameters:
 
@@ -193,15 +193,15 @@ You need to configure the entitlements for the subaccount where the **business p
 
 4. Open a console and navigate to the root folder of the project that is created on you local file system after cloning the GitHub repository.
 
-    ```Shell
-    cd <root folder of the project>
-    ```
+   ```Shell
+   cd <root folder of the project>
+   ```
 
 5. Build the application. To do so, use the following command:
 
-    ```Shell
-    mvn clean install
-    ```
+   ```Shell
+   mvn clean install
+   ```
 
 
 ### Create Destination service instance
@@ -239,9 +239,9 @@ To connect the **business partner sample application for SAP S/4HANA Cloud** to 
 
 1. Log on to the cf CLI, using this command:
 
-    ```cf CLI
-    cf login -a https://api.cf.eu10.hana.ondemand.com
-    ```
+   ```cf CLI
+   cf login -a https://api.cf.eu10.hana.ondemand.com
+   ```
 
     The string `https://api.cf.eu10.hana.ondemand.com` represents the \<api_endpoint\> of the trial global account in SAP BTP. To check the \<api_endpoint\>, open the SAP BTP cockpit, navigate to the subaccount, go to **Overview** and copy the API endpoint from the **Cloud Foundry** section.
 
@@ -253,9 +253,9 @@ To connect the **business partner sample application for SAP S/4HANA Cloud** to 
 
 4. Create the Destination service instance, use this command:
 
-    ```cf CLI
-    cf create-service destination lite destination
-    ```
+   ```cf CLI
+   cf create-service destination lite destination
+   ```
 
 [OPTION END]
 
@@ -301,9 +301,9 @@ During the service instance creation, an HTTP destination on a subaccount level 
 
 1. Log on to the cf CLI, using this command:
 
-    ```cf CLI
-    cf login -a https://api.cf.eu10.hana.ondemand.com
-    ```
+   ```cf CLI
+   cf login -a https://api.cf.eu10.hana.ondemand.com
+   ```
 
     The string `https://api.cf.eu10.hana.ondemand.com` represents the \<api_endpoint\> of the trial global account in SAP BTP. To check the \<api_endpoint\>, open the SAP BTP cockpit, navigate to the subaccount, go to **Overview** and copy the API endpoint from the **Cloud Foundry** section.
 
@@ -315,9 +315,9 @@ During the service instance creation, an HTTP destination on a subaccount level 
 
 4. Create the SAP SuccessFactors Extensibility service instance, use this command:
 
-    ```cf CLI
-    cf create-service s4-hana-cloud api-access s4-hana-cloud -c s4-hana-cloud.json
-    ```
+   ```cf CLI
+   cf create-service s4-hana-cloud api-access s4-hana-cloud -c s4-hana-cloud.json
+   ```
 
 [OPTION END]
 
@@ -333,7 +333,7 @@ To configure the **business partner sample application for SAP S/4HANA Cloud** a
 
 2. From the **Authorization & Trust Management** service tile, choose **Create** and follow the steps in the wizard to create the service instance.
 
-    <!-- border -->![From the **Authorization & Trust Management** service tile, choose **Create**.](screenshots.png/16-xsuaa-instance.png)
+    ![From the **Authorization & Trust Management** service tile, choose **Create**.](screenshots.png/16-xsuaa-instance.png)
 
 3. On the **Basic Info** step:
 
@@ -345,11 +345,11 @@ To configure the **business partner sample application for SAP S/4HANA Cloud** a
 
     - In the **Instance Name** field, enter **`xsuaa`**.
 
-    <!-- border -->![Select **application** service plan](screenshots.png/17-xsuaa-instance.png)
+    ![Select **application** service plan](screenshots.png/17-xsuaa-instance.png)
 
 4. On the **Parameters** step, upload the `xsuaa.json` file located in the root folder of the `s4hana-cloud-ext-business-partner` project.
 
-    <!-- border -->![Upload `xsuaa.json` file](screenshots.png/18-xsuaa-instance.png)
+    ![Upload `xsuaa.json` file](screenshots.png/18-xsuaa-instance.png)
 
 [OPTION END]
 
@@ -357,9 +357,9 @@ To configure the **business partner sample application for SAP S/4HANA Cloud** a
 
 1. Log on to the cf CLI, using this command:
 
-    ```cf CLI
-    cf login -a https://api.cf.eu10.hana.ondemand.com
-    ```
+   ```cf CLI
+   cf login -a https://api.cf.eu10.hana.ondemand.com
+   ```
 
     The string `https://api.cf.eu10.hana.ondemand.com` represents the \<api_endpoint\> of the trial global account in SAP BTP. To check the \<api_endpoint\>, open the SAP BTP cockpit, navigate to the subaccount, go to **Overview** and copy the API endpoint from the **Cloud Foundry** section.
 
@@ -371,9 +371,9 @@ To configure the **business partner sample application for SAP S/4HANA Cloud** a
 
 4. Create the Authorization & Trust Management service instance, use this command:
 
-    ```cf CLI
-    cf create-service xsuaa application xsuaa -c xsuaa.json
-    ```
+   ```cf CLI
+   cf create-service xsuaa application xsuaa -c xsuaa.json
+   ```
 
 [OPTION END]
 
@@ -385,9 +385,9 @@ To configure the **business partner sample application for SAP S/4HANA Cloud** a
 
 1. Log on to the cf CLI, using the following command:
 
-    ```cf CLI
-    cf login -a <api_endpoint>
-    ```
+   ```cf CLI
+   cf login -a <api_endpoint>
+   ```
 
     For the `<api_endpoint>`, go to the SAP BTP cockpit, navigate to the subaccount, go to the **Overview** page and copy the API endpoint from the Cloud Foundry section. For example `https://api.cf.eu10.hana.ondemand.com` is the \<api_endpoint\> of the trial global account in SAP BTP.
 
@@ -400,9 +400,9 @@ To configure the **business partner sample application for SAP S/4HANA Cloud** a
 
 4. In the cf CLI, push the **vars.yml** file using the following command:
 
-    ```cf CLI
-    cf push --vars-file vars.yml
-    ```
+   ```cf CLI
+   cf push --vars-file vars.yml
+   ```
 
 
 

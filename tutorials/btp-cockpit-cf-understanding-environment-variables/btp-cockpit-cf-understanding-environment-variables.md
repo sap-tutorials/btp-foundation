@@ -47,7 +47,7 @@ This group contains variables specific to your staging environment. These enviro
 
 Think of staging environment variables as the ones needed by build tools, compilers, or dependency managers.
 
-<!-- border; size:540px --> ![Staging Environment Variable Group](./staging-env-var-group.png)
+![Staging Environment Variable Group](./staging-env-var-group.png)
 
 #### Running environment variable group
 
@@ -57,7 +57,7 @@ This group contains variables for your production or runtime environment. These 
 
 - Used directly by the application code
 
-<!-- border; size:540px --> ![Running Environment Variable Group](./running-env-var-group.png)
+![Running Environment Variable Group](./running-env-var-group.png)
 
 **Note**: When your application runs, the system combines variables from the appropriate environment group.
 
@@ -69,13 +69,13 @@ The platform automatically injects system-provided environment variables into yo
 
 This environment variable contains the associated attributes for a deployed app, such as app name, IDs, space, org, URIs, disk and memory limits.
 
-<!-- border; size:540px --> ![VCAP_APPLICATION System-Provided Variable](./vcap-application.png)
+![VCAP_APPLICATION System-Provided Variable](./vcap-application.png)
 
 #### VCAP_SERVICES
 
 For bound services, Cloud Foundry adds connection details to the VCAP_SERVICES environment variable, such as service name, credentials (URIs, usernames, passwords), tags, and other metadata.
 
-<!-- border; size:540px --> ![VCAP_SERVICES System-Provided Variable](./vcap-services.png)
+![VCAP_SERVICES System-Provided Variable](./vcap-services.png)
 
 ### User-provided variables
 

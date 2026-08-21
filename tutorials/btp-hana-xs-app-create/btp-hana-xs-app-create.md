@@ -260,27 +260,27 @@ The SQL statement returns one row with one field called **DUMMY**, whose value i
 
 2.  In the `MyFirstSourceFile.xsjs` file, replace your existing code with the following code:
 
-    ``` JavaScript
+   ``` JavaScript
 
-    $.response.contentType = "text/html";
-    var output = "Hello, World !";
+   $.response.contentType = "text/html";
+   var output = "Hello, World !";
 
-    var conn = $.db.getConnection();
-    var pstmt = conn.prepareStatement( "select * from DUMMY" );
-    var rs = pstmt.executeQuery();
+   var conn = $.db.getConnection();
+   var pstmt = conn.prepareStatement( "select * from DUMMY" );
+   var rs = pstmt.executeQuery();
 
-    if (!rs.next()) {
-      $.response.setBody( "Failed to retrieve data" );
-      $.response.status =  $.net.http.INTERNAL_SERVER_ERROR;
-    } else {
-      output = output + "This is the response from my SQL: " + rs.getString(1);
-    }
-    rs.close();
-    pstmt.close();
-    conn.close();
+   if (!rs.next()) {
+     $.response.setBody( "Failed to retrieve data" );
+     $.response.status =  $.net.http.INTERNAL_SERVER_ERROR;
+   } else {
+     output = output + "This is the response from my SQL: " + rs.getString(1);
+   }
+   rs.close();
+   pstmt.close();
+   conn.close();
 
-    $.response.setBody(output);
-    ```
+   $.response.setBody(output);
+   ```
 
 3. Save the `MyFirstSourceFile.xsjs` file.
 

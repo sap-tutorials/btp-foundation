@@ -78,25 +78,25 @@ On the **Service Bindings** page, you bind an application to a service using the
 
 1. Go to **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space. This opens the **Applications** page.
 
 3. Click the name of the application for which you want to create a service binding.
 
-    <!-- border; size:540px --> ![Go to Application Overview](./go-to-app-overview-2.png)
+    ![Go to Application Overview](./go-to-app-overview-2.png)
 
 4. Choose **Service Bindings**.
 
-    <!-- border; size:540px --> ![Go to Service Bindings](./go-to-service-bindings-1.png)
+    ![Go to Service Bindings](./go-to-service-bindings-1.png)
 
 5. Choose **Bind Service Instance**. This action opens the **Bind Service Instance** wizard.
 
-    <!-- border; size:540px --> ![Choose Bind Service Instance](./choose-bind-service-instance-1.png)
+    ![Choose Bind Service Instance](./choose-bind-service-instance-1.png)
 
 6. Find the service instance in the table and choose **Bind**.
 
-    <!-- border; size:540px --> ![Bind an Existing Service Instance](./find-service-instance-choose-bind-1.png)
+    ![Bind an Existing Service Instance](./find-service-instance-choose-bind-1.png)
 
     If you can't find a suitable service instance, create and bind a new service instance as instructed in the **Create and Bind New Service Instance** option.
 
@@ -104,13 +104,13 @@ On the **Service Bindings** page, you bind an application to a service using the
 
     Some services support additional configuration parameters when you bind them to an application. These parameters are passed as a JSON object containing service-specific configuration (for example, Application Autoscaler rules). You can skip this step for this tutorial.
 
-    <!-- border; size:540px --> ![Choose Next Step](./provide-json-parameters-optional-1.png)
+    ![Choose Next Step](./provide-json-parameters-optional-1.png)
 
 8. Choose **Next Step**.
 
 9. Review all the details you've provided so far. You can always go back and make changes, if necessary.
 
-    <!-- border; size:540px --> ![Review and Choose Bind](./review-and-bind-1.png)
+    ![Review and Choose Bind](./review-and-bind-1.png)
 
 10. Choose **Bind**.
 
@@ -118,7 +118,7 @@ The service binding is created.
 
 **Note**: To make sure the relevant environment variables take effect, restage your application after binding it. Restaging causes downtime so plan accordingly before you proceed.
 
-<!-- border; size:540px --> ![Service Binding Created](./autoscaler-service-binding-created.png)
+![Service Binding Created](./autoscaler-service-binding-created.png)
 
 **Note**: When you deploy an application with a manifest, you can create a service binding by specifying it in the manifest file.
 
@@ -128,29 +128,29 @@ The service binding is created.
 
 1. Go to **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space. This opens the **Applications** page.
 
 3. Click the name of the application for which you want to create a service binding.
 
-    <!-- border; size:540px --> ![Go to Application Overview](./go-to-app-overview-2.png)
+    ![Go to Application Overview](./go-to-app-overview-2.png)
 
 4. Choose **Service Bindings**.
 
-    <!-- border; size:540px --> ![Go to Service Bindings](./go-to-service-bindings-1.png)
+    ![Go to Service Bindings](./go-to-service-bindings-1.png)
 
 5. Choose **Bind Service Instance**. This action starts the **Bind Service Instance** wizard.
 
-    <!-- border; size:540px --> ![Choose Bind Service Instance](./choose-bind-service-instance-1.png)
+    ![Choose Bind Service Instance](./choose-bind-service-instance-1.png)
 
 6. Choose **Create Service Instance**.
 
-    <!-- border; size:540px --> ![Create and Bind a New Service Instance](./create-new-service-instance-1.png)
+    ![Create and Bind a New Service Instance](./create-new-service-instance-1.png)
 
 7. Select a **Service** from the available ones in the service marketplace, a **Plan**, and provide an **Instance Name**.
 
-    <!-- border; size:540px --> ![Select Service, Plan, Instance Name](./select-service-plan-instance-name-1.png)
+    ![Select Service, Plan, Instance Name](./select-service-plan-instance-name-1.png)
 
 8. Choose **Next Step**.
 
@@ -158,13 +158,13 @@ The service binding is created.
 
     Some services support additional configuration parameters when you bind them to an application. These parameters are passed as a JSON object containing service-specific configuration (for example, Application Autoscaler rules). You can skip this step for this tutorial.
 
-    <!-- border; size:540px --> ![Choose Next Step](./provide-json-parameters-optional-var2-1.png)
+    ![Choose Next Step](./provide-json-parameters-optional-var2-1.png)
 
 10. Choose **Next Step**.
 
 11. Review all the details you've provided so far. You can always go back and make changes, if necessary.
 
-    <!-- border; size:540px --> ![Review and Choose Create and Bind](./review-and-create-and-bind-1.png)
+    ![Review and Choose Create and Bind](./review-and-create-and-bind-1.png)
 
 12. Choose **Create and Bind**.
 
@@ -172,7 +172,7 @@ The service binding is created.
 
 **Note**: To make sure the relevant environment variables take effect, restage your application after binding it. Restaging causes downtime so plan accordingly before you proceed.
 
-<!-- border; size:540px --> ![Service Binding Created](./new_autoscaler-service-binding-created.png)
+![Service Binding Created](./new_autoscaler-service-binding-created.png)
 
 **Note**: When you deploy an application with a manifest, you can create a service binding by specifying it in the manifest file.
 
@@ -182,17 +182,17 @@ The service binding is created.
 
 Once a service is bound to an application, you can choose the **View Dashboard** button in the **Actions** column to open the corresponding service dashboard and view more details about the service.
 
-<!-- border; size:540px --> ![View Service Dashboard](./view-service-dashboard-1.png)
+![View Service Dashboard](./view-service-dashboard-1.png)
 
 In the case of the Application Autoscaler service, the **View Dashboard** button opens the Application Autoscaler dashboard.
 
-<!-- border; size:540px --> ![Application Autoscaler Dashboard](./application-autoscaler-dashboard.png)
+![Application Autoscaler Dashboard](./application-autoscaler-dashboard.png)
 
 **Note**: Not all services have a dashboard.
 
 To view the credentials of the service binding, select it from the list. The credentials appear on the right-hand side of the screen, below the **Service Binding Details**.
 
-<!-- border; size:540px --> ![Checking the Service Binding Credentials](./view-service-binding-credentials.png)
+![Checking the Service Binding Credentials](./view-service-binding-credentials.png)
 
 **Note**: Space Supporters don't have access to the service binding credentials.
 
@@ -204,11 +204,11 @@ On the **Service Bindings** page:
 
 1. Choose the **Delete** button in the **Actions** column.
 
-    <!-- border; size:540px --> ![Delete Service Binding](./delete-service-binding-1.png)
+    ![Delete Service Binding](./delete-service-binding-1.png)
 
 2. Choose **Delete** to confirm the action.
 
-    <!-- border; size:540px --> ![Deleting a Service Binding](./choose-delete-1.png)
+    ![Deleting a Service Binding](./choose-delete-1.png)
 
     **Note**: Only the binding between the application and service is deleted. Both the application and the service instance aren't deleted.
 
