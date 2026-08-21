@@ -70,9 +70,9 @@ You'll perform all subsequent activities with this new user.
 
   1.  To log on to the SAP HANA cockpit, in the navigation area of the SAP BTP cockpit, choose **SAP HANA / SAP ASE** > **Databases & Schemas**.
 
-    All databases available in the selected account are listed with their ID, type, version, and related database system.
+   All databases available in the selected account are listed with their ID, type, version, and related database system.
 
-    > **Tip:** To view the details of a database, for example, its state and the number of existing bindings, select a database in the list and click the link on its name. On the overview of the database, you can perform further actions, for example, delete the database.
+   > **Tip:** To view the details of a database, for example, its state and the number of existing bindings, select a database in the list and click the link on its name. On the overview of the database, you can perform further actions, for example, delete the database.
 
   2.  Select the relevant SAP HANA tenant database in the list.
 
@@ -102,15 +102,15 @@ You'll perform all subsequent activities with this new user.
 
   10.  On the **User** tab, provide a name for the new user.
 
-    The user name always appears in upper case letters.
+   The user name always appears in upper case letters.
 
   11.  In the **Authentication** section, make sure the **Password** checkbox is selected and enter a password.
 
-    > The password must start with a letter and only contain uppercase and lowercase letters ('a' - 'z', 'A' - 'Z'), and numbers ('0' - '9').
+   > The password must start with a letter and only contain uppercase and lowercase letters ('a' - 'z', 'A' - 'Z'), and numbers ('0' - '9').
 
   12. To create the database user, in the menu bar choose **Save**.
 
-    The new database user is displayed as a new node under the **Users** node.
+   The new database user is displayed as a new node under the **Users** node.
 
   13. To assign your user the roles with the required permissions for working with the SAP HANA Web-based Development Workbench, go to the **Granted Roles** section and choose **+ (Add)**.
 
@@ -122,15 +122,15 @@ You'll perform all subsequent activities with this new user.
 
   16. To assign the `CONTENT_ADMIN` role to the user, repeat the steps in the **Granted Roles** section, searching for **`CONTENT_ADMIN`**.
 
-    For more information about the `CONTENT_ADMIN` role, see [Predefined Database Roles](http://help.sap.com/saphelp_hanaplatform/helpdata/en/de/421861bb571014846288086be76719/content.htm).
+   For more information about the `CONTENT_ADMIN` role, see [Predefined Database Roles](http://help.sap.com/saphelp_hanaplatform/helpdata/en/de/421861bb571014846288086be76719/content.htm).
 
   17. Save your changes.
 
   18. Before you continue to work with the SAP HANA Web-based Development Workbench, you log out first and log on again with your new database user.
 
-    > **Caution:** At this point, you're still logged on with the SYSTEM user. You can only use your new database user to work with the SAP HANA Web-based Development Workbench by logging out from the SAP HANA cockpit first. Otherwise, you would automatically log in to the SAP HANA Web-based Development Workbench with the SYSTEM user instead of your new database user.
+   > **Caution:** At this point, you're still logged on with the SYSTEM user. You can only use your new database user to work with the SAP HANA Web-based Development Workbench by logging out from the SAP HANA cockpit first. Otherwise, you would automatically log in to the SAP HANA Web-based Development Workbench with the SYSTEM user instead of your new database user.
 
-    > Therefore, choose the **Logout** button before you continue to work with the SAP HANA Web-based Development Workbench, where you need to log on again with the new database user.
+   > Therefore, choose the **Logout** button before you continue to work with the SAP HANA Web-based Development Workbench, where you need to log on again with the new database user.
 
 
 

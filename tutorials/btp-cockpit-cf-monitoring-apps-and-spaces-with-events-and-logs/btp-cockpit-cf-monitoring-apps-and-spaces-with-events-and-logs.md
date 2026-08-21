@@ -41,17 +41,17 @@ To monitor and troubleshoot your applications, it’s important to understand ho
 
 1. Go to the **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space. This opens the **Applications** page.
 
 3. Go to **Space Events** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Space Events](./go-to-space-events-2.png)
+    ![Go to Space Events](./go-to-space-events-2.png)
 
 4. Check the space events.
 
-    <!-- border; size:540px --> ![Check the Space Events](./space-events-page.png)
+    ![Check the Space Events](./space-events-page.png)
 
 [OPTION END]
 
@@ -59,21 +59,21 @@ To monitor and troubleshoot your applications, it’s important to understand ho
 
 1. Go to the **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space. This opens the **Applications** page.
 
 3. Click the name of the application whose application events you want to check and analyze.
 
-    <!-- border; size:540px --> ![Go to Application Overview](./go-to-app-overview-2.png)
+    ![Go to Application Overview](./go-to-app-overview-2.png)
 
 4. Now that you're on the **Application Overview** page, choose **Events** to get access to the most recent application events. For more details, go to **Application Events** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Application Events](./go-to-app-events-1.png)
+    ![Go to Application Events](./go-to-app-events-1.png)
 
 5. Check the application events.
 
-    <!-- border; size:540px --> ![Check the Application Events](./app-events-example.png)
+    ![Check the Application Events](./app-events-example.png)
 
 [OPTION END]
 
@@ -81,21 +81,21 @@ To monitor and troubleshoot your applications, it’s important to understand ho
 
 1. Go to the **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space. This opens the **Applications** page.
 
 3. Click the name of the application whose application logs you want to check and analyze.
 
-    <!-- border; size:540px --> ![Go to Application Overview](./go-to-app-overview-2.png)
+    ![Go to Application Overview](./go-to-app-overview-2.png)
 
 4. Go to **Logs** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Logs](./go-to-app-logs-1.png)
+    ![Go to Logs](./go-to-app-logs-1.png)
 
 5. Check the application logs.
 
-    <!-- border; size:540px --> ![Check the Application Logs](./logs-error-example.png)
+    ![Check the Application Logs](./logs-error-example.png)
 
 [OPTION END]
 
@@ -113,17 +113,17 @@ To monitor and troubleshoot your applications, it’s important to understand ho
 | Target (4)      | Shows where the event was triggered. |
 | Description (5)  | Provides technical details about the event. |
 
-<!-- border; size:540px --> ![Space Event Components](./space-events-components.png)
+![Space Event Components](./space-events-components.png)
 
 **Example:** If you trigger the creation of a new route, the `audit.route.create` space event is logged. You are the **Actor**, while the route is the **Target**.
 
 By default, the page loads the most recent 200 events. To include more events to the list, choose **Load More** at the bottom of the page:
 
-<!-- border; size:540px --> ![Load More Space Events](./load-more-space-events.png)
+![Load More Space Events](./load-more-space-events.png)
 
 To find the exact event you're looking for, use the search field. Keep in mind that you can only search for already loaded events.
 
-<!-- border; size:540px --> ![Use the Search Field on the Space Events Page](./space-events-page-search-field.png)
+![Use the Search Field on the Space Events Page](./space-events-page-search-field.png)
 
 [OPTION END]
 
@@ -137,15 +137,15 @@ To find the exact event you're looking for, use the search field. Keep in mind t
 | Target (4)      | Shows where the event was triggered. Provides the name of the application. |
 | Description (5)  | Provides technical details about the event. |
 
-<!-- border; size:540px --> ![Application Event Components](./app-events-components.png)
+![Application Event Components](./app-events-components.png)
 
 By default, the page loads the most recent 200 events. To include more events to the list, choose **Load More** at the bottom of the page:
 
-<!-- border; size:540px --> ![Load More Application Events](./load-more-app-events.png)
+![Load More Application Events](./load-more-app-events.png)
 
 To find the exact event you're looking for, use the search field. Keep in mind that you can only search for already loaded events.
 
-<!-- border; size:540px --> ![Use the Search Field on the Application Events Page](./app-events-search-field.png)
+![Use the Search Field on the Application Events Page](./app-events-search-field.png)
 
 [OPTION END]
 
@@ -158,7 +158,7 @@ To find the exact event you're looking for, use the search field. Keep in mind t
 | Source (3)      | Shows the Cloud Foundry component code and the instance number. For example, **[APP/1]** indicates that application instance one has generated the log. |
 | Message (4)     | Allows you to view the log message. Specific messages provide you with additional information when you choose **More Details**. |
 
-<!-- border; size:540px --> ![UI of the Logs Page](./logs-error-example-1.png)
+![UI of the Logs Page](./logs-error-example-1.png)
 
 [OPTION END]
 
@@ -168,7 +168,7 @@ To find the exact event you're looking for, use the search field. Keep in mind t
 
 The **Space Events** page acts like a timeline. For example, you can see who created the space and when it happened:
 
-<!-- border; size:540px --> ![Space Event Example](./space-event-example.png)
+![Space Event Example](./space-event-example.png)
 
 You also get access to changes made to all applications deployed in the space.
     
@@ -180,7 +180,7 @@ You can use this information to track all changes made to the space. It helps yo
 
 Similar to the **Space Events** page, the **Application Events** page acts like a timeline. For example, you can see who last updated the app and when it happened. In this particular case, you can see that a developer has added a third app instance:
 
-<!-- border; size:540px --> ![App Event Example](./app-events-example-1.png)
+![App Event Example](./app-events-example-1.png)
 
 You can use this information to track all changes made to the app. It also helps you contact the person responsible for each change.
 
@@ -190,6 +190,6 @@ You can use this information to track all changes made to the app. It also helps
 
 When it comes to application logs, here's an example of an error on the **Logs** page. Our deployed sample app is implemented to generate the following error:
 
-<!-- border; size:540px --> ![Log Error Example](./logs-error-example-1.png)
+![Log Error Example](./logs-error-example-1.png)
 
 [OPTION END]

@@ -38,9 +38,9 @@ Deploying the image includes:
    
 2. Use the **Code** button to choose one of the options to download the code locally, or simply run the following command within your CLI at your desired folder location:
 
-    ```Shell/Bash
-    git clone https://github.com/SAP-samples/kyma-runtime-samples
-    ```
+   ```Shell/Bash
+   git clone https://github.com/SAP-samples/kyma-runtime-samples
+   ```
 
 ### Explore the sample
 
@@ -54,11 +54,11 @@ Deploying the image includes:
     
     In the first stage, a Go image is used. It copies the related content of the project into the image and builds the application. The built application is then copied into the Docker `scratch` image and exposed on port 8000. The `scratch` image is an empty image containing no other tools within it, so obtaining a shell/bash session is not possible. If desired, the following lines could be commented out to build an image with more included tools, but this results in a larger image.
 
-    ```Shell/Bash
-    FROM scratch
-    WORKDIR /app
-    COPY --from=builder /app/api-postgres-go /app/
-    ```
+   ```Shell/Bash
+   FROM scratch
+   WORKDIR /app
+   COPY --from=builder /app/api-postgres-go /app/
+   ```
 
     The `internal` directory contains the rest of the Go application, broken down into three packages: `api`, `config`, and `db`. You can explore their contents to understand the structure and functionality.
 
@@ -76,15 +76,15 @@ Make sure to replace the value of `<your-docker-id>` with your Docker account ID
 
 1. To build the Docker image, run this command:
 
-    ```Shell/Bash
-    docker build -t <your-docker-id>/api-postgresql-go -f docker/Dockerfile .
-    ```
+   ```Shell/Bash
+   docker build -t <your-docker-id>/api-postgresql-go -f docker/Dockerfile .
+   ```
 
 2. To push the Docker image to your Docker repository, run this command:
 
-    ```Shell/Bash
-    docker push <your-docker-id>/api-postgresql-go
-    ```
+   ```Shell/Bash
+   docker push <your-docker-id>/api-postgresql-go
+   ```
 
 ### Apply resources to SAP BTP, Kyma runtime
 
@@ -97,36 +97,36 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
 1. Within the `deployment.yaml`, adjust the value of `spec.template.spec.containers.image`, commented with **#change it to your image**, to use your Docker image. Also ensure the Secret name matches your PostgreSQL Service Binding (`postgres-binding`). Apply the ConfigMap and Deployment:
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/configmap.yaml
-    kubectl -n dev apply -f ./k8s/deployment.yaml
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/configmap.yaml
+   kubectl -n dev apply -f ./k8s/deployment.yaml
+   ```
 
 2. Verify the status of the Pod by running:
 
-    ```Shell/Bash
-    kubectl -n dev get po
-    ```
+   ```Shell/Bash
+   kubectl -n dev get po
+   ```
 
     The Pod should now be running.
 
-    ```Shell/Bash
-    NAME                               READY   STATUS    RESTARTS   AGE
-    api-postgresql-go-c694bc847-tkthc   2/2     Running   0          23m
-    ```
+   ```Shell/Bash
+   NAME                               READY   STATUS    RESTARTS   AGE
+   api-postgresql-go-c694bc847-tkthc   2/2     Running   0          23m
+   ```
 
 5. Run the following command to get the domain name of your Kyma cluster:
 
-    ```bash
-    kubectl get gateways.networking.istio.io -n kyma-system kyma-gateway \
-        -o jsonpath='{.spec.servers[0].hosts[0]}'
-    ```
+   ```bash
+   kubectl get gateways.networking.istio.io -n kyma-system kyma-gateway \
+       -o jsonpath='{.spec.servers[0].hosts[0]}'
+   ```
 
     The result looks like this:
 
-    ```bash
-    *.<xyz123>.kyma.ondemand.com
-    ```
+   ```bash
+   *.<xyz123>.kyma.ondemand.com
+   ```
 
 6. Copy the result without the leading `*.`.
 
@@ -134,27 +134,27 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
     > **Note:** The command output uses `*.` as a glob wildcard prefix, but in the `regex` field you replace it with `.*` — the equivalent regex pattern that matches any character sequence. For example, `*.<xyz123>.kyma.ondemand.com` becomes the regex `.*xyz123.kyma.ondemand.com`.
 
-    ```yaml
-      ... 
-        allowOrigins:
-          - regex: ".*xyz123.kyma.ondemand.com"
-          - exact: http://localhost:8080
-      ...
-    ```
+   ```yaml
+     ... 
+       allowOrigins:
+         - regex: ".*xyz123.kyma.ondemand.com"
+         - exact: http://localhost:8080
+     ...
+   ```
 
     > `exact: http://localhost:8080` is only required if you want to locally test the frontend of your application as part of the [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-postgres.html) tutorial.
 
 8. Apply the APIRule:
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/apirule.yaml
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/apirule.yaml
+   ```
 
 9. Apply the AuthorizationPolicy:
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/authorizationpolicy.yaml
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/authorizationpolicy.yaml
+   ```
 
 
 ### Open the API endpoint

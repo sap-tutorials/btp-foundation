@@ -34,7 +34,7 @@ Every service has its own available plans:
 
 3. From the available tabs, select **Pricing**. You can now see all Service Plans available (such as **Free**, **Default** / **Standard** or **Trial** service plans). As an example, see the screenshot below.
 
-<!-- border -->![Discovery Center](tutorial-instance-4-discovery-center.png)
+![Discovery Center](tutorial-instance-4-discovery-center.png)
 
 ---
 
@@ -55,7 +55,7 @@ Entitlements and quota are managed at the global account and directory levels, d
 
 1. In your subaccount, navigate to **Entitlements**. You'll see a table for the directory/ subaccount with all entitlements it already has.
 
-   <!-- border -->![Configure Subaccount Entitlements](tutorial-instance-5-add-service-plans.png)
+   ![Configure Subaccount Entitlements](tutorial-instance-5-add-service-plans.png)
 
 2. Select **Configure Entitlements** > **Add Service Plans**. A popover appears with all entitlements available for your directory/subaccount.
 

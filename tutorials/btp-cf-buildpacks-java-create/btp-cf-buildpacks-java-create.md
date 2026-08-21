@@ -45,14 +45,14 @@ In this tutorial, we use `eu20` as an **example**.
 
 2. Set the Cloud Foundry API endpoint for your subaccount. Run the following command  (using your **actual** region URL):
 
-    ```Bash/Shell
-    cf api https://api.cf.eu20.hana.ondemand.com
-    ```
+   ```Bash/Shell
+   cf api https://api.cf.eu20.hana.ondemand.com
+   ```
 3. Log on to the SAP BTP, Cloud Foundry environment:
 
-    ```Bash/Shell
-    cf login
-    ```
+   ```Bash/Shell
+   cf login
+   ```
 
 4. When prompted, enter your user credentials. These are the email and password you have used to register your trial or productive SAP BTP account.
 
@@ -113,28 +113,28 @@ For this part, you need to configure your `HelloWorld` application, add an extra
 
 1. Open `java-tutorial` directory in a console client, and run:
 
-    ```Bash/Shell
-    mvn install
-    ```
+   ```Bash/Shell
+   mvn install
+   ```
 
     This command builds your Java project (as a Maven one).
 
 2. From your Visual Studio Code, open the `java-tutorial` folder and create a file `manifest.yml` with the following content:
 
-    ```YAML
-    ---
-    applications:
-    - name: helloworld
-      random-route: true
-      path: ./target/java-tutorial-0.0.1-SNAPSHOT.jar
-      memory: 1024M
-      buildpacks: 
-      - sap_java_buildpack_jakarta
-      env:
-        TARGET_RUNTIME: tomcat
-        JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
-        JBP_CONFIG_SAP_MACHINE_JDK : "{ version: 21.+ }"
-    ```
+   ```YAML
+   ---
+   applications:
+   - name: helloworld
+     random-route: true
+     path: ./target/java-tutorial-0.0.1-SNAPSHOT.jar
+     memory: 1024M
+     buildpacks: 
+     - sap_java_buildpack_jakarta
+     env:
+       TARGET_RUNTIME: tomcat
+       JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
+       JBP_CONFIG_SAP_MACHINE_JDK : "{ version: 21.+ }"
+   ```
 
     The `manifest.yml` file represents the configuration describing your application and how it will be deployed to Cloud Foundry.
 
@@ -146,23 +146,23 @@ For this part, you need to configure your `HelloWorld` application, add an extra
 
     Your final Java code should look like this:
 
-    ```Java
+   ```Java
 
-    package com.example.java_tutorial;
+   package com.example.java_tutorial;
 
-    import org.springframework.boot.SpringApplication;
-    import org.springframework.boot.autoconfigure.SpringBootApplication;
+   import org.springframework.boot.SpringApplication;
+   import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    @SpringBootApplication
-    public class JavaTutorialApplication {
+   @SpringBootApplication
+   public class JavaTutorialApplication {
 
-    	public static void main(String[] args) {
-    		SpringApplication.run(JavaTutorialApplication.class, args);
-    		System.out.println("Hello World!");
-    	}
+   	public static void main(String[] args) {
+   		SpringApplication.run(JavaTutorialApplication.class, args);
+   		System.out.println("Hello World!");
+   	}
 
-    }
-    ```
+   }
+   ```
 
 5. Navigate to `...\java_tutorial` and from its context menu, choose `New Java File` > `Class`.
 
@@ -170,27 +170,27 @@ For this part, you need to configure your `HelloWorld` application, add an extra
 
 7.  Replace its default content with the following code:
 
-    ```Java
+   ```Java
 
-    package com.example.java_tutorial;
+   package com.example.java_tutorial;
 
-    import org.springframework.http.HttpStatus;
-    import org.springframework.http.ResponseEntity;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.RequestMapping;
-    import org.springframework.web.bind.annotation.RestController;
+   import org.springframework.http.HttpStatus;
+   import org.springframework.http.ResponseEntity;
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.RequestMapping;
+   import org.springframework.web.bind.annotation.RestController;
 
-    @RestController
-    @RequestMapping(path = "")
+   @RestController
+   @RequestMapping(path = "")
 
-    public class MainController {
-       @GetMapping(path = "")
-       public ResponseEntity<String> getDroneMedications() {
-          return new ResponseEntity<String>("Hello World!", HttpStatus.OK);
-       }
+   public class MainController {
+      @GetMapping(path = "")
+      public ResponseEntity<String> getDroneMedications() {
+         return new ResponseEntity<String>("Hello World!", HttpStatus.OK);
+      }
 
-    }
-    ```
+   }
+   ```
 
 #### RESULT
 
@@ -211,15 +211,15 @@ Your Java project is complete and your application is ready to be deployed.
 
 2. Now go to the `java-tutorial` directory from the command console, and build your project again by running:
 
-    ```Bash/Shell
-    mvn clean install
-    ```
+   ```Bash/Shell
+   mvn clean install
+   ```
 
 3. Then run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
     This command deploys your Java application.
 
@@ -246,43 +246,43 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 1. In the `java-tutorial` folder, create an `xs-security.json` file for your application with the following content:
     
-    ```JSON
-    {
-      "xsappname" : "helloworld",
-      "tenant-mode" : "dedicated",
-      "oauth2-configuration": {
-        "redirect-uris": [
-            "https://*.cfapps.eu20.hana.ondemand.com/**"
-          ]
-        }
-    }
-    ```
+   ```JSON
+   {
+     "xsappname" : "helloworld",
+     "tenant-mode" : "dedicated",
+     "oauth2-configuration": {
+       "redirect-uris": [
+           "https://*.cfapps.eu20.hana.ondemand.com/**"
+         ]
+       }
+   }
+   ```
     > **NOTE:** Replace `eu20` with the technical key of your **actual** SAP BTP region. 
 
 2. Create an `xsuaa` service instance named `javauaa` with plan `application`. To do that, run:
 
-    ```Bash/Shell
-    cf create-service xsuaa application javauaa -c xs-security.json
-    ```
+   ```Bash/Shell
+   cf create-service xsuaa application javauaa -c xs-security.json
+   ```
 
 3. Add the `javauaa` service in `manifest.yml` so the file looks like this:
 
-    ```YAML
-    ---
-    applications:
-    - name: helloworld
-      random-route: true
-      path: ./target/java-tutorial-0.0.1-SNAPSHOT.jar
-      memory: 1024M
-      buildpacks: 
-      - sap_java_buildpack_jakarta
-      env:
-        TARGET_RUNTIME: tomcat
-        JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
-        JBP_CONFIG_SAP_MACHINE_JDK : "{ version: 21.+ }"
-      services:
-      - javauaa
-    ```
+   ```YAML
+   ---
+   applications:
+   - name: helloworld
+     random-route: true
+     path: ./target/java-tutorial-0.0.1-SNAPSHOT.jar
+     memory: 1024M
+     buildpacks: 
+     - sap_java_buildpack_jakarta
+     env:
+       TARGET_RUNTIME: tomcat
+       JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
+       JBP_CONFIG_SAP_MACHINE_JDK : "{ version: 21.+ }"
+     services:
+     - javauaa
+   ```
 
     The `javauaa` service instance will be bound to the `helloworld` application during deployment.
 
@@ -294,137 +294,137 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 6. In the `resources` folder, create an `index.html` file with the following content:
 
-    ```HTML
-    <html>
-    <head>
-      <title>Java Tutorial</title>
-    </head>
-    <body>
-      <h1>Java Tutorial</h1>
-      <a href="/helloworld/">My Java Application</a>
-    </body>
-    </html>
-    ```
+   ```HTML
+   <html>
+   <head>
+     <title>Java Tutorial</title>
+   </head>
+   <body>
+     <h1>Java Tutorial</h1>
+     <a href="/helloworld/">My Java Application</a>
+   </body>
+   </html>
+   ```
 
     This will be the start page of the `helloworld` application.
 
 7. In the `web` directory, run:
 
-    ```Bash/Shell
-    npm init
-    ```
+   ```Bash/Shell
+   npm init
+   ```
 
     Press **Enter** on every step. This process will walk you through creating a `package.json` file in the `web` folder. 
 
 8. Now you need to create a directory `web/node_modules/@sap` and install an `approuter` package in it. To do that, in the `web` directory run:
 
-    ```Bash/Shell
-    npm install @sap/approuter --save
-    ```
+   ```Bash/Shell
+   npm install @sap/approuter --save
+   ```
 
 9. In the `web` folder, open the `package.json` file and replace the **scripts** section with the following:
 
-    ```JSON
-    "scripts": {
-        "start": "node node_modules/@sap/approuter/approuter.js"
-    },
-    ```
+   ```JSON
+   "scripts": {
+       "start": "node node_modules/@sap/approuter/approuter.js"
+   },
+   ```
 
 10. Now you need to add the `web` application to your project and bind the XSUAA service instance (`javauaa`) to it. To do that, insert the following content **at the end** of your `manifest.yml` file.
 
 
-    ```YAML
-    - name: web
-      random-route: true
-      path: web
-      memory: 1024M
-      env:
-        destinations: >
-          [
-            {
-              "name":"helloworld",
-              "url":"https://helloworld-noway-panda.cfapps.eu20.hana.ondemand.com/",
-              "forwardAuthToken": true
-            }
-          ]
-      services:
-      - javauaa
-    ```
+   ```YAML
+   - name: web
+     random-route: true
+     path: web
+     memory: 1024M
+     env:
+       destinations: >
+         [
+           {
+             "name":"helloworld",
+             "url":"https://helloworld-noway-panda.cfapps.eu20.hana.ondemand.com/",
+             "forwardAuthToken": true
+           }
+         ]
+     services:
+     - javauaa
+   ```
 
-    > **NOTE**: For the `url` value, enter your **actual** generated URL for the `helloworld` application. 
+   > **NOTE**: For the `url` value, enter your **actual** generated URL for the `helloworld` application. 
 
 11. In the `web` folder, create an `xs-app.json` file with the following content:
 
-    ```JSON
-    {
-      "routes": [
-        {
-          "source": "^/helloworld/(.*)$",
-          "target": "$1",
-          "destination": "helloworld"
-        }
-      ]
-    }
-    ```
+   ```JSON
+   {
+     "routes": [
+       {
+         "source": "^/helloworld/(.*)$",
+         "target": "$1",
+         "destination": "helloworld"
+       }
+     ]
+   }
+   ```
 
-    With this configuration, the incoming request is forwarded to the `helloworld` application, configured as a destination. By default, every route requires OAuth authentication, so the requests to this path will require an authenticated user.
+   With this configuration, the incoming request is forwarded to the `helloworld` application, configured as a destination. By default, every route requires OAuth authentication, so the requests to this path will require an authenticated user.
 
 
 12. Open your `pom.xml` file and replace the entire `<dependencies>` block with the following:
 
-    ```XML
-    <dependencies>
-        <!-- Spring Boot starter packages -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+   ```XML
+   <dependencies>
+       <!-- Spring Boot starter packages -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-actuator</artifactId>
+       </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cloud-connectors</artifactId>
-            <version>2.2.13.RELEASE</version>
-        </dependency>
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-cloud-connectors</artifactId>
+           <version>2.2.13.RELEASE</version>
+       </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-web</artifactId>
+       </dependency>
 
-        <!-- Spring and XSUAA Security -->
-        <dependency>
-            <groupId>com.sap.cloud.security.xsuaa</groupId>
-            <artifactId>xsuaa-spring-boot-starter</artifactId>
-            <version>3.5.0</version>
-        </dependency>
+       <!-- Spring and XSUAA Security -->
+       <dependency>
+           <groupId>com.sap.cloud.security.xsuaa</groupId>
+           <artifactId>xsuaa-spring-boot-starter</artifactId>
+           <version>3.5.0</version>
+       </dependency>
 
-        <!-- dependencies for test -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    ```
+       <!-- dependencies for test -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-test</artifactId>
+           <scope>test</scope>
+       </dependency>
+   </dependencies>
+   ```
 
 
 13. Now go to the `java-tutorial` directory and run:
 
-    ```Bash/Shell
-    mvn clean install
-    ```
+   ```Bash/Shell
+   mvn clean install
+   ```
 
 14. Then run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
-    This command will update the `helloworld` application and deploy the `web` application.
+   This command will update the `helloworld` application and deploy the `web` application.
 
-    > ### What's going on?
+   > ### What's going on?
 
-    >As of this point of the tutorial, the URL of the `web` application will be requested instead of the `helloworld` URL. It will then forward the requests to the `helloworld` application.
+   >As of this point of the tutorial, the URL of the `web` application will be requested instead of the `helloworld` URL. It will then forward the requests to the `helloworld` application.
 
 
 15. When the staging and deployment steps are completed, the `web` application should be successfully started and its details displayed in the command console.
@@ -457,160 +457,160 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 3. Replace its default content with the following code:
 
-    ```Java
-    package com.example.java_tutorial;
+   ```Java
+   package com.example.java_tutorial;
 
-    import com.sap.cloud.security.xsuaa.XsuaaServiceConfiguration;
-    import com.sap.cloud.security.xsuaa.token.TokenAuthenticationConverter;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.context.annotation.Configuration;
-    import org.springframework.core.convert.converter.Converter;
-    import org.springframework.security.authentication.AbstractAuthenticationToken;
+   import com.sap.cloud.security.xsuaa.XsuaaServiceConfiguration;
+   import com.sap.cloud.security.xsuaa.token.TokenAuthenticationConverter;
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.context.annotation.Bean;
+   import org.springframework.context.annotation.Configuration;
+   import org.springframework.core.convert.converter.Converter;
+   import org.springframework.security.authentication.AbstractAuthenticationToken;
 
-    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+   import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
-    import org.springframework.security.config.http.SessionCreationPolicy;
-    import org.springframework.security.oauth2.jwt.Jwt;
-    import org.springframework.security.web.SecurityFilterChain;
+   import org.springframework.security.config.http.SessionCreationPolicy;
+   import org.springframework.security.oauth2.jwt.Jwt;
+   import org.springframework.security.web.SecurityFilterChain;
 
-    @Configuration
+   @Configuration
 
-    public class WebSecurityConfig {
+   public class WebSecurityConfig {
 
-    	@Autowired
-    	XsuaaServiceConfiguration xsuaaServiceConfiguration;
+   	@Autowired
+   	XsuaaServiceConfiguration xsuaaServiceConfiguration;
 
-        @SuppressWarnings({ "removal" })
-    	@Bean
-        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+       @SuppressWarnings({ "removal" })
+   	@Bean
+       public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-            http
-            .sessionManagement()
-            // session is created by approuter
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-                // demand specific scopes depending on intended request
-                .authorizeRequests()
+           http
+           .sessionManagement()
+           // session is created by approuter
+           .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+           .and()
+               // demand specific scopes depending on intended request
+               .authorizeRequests()
 
-                .requestMatchers("/**").authenticated()
-                .anyRequest().denyAll() // deny anything not configured above
-            .and()
-                .oauth2ResourceServer().jwt()
-    				.jwtAuthenticationConverter(getJwtAuthoritiesConverter());
+               .requestMatchers("/**").authenticated()
+               .anyRequest().denyAll() // deny anything not configured above
+           .and()
+               .oauth2ResourceServer().jwt()
+   				.jwtAuthenticationConverter(getJwtAuthoritiesConverter());
 
-            return http.build();
-        }
+           return http.build();
+       }
 
-    	/**
-    	 * Customizes how GrantedAuthority are derived from a Jwt
-    	 *
-    	 * @returns jwt converter
-    	 */
-    	Converter<Jwt, AbstractAuthenticationToken> getJwtAuthoritiesConverter() {
-    		TokenAuthenticationConverter converter = new TokenAuthenticationConverter(xsuaaServiceConfiguration);
-    		converter.setLocalScopeAsAuthorities(true);
-    		return converter;
-    	}
+   	/**
+   	 * Customizes how GrantedAuthority are derived from a Jwt
+   	 *
+   	 * @returns jwt converter
+   	 */
+   	Converter<Jwt, AbstractAuthenticationToken> getJwtAuthoritiesConverter() {
+   		TokenAuthenticationConverter converter = new TokenAuthenticationConverter(xsuaaServiceConfiguration);
+   		converter.setLocalScopeAsAuthorities(true);
+   		return converter;
+   	}
 
-    }
-    ```
+   }
+   ```
 
 4. In the same way, create another Java class, named `NotAuthorizedException.java`, and replace its default content with the following code:
 
-    ```Java
-    package com.example.java_tutorial;
+   ```Java
+   package com.example.java_tutorial;
 
-    import org.springframework.http.HttpStatus;
-    import org.springframework.web.bind.annotation.ResponseStatus;
+   import org.springframework.http.HttpStatus;
+   import org.springframework.web.bind.annotation.ResponseStatus;
 
-    @SuppressWarnings("serial")
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public class NotAuthorizedException extends RuntimeException {
-        public NotAuthorizedException(String message) {
-            super(message);
-        }
-    }
-    ```
+   @SuppressWarnings("serial")
+   @ResponseStatus(HttpStatus.FORBIDDEN)
+   public class NotAuthorizedException extends RuntimeException {
+       public NotAuthorizedException(String message) {
+           super(message);
+       }
+   }
+   ```
 
 5. Open the `MainController.java` file and replace its content with the following:
 
-    ```Java
-    package com.example.java_tutorial;
+   ```Java
+   package com.example.java_tutorial;
 
-    import org.springframework.http.HttpStatus;
-    import org.springframework.http.ResponseEntity;
-    import org.springframework.security.core.authority.SimpleGrantedAuthority;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.RequestMapping;
-    import org.springframework.web.bind.annotation.RestController;
-    import org.springframework.security.core.annotation.AuthenticationPrincipal;
-    import com.sap.cloud.security.xsuaa.token.Token;
+   import org.springframework.http.HttpStatus;
+   import org.springframework.http.ResponseEntity;
+   import org.springframework.security.core.authority.SimpleGrantedAuthority;
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.RequestMapping;
+   import org.springframework.web.bind.annotation.RestController;
+   import org.springframework.security.core.annotation.AuthenticationPrincipal;
+   import com.sap.cloud.security.xsuaa.token.Token;
 
-    @RestController
-    @RequestMapping(path = "")
+   @RestController
+   @RequestMapping(path = "")
 
-    public class MainController {
+   public class MainController {
 
-       @GetMapping(path = "")
-       public ResponseEntity<String> readAll(@AuthenticationPrincipal Token token) {
-           if (!token.getAuthorities().contains(new SimpleGrantedAuthority("Display"))) {
-               throw new NotAuthorizedException("This operation requires \"Display\" scope");
-           }
+      @GetMapping(path = "")
+      public ResponseEntity<String> readAll(@AuthenticationPrincipal Token token) {
+          if (!token.getAuthorities().contains(new SimpleGrantedAuthority("Display"))) {
+              throw new NotAuthorizedException("This operation requires \"Display\" scope");
+          }
 
-           return new ResponseEntity<String>("Hello World!", HttpStatus.OK);
-       }
-    }
-    ```
+          return new ResponseEntity<String>("Hello World!", HttpStatus.OK);
+      }
+   }
+   ```
 
 6. To introduce an application role, open the `xs-security.json` in the `java-tutorial` folder, and add the necessary scope `Display` and role template `Viewer`, as follows:
 
-    ```JSON
-    {
-        "xsappname" : "helloworld",
-        "tenant-mode" : "dedicated",
-        "scopes": [
-            {
-            "name": "$XSAPPNAME.Display",
-            "description": "Display content"
-            }
-        ],
-        "role-templates": [
-            {
-            "name": "Viewer",
-            "description": "View content",
-            "scope-references": [
-                "$XSAPPNAME.Display"
-            ]
-            }
-        ],
-        "oauth2-configuration": {
-            "redirect-uris": [
-                "https://*.cfapps.eu20.hana.ondemand.com/**"
-        ]
-      }
-   }
+   ```JSON
+   {
+       "xsappname" : "helloworld",
+       "tenant-mode" : "dedicated",
+       "scopes": [
+           {
+           "name": "$XSAPPNAME.Display",
+           "description": "Display content"
+           }
+       ],
+       "role-templates": [
+           {
+           "name": "Viewer",
+           "description": "View content",
+           "scope-references": [
+               "$XSAPPNAME.Display"
+           ]
+           }
+       ],
+       "oauth2-configuration": {
+           "redirect-uris": [
+               "https://*.cfapps.eu20.hana.ondemand.com/**"
+       ]
+     }
+  }
 
-    ```
+   ```
 
 
 7. Update the XSUAA service. To do that, in the `java-tutorial` directory run:
 
-    ```Bash/Shell
-    cf update-service javauaa -c xs-security.json
-    ```
+   ```Bash/Shell
+   cf update-service javauaa -c xs-security.json
+   ```
 
 8. Build your project again, by running:
 
-    ```Bash/Shell
-    mvn clean install
-    ```
+   ```Bash/Shell
+   mvn clean install
+   ```
 
 9. Finally, run:
 
-    ```Bash/Shell
-    cf push helloworld
-    ```
+   ```Bash/Shell
+   cf push helloworld
+   ```
 
     This command will redeploy only the `helloworld` application. No changes have been made in `web` so no need to redeploy it.
 
@@ -650,15 +650,15 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 9. Now you need to apply these changes to the `web` application by building and redeploying it again. To do that, go back to the command line, and in the `java-tutorial` directory, run:
 
-    ```Bash/Shell
-    mvn clean install
-    ```
+   ```Bash/Shell
+   mvn clean install
+   ```
 
 10. And finally, run:
 
-    ```Bash/Shell
-    cf push web
-    ```
+   ```Bash/Shell
+   cf push web
+   ```
 
 #### RESULT
 

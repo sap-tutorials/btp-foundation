@@ -36,7 +36,7 @@ Spaces help teams separate workloads, manage permissions, and control the distri
 
 For example, you can have separate spaces for development, testing, and production:
 
-<!-- border; size:540px --> ![Dev, Test, Prod Spaces](./dev-test-prod-spaces-1.png)
+![Dev, Test, Prod Spaces](./dev-test-prod-spaces-1.png)
 
 ### Create a space
 
@@ -48,7 +48,7 @@ Otherwise, do the following:
 
 2. Choose **Create Space** from the top right corner of that page.
 
-    <!-- border; size:540px --> ![Create a Space](./create-space-1.png)
+    ![Create a Space](./create-space-1.png)
 
 3. Enter a name for the space.
 
@@ -56,13 +56,13 @@ Otherwise, do the following:
 
     By default, the **Space Manager** and **Space Developer** roles are pre-selected. Later on, there is a separate tutorial that dives deeper into space roles.
 
-    <!-- border; size:540px --> ![Creating a Space](./create-space-dialog-1.png)
+    ![Creating a Space](./create-space-dialog-1.png)
 
 5. Choose **Create**.
 
 You've now created a space where you can manage space quotas, space members, and deploy your application.
 
-<!-- border; size:540px --> ![Space Created](./space-created.png)
+![Space Created](./space-created.png)
 
 ### View memory and service instance details
 
@@ -82,17 +82,17 @@ Another progress bar shows:
 
 (6) How many more service instances you can create (light grey)
 
-<!-- border; size:540px --> ![Space Memory and Service Instances Progress Bars](./progress-bars-1.png)
+![Space Memory and Service Instances Progress Bars](./progress-bars-1.png)
 
 You can also see if the space is currently using the org quota or there's a space quota assigned to it. In this case, the space is using the org quota:
 
-<!-- border; size:540px --> ![View Memory Usage Details](./view-memory-usage-details-2.png)
+![View Memory Usage Details](./view-memory-usage-details-2.png)
 
 **Note:** When you create a new space, it doesn't have a space quota assigned to it. Brand new spaces use the org quota by default. To learn what a space quota is and how to assign it to a space, check out our next tutorial **Understanding Space Quotas**.
 
 Once a space quota is assigned to a space, you get detailed information about the space quota memory usage:
 
-<!-- border; size:540px --> ![View Memory Usage Details](./view-memory-usage-details-3.png)
+![View Memory Usage Details](./view-memory-usage-details-3.png)
 
 ### Edit a space
 
@@ -100,17 +100,17 @@ Editing a space gives you the option to update the space name only.
 
 1. On the **Spaces** page, choose the **Edit** button on the card.
 
-    <!-- border; size:540px --> ![Edit a Space](./edit-space-1.png)
+    ![Edit a Space](./edit-space-1.png)
 
 2. Update the name of the space.
 
-    <!-- border; size:540px --> ![Editing a Space](./edit-space-dialog-1.png)
+    ![Editing a Space](./edit-space-dialog-1.png)
 
 3. Choose **Save**.
 
 You can now see the updated name of your space.
 
-<!-- border; size:540px --> ![Space Edited](./space-edited-1.png)
+![Space Edited](./space-edited-1.png)
 
 ### Delete a space
 
@@ -118,11 +118,11 @@ If you decide to delete a space, make sure the data in the space you’re going 
 
 1. On the **Spaces** page, choose the **Delete** button on the card.
 
-    <!-- border; size:540px --> ![Delete a Space](./delete-space-1.png)
+    ![Delete a Space](./delete-space-1.png)
 
 2. Choose **Delete**.
 
-    <!-- border; size:540px --> ![Deleting a Space](./delete-space-dialog-1.png)
+    ![Deleting a Space](./delete-space-dialog-1.png)
 
 ### Recommendations
 

@@ -161,9 +161,9 @@ You need to configure the entitlements for the subaccount where the **task manag
 
 1. Clone the GitHub repository:
 
-    ```Git
-    git clone https://github.com/SAP/task-management-sample-app-sfsf-solutions
-    ```
+   ```Git
+   git clone https://github.com/SAP/task-management-sample-app-sfsf-solutions
+   ```
 
 2. Configure the details of the SAP SuccessFactors system to which you will connect.
 
@@ -220,9 +220,9 @@ To connect the **task management sample application for SAP SuccessFactors solut
 
 1. Log on to the cf CLI, using this command:
 
-    ```
-    cf login -a https://api.cf.eu10.hana.ondemand.com
-    ```
+   ```
+   cf login -a https://api.cf.eu10.hana.ondemand.com
+   ```
 
     The string `https://api.cf.eu10.hana.ondemand.com` represents the \<api_endpoint\>. To check it, open the SAP BTP cockpit, navigate to the subaccount, go to **Overview** and copy the API endpoint from the **Cloud Foundry** section.
 
@@ -280,9 +280,9 @@ During the service instance creation, an HTTP destination on a subaccount level 
 
 1. Log on to the cf CLI, using this command:
 
-    ```
-    cf login -a https://api.cf.eu10.hana.ondemand.com
-    ```
+   ```
+   cf login -a https://api.cf.eu10.hana.ondemand.com
+   ```
 
     The string `https://api.cf.eu10.hana.ondemand.com` is the \<api_endpoint\>. To check it, open the SAP BTP cockpit, navigate to the subaccount, go to **Overview** and copy the API endpoint from the **Cloud Foundry** section.
 
@@ -336,9 +336,9 @@ To configure the authentication for the **task management sample application for
 
 1. Log on to the cf CLI, using this command:
 
-    ```
-    cf login -a https://api.cf.eu10.hana.ondemand.com
-    ```
+   ```
+   cf login -a https://api.cf.eu10.hana.ondemand.com
+   ```
 
     The string `https://api.cf.eu10.hana.ondemand.com` represents the \<api_endpoint\>. To check it, open the SAP BTP cockpit, navigate to the subaccount, go to **Overview** and copy the API endpoint from the **Cloud Foundry** section.
 
@@ -366,9 +366,9 @@ You have to use **Cloud Foundry Command Line Interface (cf CLI)** to deploy and 
 
 2. Log on to the cf CLI, using this command:
 
-    ```Git
-    cf login -a https://api.cf.eu10.hana.ondemand.com
-    ```
+   ```Git
+   cf login -a https://api.cf.eu10.hana.ondemand.com
+   ```
 
     The value `https://api.cf.eu10.hana.ondemand.com` represents the \<api_endpoint\>. To check it, go to the SAP BTP cockpit, navigate to the subaccount, go to **Overview** and copy the API endpoint from the **Cloud Foundry** section. See [Log On to the Cloud Foundry Environment Using the Cloud Foundry Command Line Interface](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/7a37d66c2e7d401db4980db0cd74aa6b.html).
 

@@ -52,17 +52,17 @@ Creating a route means configuring the URL that directs traffic to your applicat
 
 1. Go to **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space. This opens the **Applications** page.
 
 3. Go to **Routes** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Routes](./go-to-routes-2.png)
+    ![Go to Routes](./go-to-routes-2.png)
 
 4. Choose **Create Route**.
 
-    <!-- border; size:540px --> ![Choose Create Route](./choose-create-route-1.png)
+    ![Choose Create Route](./choose-create-route-1.png)
 
 5. In the dialog, enter the following parameters:
 
@@ -74,13 +74,13 @@ Creating a route means configuring the URL that directs traffic to your applicat
 
     You can see the preview of your route at the bottom of the dialog.
     
-    <!-- border; size:540px --> ![Creating a Route](./create-route-dialog-1.png)
+    ![Creating a Route](./create-route-dialog-1.png)
 
 6. Choose **Create**.
 
 You can now see your newly created route.
 
-<!-- border; size:540px --> ![Route Created](./route-created-1.png)
+![Route Created](./route-created-1.png)
 
 ### Map the route to your application
 
@@ -102,21 +102,21 @@ Now map the newly created route to the application:
 
 2. Choose the **Map Route** button from the **Actions** column.
 
-    <!-- border; size:540px --> ![Choose Map Route](./choose-map-route-2.png)
+    ![Choose Map Route](./choose-map-route-2.png)
 
 3. Select an application from the dropdown to map the route to.
 
-    <!-- border; size:540px --> ![Select an App for the Dropdown](./map-route-dialog-1.png)
+    ![Select an App for the Dropdown](./map-route-dialog-1.png)
 
 4. Choose **Save**.
 
 You can now choose the **Launch Route** button in the **Actions** column to access your app.
 
-<!-- border; size:540px --> ![Choose Launch Route](./choose-launch-route-1.png)
+![Choose Launch Route](./choose-launch-route-1.png)
 
 Alternatively, you can also access your app from the **Application Overview** page by clicking the relevant app URL in the **Mapped Routes** section:
 
-<!-- border; size:540px --> ![Go to Application Overview and Click the App URL](./mapped_routes_section.png)
+![Go to Application Overview and Click the App URL](./mapped_routes_section.png)
 
 **Note**: The **Mapped Routes** section on the **Application Overview** page is the only place in the SAP BTP cockpit where you can unmap routes. 
 
