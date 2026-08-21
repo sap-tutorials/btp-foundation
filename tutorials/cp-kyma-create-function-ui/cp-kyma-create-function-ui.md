@@ -140,28 +140,28 @@ You cannot access and test your new `orders-service` yet from outside of the clu
 
 1. In the terminal call your service using curl. Replace `${APP_URL}` with your `orders-host` URL, for example, `https://orders-host.b1234567.kyma.ondemand.com/`.
 
-    ```bash
-    curl -X GET ${APP_URL}/orders -k
-    ```
+   ```bash
+   curl -X GET ${APP_URL}/orders -k
+   ```
 
     For example:
-    ```bash
-    curl -X GET https://orders-host.b1234567.kyma.ondemand/orders -k
-    ```
+   ```bash
+   curl -X GET https://orders-host.b1234567.kyma.ondemand/orders -k
+   ```
     The result should be still **`[]`**.
 
 
 2. Place an order using curl replacing the `${APP_URL}` with your `orders-host` URL:
     
-    ```bash
-    curl -X POST ${APP_URL}/orders -k \
-      -H "Content-Type: application/json" -d \
-      '{
-          "consignmentCode": "76272727",
-          "orderCode": "76272725",
-          "consignmentStatus": "PICKUP_COMPLETE"
-      }'
-    ```
+   ```bash
+   curl -X POST ${APP_URL}/orders -k \
+     -H "Content-Type: application/json" -d \
+     '{
+         "consignmentCode": "76272727",
+         "orderCode": "76272725",
+         "consignmentStatus": "PICKUP_COMPLETE"
+     }'
+   ```
 
 3. Call your `orders-service` in your browser again. The `orders-service` returns the order:
 
@@ -177,21 +177,21 @@ Congratulations, you created and exposed your first microservice!
 
 1. In the terminal call your service using curl. Replace `${APP_URL}` with your `orders-host` URL, for example, `https://orders-host.b1234567.kyma.ondemand.com/`.
 
-    ```Powershell
-    Invoke-RestMethod -Uri "${APP_URL}/orders" -Method GET
-    ```
+   ```Powershell
+   Invoke-RestMethod -Uri "${APP_URL}/orders" -Method GET
+   ```
     For example:
     
-    ```Powershell
-    Invoke-RestMethod -Uri "orders-host.b1234567.kyma.ondemand/orders" -Method GET
-    ```
+   ```Powershell
+   Invoke-RestMethod -Uri "orders-host.b1234567.kyma.ondemand/orders" -Method GET
+   ```
     The order list is empty so you get nothing in response.
 
 2. Place an order using curl replacing the `${APP_URL}` with your `orders-host` URL:
     
-    ```Powershell
-    Invoke-RestMethod -Uri "${APP_URL}/orders" -Method POST -Headers @{ "Content-Type" = "application/json" } -Body '{"consignmentCode": "76272727","orderCode": "76272725","consignmentStatus": "PICKUP_COMPLETE"}'
-    ```
+   ```Powershell
+   Invoke-RestMethod -Uri "${APP_URL}/orders" -Method POST -Headers @{ "Content-Type" = "application/json" } -Body '{"consignmentCode": "76272727","orderCode": "76272725","consignmentStatus": "PICKUP_COMPLETE"}'
+   ```
 
 3. Call your `orders-service` in your browser again. The `orders-service` returns the order:
 

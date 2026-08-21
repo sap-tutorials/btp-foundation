@@ -24,7 +24,7 @@ When creating the Endpoint Service, make sure you allowlist the SAP BTP CF AWS A
  SAP Private Link service establishes a private connection between applications running on SAP BTP and selected services in your own IaaS provider accounts. By reusing the private link functionality of our partner IaaS providers, you can access your services through private network connections to avoid data transfer via the public internet.
 
 ## Intro
-<!-- border -->![Overview of  Link service functionality](private-endpoint.png)
+![Overview of  Link service functionality](private-endpoint.png)
 
 ---
 
@@ -58,12 +58,12 @@ Make sure you can find `privatelink` under the service name column in the output
 To create and enable a private link, you need to define the connection to the service first. To do so, you need the service name of the endpoint service that you created as part of the prerequisites:
 
 1. Go to the AWS VPC console.
-<!-- border -->![AWS Endpoint Service](AWS-Endpoint-Service.png)
+![AWS Endpoint Service](AWS-Endpoint-Service.png)
 
 2. Navigate to the **Endpoint Services**.
 3. Search for the endpoint service you want to connect, select it and copy the Service name from the **Details** tab. You need it in the next step.
 
-<!-- border -->![Service Name](Fervice-name-from-details.png)
+![Service Name](Fervice-name-from-details.png)
 
 
 ### Create private link service 
@@ -133,7 +133,7 @@ urn to the AWS VPC console:
 4. Search for the endpoint ID and select the connection request.
 5. Accept the endpoint connection request by pressing on **Actions > Accept endpoint connection request**.
 
-<!-- border -->![Accept endpoint connection](Accept-endpoint-connection.png)
+![Accept endpoint connection](Accept-endpoint-connection.png)
 
 
 You should now receive a success message that the approval is pending.
