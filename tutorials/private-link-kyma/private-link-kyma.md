@@ -21,7 +21,7 @@ primary_tag: software-product>sap-business-technology-platform
 ## Intro
 SAP Private Link service establishes a private connection between applications running on SAP BTP and selected services in your own IaaS provider accounts. By reusing the private link functionality of our partner IaaS providers, you can access your services through private network connections to avoid data transfer via the public internet.
 
-<!-- border -->![Overview of SAP Private Link service functionality](private-endpoint.png)
+![Overview of SAP Private Link service functionality](private-endpoint.png)
 
 ---
 
@@ -33,19 +33,19 @@ If you have a Feature Set B account, you can use directories to group subaccount
 
 1. Navigate to your **global account** of SAP BTP cockpit and select **Account Explorer**.
 
-    <!-- border -->![Access Account Explorer](private-endpoint_Account-Explorer.png)
+    ![Access Account Explorer](private-endpoint_Account-Explorer.png)
 
 2. From the list, choose the respective **subaccount** for which you would like to enable SAP Private Link service.
 3. Navigate to **Entitlements** in the left hand navigation bar. You can now see all the existing service assignments for this respective subaccount.  
 4. Select **Configure Entitlements**.
 
-    <!-- border -->![Configure Entitlements for SAP Private Link service](private-endpoint-configure-entitlements.png)  
+    ![Configure Entitlements for SAP Private Link service](private-endpoint-configure-entitlements.png)  
 
 5. To add a new service assignment, select **Add Service Plans**. You see now all the offerings available to this specific subaccount.
 
 6. Select **SAP Private Link service**, **standard** (from Available Plans) and then **Add 1 Service Plan**.
 
-    <!-- border -->![Add Service Plan for SAP Private Link service](private-endpoint-add-service-plan.png)
+    ![Add Service Plan for SAP Private Link service](private-endpoint-add-service-plan.png)
 
 
 
@@ -56,7 +56,7 @@ You can distribute entitlements and quotas across subaccounts within a global ac
 
 Use **+** and **-** to increase or decrease the quota of the SAP Private Link service plan according to your needs.
 
-<!-- border -->![SAP Private Link service quota overview](private-endpoint-quota-overview.png)
+![SAP Private Link service quota overview](private-endpoint-quota-overview.png)
 
 > One unit equals one Private Link endpoint.
 >

@@ -43,59 +43,59 @@ You are now ready to deploy a PostgreSQL instance in your subaccount.
 
 1. Prepare your sample project:
 
-    ```bash
-    cds init bookshop --add sample,nodejs && cd bookshop
-    ```
+   ```bash
+   cds init bookshop --add sample,nodejs && cd bookshop
+   ```
 
 2. Go to `db/schema.cds` and for `descr` change `localized String` to `localized LargeString`.
 
-    ```cds
-    entity Books : managed {
-      key ID       : Integer;
-          author   : Association to Authors @mandatory;
-          title    : localized String       @mandatory;
-          descr    : localized LargeString;
-          genre    : Association to Genres;
-          stock    : Integer;
-          price    : Price;
-          currency : Currency;
-    }
-    ```
+   ```cds
+   entity Books : managed {
+     key ID       : Integer;
+         author   : Association to Authors @mandatory;
+         title    : localized String       @mandatory;
+         descr    : localized LargeString;
+         genre    : Association to Genres;
+         stock    : Integer;
+         price    : Price;
+         currency : Currency;
+   }
+   ```
 
 ### Configure PostgreSQL support
 
 1. Add PostgreSQL deployment configuration:
 
-    ```bash
-    cds add postgres --for production
-    ```
+   ```bash
+   cds add postgres --for production
+   ```
 
     > **TIP**: For more information, see [Add PostgreSQL Deployment Configuration](https://cap.cloud.sap/docs/guides/databases/postgres#add-postgresql-deployment-configuration).
 
 2. In `package.json`, change `[production].model` from `db/hana` to `db/postgres` and add the `auth` section:
 
-    ```json
-    "cds": {
-      "requires": {
-        "db-ext": {
-          "[development]": {
-            "model": "db/sqlite"
-          },
-          "[production]": {
-            "model": "db/postgres"
-          }
-        },
-        "[production]": {
-          "db": "postgres"
-        },
-        "auth": {
-          "[production]": {
-            "kind": "dummy"
-          }
-        }
-      }
-    }
-    ```
+   ```json
+   "cds": {
+     "requires": {
+       "db-ext": {
+         "[development]": {
+           "model": "db/sqlite"
+         },
+         "[production]": {
+           "model": "db/postgres"
+         }
+       },
+       "[production]": {
+         "db": "postgres"
+       },
+       "auth": {
+         "[production]": {
+           "kind": "dummy"
+         }
+       }
+     }
+   }
+   ```
 
     > With the dummy authentication, you pass all the authorization checks. It's intended only for development and should not be used in production environments. For more information, see [Dummy Authentication](https://cap.cloud.sap/docs/node.js/authentication#dummy).
 
@@ -103,9 +103,9 @@ You are now ready to deploy a PostgreSQL instance in your subaccount.
 
 1. Generate the Helm chart structure:
 
-    ```bash
-    cds add kyma
-    ```
+   ```bash
+   cds add kyma
+   ```
 
 2. When prompted, provide your registry username and cluster domain, for example:
     - registry server: user123
@@ -125,32 +125,32 @@ You are now ready to deploy a PostgreSQL instance in your subaccount.
 
 3. In your `values.yaml` file, change `postgres-db-deployer` to `postgres-deployer` and change `postgres.servicePlanName` to match the service plan you added in the entitlements step.
 
-    ```yaml
-    ...
-    postgres-deployer:
-      image:
-        repository: bookshop-postgres-deployer
-      bindings:
-        postgres:
-          serviceInstanceName: postgres
-    ...
-    postgres:
-      serviceOfferingName: postgresql-db
-      servicePlanName: free
-    ...
-    ```
+   ```yaml
+   ...
+   postgres-deployer:
+     image:
+       repository: bookshop-postgres-deployer
+     bindings:
+       postgres:
+         serviceInstanceName: postgres
+   ...
+   postgres:
+     serviceOfferingName: postgresql-db
+     servicePlanName: free
+   ...
+   ```
 
     > **NOTE**: The `servicePlanName` value must match the service plan available in your account. Replace `free` with the plan you selected in the entitlements step if different.
 
 4. If you want to connect to the PostgreSQL instance during local development, add your static internet IP address to the `allow_access` parameter in `values.yaml`. The Kyma NAT IP Gateway is already added by `cds add kyma`. Append your static IP after a comma:
 
-    ```yaml
-    postgres:
-      serviceOfferingName: postgresql-db
-      servicePlanName: free
-      parameters:
-        allow_access: "<kyma-nat-ip-gateway>,<your-static-internet-ip-address>"
-    ```
+   ```yaml
+   postgres:
+     serviceOfferingName: postgresql-db
+     servicePlanName: free
+     parameters:
+       allow_access: "<kyma-nat-ip-gateway>,<your-static-internet-ip-address>"
+   ```
 
     > **TIP**: To find your public IP address, you can run `curl ifconfig.me` in your terminal.
 
@@ -158,16 +158,16 @@ You are now ready to deploy a PostgreSQL instance in your subaccount.
 
 1. Create the `cap-bookstore` namespace and enable `istio`:
 
-    ```bash
-    kubectl create namespace cap-bookstore
-    kubectl label namespaces cap-bookstore istio-injection=enabled
-    ```
+   ```bash
+   kubectl create namespace cap-bookstore
+   kubectl label namespaces cap-bookstore istio-injection=enabled
+   ```
 
 2. Deploy your application to Kyma:
 
-    ```bash
-    cds up -2 k8s --namespace cap-bookstore
-    ```
+   ```bash
+   cds up -2 k8s --namespace cap-bookstore
+   ```
     > You might get a warning that your registry server is invalid. If so, simply enter your Docker username again.
 
 3. Create an image pull secret when prompted. 

@@ -28,9 +28,9 @@ The Kyma mock application contains lightweight substitutes for SAP applications 
 
 2. Use the green **Code** button to choose one of the options to download the code locally, or simply run the following command using your CLI at your desired folder location:
 
-    ```Shell/Bash
-    git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
-    ```
+   ```Shell/Bash
+   git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
+   ```
 
 ### Add the Application Connector module in SAP BTP, Kyma runtime
 

@@ -68,7 +68,7 @@ You're most likely here because you did not get all the service plans available 
 
 3. In the dropdown menus, choose **Show:** > **Subaccounts** and **Subaccounts:** > **trial** and then choose **Go**.
 
-    <!-- border -->![Entity Assignment Choosing Trial](EntityAssignment-ChosseTrial.png)
+    ![Entity Assignment Choosing Trial](EntityAssignment-ChosseTrial.png)
 
       This loads a table with all the existing entitlements and quota assigned to that subaccount.
 
@@ -78,7 +78,7 @@ You're most likely here because you did not get all the service plans available 
 
     Right now, you want to add missing entitlements, so choose **Add Service Plans**. Have a look at the following example. Please note that you need to enable entitlements according to your needs:
 
-    <!-- border -->![Click Configure Entitlemts](ConfigEntitlements.gif)
+    ![Click Configure Entitlemts](ConfigEntitlements.gif)
 
 6. In the dialog that opens, you have a list of all services available on trial on the left. You have to go through each of these services and make sure you add any missing service plans to your subaccount.
 
@@ -117,7 +117,7 @@ If you choose to create an additional subaccount and try things out there, you n
 
     **To remove quota for a service plan:** In the **Quota** column, choose the **+/-** buttons to adjust the amount you want to keep in the default subaccount.
 
-    <!-- border -->![Free Some Quota](FreeQuotaEntitlements.png)
+    ![Free Some Quota](FreeQuotaEntitlements.png)
 
 6.  When you're done removing all the service plans and/or quotas from the default subaccount, choose **Save** to exit edit mode for the **trial** subaccount.
 

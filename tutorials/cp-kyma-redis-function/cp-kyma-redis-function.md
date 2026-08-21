@@ -34,9 +34,9 @@ This sample provides a Redis deployment and two Serverless Functions that intera
 
 2. Use the green **Code** button to choose one of the options to download the code locally, or simply run the following command using your CLI at your desired folder location:
 
-    ```Shell/Bash
-    git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
-    ```
+   ```Shell/Bash
+   git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
+   ```
 
 ### Add the Serverless, Eventing and NATS modules in SAP BTP, Kyma runtime
 
@@ -153,7 +153,7 @@ With the configuration steps completed, you can now test the scenario to validat
 
 6. Modify the `orderCode` value as desired and choose **Send Event**. Make sure to remember the `orderCode` value, it will be used in a later step.
 
-    <!-- border -->![Test the Scenario](./assets/test-scenario-2.png)
+    ![Test the Scenario](./assets/test-scenario-2.png)
 
 ### Review output in the Function logs
 
@@ -165,15 +165,15 @@ In this step, we will view the logs outputted by the Function to verify that the
 
 3. Scroll to the bottom of the pane to find the option **Replicas of the Function** and choose the value found in the table.
 
-    <!-- border -->![Replicas of the Function](./assets/function-replicas.png)
+    ![Replicas of the Function](./assets/function-replicas.png)
 
 4. Under **Containers**, choose **View Logs** for the **function** container.
 
-    <!-- border -->![Function Logs Location](./assets/function-log-location.png)
+    ![Function Logs Location](./assets/function-log-location.png)
 
 5. The output should be similar to:
 
-    <!-- border -->![Function Log](./assets/function-log-event.png)
+    ![Function Log](./assets/function-log-event.png)
 
 ### Get output from the Function APIRule
 

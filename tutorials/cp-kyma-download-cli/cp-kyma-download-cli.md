@@ -50,15 +50,15 @@ The use of the kubectl command line tool requires an authenticated user to perfo
 
 2. To verify that kubectl is installed correctly, run the following command in your CLI:
 
-    ```Shell/Bash
-    kubectl version --client
-    ```
+   ```Shell/Bash
+   kubectl version --client
+   ```
 
     The command should return a list of version properties, for example:
 
-    ```Shell/Bash
-    Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.2",GitCommit:"8b5a19147530eaac9476b0ab82980b4088bbc1b2", GitTreeState:"clean",BuildDate:"2021-09-15T21:31:32Z", GoVersion:"go1.16.8", Compiler:"gc", Platform:"darwin/amd64"}
-    ```
+   ```Shell/Bash
+   Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.2",GitCommit:"8b5a19147530eaac9476b0ab82980b4088bbc1b2", GitTreeState:"clean",BuildDate:"2021-09-15T21:31:32Z", GoVersion:"go1.16.8", Compiler:"gc", Platform:"darwin/amd64"}
+   ```
 
 ### Download the SAP BTP, Kyma runtime kubeconfig
 
@@ -92,16 +92,16 @@ To obtain kubeconfig from Kyma dashboard:
 
 1. Open a command line prompt on your computer. In the command line screen, type in the following:
 
-    ```Shell/Bash
-    export KUBECONFIG=<KUBECONFIG_FILE_PATH>
-    ```
+   ```Shell/Bash
+   export KUBECONFIG=<KUBECONFIG_FILE_PATH>
+   ```
    Replace the `<KUBECONFIG_FILE_PATH>` placeholder with the file path, including the file name and extension, of the kubeconfig you downloaded in the previous step.
 
 2. Test the configuration by running the following command:  
 
-    ```Shell/Bash
-    kubectl config get-contexts
-    ```
+   ```Shell/Bash
+   kubectl config get-contexts
+   ```
 
     The command should return a response similar to this example:
 
@@ -117,20 +117,20 @@ To obtain kubeconfig from Kyma dashboard:
 
 1. Open a command line prompt on your computer. In the command line screen, type in the following:
 
-    ```PowerShell
-    $ENV:KUBECONFIG="<KUBECONFIG_FILE_PATH>"
-    ```
+   ```PowerShell
+   $ENV:KUBECONFIG="<KUBECONFIG_FILE_PATH>"
+   ```
 
-    ```DOS
-    set KUBECONFIG="<KUBECONFIG_FILE_PATH>"
-    ```
+   ```DOS
+   set KUBECONFIG="<KUBECONFIG_FILE_PATH>"
+   ```
    Replace the `<KUBECONFIG_FILE_PATH>` placeholder with the file path, including the file name and extension, of the kubeconfig you downloaded in the previous step.
 
 2. Test the configuration by running the following command:  
 
-    ```Shell/Bash
-    kubectl config get-contexts
-    ```
+   ```Shell/Bash
+   kubectl config get-contexts
+   ```
 
     The command should return a response similar to this example:
 

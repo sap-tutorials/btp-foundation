@@ -33,77 +33,77 @@ A Gateway API bundle is a collection of Custom Resource Definitions (CRDs) tied 
 
 1. To install Gateway API CustomResourceDefinitions (CRDs) from the standard channel, run the following command:
 
-    ```Shell/Bash
-    kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
-    { kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.1.0" | kubectl apply -f -; }
-    ```
+   ```Shell/Bash
+   kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
+   { kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.1.0" | kubectl apply -f -; }
+   ```
 
 ### Create a workload
 
 1. Export the name of the namespace in which you want to deploy a sample HTTPBin Service:
    
-    ```Shell/Bash
-    export NAMESPACE={service-namespace}
-    ```
+   ```Shell/Bash
+   export NAMESPACE={service-namespace}
+   ```
 
 2. Create a namespace with Istio injection enabled and deploy the HTTPBin Service:
 
-    ```Shell/Bash
-    kubectl create ns $NAMESPACE
-    kubectl label namespace $NAMESPACE istio-injection=enabled --overwrite
-    kubectl create -n $NAMESPACE -f https://raw.githubusercontent.com/istio/istio/master/samples/httpbin/httpbin.yaml
-    ```
+   ```Shell/Bash
+   kubectl create ns $NAMESPACE
+   kubectl label namespace $NAMESPACE istio-injection=enabled --overwrite
+   kubectl create -n $NAMESPACE -f https://raw.githubusercontent.com/istio/istio/master/samples/httpbin/httpbin.yaml
+   ```
 
 ### Expose the workload
 
 1. Create a Kubernetes Gateway to deploy Istio Ingress Gateway:
 
-    ```Shell/Bash
-    cat <<EOF | kubectl apply -f -
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: Gateway
-    metadata:
-      name: httpbin-gateway
-      namespace: ${NAMESPACE}
-    spec:
-      gatewayClassName: istio
-      listeners:
-      - name: http
-        hostname: "httpbin.kyma.example.com"
-        port: 80
-        protocol: HTTP
-        allowedRoutes:
-          namespaces:
-            from: Same
-    EOF
-    ```
+   ```Shell/Bash
+   cat <<EOF | kubectl apply -f -
+   apiVersion: gateway.networking.k8s.io/v1
+   kind: Gateway
+   metadata:
+     name: httpbin-gateway
+     namespace: ${NAMESPACE}
+   spec:
+     gatewayClassName: istio
+     listeners:
+     - name: http
+       hostname: "httpbin.kyma.example.com"
+       port: 80
+       protocol: HTTP
+       allowedRoutes:
+         namespaces:
+           from: Same
+   EOF
+   ```
     
     This command deploys the Istio Ingress service in your namespace with the corresponding Kubernetes Service of type LoadBalanced and an assigned external IP address.
 
 2. Create an HTTPRoute to configure access to your workload:
 
-    ```Shell/Bash
-    cat <<EOF | kubectl apply -f -
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: HTTPRoute
-    metadata:
-      name: httpbin
-      namespace: ${NAMESPACE}
-    spec:
-      parentRefs:
-      - name: httpbin-gateway
-      hostnames: ["httpbin.kyma.example.com"]
-      rules:
-      - matches:
-        - path:
-            type: PathPrefix
-            value: /headers
-        backendRefs:
-        - name: httpbin
-          namespace: ${NAMESPACE}
-          port: 8000
-    EOF
-    ```
+   ```Shell/Bash
+   cat <<EOF | kubectl apply -f -
+   apiVersion: gateway.networking.k8s.io/v1
+   kind: HTTPRoute
+   metadata:
+     name: httpbin
+     namespace: ${NAMESPACE}
+   spec:
+     parentRefs:
+     - name: httpbin-gateway
+     hostnames: ["httpbin.kyma.example.com"]
+     rules:
+     - matches:
+       - path:
+           type: PathPrefix
+           value: /headers
+       backendRefs:
+       - name: httpbin
+         namespace: ${NAMESPACE}
+         port: 8000
+   EOF
+   ```
 
 ### Access the Workload
 
@@ -111,16 +111,16 @@ To access your exposed workload, follow the steps:
 
 1. Discover Istio Ingress Gateway’s IP and port:
 
-    ```Shell/Bash
-    export INGRESS_HOST=$(kubectl get gtw httpbin-gateway -n $NAMESPACE -o jsonpath='{.status.addresses[0].value}')
-    export INGRESS_PORT=$(kubectl get gtw httpbin-gateway -n $NAMESPACE -o jsonpath='{.spec.listeners[?(@.name=="http")].port}')
-    ```
+   ```Shell/Bash
+   export INGRESS_HOST=$(kubectl get gtw httpbin-gateway -n $NAMESPACE -o jsonpath='{.status.addresses[0].value}')
+   export INGRESS_PORT=$(kubectl get gtw httpbin-gateway -n $NAMESPACE -o jsonpath='{.spec.listeners[?(@.name=="http")].port}')
+   ```
 
 2. Call the service:
 
-    ```Shell/Bash
-    curl -s -I -HHost:httpbin.kyma.example.com "http://$INGRESS_HOST:$INGRESS_PORT/headers"
-    ```
+   ```Shell/Bash
+   curl -s -I -HHost:httpbin.kyma.example.com "http://$INGRESS_HOST:$INGRESS_PORT/headers"
+   ```
     If successful, you get the code `200 OK` in response.
 
     > This task assumes there’s no DNS setup for the httpbin.kyma.example.com host, so the call contains the host header.
