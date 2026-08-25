@@ -35,7 +35,7 @@ A space quota is a set of predefined limits that control how many resources a sp
 
 Space quotas also define whether you can use paid services within a space.
 
-<!-- border; size:540px --> ![Space Quotas Overview](./space-quotas-overview-1.png)
+![Space Quotas Overview](./space-quotas-overview-1.png)
 
 When working with space quotas, keep in mind that:
 
@@ -63,11 +63,11 @@ A space quota helps you maintain stability and control in two key ways:
 
 2. Choose **Create Space Quota**.
 
-    <!-- border; size:540px --> ![Create a Space Quota](./create-space-quota-2.png)
+    ![Create a Space Quota](./create-space-quota-2.png)
 
 3. Enter a value in each mandatory field.
 
-    <!-- border; size:540px --> ![Creating a Space Quota](./create-space-quota-dialog-1.png)
+    ![Creating a Space Quota](./create-space-quota-dialog-1.png)
 
     a. **Name**: Name of the space quota
 
@@ -89,7 +89,7 @@ A space quota helps you maintain stability and control in two key ways:
 
 You now have a space quota.
 
-<!-- border; size:540px --> ![Space Quota Created](./space-quota-created-1.png)
+![Space Quota Created](./space-quota-created-1.png)
         
 Next, you have to assign it to your space.
 
@@ -99,15 +99,15 @@ A space quota takes effect only after you assign it to a space. Once you do that
 
 1. Choose **Quota Assignments**.
 
-    <!-- border; size:540px --> ![Choose Quota Assignments](./choose-quota-assignments-1.png)
+    ![Choose Quota Assignments](./choose-quota-assignments-1.png)
 
 2. Choose the **Edit** button of the space whose quota assignment you want to edit. 
 
-    <!-- border; size:540px --> ![Edit Quota Assignment](./edit-quota-assignment-1.png)
+    ![Edit Quota Assignment](./edit-quota-assignment-1.png)
 
 3. Select the **Space Quota** radio button.
 
-    <!-- border; size:540px --> ![Editing a Quota Assignment](./edit-quota-assignment-dialog-1.png)
+    ![Editing a Quota Assignment](./edit-quota-assignment-dialog-1.png)
 
     This indicates that you no longer want the space to use the limits of the org quota, and instead you'd like the limits of a space quota to be applied.
 
@@ -117,7 +117,7 @@ A space quota takes effect only after you assign it to a space. Once you do that
 
 Space quota "test" is now assigned to space "CF Cockpit Tutorial".
 
-<!-- border; size:540px --> ![Space Quota Assigned](./space-quota-assigned-to-space-1.png)
+![Space Quota Assigned](./space-quota-assigned-to-space-1.png)
 
 ### Edit a space quota
 
@@ -125,17 +125,17 @@ When you decide to change the space quota limits, make sure you've taken into ac
 
 1. On the **Space Quotas** page, choose the **Edit** button on the card.
 
-    <!-- border; size:540px --> ![Edit Space Quota](./edit-space-quota-1.png)
+    ![Edit Space Quota](./edit-space-quota-1.png)
 
 2. Let's change the memory per instance from 1024MB to 2048MB.
 
-    <!-- border; size:540px --> ![Editing a Space Quota](./edit-space-quota-dialog-1.png)
+    ![Editing a Space Quota](./edit-space-quota-dialog-1.png)
 
 3. **Save** the change.
 
 The space quota is now updated by having 2048MB memory per instance.
 
-<!-- border; size:540px --> ![Space Quota Edited](./space-quota-edited-1.png)
+![Space Quota Edited](./space-quota-edited-1.png)
 
 ### Delete a space quota
 
@@ -143,35 +143,35 @@ The space quota is now updated by having 2048MB memory per instance.
 
 Before you delete a space quota, make sure you no longer need it. Also, keep in mind that you can't delete a space quota if it's still assigned to a space:
 
-<!-- border; size:540px --> ![Unable to Delete Space Quota Error](./unable-to-delete-space-quota-error.png)
+![Unable to Delete Space Quota Error](./unable-to-delete-space-quota-error.png)
 
 To delete a space quota, do the following:
 
 1. If the space quota is still assigned to a space, choose **Quota Assignments**. 
 
-    <!-- border; size:540px --> ![Choose Quota Assignments](./choose-quota-assignments-quota-assigned-1.png)
+    ![Choose Quota Assignments](./choose-quota-assignments-quota-assigned-1.png)
 
 2. Choose the **Edit** button of the space whose quota assignment you want to edit. 
 
-    <!-- border; size:540px --> ![Edit Quota Assignment](./edit-quota-assignment-quota-assigned-1.png)
+    ![Edit Quota Assignment](./edit-quota-assignment-quota-assigned-1.png)
 
 3. Make sure the space is using either another space quota or the org quota.
 
-    <!-- border; size:540px --> ![Unassigning a Space Quota](./unassign-space-quota-1.png)
+    ![Unassigning a Space Quota](./unassign-space-quota-1.png)
 
 4. **Save** the change.
 
 5. Choose **Space Quotas**.
 
-    <!-- border; size:540px --> ![Choose Space Quotas](./choose-space-quotas.png)
+    ![Choose Space Quotas](./choose-space-quotas.png)
 
 6. Choose the **Delete** button on the card.
 
-    <!-- border; size:540px --> ![Delete Space Quota](./delete-space-quota-1.png)
+    ![Delete Space Quota](./delete-space-quota-1.png)
 
 7. Choose **Delete** again to confirm the change.
 
-    <!-- border; size:540px --> ![Deleting a Space Quota](./delete-space-quota-dialog-1.png)
+    ![Deleting a Space Quota](./delete-space-quota-dialog-1.png)
 
 ### Recommendations
 

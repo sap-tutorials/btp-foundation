@@ -39,9 +39,9 @@ Deploying the SAPUI5 Docker image to SAP BTP, Kyma runtime includes:
 
 2. Use the **Code** button to choose one of the options to download the code locally, or simply run the following command in your CLI at your desired folder location:
 
-    ```Shell/Bash
-    git clone https://github.com/SAP-samples/kyma-runtime-samples
-    ```
+   ```Shell/Bash
+   git clone https://github.com/SAP-samples/kyma-runtime-samples
+   ```
 
 ### Explore the sample
 
@@ -63,15 +63,15 @@ Run the following commands from the `frontend-ui5-postgresql` directory using yo
 
 1. To build the Docker image, run this command:
 
-    ```Shell/Bash
-    docker build -t <your-docker-id>/fe-ui5-postgresql -f docker/Dockerfile .
-    ```
+   ```Shell/Bash
+   docker build -t <your-docker-id>/fe-ui5-postgresql -f docker/Dockerfile .
+   ```
 
 2. To push the Docker image to your Docker repository, run this command:
 
-    ```Shell/Bash
-    docker push <your-docker-id>/fe-ui5-postgresql
-    ```
+   ```Shell/Bash
+   docker push <your-docker-id>/fe-ui5-postgresql
+   ```
 
 ### Apply resources to SAP BTP, Kyma runtime
 
@@ -83,37 +83,37 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
 1. Within the project, open the `k8s/configmap.yaml` file and adjust `API_URL` to match the cluster domain:
 
-    ```
-    kind: ConfigMap
-    apiVersion: v1
-    metadata:
-      name: fe-ui5-postgresql
-      labels:
-        app: fe-ui5-postgresql
-    data:
-      config.json: |-
-        {
-          "API_URL": "https://api-postgresql-go.*******.kyma.ondemand.com"
-        }
-    ```
+   ```
+   kind: ConfigMap
+   apiVersion: v1
+   metadata:
+     name: fe-ui5-postgresql
+     labels:
+       app: fe-ui5-postgresql
+   data:
+     config.json: |-
+       {
+         "API_URL": "https://api-postgresql-go.*******.kyma.ondemand.com"
+       }
+   ```
 
 2. Apply the ConfigMap:
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/configmap.yaml
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/configmap.yaml
+   ```
 
 3. In `deployment.yaml`, adjust the value of `spec.template.spec.containers.image` to use your Docker image. Apply the Deployment:
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/deployment.yaml
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/deployment.yaml
+   ```
 
 4. Apply the APIRule:
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/apirule.yaml
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/apirule.yaml
+   ```
 
 ### Open the UI application
 

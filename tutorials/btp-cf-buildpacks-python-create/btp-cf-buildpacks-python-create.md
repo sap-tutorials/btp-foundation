@@ -95,14 +95,14 @@ In this tutorial, we use `eu20` as an **example**.
 
 2. Set the Cloud Foundry API endpoint for your subaccount. Run the following command (using your actual region URL):
 
-    ```Bash/Shell
-    cf api https://api.cf.eu20.hana.ondemand.com
-    ```
+   ```Bash/Shell
+   cf api https://api.cf.eu20.hana.ondemand.com
+   ```
 3. Log on to the SAP BTP, Cloud Foundry environment:
 
-    ```Bash/Shell
-    cf login
-    ```
+   ```Bash/Shell
+   cf login
+   ```
 
 4. When prompted, enter your user credentials. These are the email and password you have used to register your trial or productive SAP BTP account.
  
@@ -129,17 +129,17 @@ You're going to create a simple Python application.
 
 3. Create a file `manifest.yml` with the following content:
 
-    ```YAML
-    ---
-    applications:
-    - name: myapp
-      random-route: true
-      path: ./
-      memory: 128M
-      buildpacks: 
-      - python_buildpack
-      command: python server.py
-    ```
+   ```YAML
+   ---
+   applications:
+   - name: myapp
+     random-route: true
+     path: ./
+     memory: 128M
+     buildpacks: 
+     - python_buildpack
+     command: python server.py
+   ```
 
     The `manifest.yml` file represents the configuration describing your application and how it will be deployed to Cloud Foundry.
 
@@ -149,37 +149,37 @@ You're going to create a simple Python application.
 
 4. Specify the Python runtime version that your application will run on. To do that, create a `runtime.txt` file with the following content:
 
-    ```TXT
-    python-3.13.x
-    ```
+   ```TXT
+   python-3.13.x
+   ```
 
 5. This application will be a web server utilizing the Flask web framework. To specify Flask as an application dependency, create a `requirements.txt` file with the following content:
 
-    ```TXT
-    Flask==2.3.*
-    ```
+   ```TXT
+   Flask==2.3.*
+   ```
 
 6. Create a `server.py` file with the following application logic:
 
-    ```Python
-    import os
-    from flask import Flask
-    app = Flask(__name__)
-    port = int(os.environ.get('PORT', 3000))
-    @app.route('/')
-    def hello():
-        return "Hello World!"
-    if __name__ == '__main__':
-        app.run(host='0.0.0.0', port=port)
-    ```
+   ```Python
+   import os
+   from flask import Flask
+   app = Flask(__name__)
+   port = int(os.environ.get('PORT', 3000))
+   @app.route('/')
+   def hello():
+       return "Hello World!"
+   if __name__ == '__main__':
+       app.run(host='0.0.0.0', port=port)
+   ```
 
     This is a simple server, which will return a **Hello World!** message when requested.
 
 7.	Deploy the application on Cloud Foundry. To do that, in the `python-tutorial` directory, run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
     > Make sure you always run `cf push` in the directory where the `manifest.yml` file is located! In this case, that's `python-tutorial`.
 
@@ -202,79 +202,79 @@ You have created a service instance for SAP HANA Cloud (see **STEP 1**). Now you
 
 1.	Create a `hana` service instance named `pyhana` with service plan `hdi-shared`. Run:
 
-    ```Bash/Shell
-    cf create-service hana hdi-shared pyhana
-    ```
+   ```Bash/Shell
+   cf create-service hana hdi-shared pyhana
+   ```
 
 2.	Bind this service instance to the application. Add `pyhana` in the `manifest.yml` file so that its content looks like this:
 
-    ```YAML
-    ---
-    applications:
-    - name: myapp
-      random-route: true
-      path: ./
-      memory: 128M
-      buildpacks: 
-      - python_buildpack
-      command: python server.py
-      services:
-      - pyhana
-    ```
+   ```YAML
+   ---
+   applications:
+   - name: myapp
+     random-route: true
+     path: ./
+     memory: 128M
+     buildpacks: 
+     - python_buildpack
+     command: python server.py
+     services:
+     - pyhana
+   ```
 
 3. To consume the service inside the application, you need to read the service settings and credentials from the application. To do that, you need to use the `cfenv` Python module. Add two more lines to the `requirements.txt` file so that its content looks like this:
 
-    ```TXT
-    Flask==2.3.*
-    cfenv==0.5.3
-    hdbcli==2.17.*
-    ```
+   ```TXT
+   Flask==2.3.*
+   cfenv==0.5.3
+   hdbcli==2.17.*
+   ```
 
 
 4.	Modify the `server.py` file to include additional lines of code - for reading the service information from the environment, and for executing a query with the `hdbcli` driver. After being requested, the application will now return an SAP HANA Cloud related result. Replace the current content with the following:
 
-    ```Python
-    import os
-    from flask import Flask
-    from cfenv import AppEnv
-    from hdbcli import dbapi
+   ```Python
+   import os
+   from flask import Flask
+   from cfenv import AppEnv
+   from hdbcli import dbapi
 
-    app = Flask(__name__)
-    env = AppEnv()
+   app = Flask(__name__)
+   env = AppEnv()
 
-    hana_service = 'hana'
-    hana = env.get_service(label=hana_service)
+   hana_service = 'hana'
+   hana = env.get_service(label=hana_service)
 
-    port = int(os.environ.get('PORT', 3000))
-    @app.route('/')
-    def hello():
-        if hana is None:
-            return "Can't connect to HANA service '{}' – check service name?".format(hana_service)
-        else:
-            conn = dbapi.connect(address=hana.credentials['host'],
-                                 port=int(hana.credentials['port']),
-                                 user=hana.credentials['user'],
-                                 password=hana.credentials['password'],
-                                 encrypt='true',
-                                 sslTrustStore=hana.credentials['certificate'])
+   port = int(os.environ.get('PORT', 3000))
+   @app.route('/')
+   def hello():
+       if hana is None:
+           return "Can't connect to HANA service '{}' – check service name?".format(hana_service)
+       else:
+           conn = dbapi.connect(address=hana.credentials['host'],
+                                port=int(hana.credentials['port']),
+                                user=hana.credentials['user'],
+                                password=hana.credentials['password'],
+                                encrypt='true',
+                                sslTrustStore=hana.credentials['certificate'])
 
-            cursor = conn.cursor()
-            cursor.execute("select CURRENT_UTCTIMESTAMP from DUMMY")
-            ro = cursor.fetchone()
-            cursor.close()
-            conn.close()
+           cursor = conn.cursor()
+           cursor.execute("select CURRENT_UTCTIMESTAMP from DUMMY")
+           ro = cursor.fetchone()
+           cursor.close()
+           conn.close()
 
-            return "Current time is: " + str(ro["CURRENT_UTCTIMESTAMP"])
+           return "Current time is: " + str(ro["CURRENT_UTCTIMESTAMP"])
 
-    if __name__ == '__main__':
-        app.run(host='0.0.0.0', port=port)
-    ```
+   if __name__ == '__main__':
+       app.run(host='0.0.0.0', port=port)
+   ```
 
 5.	In the `python-tutorial` directory, run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
 6.	Refresh the URL of the `myapp` application (previously loaded in a browser window).
 
@@ -291,41 +291,41 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 1.	In the `python-tutorial` folder, create an `xs-security.json` file for your application with the following content: 
     
-    ```JSON
-    {
-      "xsappname" : "myapp",
-      "tenant-mode" : "dedicated",
-      "oauth2-configuration": {
-        "redirect-uris": [
-            "https://*.cfapps.eu20.hana.ondemand.com/**"
-          ]
-        }
-    }
-    ``` 
+   ```JSON
+   {
+     "xsappname" : "myapp",
+     "tenant-mode" : "dedicated",
+     "oauth2-configuration": {
+       "redirect-uris": [
+           "https://*.cfapps.eu20.hana.ondemand.com/**"
+         ]
+       }
+   }
+   ``` 
     > **NOTE:**  Instead of  `eu20`, use the technical key of your actual region. 
 
 2.	Create an `xsuaa` service instance named `pyuaa` with plan `application`. To do that, run:
 
-    ```Bash
-    cf create-service xsuaa application pyuaa -c xs-security.json
-    ```
+   ```Bash
+   cf create-service xsuaa application pyuaa -c xs-security.json
+   ```
 
 3.	Add the `pyuaa` service in the `manifest.yml` file so that its content looks like this:
 
-    ```YAML
-    ---
-    applications:
-    - name: myapp
-      random-route: true
-      path: ./
-      memory: 128M
-      buildpacks: 
-      - python_buildpack
-      command: python server.py
-      services:
-      - pyhana
-      - pyuaa
-    ```
+   ```YAML
+   ---
+   applications:
+   - name: myapp
+     random-route: true
+     path: ./
+     memory: 128M
+     buildpacks: 
+     - python_buildpack
+     command: python server.py
+     services:
+     - pyhana
+     - pyuaa
+   ```
 
     The `pyuaa` service instance will be bound to the `myapp` application during deployment.
 
@@ -338,85 +338,85 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 6.	In the `resources` folder, create an `index.html` file with the following content:
 
-    ```HTML
-    <html>
-    <head>
-    	<title>Python Tutorial</title>
-    </head>
-    <body>
-      <h1>Python Tutorial</h1>
-      <a href="/myapp/">My Python Application</a>
-    </body>
-    </html>
-    ```
+   ```HTML
+   <html>
+   <head>
+   	<title>Python Tutorial</title>
+   </head>
+   <body>
+     <h1>Python Tutorial</h1>
+     <a href="/myapp/">My Python Application</a>
+   </body>
+   </html>
+   ```
 
     This will be the `myapp` application start page.
 
 7.	In the `web` directory, run:
 
-    ```Bash/Shell
-    npm init
-    ```
+   ```Bash/Shell
+   npm init
+   ```
 
     Press **Enter** on every step. This process will walk you through creating a `package.json` file in the `web` folder. 
 
 8.	Now you need to create a directory `web/node_modules/@sap` and install an `approuter` package in it. To do that, in the `web` directory run:
 
-    ```Bash/Shell
-    npm install @sap/approuter --save
-    ```
+   ```Bash/Shell
+   npm install @sap/approuter --save
+   ```
 
 9.	In the `web` folder, open the `package.json` file and replace the **scripts** section with the following:
 
-    ```JSON
-    "scripts": {
-        "start": "node node_modules/@sap/approuter/approuter.js"
-    },
-    ```
+   ```JSON
+   "scripts": {
+       "start": "node node_modules/@sap/approuter/approuter.js"
+   },
+   ```
 
 10.	Now you need to add the `web` application to your project and bind the XSUAA service instance (`pyuaa`) to it. To do that, insert the following content **at the end** of your `manifest.yml` file.
 
-    ```YAML
-    - name: web
-      random-route: true
-      path: web
-      memory: 128M
-      env:
-        destinations: >
-          [
-            {
-              "name":"myapp",
-              "url":"https://myapp-grouchy-rabbit.cfapps.eu20.hana.ondemand.com/",
-              "forwardAuthToken": true
-            }
-          ]
-      services:
-      - pyuaa
-    ```
+   ```YAML
+   - name: web
+     random-route: true
+     path: web
+     memory: 128M
+     env:
+       destinations: >
+         [
+           {
+             "name":"myapp",
+             "url":"https://myapp-grouchy-rabbit.cfapps.eu20.hana.ondemand.com/",
+             "forwardAuthToken": true
+           }
+         ]
+     services:
+     - pyuaa
+   ```
 
     > **NOTE**: For the `url` value, enter your **actual** generated URL for the `myapp` application. 
 
 11.	In the `web` folder, create an `xs-app.json` file with the following content:
 
-    ```JSON
-    {
-      "routes": [
-        {
-          "source": "^/myapp/(.*)$",
-          "target": "$1",
-          "destination": "myapp"
-        }
-      ]
-    }
-    ```
+   ```JSON
+   {
+     "routes": [
+       {
+         "source": "^/myapp/(.*)$",
+         "target": "$1",
+         "destination": "myapp"
+       }
+     ]
+   }
+   ```
 
     With this configuration, the incoming request is forwarded to the `myapp` application, configured as a destination. By default, every route requires OAuth authentication, so the requests to this path will require an authenticated user.
 
 12.	Go to the `python-tutorial` directory and run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
     This command will update the `myapp` application and deploy the `web` application.
 
     > ### What's going on?
@@ -454,68 +454,68 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 1.	Add the `sap-xssec` security library to the `requirements.txt` file, to place restrictions on the content you serve. The file should look like this:
 
-    ```TXT
-    Flask==2.3.*
-    cfenv==0.5.3
-    hdbcli==2.17.*
-    sap-xssec==4.*
-    ```
+   ```TXT
+   Flask==2.3.*
+   cfenv==0.5.3
+   hdbcli==2.17.*
+   sap-xssec==4.*
+   ```
 
 
 2.	Modify the `server.py` file to use the SAP `xssec` library. Replace the current content with the following code. (For `port`, you can use 3000, 8000, or 8080).
 
-    ```Python
-    import os
-    from flask import Flask
-    from cfenv import AppEnv
-    from flask import request
-    from flask import abort
+   ```Python
+   import os
+   from flask import Flask
+   from cfenv import AppEnv
+   from flask import request
+   from flask import abort
 
-    from sap import xssec
+   from sap import xssec
 
-    from hdbcli import dbapi
+   from hdbcli import dbapi
 
-    app = Flask(__name__)
-    env = AppEnv()
+   app = Flask(__name__)
+   env = AppEnv()
 
-    port = int(os.environ.get('PORT', 3000))
-    hana = env.get_service(label='hana')
-    uaa_service = env.get_service(name='pyuaa').credentials
+   port = int(os.environ.get('PORT', 3000))
+   hana = env.get_service(label='hana')
+   uaa_service = env.get_service(name='pyuaa').credentials
 
-    @app.route('/')
-    def hello():
-         if 'authorization' not in request.headers:
-             abort(403)
-         access_token = request.headers.get('authorization')[7:]
-         security_context = xssec.create_security_context(access_token, uaa_service)
-         isAuthorized = security_context.check_scope('openid')
-         if not isAuthorized:
-             abort(403)
+   @app.route('/')
+   def hello():
+        if 'authorization' not in request.headers:
+            abort(403)
+        access_token = request.headers.get('authorization')[7:]
+        security_context = xssec.create_security_context(access_token, uaa_service)
+        isAuthorized = security_context.check_scope('openid')
+        if not isAuthorized:
+            abort(403)
 
-         conn = dbapi.connect(address=hana.credentials['host'],
-                               port=int(hana.credentials['port']),
-                               user=hana.credentials['user'],
-                               password=hana.credentials['password'],
-                               encrypt='true',
-                               sslTrustStore=hana.credentials['certificate'])
+        conn = dbapi.connect(address=hana.credentials['host'],
+                              port=int(hana.credentials['port']),
+                              user=hana.credentials['user'],
+                              password=hana.credentials['password'],
+                              encrypt='true',
+                              sslTrustStore=hana.credentials['certificate'])
 
-         cursor = conn.cursor()
-         cursor.execute("select CURRENT_UTCTIMESTAMP from DUMMY")
-         ro = cursor.fetchone()
-         cursor.close()
-         conn.close()
+        cursor = conn.cursor()
+        cursor.execute("select CURRENT_UTCTIMESTAMP from DUMMY")
+        ro = cursor.fetchone()
+        cursor.close()
+        conn.close()
 
-         return "Current time is: " + str(ro["CURRENT_UTCTIMESTAMP"])
+        return "Current time is: " + str(ro["CURRENT_UTCTIMESTAMP"])
 
-    if __name__ == '__main__':
-      app.run(host='0.0.0.0', port=port)
-    ```
+   if __name__ == '__main__':
+     app.run(host='0.0.0.0', port=port)
+   ```
 
 3.	Go to the `python-tutorial` folder and run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
     This command will update both **myapp** and **web**.
 

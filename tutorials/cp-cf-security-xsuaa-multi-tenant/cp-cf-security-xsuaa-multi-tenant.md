@@ -26,7 +26,7 @@ The use case for this tutorial is that you've created a Node.js application in y
 
 See the following diagram to get an overview of the SaaS architecture.
 
-<!-- border -->![SaaS architecture](saas-architecture.png)
+![SaaS architecture](saas-architecture.png)
 &nbsp;
 >**IMPORTANT:** This tutorial is using **specific values** instead of placeholders. **Please make sure to adapt those values** to your own values, that you used in the [previous tutorial](cp-cf-security-xsuaa-create).
 
@@ -68,30 +68,30 @@ To enable multitenancy, you need to change the parameter `tenant-mode` in the `x
 
 4. Under `scopes`, add access to the SaaS Provisioning service to call the product list callback API directly. You'll implement the callbacks in Step 3.
 
-    ```JSON
-    "scopes": [
-  		{
-  			"name": "$XSAPPNAME.read",
-  			"description": "With this scope, USER can read products."
-  		},
-  		{
-  			"name": "$XSAPPNAME.Callback",
-  			"description": "With this scope set, the callbacks for tenant onboarding, offboarding and getDependencies can be called.",
-  			"grant-as-authority-to-apps": [
-  				"$XSAPPNAME(application,sap-provisioning,tenant-onboarding)"
-  			]
-  		}
-  	],
-    ```
+   ```JSON
+   "scopes": [
+ 		{
+ 			"name": "$XSAPPNAME.read",
+ 			"description": "With this scope, USER can read products."
+ 		},
+ 		{
+ 			"name": "$XSAPPNAME.Callback",
+ 			"description": "With this scope set, the callbacks for tenant onboarding, offboarding and getDependencies can be called.",
+ 			"grant-as-authority-to-apps": [
+ 				"$XSAPPNAME(application,sap-provisioning,tenant-onboarding)"
+ 			]
+ 		}
+ 	],
+   ```
 
 5. The `redirect-uris` parameter needs to have an asterisk right after the protocol and before `approuter-product-list`. This enables the application to redirect to the subscribed application instances in the other subaccounts.
 
-    ```JSON
-    "oauth2-configuration":     
-    {        
-      "redirect-uris": ["https://*approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/login/callback"]                
-    }
-    ```
+   ```JSON
+   "oauth2-configuration":     
+   {        
+     "redirect-uris": ["https://*approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com/login/callback"]                
+   }
+   ```
 
 6. Save the file.
 
@@ -118,16 +118,16 @@ Add a parameter called `TENANT_HOST_PATTERN` to the **approuter** application. T
 
 3. For the **approuter** application, add the parameter `TENANT_HOST_PATTERN` under the `env` parameter.
 
-    ```YAML
-    env:
-      destinations: >
-        [
-          {"name":"hw-dest",
-           "url":"https://product-list-ap25.cfapps.eu10.hana.ondemand.com",
-           "forwardAuthToken": true}
-        ]
-      TENANT_HOST_PATTERN: "^(.*)-approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com"
-    ```
+   ```YAML
+   env:
+     destinations: >
+       [
+         {"name":"hw-dest",
+          "url":"https://product-list-ap25.cfapps.eu10.hana.ondemand.com",
+          "forwardAuthToken": true}
+       ]
+     TENANT_HOST_PATTERN: "^(.*)-approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com"
+   ```
     >**RESTRICTION:** The value of the parameter `TENANT_HOST_PATTERN` has to be lowercase.
 
 
@@ -196,37 +196,37 @@ To enable other subaccounts to subscribe to your application, you need to implem
 
 3. Add the following lines of code after the `checkReadScope` function (replace the string "ap25" with the string that you used when deploying the first tutorial. Adapt the region code if your trial isn't in the eu10 region):
 
-    ```JavaScript
-      app.put('/callback/v1.0/tenants/*', function (req, res) {
-      	var consumerSubdomain = req.body.subscribedSubdomain;
-      	var tenantAppURL = "https:\/\/" + consumerSubdomain + "-approuter-product-list-ap25." + "cfapps.eu10.hana.ondemand.com/products";
-      	res.status(200).send(tenantAppURL);
-        });
+   ```JavaScript
+     app.put('/callback/v1.0/tenants/*', function (req, res) {
+     	var consumerSubdomain = req.body.subscribedSubdomain;
+     	var tenantAppURL = "https:\/\/" + consumerSubdomain + "-approuter-product-list-ap25." + "cfapps.eu10.hana.ondemand.com/products";
+     	res.status(200).send(tenantAppURL);
+       });
 
-      app.delete('/callback/v1.0/tenants/*', function (req, res) {
-      	var consumerSubdomain = req.body.subscribedSubdomain;
-      	var tenantAppURL = "https:\/\/" + consumerSubdomain + "-approuter-product-list-ap25." + "cfapps.eu10.hana.ondemand.com/products";
-      	res.status(200).send(tenantAppURL);
-      });
-    ```
+     app.delete('/callback/v1.0/tenants/*', function (req, res) {
+     	var consumerSubdomain = req.body.subscribedSubdomain;
+     	var tenantAppURL = "https:\/\/" + consumerSubdomain + "-approuter-product-list-ap25." + "cfapps.eu10.hana.ondemand.com/products";
+     	res.status(200).send(tenantAppURL);
+     });
+   ```
 
 4. To be able to read the body of those calls, add the body parser module at line 9 of the `index.js` file.
 
     ```JavaScript
-     const bodyParser = require('body-parser')
-     app.use(bodyParser.json())
+    const bodyParser = require('body-parser')
+    app.use(bodyParser.json())
     ```
 
 5. Add the body parser module as a dependency to the `product list/myapp/package.json` file.
 
     ```JSON
-     "dependencies": {
-       "express": "^4.17.1",
-       "@sap/xsenv": "^3.1.0",
-       "@sap/xssec": "^3.0.10",
-       "passport": "^0.4.1",
-       "body-parser": "^1.19.0"   
-      }
+    "dependencies": {
+      "express": "^4.17.1",
+      "@sap/xsenv": "^3.1.0",
+      "@sap/xssec": "^3.0.10",
+      "passport": "^0.4.1",
+      "body-parser": "^1.19.0"   
+    }
     ```
 
 
@@ -243,17 +243,17 @@ To register your application, you need a configuration file called `config.json`
 
 3. Insert the following lines:
 
-    ```JSON
-    {
-      "xsappname":"product-list",
-      "appUrls": {
-        "onSubscription" : "https://product-list-ap25.cfapps.eu10.hana.ondemand.com/callback/v1.0/tenants/{tenantId}"
-      },
-      "displayName" : "Product List MTA",
-      "description" : "Product list MTA sample application",
-      "category" : "Custom SaaS Applications"
-    }
-    ```
+   ```JSON
+   {
+     "xsappname":"product-list",
+     "appUrls": {
+       "onSubscription" : "https://product-list-ap25.cfapps.eu10.hana.ondemand.com/callback/v1.0/tenants/{tenantId}"
+     },
+     "displayName" : "Product List MTA",
+     "description" : "Product list MTA sample application",
+     "category" : "Custom SaaS Applications"
+   }
+   ```
 
 
 
@@ -309,7 +309,7 @@ cf push
 
 Make your application reachable for consumer subaccounts by adding a new route in the Cloud Foundry CLI. The route is composed of the subdomain of the **subscribing** subaccount (see screenshot) and the `TENANT_HOST_PATTERN` of the application router that we defined in the `manifest.yml`. You have to create a new route for every subaccount (tenant) that subscribes to the application.
 
-<!-- border -->![subaccount subdomain](new-subdomain.png)
+![subaccount subdomain](new-subdomain.png)
 
 1. Log in to the Cloud Foundry account where the application is deployed with the Cloud Foundry CLI.
 
@@ -365,7 +365,7 @@ The application will now show you the products. If it's not working also conside
 ### Troubleshooting
 
 #### 1. A login screen for SAP HANA XS Advanced is displayed.
-<!-- border -->![SAP HANA XS Advanced login screen](login-screen-SAP-HANA-XS-Advanced.png)
+![SAP HANA XS Advanced login screen](login-screen-SAP-HANA-XS-Advanced.png)
 To resolve this error, please make sure that your consumer application is in the same region as the provider application.
 
 #### 2. Error message: 404 Not Found: Requested route ('consumer-tenant-ap25-approuter-product-list-ap25.cfapps.eu10.hana.ondemand.com') does not exist.

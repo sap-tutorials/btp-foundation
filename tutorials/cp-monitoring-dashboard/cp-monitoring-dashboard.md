@@ -95,9 +95,9 @@ public void configure(){
 
 1.   Start your Java applications.
 
-    You can retrieve metrics only for running Java applications.
+   You can retrieve metrics only for running Java applications.
 
-    > View the status of your Java applications and start them in the SAP BTP cockpit.
+   > View the status of your Java applications and start them in the SAP BTP cockpit.
 
 2.   Create a Java Web server (for example, Java Web Tomcat 8 server) in Eclipse and start it.
 
@@ -105,16 +105,16 @@ public void configure(){
 
 4.   Verify the following:
 
-    -   Initially, the dashboard displays all the states of the Java applications.
+-   Initially, the dashboard displays all the states of the Java applications.
 
-        <!-- border -->![loio8366cfa2e5264a289241d074dfafb980_LowRes](loio8366cfa2e5264a289241d074dfafb980_LowRes.png)
+   ![loio8366cfa2e5264a289241d074dfafb980_LowRes](loio8366cfa2e5264a289241d074dfafb980_LowRes.png)
 
-    -   When you select an application, you can view the states of the application's processes.
+-   When you select an application, you can view the states of the application's processes.
 
-    -   When you select a process, you can view the process's metrics.
+-   When you select a process, you can view the process's metrics.
 
-        <!-- border -->![loioc3b8419878a148578038cb2035d34eb5_LowRes](loioc3b8419878a148578038cb2035d34eb5_LowRes.png)
+   ![loioc3b8419878a148578038cb2035d34eb5_LowRes](loioc3b8419878a148578038cb2035d34eb5_LowRes.png)
 
-        > An empty field in the *Thresholds* column signifies that the warning and critical values are set to zeros.
+   > An empty field in the *Thresholds* column signifies that the warning and critical values are set to zeros.
 
 

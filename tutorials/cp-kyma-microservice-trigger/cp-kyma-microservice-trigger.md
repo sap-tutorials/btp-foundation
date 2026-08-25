@@ -31,9 +31,9 @@ This tutorial relies on the Commerce mock application to publish events into SAP
 
 2. Choose the **Code** button and choose one of the options to download the code locally, or simply run the following command using your CLI at your desired folder location:
 
-    ```Shell/Bash
-    git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
-    ```
+   ```Shell/Bash
+   git clone https://github.com/SAP-samples/kyma-runtime-extension-samples
+   ```
 
 ### Explore the sample
 
@@ -56,28 +56,28 @@ In this step, you will define an event subscription used to create an event subs
 
 1. Apply the subscription by running the following command in the CLI:
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/event.yaml
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/event.yaml
+   ```
 
 2. Verify that the subscription was created successfully by running this command:
 
-    ```Shell/Bash
-    kubectl get subscription api-postgresql-go-event-sub -n dev -o yaml
-    ```
+   ```Shell/Bash
+   kubectl get subscription api-postgresql-go-event-sub -n dev -o yaml
+   ```
 
     After the event subscription definition, find a status object indicating the status of the related resources:
 
-    ```yaml
-    status:
-      conditions:
-      - lastTransitionTime: "2021-05-06T14:54:50Z"
-        reason: NATS Subscription active
-        status: "True"
-        type: Subscription active
-      emsSubscriptionStatus: {}
-      ready: true
-    ```
+   ```yaml
+   status:
+     conditions:
+     - lastTransitionTime: "2021-05-06T14:54:50Z"
+       reason: NATS Subscription active
+       status: "True"
+       type: Subscription active
+     emsSubscriptionStatus: {}
+     ready: true
+   ```
 
 ### Test scenario
 

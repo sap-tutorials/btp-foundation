@@ -24,7 +24,7 @@ When creating the Azure Private Link service, make sure you allowlist the SAP BT
  SAP Private Link service establishes a private connection between applications running on SAP BTP and selected services in your own IaaS provider accounts. By reusing the private link functionality of our partner IaaS providers, you can access your services through private network connections to avoid data transfer via the public internet.
 
 ## Intro
-<!-- border -->![Overview of  Link service functionality](private-endpoint.png)
+![Overview of  Link service functionality](private-endpoint.png)
 
 ---
 
@@ -61,12 +61,12 @@ To create and enable a private link, you need to define the connection to the se
 2. Navigate to the Azure resource for which you want to find out the Resource ID, for example: **Private Link Center** > **Private link services**.
 3. Click on **Overview** in the menu on the left side of your screen.
 
-    <!-- border -->![Overview](private-endpoint-Microsoft-azure-overview.png)
+    ![Overview](private-endpoint-Microsoft-azure-overview.png)
 
 4. Click on **JSON View** in the upper right corner of the overview page.
 5. Search for the Resource ID in a field at the top of the resulting view in a text box labelled **Resource ID**.
 
-    <!-- border -->![ResourceID](private-endpoint-Microsoft-azure-overview-resource-id.png)
+    ![ResourceID](private-endpoint-Microsoft-azure-overview-resource-id.png)
 
 ### Make sure SAP BTP Operator module is enabled
 
@@ -144,7 +144,7 @@ Return to Microsoft Azure portal:
 2. Search for the name of the private endpoint you received from the success message in the previous step.
 3. Select the private end point and click **Approve**.
 
-<!-- border -->![Approve your private endpoint](Private-endpoint-approve-connection-azure.png)
+![Approve your private endpoint](Private-endpoint-approve-connection-azure.png)
 
 You should now receive a success message that the approval is pending.
 

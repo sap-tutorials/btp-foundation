@@ -28,9 +28,9 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
 
 2. Use the green **Code** button to choose one of the options to download the code locally, or simply run the following command using your CLI at your desired folder location:
 
-    ```Shell/Bash
-    git clone https://github.com/SAP-samples/kyma-runtime-samples
-    ```
+   ```Shell/Bash
+   git clone https://github.com/SAP-samples/kyma-runtime-samples
+   ```
 
 ### Explore the sample
 
@@ -56,10 +56,10 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
 
 1. Create the `dev` namespace and enable `Istio`:
 
-    ```Shell/Bash
-    kubectl create namespace dev
-    kubectl label namespaces dev istio-injection=enabled
-    ```
+   ```Shell/Bash
+   kubectl create namespace dev
+   kubectl label namespaces dev istio-injection=enabled
+   ```
 
     > Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace requires adjustments to the provided samples.
 
@@ -69,16 +69,16 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
 
     > **NOTE**: The `postgres-instance-binding.yaml` file uses `free` as the `servicePlanName`. If the **free** plan is not available in your subaccount, open the file and change the `servicePlanName` value to match the plan you entitled in the previous step.
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/postgres-instance-binding.yaml
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/postgres-instance-binding.yaml
+   ```
 
 3. It takes some time for the instance and binding to get created. To see if they are in the `Created` state, run:
 
-    ```Shell/Bash
-    kubectl -n dev get serviceinstance postgres-instance
-    kubectl -n dev get servicebinding postgres-binding
-    ```
+   ```Shell/Bash
+   kubectl -n dev get serviceinstance postgres-instance
+   kubectl -n dev get servicebinding postgres-binding
+   ```
 
     Once ready, both resources show `Created` in the `STATUS` column:
 
@@ -86,106 +86,106 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
 
 1. Patch the `ServiceInstance` you applied above (namespace and name may differ) so it includes both your public IP and the Kyma NAT IP:
 
-    ```Shell/Bash
-    MY_IP=$(curl -s https://api.ipify.org)
-    KYMA_NAT_IPS=$(kubectl --namespace kyma-system get configmap kyma-info -o json | jq -r '.data["cloud.natGatewayIps"]')
-    kubectl -n dev patch serviceinstance postgres-instance --type=merge \
-      -p "{\"spec\":{\"parameters\":{\"allow_access\":\"${MY_IP},${KYMA_NAT_IPS}\"}}}"
-    ```
+   ```Shell/Bash
+   MY_IP=$(curl -s https://api.ipify.org)
+   KYMA_NAT_IPS=$(kubectl --namespace kyma-system get configmap kyma-info -o json | jq -r '.data["cloud.natGatewayIps"]')
+   kubectl -n dev patch serviceinstance postgres-instance --type=merge \
+     -p "{\"spec\":{\"parameters\":{\"allow_access\":\"${MY_IP},${KYMA_NAT_IPS}\"}}}"
+   ```
 2. It takes some time before the changes are applied. To see if the instance is updated, run:
 
-    ```Shell/Bash
-    kubectl -n dev get serviceinstance postgres-instance
-    ```
+   ```Shell/Bash
+   kubectl -n dev get serviceinstance postgres-instance
+   ```
     
 ### Seed the PostgreSQL database
 
 1. Apply the ConfigMap and Job to seed the database. Run the following commands from the `database-postgresql` directory using your CLI:
 
-    ```Shell/Bash
-    kubectl -n dev apply -f ./k8s/seed-job.yaml
-    kubectl -n dev get jobs seed-postgresql
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f ./k8s/seed-job.yaml
+   kubectl -n dev get jobs seed-postgresql
+   ```
 
 2. Wait until the Job shows `1/1` in the `COMPLETIONS` column:
 
-    ```
-    NAME               COMPLETIONS   DURATION   AGE
-    seed-postgresql    1/1           12s        30s
-    ```
+   ```
+   NAME               COMPLETIONS   DURATION   AGE
+   seed-postgresql    1/1           12s        30s
+   ```
 
 ### Verify the data from inside the cluster
 
 1. Run a temporary Pod that maps the Service Binding Secret keys to `PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, `PGPASSWORD`, and `PGSSLMODE` and executes a query. Replace the Secret name and keys if your binding differs.
 
-    ```Shell/Bash
-    kubectl -n dev apply -f - <<'EOF'
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: pg-client
-    spec:
-      restartPolicy: Never
-      containers:
-      - name: psql
-        image: postgres:15
-        env:
-        - name: PGHOST
-          valueFrom:
-            secretKeyRef:
-              name: postgres-binding
-              key: hostname
-        - name: PGPORT
-          valueFrom:
-            secretKeyRef:
-              name: postgres-binding
-              key: port
-        - name: PGDATABASE
-          valueFrom:
-            secretKeyRef:
-              name: postgres-binding
-              key: dbname
-        - name: PGUSER
-          valueFrom:
-            secretKeyRef:
-              name: postgres-binding
-              key: username
-        - name: PGPASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgres-binding
-              key: password
-        - name: PGSSLMODE
-          valueFrom:
-            secretKeyRef:
-              name: postgres-binding
-              key: sslmode
-              optional: true
-        command: ["psql"]
-        args: ["-v", "ON_ERROR_STOP=1", "-c", "SELECT order_id, description, created FROM orders;"]
-    EOF
-    ```
+   ```Shell/Bash
+   kubectl -n dev apply -f - <<'EOF'
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: pg-client
+   spec:
+     restartPolicy: Never
+     containers:
+     - name: psql
+       image: postgres:15
+       env:
+       - name: PGHOST
+         valueFrom:
+           secretKeyRef:
+             name: postgres-binding
+             key: hostname
+       - name: PGPORT
+         valueFrom:
+           secretKeyRef:
+             name: postgres-binding
+             key: port
+       - name: PGDATABASE
+         valueFrom:
+           secretKeyRef:
+             name: postgres-binding
+             key: dbname
+       - name: PGUSER
+         valueFrom:
+           secretKeyRef:
+             name: postgres-binding
+             key: username
+       - name: PGPASSWORD
+         valueFrom:
+           secretKeyRef:
+             name: postgres-binding
+             key: password
+       - name: PGSSLMODE
+         valueFrom:
+           secretKeyRef:
+             name: postgres-binding
+             key: sslmode
+             optional: true
+       command: ["psql"]
+       args: ["-v", "ON_ERROR_STOP=1", "-c", "SELECT order_id, description, created FROM orders;"]
+   EOF
+   ```
 
 2. Check the Pod logs.
 
-    ```Shell/Bash
-    kubectl -n dev logs pod/pg-client
-    ```
+   ```Shell/Bash
+   kubectl -n dev logs pod/pg-client
+   ```
     You should see a table with two sample orders:
 
-    ```
-     order_id | description  |         created
-    ----------+--------------+-------------------------
-     10000001 | Sample Order 1 | 2024-01-01 00:00:00+00
-     10000002 | Sample Order 2 | 2024-01-01 00:00:00+00
-    (2 rows)
-    ```
+   ```
+    order_id | description  |         created
+   ----------+--------------+-------------------------
+    10000001 | Sample Order 1 | 2024-01-01 00:00:00+00
+    10000002 | Sample Order 2 | 2024-01-01 00:00:00+00
+   (2 rows)
+   ```
 
 3. If you want to delete the Pod, run:
 
-    ```Shell/Bash
-    kubectl -n dev delete pod/pg-client
-    ```
+   ```Shell/Bash
+   kubectl -n dev delete pod/pg-client
+   ```
 
 
 ### Clean up

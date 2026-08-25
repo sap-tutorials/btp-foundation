@@ -23,7 +23,6 @@ primary_tag: software-product-function>sap-private-link-service
 ## Intro
 SAP Private Link service establishes a private connection between applications running on SAP BTP and selected services in your own IaaS provider accounts. By reusing the private link functionality of our partner IaaS providers, you can access your services through private network connections to avoid data transfer via the public internet.
 
-<!-- border --> 
 ![Overview of SAP Private Link service functionality](private-endpoint.png)
 
 
@@ -32,30 +31,25 @@ To be able to use the functionalities of SAP Private Link service, you first nee
 
 1. Navigate to your **global account** of SAP BTP cockpit and select **Account Explorer**.
 
-    <!-- border --> 
     ![Access Account Explorer](private-endpoint_Account-Explorer.png)
 
 2. From the list, choose the respective **subaccount** for which you would like to enable SAP Private Link service or create a new subaccount.
 3. Navigate to **Entitlements** in the left hand navigator bar. You can now see all the existing service assignments for this respective subaccount.  
 
-    <!-- border --> 
     ![Entitlement](2022-11-22_13-38-51.png)
 
 4. Select **Configure Elements**.
 
-    <!-- border --> 
-     ![Configure Elements](2022-11-22_13-39-12.png)
+    ![Configure Elements](2022-11-22_13-39-12.png)
 
 5. To add a new service assignment, select **Add Service Plans**. You see now all the offerings available to this specific subaccount.
 6. Search for "private link service" and select **SAP Private Link Service** and then **Add 1 Service Plan**.
 
-    <!-- border --> 
-     ![Entitlement assignments](2022-11-22_13-40-07.png)
+    ![Entitlement assignments](2022-11-22_13-40-07.png)
 
 7. Save the changes by clicking on **Save** and then search for "private link" to see the entitlement assignments
 
-    <!-- border --> 
-     ![Save assignemnts](2022-11-22_13-43-19.png)
+    ![Save assignemnts](2022-11-22_13-43-19.png)
 
 
 
@@ -65,7 +59,6 @@ Navigate to the **Overview** tab of your subaccount and check whether you've alr
 
 1. To enable Cloud Foundry runtime, select **Enable Cloud Foundry**.
 
-    <!-- border --> 
     ![Enable Cloud Foundry runtime](private-endpoint-enable-CF.png)
 
 2. Enter the following details:
@@ -80,7 +73,6 @@ Navigate to the **Overview** tab of your subaccount and check whether you've alr
 
 Once Cloud Foundry runtime has been enabled, you get the information on your API endpoint you need to connect to your org in SAP BTP.
 
-<!-- border --> 
 ![SAP Private Link service API endpoint](private-endpoint-api-endpoint.png)
 
 > Before you proceed, make sure that **Cloud Foundry runtime** has been assigned adequate quota. If you have not done so already, go back to Step 2 and define the quota accordingly for Cloud Foundry runtime.

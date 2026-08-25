@@ -35,17 +35,17 @@ To view the security groups in SAP BTP cockpit:
 
 1. Go to **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces and Enter a Space](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces and Enter a Space](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space.
 
 3. Go to **Security Groups** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Security Groups](./go-to-security-groups-2.png)
+    ![Go to Security Groups](./go-to-security-groups-2.png)
 
 Security groups are created and managed by platform administrators. Standard roles, such as Org Manager, Space Manager, and Space Developer, don't have permissions to create or modify security groups. Some services automatically provide security groups when they are enabled.
 
-<!-- border; size:540px --> ![View Security Groups](./view-security-groups.png)
+![View Security Groups](./view-security-groups.png)
 
 ### Types of security groups
 

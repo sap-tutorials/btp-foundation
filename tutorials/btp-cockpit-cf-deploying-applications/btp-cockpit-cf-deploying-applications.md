@@ -99,17 +99,17 @@ Now, let's deploy a sample Java app with a manifest file:
 
 1. Go to **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space. This opens the **Applications** page.
 
 3. Choose **Deploy Application**.
 
-    <!-- border; size:540px --> ![Choose Deploy Application](./choose-deploy-app-2.png)
+    ![Choose Deploy Application](./choose-deploy-app-2.png)
 
 4. Choose the location of the file which contains your application.
 
-    <!-- border; size:540px --> ![Deploying an Application](./deploy-app-dialog-manifest-2.png)
+    ![Deploying an Application](./deploy-app-dialog-manifest-2.png)
 
 5. Use the **Deploy with Manifest** option.
 
@@ -119,7 +119,7 @@ Now, let's deploy a sample Java app with a manifest file:
 
 The Java application is deployed.
 
-<!-- border; size:540px --> ![Java App Deployed](./java-app-deployed-4.png)
+![Java App Deployed](./java-app-deployed-4.png)
 
 [OPTION END]
 
@@ -137,19 +137,19 @@ Now, let's deploy a sample Node.js app with custom settings:
 
 1. Go to **Cloud Foundry > Spaces** in the left navigation menu.
 
-    <!-- border; size:540px --> ![Go to Spaces](./go-to-spaces-enter-space-1.png)
+    ![Go to Spaces](./go-to-spaces-enter-space-1.png)
 
 2. Go to a space. This opens the **Applications** page.
 
 3. Choose **Deploy Application**.
 
-    <!-- border; size:540px --> ![Choose Deploy Application](./choose-deploy-app-2.png)
+    ![Choose Deploy Application](./choose-deploy-app-2.png)
 
 4. Choose the location of the file which contains your application.
 
 5. Select the **Deploy with Custom Settings** option and enter the following details:
 
-    <!-- border; size:540px --> ![Deploying an Application with Custom Settings](./deploy-app-dialog-custom-settings-2.png)
+    ![Deploying an Application with Custom Settings](./deploy-app-dialog-custom-settings-2.png)
 
     a. Enter a name for your application.
 
@@ -171,7 +171,7 @@ Now, let's deploy a sample Node.js app with custom settings:
 
 The Node.js application is deployed.
 
-<!-- border; size:540px --> ![Node.js App Deployed](./nodejs-app-deployed-1.png)
+![Node.js App Deployed](./nodejs-app-deployed-1.png)
 
 [OPTION END]
 
@@ -191,7 +191,7 @@ A correctly deployed and healthy application should have a **Started** requested
 
 5. You can restage the application. To learn more about it, check out the next step of this tutorial.
 
-<!-- border; size:540px --> ![Application Deployed](./java-app-deployed-3.png)
+![Application Deployed](./java-app-deployed-3.png)
 
 To get more detailed information about your application, navigate to the **Application Overview** page by clicking the name of the application and check out the next tutorial **Managing Deployed Applications**.
 
@@ -205,11 +205,11 @@ To restage an application, do the following:
 
 1. Choose **Restage Application**.
 
-    <!-- border; size:540px --> ![Choose Restage Application](./choose-restage-application.png)
+    ![Choose Restage Application](./choose-restage-application.png)
 
 2. Select an application from the dropdown.
 
-    <!-- border; size:540px --> ![Restaging Application](./restage-app-dialog-1.png)
+    ![Restaging Application](./restage-app-dialog-1.png)
 
 3. Choose **Restage**.
 

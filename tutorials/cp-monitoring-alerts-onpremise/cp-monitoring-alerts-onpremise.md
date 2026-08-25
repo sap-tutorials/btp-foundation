@@ -135,13 +135,13 @@ Use Java Web Tomcat 9 server and deploy the WAR file locally. See [Deploy Locall
 
 1.   Start the cloud connector.
 
-    > After you have configured the Cloud Connector as mentioned in **Prerequisites**, make sure that it connects to the internal system by using ![Check availability of internal host](Check_Availabiltity_Internal_Host.png).
+   > After you have configured the Cloud Connector as mentioned in **Prerequisites**, make sure that it connects to the internal system by using ![Check availability of internal host](Check_Availabiltity_Internal_Host.png).
 
 2.   Configure the access control.
 
-    Go to the **Cloud to On-Premise** view and add the resource `/webhooks.cloud.to.onpremise-1.0.0-SNAPSHOT/backend`.
+   Go to the **Cloud to On-Premise** view and add the resource `/webhooks.cloud.to.onpremise-1.0.0-SNAPSHOT/backend`.
 
-    ![Resource mapping](Add_Resource.PNG)
+   ![Resource mapping](Add_Resource.PNG)
 
 
 
@@ -156,17 +156,17 @@ Use Java Web Tomcat 9 server and deploy the WAR file locally. See [Deploy Locall
 
 4.   Create a new destination with the following values:
 
-    |Field Name    |Value                                                                                    |
-    |:-------------|:----------------------------------------------------------------------------------------|
-    |Name          |`on-premise-destination`                                                                 |
-    |Type          |`HTTP`                                                                                   |
-    |URL           |`http://<virtual host>:<virtual port>/webhooks.cloud.to.onpremise-1.0.0-SNAPSHOT/backend`|
-    |Proxy Type    |`OnPremise`                                                                              |
-    |Authentication|`NoAuthentication`                                                                       |
+   |Field Name    |Value                                                                                    |
+   |:-------------|:----------------------------------------------------------------------------------------|
+   |Name          |`on-premise-destination`                                                                 |
+   |Type          |`HTTP`                                                                                   |
+   |URL           |`http://<virtual host>:<virtual port>/webhooks.cloud.to.onpremise-1.0.0-SNAPSHOT/backend`|
+   |Proxy Type    |`OnPremise`                                                                              |
+   |Authentication|`NoAuthentication`                                                                       |
 
-    For more information, see [Configure the Destination in the Cloud](https://help.sap.com/viewer/b865ed651e414196b39f8922db2122c7/Cloud/en-US/e76f9e75bb571014a7218bcd30a8771b.html#loioe76f9e75bb571014a7218bcd30a8771b__configure_destination_cloud).
+   For more information, see [Configure the Destination in the Cloud](https://help.sap.com/viewer/b865ed651e414196b39f8922db2122c7/Cloud/en-US/e76f9e75bb571014a7218bcd30a8771b.html#loioe76f9e75bb571014a7218bcd30a8771b__configure_destination_cloud).
 
-    > The virtual host and port are configured in the cloud connector under **Cloud To On-Premise** > **Access Control** > **Mapping Virtual to Internal System**.
+   > The virtual host and port are configured in the cloud connector under **Cloud To On-Premise** > **Access Control** > **Mapping Virtual to Internal System**.
 
 5. Check that the connection to the on-premise destination is successful.
 

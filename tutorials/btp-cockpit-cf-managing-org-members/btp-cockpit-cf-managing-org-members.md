@@ -49,11 +49,11 @@ Your org can be managed by multiple users. To make that happen, you can grant th
 
 2. Choose **Add Members**.
 
-    <!-- border; size:540px --> ![Choose Add Members](./add-org-members-1.png)
+    ![Choose Add Members](./add-org-members-1.png)
 
 3. Enter the e-mail adddress of the user.
 
-    <!-- border; size:540px --> ![Adding an Org Member](./add-org-members-dialog-default-idp-1.png)
+    ![Adding an Org Member](./add-org-members-dialog-default-idp-1.png)
 
     **Note**: You can add multiple org members at the same time by listing their e-mail addresses with a comma.
 
@@ -65,7 +65,7 @@ Your org can be managed by multiple users. To make that happen, you can grant th
 
 The user now has the **Org Manager** role.
 
-<!-- border; size:540px --> ![Org Member Added](./org-member-added-1.png)
+![Org Member Added](./org-member-added-1.png)
 
 ### Edit an org member
 
@@ -73,13 +73,13 @@ As an **Org Manager**, you can assign org roles to other users for specific task
 
 1. Choose the **Edit** button in the **Actions** column.
 
-    <!-- border; size:540px --> ![Edit an Org Member](./edit-org-member-1.png)
+    ![Edit an Org Member](./edit-org-member-1.png)
 
 2. Edit the org roles.
 
     In this case, John Doe has the task to monitor resources without making changes. Therefore, you need to give him read-only access to the org. The **Org Auditor** role serves this purpose.
     
-    <!-- border; size:540px --> ![Editing the Roles of an Org Member](./edit-org-member-dialog-1.png)
+    ![Editing the Roles of an Org Member](./edit-org-member-dialog-1.png)
     
 3. Choose **Save**.
 
@@ -91,11 +91,11 @@ As an **Org Manager**, you can remove the access to the org of a user who is no 
 
 1. Choose the **Delete** button in the **Actions** column.
 
-    <!-- border; size:540px --> ![Delete an Org Member](./delete-org-member-1.png)
+    ![Delete an Org Member](./delete-org-member-1.png)
 
 2. Choose **Delete** to confirm the action.
 
-    <!-- border; size:540px --> ![Deleting an Org Member](./delete-org-member-dialog-1.png)
+    ![Deleting an Org Member](./delete-org-member-dialog-1.png)
 
 **Note**: This action removes the member from the org and any spaces in that org.
 
@@ -111,7 +111,7 @@ The SAP ID service serves as the default identity provider for users on SAP BTP.
 
 The org member added in this tutorial is stored in the default identity provider. That's why **sap.ids** is shown in the **Origin** column.
 
-<!-- border; size:540px --> ![Default Identity Provider (Origin)](./org-member-added-2.png)
+![Default Identity Provider (Origin)](./org-member-added-2.png)
 
 #### Using a custom identity provider
 
@@ -119,7 +119,7 @@ While SAP BTP provides you with your first users from the default identity provi
 
 If you've established trust with a custom identity provider, the **Add Members** dialog gives you the additional option to select an identity provider from a dropdown menu:
 
-<!-- border; size:540px --> ![Custom Identity Provider (Origin)](./add-org-members-dialog-origin-custom-idp-1.png)
+![Custom Identity Provider (Origin)](./add-org-members-dialog-origin-custom-idp-1.png)
 
 For more information, see [Establish Trust and Federation of Custom Identity Providers for Platform Users | SAP Help Portal](https://help.sap.com/docs/authorization-and-trust-management-service/authorization-and-trust-management/establish-trust-and-federation-of-custom-identity-providers-for-platform-users-feature-set-b).
 

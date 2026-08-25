@@ -39,14 +39,14 @@ In this tutorial, we use `eu20` as an **example**.
 
 2. Set the Cloud Foundry API endpoint for your subaccount. Run the following command (using your actual region URL):
 
-    ```Bash/Shell
-    cf api https://api.cf.eu20.hana.ondemand.com
-    ```
+   ```Bash/Shell
+   cf api https://api.cf.eu20.hana.ondemand.com
+   ```
 3. Log on to the SAP BTP, Cloud Foundry environment:
 
-    ```Bash/Shell
-    cf login
-    ```
+   ```Bash/Shell
+   cf login
+   ```
 
 4. When prompted, enter your user credentials. These are the email and password you have used to register your trial or productive SAP BTP account.
  
@@ -74,16 +74,16 @@ You're going to create a simple Node.js application.
 
 3. In this folder, create a file `manifest.yml` with the following content:
 
-    ```YAML
-    ---
-    applications:
-    - name: myapp
-      random-route: true
-      path: myapp
-      memory: 128M
-      buildpacks:
-      - nodejs_buildpack
-    ```
+   ```YAML
+   ---
+   applications:
+   - name: myapp
+     random-route: true
+     path: myapp
+     memory: 128M
+     buildpacks:
+     - nodejs_buildpack
+   ```
 
     The `manifest.yml` file represents the configuration describing your application and how it will be deployed to Cloud Foundry.
 
@@ -94,84 +94,84 @@ You're going to create a simple Node.js application.
 
 5. In the `myapp` directory, run:
 
-    ```Bash/Shell
-    npm init
-    ```
+   ```Bash/Shell
+   npm init
+   ```
 
     Press **Enter** on every step. This process will walk you through creating a `package.json` file in the `myapp` folder.
 
 6. Then, still in the `myapp` directory, run:
 
-    ```Bash/Shell
-    npm install express --save
-    ```
+   ```Bash/Shell
+   npm install express --save
+   ```
 
     This operation adds the `express` package as a dependency in the `package.json` file.
 
     After the installation is completed, the content of `package.json` should look like this:
 
-    ```JSON
-    {
-      "name": "myapp",
-      "version": "1.0.0",
-      "description": "",
-      "main": "index.js",
-      "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-      },
-      "author": "",
-      "license": "ISC",
-      "dependencies": {
-        "express": "^4.19.2"
-      }
-    }
-    ```
+   ```JSON
+   {
+     "name": "myapp",
+     "version": "1.0.0",
+     "description": "",
+     "main": "index.js",
+     "scripts": {
+       "test": "echo \"Error: no test specified\" && exit 1"
+     },
+     "author": "",
+     "license": "ISC",
+     "dependencies": {
+       "express": "^4.19.2"
+     }
+   }
+   ```
 
 7. Add engines to the `package.json` file and update the `scripts` section. Your `package.json` file should look like this:
 
-    ```JSON
-    {
-      "name": "myapp",
-      "version": "1.0.0",
-      "description": "My simple Node.js app",
-      "main": "index.js",
-      "engines": {
-        "node": "20.x.x"
-      },
-      "scripts": {
-        "start": "node start.js"
-      },
-      "author": "",
-      "license": "ISC",
-      "dependencies": {
-        "express": "^4.19.2"
-      }
-    }
-    ```
+   ```JSON
+   {
+     "name": "myapp",
+     "version": "1.0.0",
+     "description": "My simple Node.js app",
+     "main": "index.js",
+     "engines": {
+       "node": "20.x.x"
+     },
+     "scripts": {
+       "start": "node start.js"
+     },
+     "author": "",
+     "license": "ISC",
+     "dependencies": {
+       "express": "^4.19.2"
+     }
+   }
+   ```
 
 8. In the `myapp` folder, create a file `start.js` with the following content:
 
-    ```JavaScript
-    const express = require('express');
-    const app = express();
+   ```JavaScript
+   const express = require('express');
+   const app = express();
 
-    app.get('/', function (req, res) {
-      res.send('Hello World!');
-    });
+   app.get('/', function (req, res) {
+     res.send('Hello World!');
+   });
 
-    const port = process.env.PORT || 3000;
-    app.listen(port, function () {
-      console.log('myapp listening on port ' + port);
-    });
-    ```
+   const port = process.env.PORT || 3000;
+   app.listen(port, function () {
+     console.log('myapp listening on port ' + port);
+   });
+   ```
 
     This code creates a simple web application returning a **Hello World!** message when requested. The `express` module represents the web server part of this application. Once these steps are completed, you can see that the `express` package has been installed in the `node_modules` folder.
 
 9. Deploy the application on Cloud Foundry. To do that, in the `node-tutorial` directory, run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
     > **NOTE**: Make sure you always run `cf push` in the directory where the `manifest.yml` file is located! In this case, that's `node-tutorial`.
 
@@ -195,40 +195,40 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 1.	In the `node-tutorial` folder, create an `xs-security.json` file for your application with the following content:
 
-    ```JSON
-    {
-      "xsappname" : "myapp",
-      "tenant-mode" : "dedicated",
-      "oauth2-configuration": {
-        "redirect-uris": [
-            "https://*.cfapps.eu20.hana.ondemand.com/**"
-          ]
-        }
-    }
-    ```
+   ```JSON
+   {
+     "xsappname" : "myapp",
+     "tenant-mode" : "dedicated",
+     "oauth2-configuration": {
+       "redirect-uris": [
+           "https://*.cfapps.eu20.hana.ondemand.com/**"
+         ]
+       }
+   }
+   ```
 
    > **NOTE:** Replace `eu20` with the technical key of your **actual** SAP BTP region. 
 
 2.	Create an `xsuaa` service instance named `nodeuaa` with plan `application`. To do that, in the `node-tutorial` directory run:
 
-    ```Bash/Shell
-    cf create-service xsuaa application nodeuaa -c xs-security.json
-    ```
+   ```Bash/Shell
+   cf create-service xsuaa application nodeuaa -c xs-security.json
+   ```
 
 3.	Add the `nodeuaa` service in `manifest.yml` so the file looks like this:
 
-    ```YAML
-    ---
-    applications:
-    - name: myapp
-      random-route: true
-      path: myapp
-      memory: 128M
-      buildpacks: 
-      - nodejs_buildpack
-      services:
-      - nodeuaa
-    ```
+   ```YAML
+   ---
+   applications:
+   - name: myapp
+     random-route: true
+     path: myapp
+     memory: 128M
+     buildpacks: 
+     - nodejs_buildpack
+     services:
+     - nodeuaa
+   ```
 
     The `nodeuaa` service instance will be bound to the `myapp` application during deployment.
 
@@ -240,126 +240,126 @@ Authentication in the SAP BTP, Cloud Foundry environment is provided by the Auth
 
 6.	In the `resources` folder, create an `index.html` file with the following content:
 
-    ```HTML
-    <html>
-    <head>
-      <title>Node.js Tutorial</title>
-    </head>
-    <body>
-      <h1>Node.js Tutorial</h1>
-      <a href="/myapp/">My Node.js Application</a>
-    </body>
-    </html>
-    ```
+   ```HTML
+   <html>
+   <head>
+     <title>Node.js Tutorial</title>
+   </head>
+   <body>
+     <h1>Node.js Tutorial</h1>
+     <a href="/myapp/">My Node.js Application</a>
+   </body>
+   </html>
+   ```
 
     This will be the start page of the `myapp` application.
 
 7. In the `web` directory, run:
 
-    ```Bash/Shell
-    npm init
-    ```
+   ```Bash/Shell
+   npm init
+   ```
 
     Press **Enter** on every step. This process will walk you through creating a `package.json` file in the `web` folder. 
 
 8.	Now you need to create a directory `web/node_modules/@sap` and install an `approuter` package in it. To do that, in the `web` directory run:
 
-    ```Bash/Shell
-    npm install @sap/approuter --save
-    ```
+   ```Bash/Shell
+   npm install @sap/approuter --save
+   ```
 
 9.	In the `web` folder, open the `package.json` file and replace the **scripts** section with the following:
 
-    ```JSON
-    "scripts": {
-        "start": "node node_modules/@sap/approuter/approuter.js"
-    },
-    ```
+   ```JSON
+   "scripts": {
+       "start": "node node_modules/@sap/approuter/approuter.js"
+   },
+   ```
 
 10.	Now you need to add the `web` application to your project and bind the XSUAA service instance (`nodeuaa`) to it. To do that, insert the following content **at the end** of your `manifest.yml` file.
 
 
-    ```YAML
-    - name: web
-      random-route: true
-      path: web
-      memory: 128M
-      env:
-        destinations: >
-          [
-            {
-              "name":"myapp",
-              "url":"https://myapp-purple-tiger.cfapps.eu20.hana.ondemand.com/",
-              "forwardAuthToken": true
-            }
-          ]
-      services:
-      - nodeuaa
-    ```
+   ```YAML
+   - name: web
+     random-route: true
+     path: web
+     memory: 128M
+     env:
+       destinations: >
+         [
+           {
+             "name":"myapp",
+             "url":"https://myapp-purple-tiger.cfapps.eu20.hana.ondemand.com/",
+             "forwardAuthToken": true
+           }
+         ]
+     services:
+     - nodeuaa
+   ```
      
     > **NOTE**: For the `url` value, enter your **actual** generated URL for the `myapp` application. 
 
 11.	In the `web` folder, create an `xs-app.json` file with the following content:
 
-    ```JSON
-    {
-      "routes": [
-        {
-          "source": "^/myapp/(.*)$",
-          "target": "$1",
-          "destination": "myapp"
-        }
-      ]
-    }
-    ```
+   ```JSON
+   {
+     "routes": [
+       {
+         "source": "^/myapp/(.*)$",
+         "target": "$1",
+         "destination": "myapp"
+       }
+     ]
+   }
+   ```
 
     With this configuration, the incoming request is forwarded to the `myapp` application, configured as a destination. By default, every route requires OAuth authentication, so the requests to this path will require an authenticated user.
 
 12. In the `myapp` directory, run the following commands (one by one) to download packages `@sap/xssec`, `@sap/xsenv`, and `passport`:
 
-    ```Bash/Shell
-    npm install @sap/xssec --save
+   ```Bash/Shell
+   npm install @sap/xssec --save
 
-    npm install @sap/xsenv --save
+   npm install @sap/xsenv --save
 
-    npm install passport --save
-    ```
+   npm install passport --save
+   ```
 
 13. Verify that the request is authenticated. Check the JWT token in the request using the `JWTStrategy` provided by the `@sap/xssec` package. To do that, go to the `myapp` directory, and replace the content of the `start.js` file with the following:
 
-    ```JavaScript
-    const express = require('express');
-    const passport = require('passport');
-    const xsenv = require('@sap/xsenv');
-    const { createSecurityContext, requests, constants, TokenInfo, JWTStrategy } = require("@sap/xssec").v3;
+   ```JavaScript
+   const express = require('express');
+   const passport = require('passport');
+   const xsenv = require('@sap/xsenv');
+   const { createSecurityContext, requests, constants, TokenInfo, JWTStrategy } = require("@sap/xssec").v3;
 
-    const app = express();
+   const app = express();
 
-    const services = xsenv.getServices({ uaa:'nodeuaa' });
+   const services = xsenv.getServices({ uaa:'nodeuaa' });
 
-    passport.use(new JWTStrategy(services.uaa));
+   passport.use(new JWTStrategy(services.uaa));
 
-    app.use(passport.initialize());
-    app.use(passport.authenticate('JWT', { session: false }));
+   app.use(passport.initialize());
+   app.use(passport.authenticate('JWT', { session: false }));
 
-    app.get('/', function (req, res, next) {
-      res.send('Application user: ' + req.user.id);
-    });
+   app.get('/', function (req, res, next) {
+     res.send('Application user: ' + req.user.id);
+   });
 
-    const port = process.env.PORT || 3000;
-    app.listen(port, function () {
-      console.log('myapp listening on port ' + port);
-    });
-    ```
+   const port = process.env.PORT || 3000;
+   app.listen(port, function () {
+     console.log('myapp listening on port ' + port);
+   });
+   ```
 
-    > **IMPORTANT**: Make sure your `@sap/xssec` is version 4.1.3 or higher. You can check this by running: `npm list @sap/xssec`.    
-    If  it's a lower version, run `npm update` and then check again.
+   > **IMPORTANT**: Make sure your `@sap/xssec` is version 4.1.3 or higher. You can check this by running: `npm list @sap/xssec`.    
+   If  it's a lower version, run `npm update` and then check again.
 
 12.	Go to the `node-tutorial` directory and run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
     This command will update the `myapp` application and deploy the `web` application.
 
@@ -393,44 +393,44 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 1. To introduce application roles, open the `xs-security.json` in the `node-tutorial` folder, and add scopes and role templates as follows:
 
-    ```JSON
-    {
-        "xsappname": "myapp",
-        "tenant-mode": "dedicated",
-        "scopes": [
-          {
-            "name": "$XSAPPNAME.Display",
-            "description": "Display Users"
-          },
-          {
-            "name": "$XSAPPNAME.Update",
-            "description": "Update Users"
-          }
-        ],
-        "role-templates": [
-          {
-            "name": "Viewer",
-            "description": "View Users",
-            "scope-references": [
-              "$XSAPPNAME.Display"
-            ]
-          },
-          {
-            "name": "Manager",
-            "description": "Maintain Users",
-            "scope-references": [
-              "$XSAPPNAME.Display",
-              "$XSAPPNAME.Update"
-            ]
-          }
-        ],
-        "oauth2-configuration": {
-            "redirect-uris": [
-                "https://*.cfapps.eu20.hana.ondemand.com/**"
-        ]
-      }
-    }
-    ```
+   ```JSON
+   {
+       "xsappname": "myapp",
+       "tenant-mode": "dedicated",
+       "scopes": [
+         {
+           "name": "$XSAPPNAME.Display",
+           "description": "Display Users"
+         },
+         {
+           "name": "$XSAPPNAME.Update",
+           "description": "Update Users"
+         }
+       ],
+       "role-templates": [
+         {
+           "name": "Viewer",
+           "description": "View Users",
+           "scope-references": [
+             "$XSAPPNAME.Display"
+           ]
+         },
+         {
+           "name": "Manager",
+           "description": "Maintain Users",
+           "scope-references": [
+             "$XSAPPNAME.Display",
+             "$XSAPPNAME.Update"
+           ]
+         }
+       ],
+       "oauth2-configuration": {
+           "redirect-uris": [
+               "https://*.cfapps.eu20.hana.ondemand.com/**"
+       ]
+     }
+   }
+   ```
 
     
     Two roles (`Viewer` and `Manager`) are introduced. These roles represent sets of OAuth 2.0 scopes or actions. The scopes are used later in the microservice's code for authorization checks.
@@ -438,79 +438,79 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 2. Update the XSUAA service. To do that, in the `node-tutorial` directory run:
 
-    ```Bash/Shell
-    cf update-service nodeuaa -c xs-security.json
-    ```
+   ```Bash/Shell
+   cf update-service nodeuaa -c xs-security.json
+   ```
 
 3.	In the `myapp` folder, create a file `users.json` with the following content:
 
-    ```JSON
-    [{
-        "id": 0,
-        "name": "John"
-      },
-      {
-        "id": 1,
-        "name": "Paula"
-    }]
-    ```
+   ```JSON
+   [{
+       "id": 0,
+       "name": "John"
+     },
+     {
+       "id": 1,
+       "name": "Paula"
+   }]
+   ```
 
     This will be the initial list of users for the REST service.
 
 4. You need to add a dependency to `body-parser` that will be used for JSON parsing. To do that, in the `myapp` directory run:
 
-    ```Bash/Shell
-    npm install body-parser --save
-    ```
+   ```Bash/Shell
+   npm install body-parser --save
+   ```
 
 5.	Change the `start.js` file, adding GET and POST operations for the `users` REST endpoint. You can replace the initial code with the following one:
 
-    ```JavaScript
-    const express = require('express');
-    const passport = require('passport');
-    const bodyParser = require('body-parser');
-    const xsenv = require('@sap/xsenv');
-    const { createSecurityContext, requests, constants, TokenInfo, JWTStrategy } = require("@sap/xssec").v3;
+   ```JavaScript
+   const express = require('express');
+   const passport = require('passport');
+   const bodyParser = require('body-parser');
+   const xsenv = require('@sap/xsenv');
+   const { createSecurityContext, requests, constants, TokenInfo, JWTStrategy } = require("@sap/xssec").v3;
 
-    const users = require('./users.json');
-    const app = express();
+   const users = require('./users.json');
+   const app = express();
 
-    const services = xsenv.getServices({ uaa: 'nodeuaa' });
+   const services = xsenv.getServices({ uaa: 'nodeuaa' });
 
-    passport.use(new JWTStrategy(services.uaa));
+   passport.use(new JWTStrategy(services.uaa));
 
-    app.use(bodyParser.json());
-    app.use(passport.initialize());
-    app.use(passport.authenticate('JWT', { session: false }));
+   app.use(bodyParser.json());
+   app.use(passport.initialize());
+   app.use(passport.authenticate('JWT', { session: false }));
 
-    app.get('/users', function (req, res) {
-      var isAuthorized = req.authInfo.checkLocalScope('Display');
-      if (isAuthorized) {
-        res.status(200).json(users);
-      } else {
-        res.status(403).send('Forbidden');
-      }
-    });
+   app.get('/users', function (req, res) {
+     var isAuthorized = req.authInfo.checkLocalScope('Display');
+     if (isAuthorized) {
+       res.status(200).json(users);
+     } else {
+       res.status(403).send('Forbidden');
+     }
+   });
 
-    app.post('/users', function (req, res) {
-      const isAuthorized = req.authInfo.checkLocalScope('Update');
-      if (!isAuthorized) {
-        res.status(403).json('Forbidden');
-        return;
-      }
+   app.post('/users', function (req, res) {
+     const isAuthorized = req.authInfo.checkLocalScope('Update');
+     if (!isAuthorized) {
+       res.status(403).json('Forbidden');
+       return;
+     }
 
-      var newUser = req.body;
-      newUser.id = users.length;
-      users.push(newUser);
+     var newUser = req.body;
+     newUser.id = users.length;
+     users.push(newUser);
 
-      res.status(201).json(newUser);
-    });
+     res.status(201).json(newUser);
+   });
 
-    const port = process.env.PORT || 3000;
-    app.listen(port, function () {
-      console.log('myapp listening on port ' + port);
-    });
-    ```
+   const port = process.env.PORT || 3000;
+   app.listen(port, function () {
+     console.log('myapp listening on port ' + port);
+   });
+   ```
 
     > **IMPORTANT:** Authorization checks are enforced by the `xssec` package in the `@sap` directory. To every request object using `passport` and `xssec.JWTStrategy`, a security context is attached as an `authInfo` object. The resulting request object is initialized with the incoming JWT token. To check the full list of methods and properties of the security context, see: [Authentication for Node.js Applications] (https://help.sap.com/docs/btp/sap-business-technology-platform/authentication-for-node-js-applications?version=Cloud)
 
@@ -518,59 +518,59 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 6.	Update the UI to be able to send POST requests. To do that, go to `web>resources` and in the `index.html` file, replace the content with the following code:
 
-    ```HTML
-    <html>
-    <head>
-      <title>JavaScript Tutorial</title>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script>
-        function fetchCsrfToken(callback) {
-          jQuery.ajax({
-              url: '/myapp/users',
-              type: 'HEAD',
-              headers: { 'x-csrf-token': 'fetch' }
-            })
-            .done(function(message, text, jqXHR) {
-              callback(jqXHR.getResponseHeader('x-csrf-token'))
-            })
-            .fail(function(jqXHR, textStatus, errorThrown) {
-              alert('Error fetching CSRF token: ' + jqXHR.status + ' ' + errorThrown);
-            });
-        }
+   ```HTML
+   <html>
+   <head>
+     <title>JavaScript Tutorial</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script>
+       function fetchCsrfToken(callback) {
+         jQuery.ajax({
+             url: '/myapp/users',
+             type: 'HEAD',
+             headers: { 'x-csrf-token': 'fetch' }
+           })
+           .done(function(message, text, jqXHR) {
+             callback(jqXHR.getResponseHeader('x-csrf-token'))
+           })
+           .fail(function(jqXHR, textStatus, errorThrown) {
+             alert('Error fetching CSRF token: ' + jqXHR.status + ' ' + errorThrown);
+           });
+       }
 
-        function addNewUser(token) {
-          var name = jQuery('#name').val() || '--';
-          jQuery.ajax({
-              url: '/myapp/users',
-              type: 'POST',
-              headers: { 'x-csrf-token': token },
-              contentType: 'application/json',
-              data: JSON.stringify({ name: name })
-            })
-            .done(function() {
-              alert( 'success' );
-              window.location = '/myapp/users'
-            })
-            .fail(function(jqXHR, textStatus, errorThrown) {
-              alert('Error adding new user: ' + jqXHR.status + ' ' + errorThrown);
-            });
-        }
+       function addNewUser(token) {
+         var name = jQuery('#name').val() || '--';
+         jQuery.ajax({
+             url: '/myapp/users',
+             type: 'POST',
+             headers: { 'x-csrf-token': token },
+             contentType: 'application/json',
+             data: JSON.stringify({ name: name })
+           })
+           .done(function() {
+             alert( 'success' );
+             window.location = '/myapp/users'
+           })
+           .fail(function(jqXHR, textStatus, errorThrown) {
+             alert('Error adding new user: ' + jqXHR.status + ' ' + errorThrown);
+           });
+       }
 
-        function addUser() {
-          fetchCsrfToken(addNewUser);
-        }
-      </script>
-    </head>
-    <body>
-      <h1>My Node.js Tutorial</h1>
-      <a href="/myapp/users">Show users</a>
-      <br/>
-      <br/>
-      <input type="text" id="name" placeholder="Type user name"></input>
-      <input type="button" value="Add User" onClick="javascript: addUser()"></input>
-    </body>
-    </html>
-    ```
+       function addUser() {
+         fetchCsrfToken(addNewUser);
+       }
+     </script>
+   </head>
+   <body>
+     <h1>My Node.js Tutorial</h1>
+     <a href="/myapp/users">Show users</a>
+     <br/>
+     <br/>
+     <input type="text" id="name" placeholder="Type user name"></input>
+     <input type="button" value="Add User" onClick="javascript: addUser()"></input>
+   </body>
+   </html>
+   ```
 
     > The UI contains a link to get all users, an input box to enter a user name, and a button to send "Create a new user" requests.
 
@@ -578,9 +578,9 @@ Authorization in the SAP BTP, Cloud Foundry environment is also provided by the 
 
 7.	Go to the `node-tutorial` directory and run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
     This command will update both applications (`myapp` and `web`).
 
@@ -621,9 +621,9 @@ To get permissions, you need to create a role collection containing the roles `V
 
 10. Go back to the command line, and in the `node-tutorial` directory run:
 
-    ```Bash/Shell
-    cf push
-    ```
+   ```Bash/Shell
+   cf push
+   ```
 
 
 #### RESULT

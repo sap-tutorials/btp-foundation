@@ -8,9 +8,6 @@ tags: [tutorial>beginner, software-product>sap-business-technology-platform, sof
 primary_tag: software-product-function>sap-btp-cockpit
 author_name: Dragomir Anachkov
 author_profile: https://github.com/danachkov
-video:
-  url: https://sapvideo.cfapps.eu10-004.hana.ondemand.com/?entry_id=1_a2pff7w0
-  title: Deploying a sample Java application in SAP BTP cockpit
 ---
 
 
@@ -33,7 +30,9 @@ video:
 
 This learning journey provides tips and best practices for working with spaces, deploying applications, and using these applications once they are deployed in the Cloud Foundry environment of SAP Business Technology Platform (BTP). We hope that these learning materials will make it easier for you to adapt to the complexity of the platform.
 
-The video above provides a preview of the key concepts covered in the next tutorials.
+This video gives a preview of the key concepts covered in the next tutorials:
+
+<iframe id="kmsembed-1_a2pff7w0" width="700" height="432" src="https://sapvideo.cfapps.eu10-004.hana.ondemand.com/?entry_id=1_a2pff7w0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Deploying a sample Java application in SAP BTP cockpit"></iframe>
 
 ### What is SAP BTP cockpit?
 

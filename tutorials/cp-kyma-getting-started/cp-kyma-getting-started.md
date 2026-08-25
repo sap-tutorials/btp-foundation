@@ -33,17 +33,17 @@ To enable SAP BTP, Kyma runtime on your cluster you must make sure that your sub
 
 5. Choose **Enable Kyma** to trigger the enablement of the Kyma environment.
 
-    <!-- border -->![Kyma Free Tier](enable-kyma.png)
+    ![Kyma Free Tier](enable-kyma.png)
 
 6. In the popup, enter your cluster name of choice and click **Create**.
 
-    <!-- border -->![Kyma Free Tier](enable-kyma-pop-up.png)
+    ![Kyma Free Tier](enable-kyma-pop-up.png)
 
     In the background, a new Kubernetes cluster is being set up where SAP BTP, Kyma runtime will run. This might take between 15-25 minutes.
 
     To continue with this tutorial, you must wait until the enablement is finished. You can still use the SAP BTP Free Tier or close the window as the setup process will continue automatically.
 
-    <!-- border -->![Kyma Free Tier](cluster-being-created.png)
+    ![Kyma Free Tier](cluster-being-created.png)
 
 
 ### Open Kyma dashboard
@@ -51,13 +51,13 @@ To enable SAP BTP, Kyma runtime on your cluster you must make sure that your sub
 
 To open Kyma dashboard, select **Dashboard URL** under the **Kyma Environment** section of the subaccount's Overview page.
 
-<!-- border -->![Kyma Free Tier](select_KubeconfigURL.png)
+![Kyma Free Tier](select_KubeconfigURL.png)
 
 Kyma dashboard opens in a new browser tab.
 
 Kyma dashboard is your graphical user interface for managing modules, applications or services on SAP BTP, Kyma runtime. You can use Kyma dashboard to add or delete Kyma modules, manage Deployments by creating, deleting, or scaling them, define APIRules to expose your workloads, and much more.
 
-<!-- border -->![Kyma Free Tier](cp-kyma-getting-started-05.png)
+![Kyma Free Tier](cp-kyma-getting-started-05.png)
 
 To learn more about the capabilities and features of SAP BTP, Kyma runtime, follow the Kyma tutorials and blog posts, read the documentation, or check out the YouTube videos. See:
 

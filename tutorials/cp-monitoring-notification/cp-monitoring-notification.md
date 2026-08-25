@@ -123,25 +123,25 @@ public static void sendEmail(String to, String subject, String body) throws Addr
 
 2.   Configure your Java applications to return critical metrics.
 
-    To do this, you can create a JMX check with a low critical threshold for `HeapMemoryUsage` so that the check is always received in a critical state.
+   To do this, you can create a JMX check with a low critical threshold for `HeapMemoryUsage` so that the check is always received in a critical state.
 
-    For more information, see [create-jmx-check](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/298a207f33c4484b9894b7c4e2900566.html).
+   For more information, see [create-jmx-check](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/298a207f33c4484b9894b7c4e2900566.html).
 
-    > Example:
+   > Example:
 
-    > ```
-    > neo create-jmx-check -a mysubaccount -b demo -u p1234567 -n "JMX Check Test - Heap Memory" -O java.lang:type=Memory -A HeapMemoryUsage -K used -U B -C 20000000 -h hana.ondemand.com
-    > ```
-    >
-    > To use the console commands, you need to set up the console client. For more information, see [Set Up the Console Client](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/7613dee4711e1014839a8273b0e91070.html).
+   > ```
+   > neo create-jmx-check -a mysubaccount -b demo -u p1234567 -n "JMX Check Test - Heap Memory" -O java.lang:type=Memory -A HeapMemoryUsage -K used -U B -C 20000000 -h hana.ondemand.com
+   > ```
+   >
+   > To use the console commands, you need to set up the console client. For more information, see [Set Up the Console Client](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/7613dee4711e1014839a8273b0e91070.html).
 
 3.   Run your notification application in Eclipse and check the following:
 
-    -   You receive an e-mail with subject **`A metric has reached a critical state.`** and body **`Metric HeapMemoryUsage for application app1 has reached а critical state.`** when a critical metric is received.
+   -   You receive an e-mail with subject **`A metric has reached a critical state.`** and body **`Metric HeapMemoryUsage for application app1 has reached а critical state.`** when a critical metric is received.
 
-    -   You receive an SMS with text **`Metric HeapMemoryUsage for application app1 has reached critical state 3 times. The application will be restarted.`** when a critical metric is received three times.
+   -   You receive an SMS with text **`Metric HeapMemoryUsage for application app1 has reached critical state 3 times. The application will be restarted.`** when a critical metric is received three times.
 
-    -   Your Java application is restarted when its critical metric is received three times.
+   -   Your Java application is restarted when its critical metric is received three times.
 
 You can check the status of your Java applications in the SAP BTP cockpit.
 

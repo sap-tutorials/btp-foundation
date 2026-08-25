@@ -34,9 +34,9 @@ In Visual Studio Code, set up and run your bookshop application.
 1. Before you start working, fork [this repository](https://github.com/SAP-samples/cap-bookshop-wdi5) to your personal GitHub account. See [Forking a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository).
 2. In Visual Studio Code, choose **View** **→** **Command Palette…** **→** **Git:Clone**.
 3. As **Repository URL**, enter:
-    ```URL
-    https://github.com/<your github username>/cap-bookshop-wdi5.git
-    ```
+   ```URL
+   https://github.com/<your github username>/cap-bookshop-wdi5.git
+   ```
 4. Choose **Select Repository Location** and select a folder into which to clone the test repository.
 
 5. When asked if you want to open the cloned repository, choose **Open**.
@@ -49,27 +49,27 @@ In Visual Studio Code, set up and run your bookshop application.
 
 7. Execute the following command to install the npm packages:
 
-    ```Shell/Bash
-    npm install
-    ```
+   ```Shell/Bash
+   npm install
+   ```
 
 8. Execute the following command to start your bookshop application:
 
-    ```Shell/Bash
-    npm run start
-    ```
+   ```Shell/Bash
+   npm run start
+   ```
 
 9. To open a new terminal, choose **Terminal** **→** **New Terminal**.
 
 10. Execute the following command to call the quick start installation of wdi5:
 
-    ```Shell/Bash
-    npm init wdi5@latest -- --configPath ./app/admin-books/webapp/test/wdi5/ --specs ./**/wdi5/specs/**.js --baseUrl http://localhost:4004/fiori-apps.html\#Books-manage
-    ```
+   ```Shell/Bash
+   npm init wdi5@latest -- --configPath ./app/admin-books/webapp/test/wdi5/ --specs ./**/wdi5/specs/**.js --baseUrl http://localhost:4004/fiori-apps.html\#Books-manage
+   ```
 
-    The console output should look as follows:
+   The console output should look as follows:
 
-    ![Terminal response for the 'npm init wdi5' command](wdi5_init.png)
+   ![Terminal response for the 'npm init wdi5' command](wdi5_init.png)
 
 11. In your project in the **EXPLORER** pane, choose **`app`** **→** **`admin-books`** **→** **`webapp`** **→** **`test`** **→** **`wdi5`**.
 
@@ -94,54 +94,54 @@ In Visual Studio Code, set up and run your bookshop application.
 
 12. Execute the following command to install the timeline reporter:
 
-    ```Shell/Bash
-    npm run install --save-dev wdio-timeline-reporter
-    ```
+   ```Shell/Bash
+   npm run install --save-dev wdio-timeline-reporter
+   ```
 
-    The console output should look as follows:
+   The console output should look as follows:
 
-    ![Terminal response for the 'npm install --save wdio-timeline-reporter' command](wdi5_install_timeline_reporter.png)
+   ![Terminal response for the 'npm install --save wdio-timeline-reporter' command](wdi5_install_timeline_reporter.png)
 
 13. In the `wdio.conf.js` file, add the following snippets to configure the timeline reporter and the Chrome browser:
 
-    ```JavaScript
-    const { TimelineService } = require("wdio-timeline-reporter/timeline-service");
-    exports.config = {
-    // ...
-    ```
+   ```JavaScript
+   const { TimelineService } = require("wdio-timeline-reporter/timeline-service");
+   exports.config = {
+   // ...
+   ```
 
-    ```JavaScript
-    // ...
-    services: ['chromedriver','ui5', [TimelineService]],
-    // ...
-    ```
+   ```JavaScript
+   // ...
+   services: ['chromedriver','ui5', [TimelineService]],
+   // ...
+   ```
 
-    ```JavaScript
-    // ...
-    reporters: ['spec',[
-        "timeline",
-        {
-            outputDir: "target",
-            embedImages: true,
-            screenshotStrategy: "before:click",
-        },
-        ]
-    ],
-    // ...
-    ```
+   ```JavaScript
+   // ...
+   reporters: ['spec',[
+       "timeline",
+       {
+           outputDir: "target",
+           embedImages: true,
+           screenshotStrategy: "before:click",
+       },
+       ]
+   ],
+   // ...
+   ```
 
-    ```JavaScript
-    // ...
-    capabilities: [{
-        maxInstances: 5,
-        browserName: 'chrome',
-        acceptInsecureCerts: true,
-        "goog:chromeOptions": {
-            args: ["--no-sandbox", "--disable-dev-shm-usage"]
-        }
-    }],
-    // ...
-    ```
+   ```JavaScript
+   // ...
+   capabilities: [{
+       maxInstances: 5,
+       browserName: 'chrome',
+       acceptInsecureCerts: true,
+       "goog:chromeOptions": {
+           args: ["--no-sandbox", "--disable-dev-shm-usage"]
+       }
+   }],
+   // ...
+   ```
 
 14. Now, your project setup is ready. Make sure that your code looks as follows and choose **File** **→** **Save**.
 
@@ -155,9 +155,9 @@ Familiarize yourself with your test scenario before starting to code it. Later, 
 
 1. As your bookshop application runs on your local server, use the following URL to access it:
 
-    ```URL
-    http://localhost:4004/fiori-apps.html#Books-manage
-    ```
+   ```URL
+   http://localhost:4004/fiori-apps.html#Books-manage
+   ```
 
 2. In the bookshop application, choose **Create**.
 
@@ -202,11 +202,11 @@ Create a wdi5 script to test the creation of a new book in your bookshop applica
 
 2. Into the `describe` function, implement the `it` function by adding the skeleton of the `create new book` test:
 
-    ```JavaScript
-    it("create a new book", async () => {
+   ```JavaScript
+   it("create a new book", async () => {
 
-    });
-    ```
+   });
+   ```
 
     Your code should now look as follows:
 
@@ -214,9 +214,9 @@ Create a wdi5 script to test the creation of a new book in your bookshop applica
 
 3. As a first step to create a new book, you have to choose the **Create** button. Implement this action as follows in the `it` block:
 
-    ```JavaScript
-    await ManageBooksPage.iClickOnCreateNewBook();
-    ```
+   ```JavaScript
+   await ManageBooksPage.iClickOnCreateNewBook();
+   ```
 
     Here, `iClickOnCreateNewBook()` is a reference to the test function that you'll define in the following.
 
@@ -260,15 +260,15 @@ Create a wdi5 script to test the addition of detailed information to your newly 
 
 2. In the describe block, add the following line to declare the variable `bookTitle` and assign the value `"How to Cook Pancakes"` to it:
 
-    ``` JavaScript
-    const bookTitle = "How to Cook Pancakes";
-    ```
+   ``` JavaScript
+   const bookTitle = "How to Cook Pancakes";
+   ```
 
 3. When adding detailed information to a book in the bookshop application, as a first action, you have to enter the title of the book. Implement this action as follows in the `it` block:
 
-    ``` JavaScript
-    await NewBookPage.iEnterTitle(bookTitle);
-    ```
+   ``` JavaScript
+   await NewBookPage.iEnterTitle(bookTitle);
+   ```
 
     The `bookTitle` constant, which you have declared before, is passed as an argument, here.
 
@@ -298,9 +298,9 @@ Create a wdi5 script to test the addition of detailed information to your newly 
 
 7. In the `it` block of your `bookshop.test.js`, add the following line to choose a value from the **Genre** drop-down list:
 
-    ``` JavaScript
-    await NewBookPage.iSelectGenre();
-    ```
+   ``` JavaScript
+   await NewBookPage.iSelectGenre();
+   ```
 
     ![Code snippet for select genre action in bookshop.test.js file](SelectGenreSpec.png)
 
@@ -330,9 +330,9 @@ Create a wdi5 script to test the addition of detailed information to your newly 
 
 12. In the `it` block of your `bookshop.test.js` file, add the following line to choose a value from the **Author** drop-down list:
 
-    ```JavaScript
-    await NewBookPage.iSelectAuthor();
-    ```
+   ```JavaScript
+   await NewBookPage.iSelectAuthor();
+   ```
 
 13. Repeat the procedure for selecting the author (that is, copying the generated code snippets from the Test Recorder for choosing the drop-down menu and **Emily Bronte** from the pop-up window into your page object). Name the functions `iSelectAuthor`.
 
@@ -342,10 +342,10 @@ Create a wdi5 script to test the addition of detailed information to your newly 
 
 14. In the `it` block of your `bookshop.test.js`, add the following line to select the **Create** button at the bottom of the application:
 
-    ```JavaScript
-    await NewBookPage.iPressCreate();
-    await NewBookPage.iSeeEditButton()
-    ```
+   ```JavaScript
+   await NewBookPage.iPressCreate();
+   await NewBookPage.iSeeEditButton()
+   ```
 
 15. Now, at the footer in the bookshop application, right-click the **Create** button and choose **Press**.
 
@@ -371,22 +371,22 @@ Create a wdi5 script to test the addition of detailed information to your newly 
 
 21. Let's proceed with our test scenario by implementing another `it` function in the `bookshop.test.js` file. To achieve that, we need to add the skeleton of the `should check book is added` test function:
 
-    ```JavaScript
-    it("should check book is added", async () => {
+   ```JavaScript
+   it("should check book is added", async () => {
 
-    });
-    ```
+   });
+   ```
 
 22. In this `it` function, we need two steps. First an action to navigate back to the list of books and a second step to assert that our newly created book is contained in the list. Implement this as follows in the `it` block:
 
-    ```JavaScript
-    await NewBookPage.iNavigateBack();
-    await ManageBooksPage.theBookListContains(bookTitle);
-    ```
+   ```JavaScript
+   await NewBookPage.iNavigateBack();
+   await ManageBooksPage.theBookListContains(bookTitle);
+   ```
 
-    Now, your test is complete. Make sure that it looks as follows:
+   Now, your test is complete. Make sure that it looks as follows:
 
-    ![Complete test in newBook.page.js](TechedspecFile.png)
+   ![Complete test in newBook.page.js](TechedspecFile.png)
 
 23. To get the code snippet for the implementation of the `NewBookPage.iNavigateBack` action, right-click the **<** *(Go Back)* button and choose **Press** in the bookshop application.
 
@@ -420,48 +420,48 @@ Create a wdi5 script to test the addition of detailed information to your newly 
 
 31. Execute the following command to run your test:
 
-    ```Bash/Shell
-    npm run wdi5
-    ```
+   ```Bash/Shell
+   npm run wdi5
+   ```
 
-    If your test run was successful, your terminal response should look as follows:
+   If your test run was successful, your terminal response should look as follows:
 
-    ![Terminal output after successful test](TerminalOutput.png)
+   ![Terminal output after successful test](TerminalOutput.png)
 
-    You might face a timeout error as shown in the following screenshot:
+   You might face a timeout error as shown in the following screenshot:
     
-    ![error snippet from console for step timeout](cucumbertimeout.png)
+   ![error snippet from console for step timeout](cucumbertimeout.png)
     
-    The timeout property is applicable at each step definition. However, if you want to increase the timeout because your test takes longer than the default value, you need to set it in the mocha framework options. In the `wdio.conf.js` file, set the time as follows:
+   The timeout property is applicable at each step definition. However, if you want to increase the timeout because your test takes longer than the default value, you need to set it in the mocha framework options. In the `wdio.conf.js` file, set the time as follows:
     
-    ``` JavaScript
-    // wdio.conf.js
-    exports.config = {
-        //.....
-        mochaOpts: {
-            ui: 'bdd',
-            timeout: 60000
-        }
-        //.....
-    }
-    ```
+   ``` JavaScript
+   // wdio.conf.js
+   exports.config = {
+       //.....
+       mochaOpts: {
+           ui: 'bdd',
+           timeout: 60000
+       }
+       //.....
+   }
+   ```
 
-    Another known timeout error is while waiting for the UI5 controller to load as shown in the following screenshot:
+   Another known timeout error is while waiting for the UI5 controller to load as shown in the following screenshot:
 
-    ![error snippet from console for ui5timeout](waitforui5error.png)
+   ![error snippet from console for ui5timeout](waitforui5error.png)
     
-    If you are getting timeout errors while waiting for an UI5 element to load, consider increasing the maximum waiting time for the availability of UI5 control. In the `wdio.conf.js` file, set the time as follows:
+   If you are getting timeout errors while waiting for an UI5 element to load, consider increasing the maximum waiting time for the availability of UI5 control. In the `wdio.conf.js` file, set the time as follows:
     
-    ``` JavaScript
-    /// wdio.conf.js
-    exports.config = {
-        //.....
-        wdi5: {
-            waitForUI5Timeout: 60000,
-        },
-        //.....
-    }
-    ```
+   ``` JavaScript
+   /// wdio.conf.js
+   exports.config = {
+       //.....
+       wdi5: {
+           waitForUI5Timeout: 60000,
+       },
+       //.....
+   }
+   ```
 
 32. In the **EXPLORER** pane, right-click the `timeline-report.html` in the `target` folder and choose **Reveal in File Explorer**.
 
