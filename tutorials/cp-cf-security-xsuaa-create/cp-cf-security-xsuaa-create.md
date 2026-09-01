@@ -166,17 +166,17 @@ The approuter will enable you to create a secure route to your application.
 
 11. Add the following content:
 
-   ```JSON
-   {
-       "name": "approuter",
-       "dependencies": {
-           "@sap/approuter": "^9.0.2"
-       },
-       "scripts": {
-           "start": "node node_modules/@sap/approuter/approuter.js"
-       }
-   }
-   ```
+    ```JSON
+    {
+        "name": "approuter",
+        "dependencies": {
+            "@sap/approuter": "^22.0.4"
+        },
+        "scripts": {
+            "start": "node node_modules/@sap/approuter/approuter.js"
+        }
+    }
+    ```
 
 12. Save the file.
 
