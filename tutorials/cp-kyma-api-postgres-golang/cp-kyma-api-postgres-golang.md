@@ -4,6 +4,8 @@ auto_validation: true
 time: 40
 tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp--kyma-runtime
+author_name: Grzegorz Karaluch
+author_profile: https://github.com/grego952
 ---
 
 # Deploy a Go PostgreSQL API Endpoint in SAP BTP, Kyma Runtime

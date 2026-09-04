@@ -4,6 +4,8 @@ auto_validation: true
 time: 30
 tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp--kyma-runtime
+author_name: Grzegorz Karaluch
+author_profile: https://github.com/grego952
 ---
 
 # Fast Prototyping in SAP BTP, Kyma Runtime Using App Push
@@ -113,7 +115,7 @@ In this tutorial, you will deploy a Spring Boot REST API for managing movies, ba
    ```
 
     What happens under the hood:
-
+    
     - Source code is built into a container image using [Cloud Native Buildpacks](https://buildpacks.io/) (Paketo). No Dockerfile is required — Buildpacks detect `pom.xml` and automatically build a Java application with the correct JDK.
     - The image is pushed to the in-cluster Docker Registry.
     - A Deployment, Service, and APIRule are created.
