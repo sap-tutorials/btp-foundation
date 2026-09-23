@@ -4,20 +4,26 @@ time: 25
 auto_validation: true
 tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp--kyma-runtime
+author_name: Grzegorz Karaluch
+author_profile: https://github.com/grego952
 ---
 
 # Use and Seed SAP BTP PostgreSQL in SAP BTP, Kyma Runtime
+
 <!-- description --> Use a BTP-managed PostgreSQL instance with Kyma workloads and seed it with sample data.
 
 ## Prerequisites
- - [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
- - [Git](https://git-scm.com/downloads) installed
+
+- [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
+- [Git](https://git-scm.com/downloads) installed
 
 ## You will learn
-  - How to use a Kyma Service Binding Secret that points to an SAP BTP PostgreSQL instance
-  - How to seed the PostgreSQL database with sample schema and data using a Kubernetes Job
+
+- How to use a Kyma Service Binding Secret that points to an SAP BTP PostgreSQL instance
+- How to seed the PostgreSQL database with sample schema and data using a Kubernetes Job
 
 ## Intro
+
 In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, bind it to your Kyma workload namespace, configure network access, and seed the database with a sample schema and data using a Kubernetes Job.
 
 ---
@@ -45,7 +51,7 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
 1. From your subaccount overview in the SAP BTP cockpit, go to **Entitlements** and choose **Edit**.
 
 2. Choose **Add Service Plans** and search for **PostgreSQL, Hyperscaler Option**.
-   
+
 3. Select **free**, and click **Add 1 Service Plan**.
 
     > **NOTE**: The available service plans depend on your account configuration. If the **free** plan is not available, select the plan that matches your subaccount entitlements.
@@ -62,7 +68,7 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
    ```
 
     > Namespaces separate objects inside a Kubernetes cluster. Choosing a different namespace requires adjustments to the provided samples.
-
+    >
     > Adding the `istio-injection=enabled` label to the namespace enables `Istio`. `Istio` is the service mesh implementation used by SAP BTP, Kyma runtime.
 
 2. Use the provided `postgres-instance-binding.yaml` manifest to create the PostgreSQL instance and binding:
@@ -92,12 +98,13 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
    kubectl -n dev patch serviceinstance postgres-instance --type=merge \
      -p "{\"spec\":{\"parameters\":{\"allow_access\":\"${MY_IP},${KYMA_NAT_IPS}\"}}}"
    ```
+
 2. It takes some time before the changes are applied. To see if the instance is updated, run:
 
    ```Shell/Bash
    kubectl -n dev get serviceinstance postgres-instance
    ```
-    
+
 ### Seed the PostgreSQL database
 
 1. Apply the ConfigMap and Job to seed the database. Run the following commands from the `database-postgresql` directory using your CLI:
@@ -109,7 +116,7 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
 
 2. Wait until the Job shows `1/1` in the `COMPLETIONS` column:
 
-   ```
+   ```text
    NAME               COMPLETIONS   DURATION   AGE
    seed-postgresql    1/1           12s        30s
    ```
@@ -171,9 +178,10 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
    ```Shell/Bash
    kubectl -n dev logs pod/pg-client
    ```
-    You should see a table with two sample orders:
 
-   ```
+   You should see a table with two sample orders:
+
+   ```text
     order_id | description  |         created
    ----------+--------------+-------------------------
     10000001 | Sample Order 1 | 2024-01-01 00:00:00+00
@@ -186,7 +194,6 @@ In this tutorial, you will provision a managed PostgreSQL instance on SAP BTP, b
    ```Shell/Bash
    kubectl -n dev delete pod/pg-client
    ```
-
 
 ### Clean up
 
