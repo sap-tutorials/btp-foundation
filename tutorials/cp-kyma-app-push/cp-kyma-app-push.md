@@ -4,27 +4,33 @@ auto_validation: true
 time: 30
 tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp--kyma-runtime
+author_name: Grzegorz Karaluch
+author_profile: https://github.com/grego952
 ---
 
 # Fast Prototyping in SAP BTP, Kyma Runtime Using App Push
+
 <!-- description --> Deploy a containerized application to SAP BTP, Kyma runtime in a single CLI command using kyma app push, with no Dockerfile or external container registry needed.
 
 For this tutorial, we use a Spring Boot application that exposes a REST API for managing movies, storing data in BTP Object Store.
 
 ## Prerequisites
- - [SAP BTP, Kyma runtime enabled](cp-kyma-getting-started)
- - [Kyma CLI](https://help.sap.com/docs/btp/sap-business-technology-platform/kyma-cli?locale=en-US#install-kyma-cli) installed
- - [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
- - [Git](https://git-scm.com/downloads) installed
- - [Add the Istio, API Gateway, and SAP BTP Operator Kyma modules](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module?locale=en-US#adding-a-kyma-module), if not added by default
+
+- [SAP BTP, Kyma runtime enabled](cp-kyma-getting-started)
+- [Kyma CLI](https://help.sap.com/docs/btp/sap-business-technology-platform/kyma-cli?locale=en-US#install-kyma-cli) installed
+- [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
+- [Git](https://git-scm.com/downloads) installed
+- [Add the Istio, API Gateway, and SAP BTP Operator Kyma modules](https://help.sap.com/docs/btp/sap-business-technology-platform/enable-and-disable-kyma-module?locale=en-US#adding-a-kyma-module), if not added by default
 - Add the [Docker Registry community module](https://kyma-project.io/external-content/community-modules/docs/user/README.html#quick-install)
 
 ## You will learn
-  - How to go from source code to a running, externally accessible application on Kyma runtime in a single command
-  - How to iterate quickly on a prototype without writing Kubernetes manifests, Dockerfiles, or configuring a container registry
-  - How to evolve a local prototype into an automated GitHub Actions CD pipeline
+
+- How to go from source code to a running, externally accessible application on Kyma runtime in a single command
+- How to iterate quickly on a prototype without writing Kubernetes manifests, Dockerfiles, or configuring a container registry
+- How to evolve a local prototype into an automated GitHub Actions CD pipeline
 
 ## Intro
+
 In this tutorial, you will deploy a Spring Boot REST API for managing movies, backed by SAP BTP Object Store. The `kyma app push` command builds the application using Cloud Native Buildpacks (no Dockerfile needed), pushes the image to the in-cluster registry, and creates all required Kubernetes resources in one step.
 
 ---
@@ -131,6 +137,7 @@ In this tutorial, you will deploy a Spring Boot REST API for managing movies, ba
    ```
 
     > **TIP:** In quiet mode, the app URL is the only output — useful for capturing it in scripts:
+    >
     > ```Shell/Bash
     > APP_URL=$(kyma app push ... --quiet)
     > echo $APP_URL
