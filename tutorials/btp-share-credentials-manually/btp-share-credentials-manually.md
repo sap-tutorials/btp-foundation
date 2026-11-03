@@ -2,7 +2,7 @@
 parser: v2
 auto_validation: true
 time: 25
-tags: [technology-platform>sap-business-technology-platform, technology-platform>sap-btp--cloud-foundry-runtime-and-environment, technology-platform>sap-btp--kyma-runtime]
+tags: [tutorial>intermediate, technology-platform>sap-business-technology-platform, technology-platform>sap-btp--cloud-foundry-runtime-and-environment, technology-platform>sap-btp--kyma-runtime]
 primary_tag: technology-platform>sap-business-technology-platform
 author_name: Nina Hingerl
 author_profile: https://github.com/NHingerl
@@ -27,6 +27,8 @@ author_profile: https://github.com/NHingerl
 - For Cloud Foundry: You have installed the cf CLI and have the **Space Developer** role in the target space; see [Download and Install the Cloud Foundry CLI](https://help.sap.com/docs/btp/sap-business-technology-platform/4ef907afb1254e8286882a2bdef0edf4).
 - For Kyma: You have configured kubectl for the target cluster and have permissions to create Secrets in the target namespace; see [Access a Kyma Instance Using kubectl](https://help.sap.com/docs/btp/sap-business-technology-platform/3e25944e491049b2aeec68c562a5ee48).
 - For Kyma: You have installed [jq](https://jqlang.github.io/jq/download/) for JSON processing in verification steps.
+
+## Intro
 
 ### Understand when to use manual credential sharing
 

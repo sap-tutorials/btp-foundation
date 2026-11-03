@@ -2,7 +2,7 @@
 parser: v2
 auto_validation: true
 time: 15
-tags: [technology-platform>sap-business-technology-platform]
+tags: [tutorial>intermediate, technology-platform>sap-business-technology-platform]
 primary_tag: technology-platform>sap-business-technology-platform
 author_name: Nina Hingerl
 author_profile: https://github.com/NHingerl
@@ -23,9 +23,11 @@ author_profile: https://github.com/NHingerl
 - You have a service instance that you want to make available in a different Cloud Foundry space, Kyma namespace, or subaccount.
 - You have access to the SAP BTP cockpit with the **Subaccount Viewer** role or higher.
 
+## Intro
+
 ### Understand why you share service instances
 
-Applications often run in different scopes: separate Cloud Foundry spaces, Kyma namespaces, or even different subaccounts. In many cases, these applications need to access the same backend service - for example, a shared logging service, a credential store, or a database.
+Applications often run in different scopes: separate Cloud Foundry spaces, Kyma namespaces, or even different subaccounts. In many cases, these applications need to access the same backend service, for example, a shared logging service, a credential store, or a database.
 
 In every sharing scenario, there are two roles:
 
@@ -64,7 +66,7 @@ If you use Cloud Foundry, continue to the next step. This tutorial group covers 
 
 If you use Kyma: Are your source and target in the same Kyma cluster, just in different namespaces?
 
-- Yes: Use a cross-namespace ServiceBinding. Set `serviceInstanceNamespace` on your `ServiceBinding` to reference the service instance's namespace directly. No sharing mechanism is needed and this tutorial group doesn't apply. For details, see [ServiceBinding CR](https://kyma-project.io/external-content/btp-manager/docs/user/resources/02-30-service-binding-cr.html).
+- Yes: Use a cross-namespace `ServiceBinding`. Set `serviceInstanceNamespace` on your `ServiceBinding` to reference the service instance's namespace directly. No sharing mechanism is needed and this tutorial group doesn't apply. For details, see [ServiceBinding CR](https://kyma-project.io/external-content/btp-manager/docs/user/resources/02-30-service-binding-cr.html).
 - No: Continue to the next step.
 
 ### Check if the service supports instance sharing
@@ -102,13 +104,13 @@ Question 2: Your service doesn't support instance sharing. You need to make it a
 - Instance sharing with reference instances
 - `cf share-service` with the `-o` flag
 - Manual credential sharing [CORRECT]
-- Cross-namespace ServiceBinding
+- Cross-namespace `ServiceBinding`
 
 Question 3: Your Kyma application and the service instance are in different namespaces of the same cluster, within the same subaccount. What do you do?
 
 - Create a reference instance using instance sharing
 - Use manual credential sharing with a Kubernetes Secret
-- Set `serviceInstanceNamespace` on a cross-namespace ServiceBinding [CORRECT]
+- Set `serviceInstanceNamespace` on a cross-namespace `ServiceBinding` [CORRECT]
 - Share the instance using `cf share-service`
 
 Question 4: A service is listed as security-sensitive in its documentation. What do you do?

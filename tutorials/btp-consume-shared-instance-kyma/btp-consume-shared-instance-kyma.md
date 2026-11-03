@@ -2,7 +2,7 @@
 parser: v2
 auto_validation: true
 time: 30
-tags: [technology-platform>sap-btp--kyma-runtime, technology-platform>sap-business-technology-platform]
+tags: [tutorial>intermediate, technology-platform>sap-btp--kyma-runtime, technology-platform>sap-business-technology-platform]
 primary_tag: technology-platform>sap-btp--kyma-runtime
 author_name: Nina Hingerl
 author_profile: https://github.com/NHingerl
@@ -31,6 +31,8 @@ author_profile: https://github.com/NHingerl
 - You have configured kubectl to connect to your Kyma cluster; see [Access a Kyma Instance Using kubectl](https://help.sap.com/docs/btp/sap-business-technology-platform/3e25944e491049b2aeec68c562a5ee48).
 - You have installed [jq](https://jqlang.github.io/jq/download/) for JSON processing in verification steps.
 
+## Intro
+
 ### Determine your sharing scope
 
 Is the shared source instance in the same subaccount as your Kyma cluster, or in a different subaccount?
@@ -38,7 +40,7 @@ Is the shared source instance in the same subaccount as your Kyma cluster, or in
 - Same subaccount: Continue with [Create a reference instance](#create-a-reference-instance).
 - Different subaccount: Continue with [Create a cross-subaccount reference instance](#create-a-cross-subaccount-reference-instance).
 
-> **Tip:** If your consumer application and the source instance are in different namespaces but the same subaccount, you may not need instance sharing at all. The SAP BTP Operator supports cross-namespace bindings natively. Set `serviceInstanceNamespace` on your ServiceBinding to reference a ServiceInstance in another namespace directly. For details, see the [ServiceBinding CR](https://kyma-project.io/external-content/btp-manager/docs/user/resources/02-30-service-binding-cr.html).
+> **Tip:** If your consumer application and the source instance are in different namespaces but the same subaccount, you may not need instance sharing at all. The SAP BTP Operator supports cross-namespace bindings natively. Set `serviceInstanceNamespace` on your `ServiceBinding` to reference a `ServiceInstance` in another namespace directly. For details, see the [ServiceBinding CR](https://kyma-project.io/external-content/btp-manager/docs/user/resources/02-30-service-binding-cr.html).
 
 ### Create a reference instance
 
@@ -86,11 +88,10 @@ When the reference instance is ready, continue with [Use selectors instead of ha
 
 If your source instance is in the same subaccount, skip this step. You have already created a reference instance in the previous step.
 
-To reference a shared source instance in a different subaccount, you must provide the SAP BTP Operator with access credentials for the source subaccount. You store these credentials in a Kubernetes Secret and reference that Secret from the `btpAccessCredentialsSecret` field in the ServiceInstance resource. For an overview, see [Working with Multiple Subaccounts](https://help.sap.com/docs/btp/sap-business-technology-platform/working-with-multiple-subaccounts).
+To reference a shared source instance in a different subaccount, you must provide the SAP BTP Operator with access credentials for the source subaccount. You store these credentials in a Kubernetes Secret and reference that Secret from the `btpAccessCredentialsSecret` field in the `ServiceInstance` resource. For an overview, see [Working with Multiple Subaccounts](https://help.sap.com/docs/btp/sap-business-technology-platform/working-with-multiple-subaccounts).
 
 > **Important:**
->
-> - You must set `btpAccessCredentialsSecret` when you create the ServiceInstance - you can't add it later.
+> - You must set `btpAccessCredentialsSecret` when you create the `ServiceInstance` - you can't add it later.
 > - This mechanism only works within the same global account. To share across global accounts, regions, or with external targets, use [Share Service Credentials Manually Across Boundaries](btp-share-credentials-manually) instead.
 
 1. In the source subaccount, make sure an SAP Service Manager instance with the `service-operator-access` plan exists. If Kyma is enabled in the source subaccount, this instance typically exists already.
@@ -206,7 +207,7 @@ The following table summarizes what happens when you modify shared resources in 
 
 | Action | Effect |
 | --- | --- |
-| Delete a reference ServiceInstance (`kubectl delete serviceinstance <REFERENCE_NAME>`) | Only the pointer is removed. The source instance and other references aren't affected. For details, see [Deleting Service Bindings and Service Instances](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/5deca69978eb471692743089ce1eed77.html?version=LATEST&locale=en-US). |
+| Delete a reference `ServiceInstance` (`kubectl delete serviceinstance <REFERENCE_NAME>`) | Only the pointer is removed. The source instance and other references aren't affected. For details, see [Deleting Service Bindings and Service Instances](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/5deca69978eb471692743089ce1eed77.html?version=LATEST&locale=en-US). |
 | Delete the source instance (using the btp CLI or SAP BTP cockpit) | All reference instances stop working. All bindings become invalid. |
 | Unshare the source instance (`btp unshare services/instance`) | No new reference instances can be created. Existing reference instances continue to work. |
 | Disable the Kyma environment | If the source instance was created through the btp CLI (as recommended), the source instance isn't affected. If the source instance was created through a `ServiceInstance` resource in the same cluster, it is deprovisioned. |

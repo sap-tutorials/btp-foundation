@@ -2,7 +2,7 @@
 parser: v2
 auto_validation: true
 time: 20
-tags: [technology-platform>sap-business-technology-platform, technology-platform>sap-btp--cloud-foundry-runtime-and-environment]
+tags: [tutorial>intermediate, technology-platform>sap-business-technology-platform, technology-platform>sap-btp--cloud-foundry-runtime-and-environment]
 primary_tag: technology-platform>sap-business-technology-platform
 author_name: Nina Hingerl
 author_profile: https://github.com/NHingerl
@@ -25,6 +25,8 @@ author_profile: https://github.com/NHingerl
 - How to create a reference instance in a Cloud Foundry space
 - How to bind an application to a reference instance
 - How to use `cf share-service` as a CF-native alternative
+
+## Intro
 
 ### Create a reference instance
 

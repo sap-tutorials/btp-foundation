@@ -2,7 +2,7 @@
 parser: v2
 auto_validation: true
 time: 15
-tags: [technology-platform>sap-business-technology-platform]
+tags: [tutorial>intermediate, technology-platform>sap-business-technology-platform]
 primary_tag: technology-platform>sap-business-technology-platform
 author_name: Nina Hingerl
 author_profile: https://github.com/NHingerl
@@ -24,6 +24,8 @@ author_profile: https://github.com/NHingerl
 - How to create a service instance at the subaccount level using the btp CLI
 - How to mark a service instance as shared
 - How to verify that the reference-instance plan is available
+
+## Intro
 
 ### Choose a service for this tutorial
 
@@ -97,7 +99,7 @@ This command marks the instance as shared in SAP Service Manager. Also, it makes
 
 You now have a shared service instance that other scopes can reference. Depending on your target runtime, continue with:
 - [Consume a Shared Service Instance in Cloud Foundry](btp-consume-shared-instance-cf)
--  [Consume a Shared Service Instance in Kyma](btp-consume-shared-instance-kyma).
+- [Consume a Shared Service Instance in Kyma](btp-consume-shared-instance-kyma).
 
 ### Test yourself
 
