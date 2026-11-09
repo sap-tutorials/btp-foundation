@@ -4,23 +4,29 @@ auto_validation: true
 time: 25
 tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp--kyma-runtime
+author_name: Grzegorz Karaluch
+author_profile: https://github.com/grego952
 ---
 
 # Deploy a CAP Application with PostgreSQL in SAP BTP, Kyma Runtime
+
 <!-- description --> Deploy PostgreSQL in SAP BTP, Kyma runtime for your CAP Bookstore application.
 
 ## Prerequisites
-  - [SAP BTP, Kyma runtime enabled](cp-kyma-getting-started)
-  - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) installed
-  - [Node.js and cds-dk installed](https://cap.cloud.sap/docs/get-started/#node-js-and-cds-dk)
-  - [Docker installed](https://www.docker.com/)
-  - Sufficient quota to add PostgreSQL entitlements in your environment
+
+- [SAP BTP, Kyma runtime enabled](cp-kyma-getting-started)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) installed
+- [Node.js and cds-dk installed](https://cap.cloud.sap/docs/get-started/#node-js-and-cds-dk)
+- [Docker installed](https://www.docker.com/)
+- Sufficient quota to add PostgreSQL entitlements in your environment
 
 ## You will learn
+
 - How to add and configure PostgreSQL to your Kyma environment.
 - How to deploy a CAP application in your Kyma environment.
 
 ## Intro
+
 In this tutorial, you will add PostgreSQL entitlements to your subaccount and deploy a CAP Application in the Kyma environment.
 
 ### Add PostgreSQL entitlements
@@ -28,16 +34,16 @@ In this tutorial, you will add PostgreSQL entitlements to your subaccount and de
 1. From your subaccount overview in the SAP BTP cockpit, go to **Entitlements** and choose **Edit**.
 
 2. Choose **Add Service Plans** and search for **PostgreSQL, Hyperscaler Option**.
-   
+
 3. Select **free**, and choose **Add 1 Service Plan**.
 
     > **NOTE**: The available service plans depend on your account configuration. If the **free** plan is not available, select the plan that matches your subaccount entitlements.
 
 4. Choose **Save**.
- 
+
 You are now ready to deploy a PostgreSQL instance in your subaccount.
 
-> For the sake of this tutorial, the chosen entitlement units are sufficient. However, when sizing and configuring your environment, consider the necessary amount of entitlement units (2GB/4GB memory blocks and 5GB storage blocks) to support your architecture. Depending on the hyperscaler, configurations can consume different numbers of entitlement units. See [Sizing](https://help.sap.com/docs/postgresql-on-sap-btp/postgresql-on-sap-btp-hyperscaler-option/sizing?locale=en-US) and [Service Plans and Entitlements](https://help.sap.com/docs/postgresql-on-sap-btp/postgresql-on-sap-btp-hyperscaler-option/service-plans-and-entitlements?locale=en-US). 
+> For the sake of this tutorial, the chosen entitlement units are sufficient. However, when sizing and configuring your environment, consider the necessary amount of entitlement units (2GB/4GB memory blocks and 5GB storage blocks) to support your architecture. Depending on the hyperscaler, configurations can consume different numbers of entitlement units. See [Sizing](https://help.sap.com/docs/postgresql-on-sap-btp/postgresql-on-sap-btp-hyperscaler-option/sizing?locale=en-US) and [Service Plans and Entitlements](https://help.sap.com/docs/postgresql-on-sap-btp/postgresql-on-sap-btp-hyperscaler-option/service-plans-and-entitlements?locale=en-US).
 
 ### Create a sample project
 
@@ -112,7 +118,8 @@ You are now ready to deploy a PostgreSQL instance in your subaccount.
     - cluster domain: abc123.kyma.ondemand.com
 
     > **TIP**: To get your Kyma cluster domain, run:
-    > ```
+    >
+    > ```bash
     > kubectl get gateways.networking.istio.io -n kyma-system kyma-gateway \
     > -o jsonpath='{.spec.servers[0].hosts[0]}'
     > ```
@@ -168,9 +175,10 @@ You are now ready to deploy a PostgreSQL instance in your subaccount.
    ```bash
    cds up -2 k8s --namespace cap-bookstore
    ```
-    > You might get a warning that your registry server is invalid. If so, simply enter your Docker username again.
 
-3. Create an image pull secret when prompted. 
+   > You might get a warning that your registry server is invalid. If so, simply enter your Docker username again.
+
+3. Create an image pull secret when prompted.
 
     This command executes the following actions:
 
@@ -182,9 +190,11 @@ You are now ready to deploy a PostgreSQL instance in your subaccount.
     - Runs the database deployer Job to initialize PostgreSQL with the schema and CSV data.
 
     > **NOTE:** The deployment process might timeout, especially during the first deployment when images are being built and pushed. If this happens, the deployment will continue in the background. You can check the status using:
-    > ```
+    >
+    > ```bash
     > kubectl get pods -n cap-bookstore
     > ```
+    >
     > Wait until all Pods show `Running` status before proceeding to verification.
 
 ### Verify the deployment
@@ -192,6 +202,5 @@ You are now ready to deploy a PostgreSQL instance in your subaccount.
 1. In Kyma dashboard, go to your `cap-bookstore` namespace, and select **API Rules**.
 2. Choose `bookshop-srv` and select the link under `Hosts` from the **Status** section.
 3. Add `/odata/v4/catalog/Books` at the end of the link. You should see your books and authors.
-
 
 **Congratulations!** You have now deployed your CAP application with PostgreSQL in SAP BTP, Kyma runtime.

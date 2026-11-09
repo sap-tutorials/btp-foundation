@@ -4,23 +4,29 @@ auto_validation: true
 time: 40
 tags: [ tutorial>intermediate, topic>cloud, software-product>sap-business-technology-platform]
 primary_tag: software-product>sap-btp--kyma-runtime
+author_name: Grzegorz Karaluch
+author_profile: https://github.com/grego952
 ---
 
 # Deploy a Go PostgreSQL API Endpoint in SAP BTP, Kyma Runtime
+
 <!-- description --> Develop and deploy an PostgreSQL API endpoint written in Go to SAP BTP, Kyma runtime.
 
 ## Prerequisites
-  - [Docker](https://www.docker.com/)
-  - [Go ](https://golang.org/doc/install)
-  - [Git](https://git-scm.com/downloads)
-  - [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
-  - [Use and Seed SAP BTP PostgreSQL in SAP BTP, Kyma Runtime](cp-kyma-postgres-seed) tutorial completed
+
+- [Docker](https://www.docker.com/)
+- [Go](https://golang.org/doc/install)
+- [Git](https://git-scm.com/downloads)
+- [kubectl configured to kubeconfig downloaded from SAP BTP, Kyma runtime](cp-kyma-download-cli)
+- [Use and Seed SAP BTP PostgreSQL in SAP BTP, Kyma Runtime](cp-kyma-postgres-seed) tutorial completed
 
 ## You will learn
-  - How to configure and build a Go Docker image
-  - How to deploy the Go Docker image to SAP BTP, Kyma runtime
+
+- How to configure and build a Go Docker image
+- How to deploy the Go Docker image to SAP BTP, Kyma runtime
 
 ## Intro
+
 This tutorial expects that the tutorial [Use and Seed SAP BTP PostgreSQL in SAP BTP, Kyma Runtime](cp-kyma-postgres-seed) has been completed. The Go API will connect to the BTP-managed PostgreSQL instance using the Service Binding Secret available in the Kyma cluster.
 
 Deploying the image includes:
@@ -35,7 +41,7 @@ Deploying the image includes:
 ### Clone the Git repository
 
 1. In your browser, go to [kyma-runtime-samples](https://github.com/SAP-samples/kyma-runtime-samples). This repository contains a collection of Kyma sample applications which will be used during the tutorial.
-   
+
 2. Use the **Code** button to choose one of the options to download the code locally, or simply run the following command within your CLI at your desired folder location:
 
    ```Shell/Bash
@@ -51,7 +57,7 @@ Deploying the image includes:
     Within the `cmd/api` directory, you can find `main.go`, which is the main entry point of the Go application.
 
     The `docker` directory contains the Dockerfile used to generate the Docker image. The image is built in two stages to create an image with a small file size.
-    
+
     In the first stage, a Go image is used. It copies the related content of the project into the image and builds the application. The built application is then copied into the Docker `scratch` image and exposed on port 8000. The `scratch` image is an empty image containing no other tools within it, so obtaining a shell/bash session is not possible. If desired, the following lines could be commented out to build an image with more included tools, but this results in a larger image.
 
    ```Shell/Bash
@@ -90,10 +96,10 @@ Make sure to replace the value of `<your-docker-id>` with your Docker account ID
 
 You can find the resource definitions in the `k8s` folder. If you performed any changes in the configuration, these files may also need to be updated. The folder contains the following files that are relevant to this tutorial:
 
-- `apirule.yaml`: defines the API endpoint which exposes the application to the Internet. This endpoint does not define any authentication access strategy and should be disabled when not in use. 
+- `apirule.yaml`: defines the API endpoint which exposes the application to the Internet. This endpoint does not define any authentication access strategy and should be disabled when not in use.
 - `authorizationpolicy.yaml`: allows internal traffic to the service api-postgresql-go in the `dev` namespace.
 - `configmap.yaml`: defines the name of the database.
-- `deployment.yaml`: defines the deployment definition for the Go API, as well as a service used for communication. This definition references the PostgreSQL Service Binding Secret (`postgres-binding`) for connection details and `configmap.yaml` for the database name.  
+- `deployment.yaml`: defines the deployment definition for the Go API, as well as a service used for communication. This definition references the PostgreSQL Service Binding Secret (`postgres-binding`) for connection details and `configmap.yaml` for the database name.
 
 1. Within the `deployment.yaml`, adjust the value of `spec.template.spec.containers.image`, commented with **#change it to your image**, to use your Docker image. Also ensure the Secret name matches your PostgreSQL Service Binding (`postgres-binding`). Apply the ConfigMap and Deployment:
 
@@ -115,7 +121,7 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
    api-postgresql-go-c694bc847-tkthc   2/2     Running   0          23m
    ```
 
-5. Run the following command to get the domain name of your Kyma cluster:
+3. Run the following command to get the domain name of your Kyma cluster:
 
    ```bash
    kubectl get gateways.networking.istio.io -n kyma-system kyma-gateway \
@@ -128,9 +134,9 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
    *.<xyz123>.kyma.ondemand.com
    ```
 
-6. Copy the result without the leading `*.`.
+4. Copy the result without the leading `*.`.
 
-7. In `apirule.yaml`, modify `allowOrigins.regex`, to match your domain, and add the `exact: http://localhost:8080` key-value pair. For example:
+5. In `apirule.yaml`, modify `allowOrigins.regex`, to match your domain, and add the `exact: http://localhost:8080` key-value pair. For example:
 
     > **Note:** The command output uses `*.` as a glob wildcard prefix, but in the `regex` field you replace it with `.*` — the equivalent regex pattern that matches any character sequence. For example, `*.<xyz123>.kyma.ondemand.com` becomes the regex `.*xyz123.kyma.ondemand.com`.
 
@@ -144,18 +150,17 @@ You can find the resource definitions in the `k8s` folder. If you performed any 
 
     > `exact: http://localhost:8080` is only required if you want to locally test the frontend of your application as part of the [Deploy the SAPUI5 Frontend in SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-frontend-ui5-postgres.html) tutorial.
 
-8. Apply the APIRule:
+6. Apply the APIRule:
 
    ```Shell/Bash
    kubectl -n dev apply -f ./k8s/apirule.yaml
    ```
 
-9. Apply the AuthorizationPolicy:
+7. Apply the AuthorizationPolicy:
 
    ```Shell/Bash
    kubectl -n dev apply -f ./k8s/authorizationpolicy.yaml
    ```
-
 
 ### Open the API endpoint
 
