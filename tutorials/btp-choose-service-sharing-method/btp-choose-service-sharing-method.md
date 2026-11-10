@@ -42,7 +42,7 @@ Without a sharing mechanism, you would need to create a separate service instanc
 
 ### Learn the sharing methods
 
-> **Note:** This tutorial introduces the group [Share BTP Services Across Runtimes and Subaccounts](https://developers.sap.com/group.share-btp-services-across-runtimes.html). The following tutorials cover instance sharing and manual credential sharing. Additional methods exist, such as cross-namespace bindings in Kyma or service-specific methods. For a full comparison, see [Sharing SAP BTP Services](https://help.sap.com/docs/BTP/df50977d8bfa4c9a8a063ddb37113c43/9fe7e160bf58488aa42e726ebe3c7111.html?locale=en-US&version=LATEST).
+> **Note:** This tutorial introduces the group [Share BTP Services Across Runtimes and Subaccounts](https://tutorial-system-prod-tutorials-approuter.cfapps.eu10-005.hana.ondemand.com/tutorials/group-share-btp-services-across-runtimes-and-subaccounts). The following tutorials cover instance sharing and manual credential sharing. Additional methods exist, such as cross-namespace bindings in Kyma or service-specific methods. For a full comparison, see [Sharing SAP BTP Services](https://help.sap.com/docs/BTP/df50977d8bfa4c9a8a063ddb37113c43/9fe7e160bf58488aa42e726ebe3c7111.html?locale=en-US&version=LATEST).
 
 - **Centralized service:** Some services are designed to be globally accessible. You create an instance centrally and access it through its URL, API, or destinations.
   
